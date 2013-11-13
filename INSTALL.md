@@ -63,3 +63,4 @@ Also remove these .htaccess files::
     app/.htaccess
     app/webroot/.htaccess
 
+Downside to this method is that although the webfront will look fine, the Administration Dashboard will still look crappy. 
