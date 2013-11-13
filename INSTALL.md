@@ -1,6 +1,6 @@
 # Installing XLRstats v3.
 
-*This web application depends on some minimal system requirements. Some of them will prevent you from using the app and even the installer. Make sure you have at least PHP version 5.2.8 installed and mod_rewrite enabled before starting the installation.*
+*This web application depends on some minimal system requirements. Some of them will prevent you from using the app and even the installer. Make sure you have at least __PHP version 5.2.8__ installed and __Apache2__ with __mod_rewrite enabled__ before starting the installation.*
 
 ## Using the installer.
 
@@ -43,16 +43,16 @@ This method is for advanced users or if you can't use the installer for some rea
 
 # Problems?
 
-## Symptom:
+### Symptom:
 Can't start installation, you only get the ``Cannot continue`` message.
 
-### Solution:
+#### Solution:
 Make sure `app/Config`, `app/Config/core.php` and `app/tmp` (including all it's subfolders) are writable by the webserver.
 
-## Symptom:
+### Symptom:
 Installer looks crappy, and you get errors like: ``"404 /install/license not found"``
 
-### Solution:
+#### Solution:
 You probably don't want or can't get mod\_rewrite (or some other compatible module) up and running on your server, you'll need to use our built-in pretty URLs. In ``app/Config/core.php``, uncomment the line that looks like:
 
     Configure::write('App.baseUrl', env('SCRIPT_NAME'));
