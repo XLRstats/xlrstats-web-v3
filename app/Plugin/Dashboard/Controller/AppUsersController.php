@@ -403,6 +403,18 @@ class AppUsersController extends UsersController {
 	//-------------------------------------------------------------------
 
 	/**
+	 * Allows the user to enter a new password, it needs to be confirmed by entering the old password
+	 *
+	 * @return void
+	 */
+	public function change_password() {
+		$this->layout = 'Dashboard.user';
+		parent::change_password();
+	}
+
+	//-------------------------------------------------------------------
+
+	/**
 	 * Reset Password Action
 	 *
 	 * Handles the trigger of the reset, also takes the token, validates it and let the user enter
