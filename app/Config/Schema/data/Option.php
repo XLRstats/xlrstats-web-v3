@@ -33,7 +33,7 @@ class Option {
 		array('group' => 'website', 'name' => 'tos_organisation', 'value' => 'xlrstats.com', 'locked' => '0', 'description' => '<b>[xlrstats.com]</b> Terms Of Service: your clan-, community- or organisationname'),
 		array('group' => 'website', 'name' => 'tos_country', 'value' => 'The Netherlands', 'locked' => '0', 'description' => '<b>[The Netherlands]</b> Terms Of Service: your country'),
 		array('group' => 'website', 'name' => 'must_accept_cookies', 'value' => '1', 'locked' => '0', 'description' => '<b>[Yes]</b> To satisfy the European Cookie Law'),
-		array('group' => 'website', 'name' => 'google_analytics_account', 'value' => '', 'locked' => '1', 'description' => '<b>[Empty]</b> Your Google Ananlytics account'),
+		array('group' => 'website', 'name' => 'google_analytics_account', 'value' => '', 'locked' => '1', 'description' => '<b>[Empty]</b> Your Google Analytics account'),
 		array('group' => 'server', 'name' => 'show_donate_button', 'value' => '0', 'locked' => '1', 'description' => '<b>[No]</b> Show XLRstats donation button'),
 	);
 }
