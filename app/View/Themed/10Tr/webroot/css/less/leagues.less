@@ -1,0 +1,61 @@
+//
+// League
+// --------------------------------------------------
+
+// League Boxes on Homepage
+
+.league {
+  display:block;
+  background: @leagueBackground;
+  border: 1px solid @leagueBorderColor;
+  border-bottom: 1px solid darken(@leagueBorderColor, 10%);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  .box-sizing(border-box);
+  h4 {
+    background: @leagueTitleBackgroundColor;
+  /* fallback */
+    background-color: @leagueTitleBackgroundColor;
+  /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@grayDarker), to(@leagueTitleBackgroundColor));
+  /* Safari 5.1, Chrome 10+ */
+    background: -webkit-linear-gradient(top, @grayDarker, @leagueTitleBackgroundColor);
+  /* Firefox 3.6+ */
+    background: -moz-linear-gradient(top, @grayDarker, @leagueTitleBackgroundColor);
+  /* IE 10 */
+    background: -ms-linear-gradient(top, @grayDarker, @leagueTitleBackgroundColor);
+  /* Opera 11.10+ */
+    background: -o-linear-gradient(top, @grayDarker, @leagueTitleBackgroundColor);
+    border-bottom: 1px solid @defaultBorderColor;
+    line-height: 35px;
+    margin: 0px;
+    text-align: center;
+    font-weight:normal;
+    //text-shadow:0 1px 0 rgba(255,255,255,1);
+    color:@white;
+    a {
+      color:@white;
+    }
+  }
+  .subleague  {
+    height:267px;
+  }
+  .league-footer {
+    background:@grayVeryLight;
+    border-top: 1px solid darken(@leagueBorderColor, 0%);
+  }
+}
+.view-league-btn {
+  position:relative;
+  right: 5px;
+  top: 2px;
+}
+.label-league {
+  height: 8px;
+  width: 4px;
+  cursor: pointer;
+  position: relative;
+  top: 3px;
+  margin-left: 10px;
+  .border-radius(0px);
+}

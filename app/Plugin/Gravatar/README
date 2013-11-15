@@ -1,0 +1,18 @@
+Gravatar Helper for CakePHP
+Version 1.2
+Author: Hayden Harnett <haydenharnett@gmail.com>
+URL: http://hayden.id.au
+
+Usage
+
+1. Clone the repo in /app/plugins and rename the folder into `gravatar` 
+2. Add gravatar to $helpers array in each controller which you wish to use it
+	e.g. var $helpers = array('Html', 'Javascript', 'Gravatar.Gravatar');
+
+3. In a view call the image function with an email address of the gravatar any (or no) of the following options, followed by any HTML image tag attributes you wish to have (e.g. alt, style, width, height etc):
+	- size (between 1 and 512 pixels)
+	- rating ('g', 'pg', 'r' or 'x')
+	- default (a default image to be shown if the gravatar cannot be found - either an absolute path to another image or an email of another gravatar )
+	
+	
+	e.g. $gravatar->image('test@example.com', array('size' => 50, 'rating' => 'r'), array('alt' => 'Sidebar Avatar', 'width' => 50, 'height' => 50));

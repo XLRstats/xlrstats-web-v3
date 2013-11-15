@@ -1,0 +1,188 @@
+//
+// Playerstats Main Top Block
+// --------------------------------------------------
+
+
+// Player Info Block
+// --------------------------------------------------
+
+.player-info {
+  margin-bottom:20px;
+  h3 {
+    line-height: 24px;
+    margin: 5px 0 0;
+    img {
+      margin-top: -10px;
+      cursor: pointer;
+    }
+  }
+  small {
+    color: @textColor2;
+  }
+}
+.avatar {
+  margin-right:15px;
+}
+.player-level {
+  font-size:16px;
+  color: @textColor2;
+  line-height: 30px;
+}
+
+// Player Short Stats Block
+// --------------------------------------------------
+
+.player-short-stats {
+  padding: 15px;
+  background: @grayDarker;
+  border:1px solid @defaultBorderColor;
+  min-height: 275px;
+  text-align: center;
+  margin-bottom: 20px;
+
+  h3 {
+    line-height: 30px;
+    margin: 10px 0 0;
+  }
+  h4 {
+    font-size:16px;
+    color: @textColor3;
+    margin: 0px;
+  }
+}
+.box-large {
+  width: 203px;
+  border-right: 1px solid @tableRowBorder;
+  min-height: 275px;
+}
+.box-midi {
+  width: 196px;
+  border-right: 1px solid @tableRowBorder;
+  min-height: 137px;
+  border-bottom: 1px solid @tableRowBorder;
+}
+.box-mini {
+  width: 147px;
+  border-right: 1px solid @tableRowBorder;
+  min-height: 68px;
+  border-bottom: 1px solid @tableRowBorder;
+}
+.end {
+  border-right:0px;
+}
+.bottom {
+  border-bottom:0px;
+}
+.gauge {
+  h3 {
+    line-height: 10px;
+    margin-top: 8px;
+    position: relative;
+    top: 5px;
+  }
+  small {
+    color: #8E9AB2;
+    font-size: 60%;
+    line-height: 4px;
+  }
+  h4 {
+    line-height: 15px;
+  }
+}
+.img-rank-big {
+  widht: 112px;
+  height: 112px;
+  margin: 10px;
+}
+.img-rank-small {
+  widht: 24;
+  height: 24px;
+  margin: 0px;
+  cursor:pointer;
+}
+.rank-progress {
+  width: 168px;
+  height: 8px;
+  margin: 10px;
+}
+.text-x-large {
+  font-size: 42px;
+  font-family: @headingsFontFamily;
+  line-height: 50px;
+  font-weight: 700;
+  margin-top: 25px;
+}
+
+// Player Tabs
+// --------------------------------------------------
+
+.playerstats-tabs {
+  .nav-tabs {
+    border-bottom: 1px solid @defaultBorderColor;
+    cursor:pointer;
+  }
+  .nav-tabs > li > a {
+    font-family: @headingsFontFamily;
+    font-size: 16px;
+    //background: @gray;
+  }
+  .nav > li > a:hover {
+    text-decoration: none;
+    background-color: @grayDark;
+    border: 0px;
+  }
+  .nav-tabs > .active > a,
+  .nav-tabs > .active > a:hover {
+    font-family: @headingsFontFamily;
+    font-size: 16px;
+    background: @grayDarker;
+    color: @textColor;
+    border-left: 1px solid @defaultBorderColor;
+    border-right: 1px solid @defaultBorderColor;
+    border-top: 1px solid @defaultBorderColor;
+  }
+  .tab-content {
+    margin-top:-20px;
+    border-left: 1px solid @defaultBorderColor;
+    border-right: 1px solid @defaultBorderColor;
+    border-bottom: 1px solid @defaultBorderColor;
+    background: @grayDarker;
+    padding:15px;
+  }
+  .nav .dropdown-toggle .caret {
+    border-top-color: @linkColor;
+    border-bottom-color: @linkColor;
+    margin-top: 6px;
+  }
+  .nav .dropdown-toggle:hover .caret {
+    border-top-color: @linkColorHover;
+    border-bottom-color: @linkColorHover;
+  }
+}
+
+// Tables (Overrides dataTables CSS)
+// --------------------------------------------------
+
+.playerstats {
+  table.table thead .sorting {
+    background: url('@{themeImgPath}/sort_both.png') no-repeat right center transparent;
+    border: none;
+  }
+  table.table thead .sorting_disabled {
+    background: transparent;
+    border: none;
+  }
+  table.table thead .sorting_asc {
+    background: url('@{themeImgPath}/sort_asc.png') no-repeat right center transparent;
+    border: none;
+  }
+  table.table thead .sorting_desc {
+    background: url('@{themeImgPath}/sort_desc.png') no-repeat right center transparent;
+    border: none;
+  }
+  div.dataTables_paginate {
+    font-size: 11px;
+    float: right;
+    margin: -20px 0 0;
+  }
+}

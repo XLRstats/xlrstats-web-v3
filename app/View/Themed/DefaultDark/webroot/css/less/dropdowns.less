@@ -1,0 +1,37 @@
+//
+// Dropdown menus
+// --------------------------------------------------
+
+/* The opened dropdown menu balloon text color */
+.dropdown-menu {
+  font-family: @sansFontFamily;
+  font-size: 13px;
+  background-color: @grayDark;
+}
+
+/* The opened dropdown menu balloon text color */
+.dropdown-menu li > a {
+  color: @white;
+}
+/* The caret on top of the opened menu balloon */
+.navbar .nav>li > .dropdown-menu:after {
+  border-bottom:6px solid @grayDark;
+}
+
+
+// Hover state
+// -----------
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus,
+.dropdown-submenu:hover > a {
+  background-color: @dropdownLinkBackgroundHover;
+  #gradient > .vertical(@dropdownLinkBackgroundHover, darken(@dropdownLinkBackgroundHover, 0%));
+}
+
+// Active state
+// ------------
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover {
+  background-color: @dropdownLinkBackgroundActive;
+  #gradient > .vertical(@dropdownLinkBackgroundActive, darken(@dropdownLinkBackgroundActive, 0%));
+}

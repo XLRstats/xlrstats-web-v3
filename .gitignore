@@ -1,0 +1,14 @@
+.idea
+
+app/tmp/*
+/app/[Cc]onfig/database.php
+/app/[Cc]onfig/email.php
+/app/[Cc]onfig/security.php
+/app/[Cc]onfig/install
+
+!empty
+
+/app/[Vv]iew/[Pp]ages/xlrstats.com
+/lib/[Cc]ake/[Cc]onsole/[Tt]emplates/skel/tmp/
+
+

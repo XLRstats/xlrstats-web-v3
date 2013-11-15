@@ -1,0 +1,77 @@
+//
+// Layouts
+// --------------------------------------------------
+
+
+body {
+  background:@bodyBackground url("@{themeImgPath}/background.gif") repeat;
+  font-family: @baseFontFamily;
+  font-size: @baseFontSize;
+  color:@textColor;
+  line-height: @baseLineHeight;
+}
+a {
+  color: @linkColor;
+}
+a:hover {
+  color: @linkColorHover;
+}
+
+.img-polaroid {
+  background-color: @containerColor;
+  border: 1px solid @defaultBorderColor;
+}
+.boxed {
+  background: @containerColor;
+  padding: 20px 20px 0px 20px;
+}
+.logo {
+  background: url("@{mainImgPath}/logo.png") no-repeat;
+  display:block;
+  width: 308px;
+  height: 62px;
+  margin-bottom:20px;
+}
+.text-info {
+  color: @textColor3;
+}
+.stretch {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+.game-image {
+  margin-top:-20px;
+  margin-bottom: 20px;
+}
+.login-block {
+  .btn-link {
+    color: @linkColor;
+    text-shadow: none;
+  }
+  .btn-group > .btn:first-child {
+    //background: @grayVeryLight;
+  }
+  .btn-group > .btn:hover,
+  .btn-group > .btn:focus,
+  .btn-group > .btn:active,
+  .btn-group > .btn.active {
+    color: @linkColorHover;
+    z-index: 2;
+    background: @black;
+    text-decoration: none;
+    text-shadow: none;
+  }
+
+  .btn-group.open .btn.dropdown-toggle {
+    background-color: @black;
+  }
+  .btn-group.open .dropdown-toggle {
+    background-image: none;
+    box-shadow: none;
+  }
+}
+
+.bordered {
+  border: 1px solid @tableBorder;
+  .box-sizing(border-box);
+}

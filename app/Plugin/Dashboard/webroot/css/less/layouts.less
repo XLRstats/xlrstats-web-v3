@@ -1,0 +1,50 @@
+//
+// Layouts
+// --------------------------------------------------
+
+html, body {
+  height:100%;
+}
+
+.wrap {
+  width: 100% !important;
+}
+
+.top-navigation {
+  margin: 0;
+}
+
+.main-container {
+  background: @mainContainerColor;
+}
+
+.sidebar {
+  width: @sidebarWidth;
+  position: absolute;
+  border-right: 1px solid @sidebarBorderColor;
+}
+.sidebar-content {
+  padding: 10px;
+}
+
+.main-content {
+  margin: 0 0 0 @sidebarWidth;
+  padding: 20px;
+  background-color: #fff;
+  border-left: 1px solid @sidebarBorderColor;
+  min-height: 400px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  background: #eeeeee;
+  border-top: 1px solid #cccccc;
+  height: 40px;
+}
+
+.footer-content {
+  padding: 10px;
+  text-align: center;
+  font-size: 10px;
+  color: @gray;
+}
