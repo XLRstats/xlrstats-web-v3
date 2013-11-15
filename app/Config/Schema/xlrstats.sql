@@ -206,7 +206,7 @@ INSERT INTO `options` (`id`, `group`, `name`, `value`, `locked`, `description`) 
 (6, 'website', 'tos_country', 'The Netherlands', 0, 'Terms Of Service: your country'),
 (7, 'website', 'homelink', 'http://www.xlrstats.com/', 0, 'URL to your main community site (http://www.blah.com)'),
 (8, 'website', 'must_accept_cookies', '1', 0, 'Users must allow us to save cookies in Europe. Set this to "Yes" to satisfy the European Cookie Law'),
-(9, 'website', 'google_analytics_account', '', 1, 'Your Google Ananlytics account for traffic analysis purposes.'),
+(9, 'website', 'google_analytics_account', '', 1, 'Your Google Analytics account for traffic analysis purposes.'),
 (10, 'server', 'max_days', '60', 0, 'Maximum number of days before a player is considered M.I.A.'),
 (11, 'server', 'theme', 'default', 0, 'Theme'),
 (12, 'server', 'showMIA', '1', 0, 'Show M.I.A. playerblock'),
