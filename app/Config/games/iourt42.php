@@ -140,12 +140,17 @@ $config = array(
 		 * DO NOT CHANGE 'fixed_name's
 		 */
 		'head' => array('1' => 'Head'),
-		'helmet' => array('4' => 'Helmet'),
-		'torso_lower' => array('6' => 'Kevlar'),
-		'torso_upper' => array('5' => 'Unprotected Torso'),
-		'left_arm_upper' => array('7' => 'Left Arm'),
-		'right_arm_upper' => array('8' => 'Right Arm'),
-		'right_leg_upper' => array('9' => 'Legs'),
+		'helmet' => array('2' => 'Helmet'),
+		'torso_upper' => array('3' => 'Unprotected Torso'),
+		'torso_lower' => array('4' => 'Kevlar'),
+		'left_arm_upper' => array('5' => 'Left Arm'),
+		'right_arm_upper' => array('6' => 'Right Arm'),
+		'left_leg_upper' => array('9' => 'Upper Left Leg'),
+		'right_leg_upper' => array('10' => 'Upper Right Leg'),
+		'left_leg_lower' => array('11' => 'Lower Left Leg'),
+		'right_leg_lower' => array('12' => 'Lower Right Leg'),
+		'left_foot' => array('13' => 'Left Foot'),
+		'right_foot' => array('14' => 'Right Foot'),
 		'none' => array('body' => 'Total disruption'),
 	),
 
