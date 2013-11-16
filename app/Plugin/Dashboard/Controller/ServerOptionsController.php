@@ -19,8 +19,7 @@ App::uses('DashboardAppController', 'Dashboard.Controller');
  *
  * @property ServerOption $ServerOption
  */
-class ServerOptionsController extends DashboardAppController
-{
+class ServerOptionsController extends DashboardAppController {
 	/**
 	 * Models used
 	 *
@@ -40,15 +39,6 @@ class ServerOptionsController extends DashboardAppController
 		'RequestHandler'
 	);
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
-	public $helpers = array(
-		'Paginator'
-	);
-
 	//-------------------------------------------------------------------
 
 	/**
@@ -57,12 +47,8 @@ class ServerOptionsController extends DashboardAppController
 	public function admin_index() {
 		$globalOptions = $this->Option->find('all');
 
-		$serverOptions = $this->ServerOption->find('all', array(
-				'conditions' => array(
-					'server_id' => Configure::read('server_id'),
-				),
-			)
-		);
+		$serverID = Configure::read('server_id');
+		$serverOptions = $this->ServerOption->getServerOptions($serverID);
 
 		$changedServerOptions = array();
 		foreach($serverOptions as $k => $v) {
@@ -99,59 +85,6 @@ class ServerOptionsController extends DashboardAppController
 		$serverName = $serverName['Server']['servername_a'] ? $serverName['Server']['servername_a'] : $serverName['Server']['servername'];
 		$this->set('serverName', $serverName);
 
-	}
-
-	//-------------------------------------------------------------------
-
-	/**
-	 * admin_view method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
-	public function admin_view($id = null)
-	{
-		$this->ServerOption->id = $id;
-		if (!$this->ServerOption->exists()) {
-			throw new NotFoundException(__('Invalid server option'));
-		}
-		$this->set('serverOption', $this->ServerOption->read(null, $id));
-	}
-
-	//-------------------------------------------------------------------
-
-	/**
-	 * admin_add method
-	 *
-	 * @return void
-	 */
-	public function admin_add()
-	{
-
-		$this->set('servers', $this->ServerOption->Server->find('list', array(
-			'fields' => 'Server.servername', 'Server.id',
-			'order' => 'Server.servername ASC'
-		)));
-
-		$conditions = array(
-			'Option.locked' => 0,
-		);
-		$this->set('names', $this->Option->find('list', array(
-			'fields' => 'Option.name',
-			'conditions' => $conditions,
-			'order' => 'Option.name ASC'
-		)));
-
-		if ($this->request->is('post')) {
-			$this->ServerOption->create();
-			if ($this->ServerOption->save($this->request->data)) {
-				$this->Session->setFlash(__('The server option has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The server option could not be saved. Please, try again.'));
-			}
-		}
 	}
 
 	//-------------------------------------------------------------------
@@ -196,35 +129,14 @@ class ServerOptionsController extends DashboardAppController
 				);
 				$this->ServerOption->save($data);
 			} else {
-				header('HTTP 400 Bad Request', true, 400);
+				if(function_exists('http_response_code')) {
+					$this->response->statusCode(400);
+				} else {
+					header('HTTP 400 Bad Request', true, 400);
+				}
+				echo __('Oops, something went wrong!');
 			}
 		}
 	}
 
-	//-------------------------------------------------------------------
-
-	/**
-	 * admin_delete method
-	 *
-	 * @throws MethodNotAllowedException
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
-	public function admin_delete($id = null)
-	{
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
-		$this->ServerOption->id = $id;
-		if (!$this->ServerOption->exists()) {
-			throw new NotFoundException(__('Invalid server option'));
-		}
-		if ($this->ServerOption->delete()) {
-			$this->Session->setFlash(__('Server option deleted'));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->Session->setFlash(__('Server option was not deleted'));
-		$this->redirect(array('action' => 'index'));
-	}
 }

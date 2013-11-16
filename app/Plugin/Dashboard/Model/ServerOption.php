@@ -51,10 +51,8 @@ class ServerOption extends AppModel {
 		'Server' => array(
 			'className' => 'Dashboard.Server',
 			'foreignKey' => 'server_id',
-			//'conditions' => '',
-			//'fields' => '',
-			//'order' => ''
-		));
+		)
+	);
 
 	//-------------------------------------------------------------------
 
@@ -72,4 +70,23 @@ class ServerOption extends AppModel {
 			Configure::write('options.'.$variable['ServerOption']['name'], $variable['ServerOption']['value']);
 		}
 	}
+
+	//-------------------------------------------------------------------
+
+	/**
+	 * Returns server options for a specific server
+	 *
+	 * @param $serverID
+	 * @return array
+	 */
+	public function getServerOptions($serverID) {
+		$serverOptions = $this->find('all', array(
+				'conditions' => array(
+					'server_id' => $serverID,
+				),
+			)
+		);
+		return $serverOptions;
+	}
+
 }

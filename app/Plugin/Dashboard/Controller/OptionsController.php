@@ -39,44 +39,8 @@ class OptionsController extends DashboardAppController {
 	 * @return void
 	 */
 	public function admin_index() {
-		$this->Option->recursive = 0;
-		$this->set('options', $this->paginate());
-	}
-
-	//-------------------------------------------------------------------
-
-	/**
-	 * admin_view method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
-	public function admin_view($id = null) {
-		$this->Option->id = $id;
-		if (!$this->Option->exists()) {
-			throw new NotFoundException(__('Invalid option'));
-		}
-		$this->set('option', $this->Option->read(null, $id));
-	}
-
-	//-------------------------------------------------------------------
-
-	/**
-	 * admin_add method
-	 *
-	 * @return void
-	 */
-	public function admin_add() {
-		if ($this->request->is('post')) {
-			$this->Option->create();
-			if ($this->Option->save($this->request->data)) {
-				$this->Session->setFlash(__('The option has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The option could not be saved. Please, try again.'));
-			}
-		}
+		$options = $this->Option->find('all');
+		$this->set('options', $options);
 	}
 
 	//-------------------------------------------------------------------
@@ -100,35 +64,13 @@ class OptionsController extends DashboardAppController {
 
 			$this->set('value', $value);
 		} else {
-			header('HTTP 400 Bad Request', true, 400);
-			echo "This field is required!";
+			if(function_exists('http_response_code')) {
+				$this->response->statusCode(400);
+			} else {
+				header('HTTP 400 Bad Request', true, 400);
+			}
+			echo __('Oops, something went wrong!');
 		}
-	}
-
-	//-------------------------------------------------------------------
-
-	/**
-	 * admin_delete method
-	 *
-	 * @throws MethodNotAllowedException
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
-	public function admin_delete($id = null) {
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
-		$this->Option->id = $id;
-		if (!$this->Option->exists()) {
-			throw new NotFoundException(__('Invalid option'));
-		}
-		if ($this->Option->delete()) {
-			$this->Session->setFlash(__('Option deleted'));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->Session->setFlash(__('Option was not deleted'));
-		$this->redirect(array('action' => 'index'));
 	}
 
 }
