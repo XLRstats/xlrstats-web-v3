@@ -79,7 +79,7 @@
 				});
 		"); } ?>
 
-		<?php include_once 'analyticstracking.php' // TODO: Remove before packaging! ?>
+		<?php include_once 'analyticstracking.php' ?>
 
 		<!--[if lt IE 7]>
 		<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -217,6 +217,7 @@
 											alt="Creative Commons License" style="border-width:0; vertical-align: text-bottom"
 											src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png"/></a> 2005-<?php echo date("Y") ?>
 									<?php echo $this->Html->link('www.xlrstats.com', 'http://www.xlrstats.com', array('target' => '_blank')); ?>
+									<?php echo ' - ' . XLR_VERSION ?>
 									<?php echo ' - core v' . Configure::version() . ' -  ' ?>
 									<?php echo $this->Html->link('developed with PhpStorm', 'http://www.jetbrains.com/phpstorm/', array('target' => '_blank')); ?>
 									<?php echo ' and ';?>
