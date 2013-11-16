@@ -35,9 +35,9 @@
 	echo $this->Html->script('bootstrap.min'); //Twitter Bootstrap
 	// Load CSS Files
 	echo $this->Html->css('Dashboard.dashboard');
-	// TODO: Remove them in production
+	//To work with less files, uncomment two lines below and comment out the dashboard.css line above (echo $this->Html->css('Dashboard.dashboard');)
 	//echo $this->Html->css('Dashboard.less/dashboard.less?', 'stylesheet/less');
-	//echo $this->Html->script('less-1.3.3.min');
+	//echo $this->Html->script('less-1.5.0.min');
 	?>
 
 </head>
