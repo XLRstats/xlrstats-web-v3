@@ -48,9 +48,9 @@
 			echo $this->Html->script('jquery.cookiecuttr.js');
 		};
 
-		// TODO: Remove following two lines in production
+		//To work with less files, uncomment two lines below and comment out the xlrstats.generic.css line above (echo $this->Html->css('xlrstats.generic');)
 		//echo $this->Html->css('less/xlrstats.generic.less?', 'stylesheet/less');
-		//echo $this->Html->script('less-1.3.3.min'); //Just for development
+		//echo $this->Html->script('less-1.5.0.min'); //Just for development
 
 		echo $this->fetch('script');
 
