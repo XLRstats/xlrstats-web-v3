@@ -54,9 +54,11 @@
 								echo $this->Html->link($penName, array('plugin' => null, 'admin' => false, 'controller'	=> 'penalties', 'action' => 'index', 'server' => Configure::read('server_id'))); ?>
 							</li>
 						<?php endif; ?>
-						<li <?php if($this->name == 'Feeds') echo 'class="active"'; ?>>
-							<?php echo $this->Html->link(__('NEWS'), array('plugin' => null, 'admin' => false, 'controller' => 'feeds', 'action' => 'index', 'server' => Configure::read('server_id'))); ?>
-						</li>
+						<?php if (Configure::read('globals.feed')): ?>
+							<li <?php if($this->name == 'Feeds') echo 'class="active"'; ?>>
+								<?php echo $this->Html->link(__('NEWS'), array('plugin' => null, 'admin' => false, 'controller' => 'feeds', 'action' => 'index', 'server' => Configure::read('server_id'))); ?>
+							</li>
+						<?php endif; ?>
 					</ul>
 
 					<ul class="nav pull-right">

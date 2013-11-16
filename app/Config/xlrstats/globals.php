@@ -29,8 +29,7 @@ Configure::write('globals', array(
 		 * 'feedidentifier' => array('feedurl', __('feeddescriptor'))
 		 */
 		'feed' => array(
-			'news' => array('http://forum.bigbrotherbot.net/website-news/?type=rss;action=.xml', __('B3 News')),
-			'xlrstats' => array('http://forum.bigbrotherbot.net/xlrstats/?type=rss;action=.xml', __('B3 Xlrstats Forum')),
+			//'xlrstats' => array('http://forum.bigbrotherbot.net/xlrstats/?type=rss;action=.xml', __('B3 Xlrstats Forum')),
 		),
 	)
 );
