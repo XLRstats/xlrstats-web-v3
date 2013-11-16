@@ -10,7 +10,7 @@ __Follow the next steps carefully to prepare the online installation procedure!_
 
 1. XLRstats webfront needs a database to store it's webfront data (users, settings, options). Make sure you have a MySQL database available and that you have write access to it.
 2. Download the XLRstats v3 package, unpack it and upload it to your PHP ready webserver or hostingenvironment. You may install XLRstats into the root of the domain, or in a subdirectory.
-3. Make sure that `app/Config`, `app/Config/core.php` and `app/tmp` (including all it's subfolders) are writable by the webserver.
+3. Make sure that `app/Config` and `app/tmp` folders (including all it's subfolders) are writable by the webserver.
 4. Immediately after the upload has finished open your preferred browser and open the URL that you uploaded XLRstats to.
 5. You will find yourself in the installer that takes 6 subsequent steps to finish initial installation of XLRstats. It will lead you through all the steps one by one. You can't move on to the next step if you don't complete the current one.
 
