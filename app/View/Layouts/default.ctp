@@ -125,7 +125,7 @@
 			 */
 			if (!$this->XlrFunctions->isHome()) {
 				echo $this->element('server_info', array(
-					'serverName' => false,
+					'serverNameBig' => false,
 					'serverNameCompact' => true,
 					'serverStats' => false,
 				));

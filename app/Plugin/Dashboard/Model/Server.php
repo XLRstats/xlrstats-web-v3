@@ -139,4 +139,23 @@ class Server extends DashboardAppModel {
 		Configure::write('first_server_id', $first_server['Server']['id']);
 	}
 
+	//-------------------------------------------------------------------
+
+	/**
+	 * Returns server name
+	 *
+	 * @param $serverID
+	 * @return mixed
+	 */
+	public function serverName($serverID = null) {
+		$serverName = $this->read('servername_a', $serverID);
+		$serverName = $serverName['Server']['servername_a'];
+
+		if($serverName == '') {
+			$serverName = $this->read('servername', $serverID);
+			$serverName = $serverName['Server']['servername'];
+		}
+		return $serverName;
+	}
+
 }

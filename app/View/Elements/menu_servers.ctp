@@ -19,7 +19,7 @@ $servers = Configure::read('servers');
 
 foreach ($servers as $server) {
 
-	$serverName = $this->requestAction('server_info/getservername/' . $server['id']);
+	$serverName = $this->requestAction('app/getservername/' . $server['id']);
 	$serverName = $this->XlrFunctions->stripColors($serverName);
 
 	//indication and css class for inactive servers

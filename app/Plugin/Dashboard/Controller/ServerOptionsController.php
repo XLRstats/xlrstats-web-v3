@@ -81,8 +81,7 @@ class ServerOptionsController extends DashboardAppController {
 
 		$this->set('serverOptions', $serverOptions);
 
-		$serverName = $this->ServerOption->Server->read(array('servername', 'servername_a'), Configure::read('server_id'));
-		$serverName = $serverName['Server']['servername_a'] ? $serverName['Server']['servername_a'] : $serverName['Server']['servername'];
+		$serverName = $this->getServerName($serverID);
 		$this->set('serverName', $serverName);
 
 	}

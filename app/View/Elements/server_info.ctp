@@ -14,12 +14,12 @@
  */
 
 /**
- * Set default values for the variables '$serverName' and 'serverStats' that
+ * Set default values for the variables '$serverNameBig' and 'serverStats' that
  * we can pass into this element when calling it.
  */
 
 $elementVars = array (
-	'serverName' => true,
+	'serverNameBig' => true,
 	'serverNameCompact' => false,
 	'serverStats' => true,
 );
@@ -34,11 +34,11 @@ $serverID = Configure::read('server_id');
 $gameName = Configure::read('servers.' . $serverID . '.gamename');
 
 //Request server data only if we want to display server name with slogan and real time server statistics
-if($serverName || $serverStats) {
+if($serverNameBig || $serverStats) {
 	$serverInfo = $this->requestAction('server_info');
 }
 
-$gameServerName = $this->requestAction('server_info/getservername/' . $serverID);
+$gameServerName = $this->requestAction('app/getservername/' . $serverID);
 
 //pr($serverInfo);
 
@@ -53,7 +53,7 @@ $playerNames = $this->requestAction('server_players');
 <!-- Server Info -->
 <div class="row server-info">
 
-	<?php if ($serverName): ?>
+	<?php if ($serverNameBig): ?>
 	<!-- Server Name -->
 	<div class="span12">
 		<div class="stretch">

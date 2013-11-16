@@ -384,4 +384,24 @@ class AppController extends Controller {
 		}
 	}
 
+	//-------------------------------------------------------------------
+
+	/**
+	 * Returns server name
+	 *
+	 * @param null $serverID
+	 * @return mixed
+	 */
+	public function getServerName($serverID = null) {
+		if($serverID == null) {
+			$serverID = Configure::read('server_id');
+		}
+		$serverName = $this->Server->serverName($serverID);
+
+		if ($this->request->is('requested')) {
+			return $serverName;
+		}
+		return $serverName;
+	}
+
 }

@@ -12,7 +12,7 @@
  * @since         XLRstats v3.0
  * @version       0.1
  */
-
+$serverName = $this->XlrFunctions->stripColors($serverName);
 $this->set('title_for_layout', __('Server Options | %s', $serverName));
 ?>
 

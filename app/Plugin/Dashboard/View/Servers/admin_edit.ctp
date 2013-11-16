@@ -14,6 +14,7 @@
  */
 
 $serverName = $this->request->data['Server']['servername_a'] ? $this->request->data['Server']['servername_a'] : $this->request->data['Server']['servername'];
+$serverName = $this->XlrFunctions->stripColors($serverName);
 $this->set('title_for_layout', __('Server Settings | %s', $serverName));
 ?>
 

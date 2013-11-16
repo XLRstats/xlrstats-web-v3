@@ -14,7 +14,7 @@
  */
 
 $serverInfo = $this->requestAction('server_info');
-$serverName = $serverInfo['sv_hostname'];
+$serverName = $this->XlrFunctions->stripColors($serverInfo['sv_hostname']);
 $this->set('title_for_layout', __('Server Home | %s', $serverName));
 ?>
 

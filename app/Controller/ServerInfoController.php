@@ -102,30 +102,6 @@ class ServerInfoController extends AppController {
 	//-------------------------------------------------------------------
 
 	/**
-	 * Returns real server name if fetched successfully.
-	 * Otherwise falls back to the server name specified in server settings.
-	 *
-	 * @param $serverID
-	 */
-	public function getServerName($serverID) {
-		$serverName = $this->Server->read('servername_a', $serverID);
-		$serverName = $serverName['Server']['servername_a'];
-
-		if($serverName == '') {
-			$serverName = $this->Server->read('servername', $serverID);
-			$serverName = $serverName['Server']['servername'];
-		}
-
-		if ($this->request->is('requested')) {
-			return $serverName;
-		} else {
-			$this->set('serverName', $serverName);
-		}
-	}
-
-	//-------------------------------------------------------------------
-
-	/**
 	 * Returns required information to display in server info block.
 	 *
 	 * @param integer $id can be used to get server info for a specific server
