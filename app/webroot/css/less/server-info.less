@@ -1,0 +1,77 @@
+//
+// Server Info Boxes
+// --------------------------------------------------
+.server-info {
+  .server-name {
+    display:box;
+    min-height: 106px;
+    background:@white;
+    border-top: 1px solid @serverInfoBorderColor;
+    border-bottom: 1px solid @serverInfoBorderColor;
+    margin-bottom: 20px;
+    h1 {
+        font-family: @serverInfoH5FontFamily;
+        text-align:center;
+        font-size: 24px;
+        line-height: 10px;
+        padding-top: 24px;
+    }
+    .slogan {
+      font-size: 16px;
+      text-align:center;
+      color:@textColor2;
+    }
+    .game-icon {
+      font-family: @sansFontFamily;
+      margin:15px;
+      cursor: pointer;
+    }
+  }
+  .server-name-compact {
+    display:box;
+    height: 50px;
+    background:@white;
+    border-top: 1px solid @serverInfoBorderColor;
+    border-bottom: 1px solid @serverInfoBorderColor;
+    margin-bottom: 20px;
+    h1 {
+      font-family: @serverInfoH5FontFamily;
+      text-align:center;
+      line-height: 30px;
+      font-size: 20px;
+    }
+    .game-icon {
+      font-family: @sansFontFamily;
+      cursor: pointer;
+      margin-right: 3px;
+    }
+  }
+  .server-info-box {
+    background: @serverInfoBackground;
+    border: 1px solid @serverInfoBorderColor;
+    display: block;
+    height: 50px;
+    padding: 0 15px;
+    text-align: right;
+    margin-bottom: 10px;
+    h5 {
+      font-family: @serverInfoH5FontFamily;
+      font-weight: bold;
+      margin: 8px 0 3px;
+      text-align: right;
+      line-height:14px;
+      color:@textColor2;
+    }
+    i {
+      float: left;
+      margin-top: -36px;
+      color:@textColor2;
+    }
+  }
+  .server-info-buttons {
+    padding: 15px 0px;
+    text-align: center;
+  }
+  .server-info-game-icon {
+  }
+}

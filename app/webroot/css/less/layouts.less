@@ -1,0 +1,56 @@
+//
+// Layouts
+// --------------------------------------------------
+
+
+body {
+  background:@bodyBackground url("@{themeImgPath}/background.gif") repeat;
+  font-family: @baseFontFamily;
+  font-size: @baseFontSize;
+  color:@textColor;
+  line-height: 25px;
+}
+.boxed {
+  background: @containerColor;
+  padding: 20px 20px 0px 20px;
+}
+.logo {
+  display:block;
+  height: 62px;
+  margin-bottom:20px;
+}
+.stretch {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+.game-image {
+  margin-top:-20px;
+  margin-bottom: 20px;
+}
+.login-block {
+  .btn-group > .btn:first-child {
+    //background: @grayVeryLight;
+  }
+  .btn-group > .btn:hover,
+  .btn-group > .btn:focus,
+  .btn-group > .btn:active,
+  .btn-group > .btn.active {
+    z-index: 2;
+    background: @grayLighter;
+    text-decoration: none;
+    text-shadow: 1px 0px @white;
+  }
+
+  .btn-group.open .btn.dropdown-toggle {
+    background-color: @grayLighter;
+  }
+  .btn-group.open .dropdown-toggle {
+    background-image: none;
+    box-shadow: none;
+  }
+}
+
+.bordered {
+  border: 1px solid @tableBorder;
+  .box-sizing(border-box);
+}

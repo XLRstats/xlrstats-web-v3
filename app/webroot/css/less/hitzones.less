@@ -1,0 +1,90 @@
+//
+// Player Hit Zones
+// --------------------------------------------------
+
+.hit-zones-bg {
+  background: url("@{mainImgPath}/soldier-model.jpg") no-repeat center;
+  height: 562px;
+  width: 485px;
+  position:relative;
+  border:1px solid @tableRowBorder;
+  padding: 40px 0px;
+}
+.hit-zones {
+  background: none repeat scroll 0 0 @red;
+  border: 1px solid @white;
+  border-radius: 50% 50% 50% 50%;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  &.helmet {
+    left: 234px;
+    top: 60px;
+  }
+  &.head {
+    left: 234px;
+    top: 85px;
+  }
+  &.neck {
+    left: 234px;
+    top: 143px;
+  }
+  &.torso_upper {
+    left: 234px;
+    top:180px;
+  }
+  &.torso_lower {
+    left: 234px;
+    top: 240px;
+  }
+  &.left_arm_upper {
+    left:302px;
+    top:190px;
+  }
+  &.left_arm_lower {
+    left:352px;
+    top: 250px;
+  }
+  &.left_hand {
+    left:380px;
+    top:295px;
+  }
+  &.right_arm_upper {
+    left:162px;
+    top:190px;
+  }
+  &.right_arm_lower {
+    left:112px;
+    top:250px;
+  }
+  &.right_hand {
+    left:87px;
+    top:295px;
+  }
+  &.left_leg_upper {
+    left:272px;
+    top:370px;
+  }
+  &.left_leg_lower {
+    left:277px;
+    top:480px;
+  }
+  &.left_foot {
+    left:289px;
+    top:555px;
+  }
+  &.right_leg_upper {
+    left:192px;
+    top:370px;
+  }
+  &.right_leg_lower {
+    left:187px;
+    top:480px;
+  }
+  &.right_foot {
+    left:179px;
+    top:555px;
+  }
+
+}

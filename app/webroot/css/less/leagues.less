@@ -1,0 +1,55 @@
+//
+// League
+// --------------------------------------------------
+
+// League Boxes on Homepage
+
+.league {
+  display:block;
+  background: @leagueBackground;
+  border: 1px solid @leagueBorderColor;
+  border-bottom: 1px solid darken(@leagueBorderColor, 10%);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  .box-sizing(border-box);
+  .league-title {
+    background: @leagueTitleBackgroundColor;
+    border-bottom: 1px solid @defaultBorderColor;
+    height: 28px;
+    margin: 0px;
+    padding-top: 7px;
+    text-align: center;
+    //text-shadow:0 1px 0 rgba(255,255,255,1);
+    a {
+      color:@white;
+    }
+    h4 {
+      margin: 0px;
+      font-weight:normal;
+    }
+  }
+  .subleague  {
+    height:267px;
+  }
+  .league-footer {
+    background:@grayVeryLight;
+    border-top: 1px solid darken(@leagueBorderColor, 0%);
+  }
+}
+.view-league-btn {
+  position:relative;
+  right: 10px;
+  top: -3px;
+  a:hover {
+    text-decoration: none;
+  }
+}
+.label-league {
+  height: 8px;
+  width: 4px;
+  cursor: pointer;
+  position: relative;
+  top: 3px;
+  margin-left: 10px;
+  .border-radius(0px);
+}

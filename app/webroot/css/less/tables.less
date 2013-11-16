@@ -1,0 +1,64 @@
+//
+// Tables
+// --------------------------------------------------
+
+// BASE TABLES
+// -----------------
+
+table {
+  background-color: @tableBackground;
+}
+
+.table {
+  th,
+  td {
+    border-top: 1px solid @tableRowBorder;
+  }
+  thead th {
+    color: @gray;
+    font-size: 12px;
+  }
+}
+
+// Table with an outer border only
+// Use with dataTables
+.table-bordered-v2 {
+  border: 1px solid @tableBorder;
+
+  th,
+  td {
+    border-left: 0px solid transparent;
+  }
+
+  tfoot {
+    font-size: 90%;
+    background: @dataTablesFooter;
+    th {
+      box-shadow: 0 1px 0 #FFFFFF inset;
+      border: 1px solid @dataTablesFooterBorder;
+      font-weight: normal;
+      color:@grayLight;
+    }
+  }
+  thead {
+    border: 1px solid @dataTablesHeaderBorder;
+    th {
+      box-shadow: 0 1px 0 #FFFFFF inset;
+      font-weight: normal;
+      font-size:90%;
+      color:@grayLight;
+    }
+  }
+}
+
+// HOVER EFFECT
+// ------------
+// Placed here since it has to come after the potential zebra striping
+.table-hover {
+  tbody {
+    tr:hover td,
+    tr:hover th {
+      background: @tableBackgroundHover;
+    }
+  }
+}

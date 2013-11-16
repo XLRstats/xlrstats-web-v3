@@ -1,0 +1,31 @@
+//
+// Dropdown menus
+// --------------------------------------------------
+
+.dropdown-menu {
+  font-family: @sansFontFamily;
+  font-size: 13px;
+}
+
+// Hover state
+// -----------
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus,
+.dropdown-submenu:hover > a {
+  background-color: @dropdownLinkBackgroundHover;
+  #gradient > .vertical(@dropdownLinkBackgroundHover, darken(@dropdownLinkBackgroundHover, 0%));
+}
+
+// Active state
+// ------------
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover {
+  background-color: @dropdownLinkBackgroundActive;
+  #gradient > .vertical(@dropdownLinkBackgroundActive, darken(@dropdownLinkBackgroundActive, 0%));
+}
+
+// Inactive Servers
+// ----------------
+.inactive {
+  opacity: 0.5;
+}
