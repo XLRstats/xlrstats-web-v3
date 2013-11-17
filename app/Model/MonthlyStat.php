@@ -35,6 +35,9 @@ class MonthlyStat extends AppModel {
 	 */
 	public $useTable = 'xlr_history_monthly';
 
+	/**
+	 *
+	 */
 	function __construct() {
 		$this->setSource(Configure::read('options.table_history_monthly'));
 		parent::__construct();

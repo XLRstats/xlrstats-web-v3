@@ -14,6 +14,12 @@
  */
 
 class ServerPlayer extends AppModel{
+	/**
+	 * @var bool
+	 */
 	public $b3Database = true;
+	/**
+	 * @var string
+	 */
 	public $useTable = 'current_clients'; // TODO: make this configurable
 }

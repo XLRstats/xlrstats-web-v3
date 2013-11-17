@@ -52,6 +52,9 @@ class PlayerWeapon extends AppModel {
 		)
 	);
 
+	/**
+	 *
+	 */
 	function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_weaponusage'));

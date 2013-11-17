@@ -35,6 +35,9 @@ class BodyPart extends AppModel {
 	 */
 	public $useTable = 'xlr_bodyparts';
 
+	/**
+	 *
+	 */
 	function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_bodyparts'));

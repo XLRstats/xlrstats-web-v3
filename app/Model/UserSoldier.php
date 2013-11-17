@@ -92,6 +92,10 @@ class UserSoldier extends AppModel {
 
 	//-------------------------------------------------------------------
 
+	/**
+	 * @param null $id
+	 * @return array
+	 */
 	public function listUserSoldiers($id = null) {
 		$this->unbindModel(array(
 			'belongsTo' => array(

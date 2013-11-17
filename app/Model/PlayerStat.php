@@ -8,9 +8,21 @@
  */
 
 class PlayerStat extends AppModel {
+	/**
+	 * @var bool
+	 */
 	public $b3Database = true;
+	/**
+	 * @var string
+	 */
 	public $name = 'PlayerStat';
-    public $useTable = 'xlr_playerstats';
+	/**
+	 * @var string
+	 */
+	public $useTable = 'xlr_playerstats';
+	/**
+	 * @var array
+	 */
 	public $belongsTo = array(
         'Player'=>  array(
             'foreignKey'    => 'client_id',
@@ -30,7 +42,10 @@ class PlayerStat extends AppModel {
 	);*/
 }
 
-	function __construct() {
+/**
+ *
+ */
+function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_playerstats'));
 		//$this->useTable = Configure::read('options.table_playerstats');

@@ -14,7 +14,13 @@
  */
 
 class ServerInfo extends AppModel{
+	/**
+	 * @var bool
+	 */
 	public $b3Database = true;
+	/**
+	 * @var string
+	 */
 	public $useTable = 'current_svars';			// Use a different table name
 
 	//public $hasMany = array(

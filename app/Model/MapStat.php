@@ -36,6 +36,9 @@ class MapStat extends AppModel {
 	 */
 	public $useTable = 'xlr_mapstats';
 
+	/**
+	 *
+	 */
 	function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_mapstats'));

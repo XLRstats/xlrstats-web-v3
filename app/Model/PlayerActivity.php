@@ -36,6 +36,9 @@ class PlayerActivity extends AppModel {
 	 */
 	public $useTable = 'ctime';
 
+	/**
+	 *
+	 */
 	function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_ctime'));

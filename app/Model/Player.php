@@ -8,10 +8,19 @@
  */
 
 class Player extends AppModel{
+	/**
+	 * @var bool
+	 */
 	public $b3Database = true;
 	//public $useDbConfig = 'alternate'; 	// Use a different database config
+	/**
+	 * @var string
+	 */
 	public $useTable = 'clients';			// Use a different table name
 	//public $name = 'Client';				// Defaults to the class name
 
-    public $hasOne = 'League';
+	/**
+	 * @var string
+	 */
+	public $hasOne = 'League';
 }
