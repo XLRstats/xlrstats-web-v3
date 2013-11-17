@@ -277,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `server_groups` (
 -- Dumping data for table `server_groups`
 --
 
-INSERT INTO `server_groups` (`id`, `name`, `description`, `active_group`) VALUES
+INSERT IGNORE INTO `server_groups` (`id`, `name`, `description`, `active_group`) VALUES
 (1, 'default', 'This is the default server group', 0);
 -- --------------------------------------------------------
 
