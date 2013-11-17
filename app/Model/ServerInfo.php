@@ -23,9 +23,4 @@ class ServerInfo extends AppModel{
 	 */
 	public $useTable = 'current_svars';			// Use a different table name
 
-	//public $hasMany = array(
-	//	'ServerPlayer'=> array(
-	//		'className' => 'ServerPlayer'
-	//	)
-	//);
 }

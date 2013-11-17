@@ -28,25 +28,14 @@ class PlayerStat extends AppModel {
             'foreignKey'    => 'client_id',
         )
     );
-/*	public $hasMany = array(
-		'PlayerMap'     =>	array(
-			'className'		=>	'PlayerMap',
-			'foreignKey'	=>	'player_id',
-			'order'			=>	array('PlayerMap.kills'	=>	'DESC'),
-		),
-        'PlayerWeapon'  => array(
-            'className'     => 'PlayerWeapon',
-            'foreignKey'    => 'player_id',
-            'order'         => array('PlayerWeapon.kills' => 'DESC'),
-        ),
-	);*/
-}
 
-/**
- *
- */
-function __construct() {
+	/**
+	 *
+	 */
+	function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_playerstats'));
 		//$this->useTable = Configure::read('options.table_playerstats');
 	}
+}
+
