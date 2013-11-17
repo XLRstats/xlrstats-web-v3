@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `acos`
 --
 
+DROP TABLE IF EXISTS `acos`;
 CREATE TABLE IF NOT EXISTS `acos` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) DEFAULT NULL,
@@ -103,6 +104,7 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 -- Table structure for table `aros`
 --
 
+DROP TABLE IF EXISTS `aros`;
 CREATE TABLE IF NOT EXISTS `aros` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) DEFAULT NULL,
@@ -129,6 +131,7 @@ INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 -- Table structure for table `aros_acos`
 --
 
+DROP TABLE IF EXISTS `aros_acos`;
 CREATE TABLE IF NOT EXISTS `aros_acos` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `aro_id` int(10) NOT NULL,
@@ -158,6 +161,7 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 -- Table structure for table `groups`
 --
 
+DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -182,6 +186,7 @@ INSERT INTO `groups` (`id`, `name`, `level`, `created`, `modified`) VALUES
 -- Table structure for table `options`
 --
 
+DROP TABLE IF EXISTS `options`;
 CREATE TABLE IF NOT EXISTS `options` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group` varchar(10) NOT NULL,
@@ -198,25 +203,38 @@ CREATE TABLE IF NOT EXISTS `options` (
 --
 
 INSERT INTO `options` (`id`, `group`, `name`, `value`, `locked`, `description`) VALUES
-(1, 'server', 'min_connections', '10', 0, 'Minimum number of connections before showing up in a league (not for certain leaderboards)'),
-(2, 'server', 'hide_banned', '1', 0, 'Hide banned players from the leagues?'),
-(3, 'server', 'disqus_shortname', '', 0, 'Your www.disqus.com shortname to allow comments on several places'),
-(4, 'server', 'opponents_count', '15', 0, 'How many opponents to show in the opponents tab on the playerstats pages'),
-(5, 'website', 'tos_organisation', 'xlrstats.com', 0, 'Terms Of Service: your clan-, community- or organisationname'),
-(6, 'website', 'tos_country', 'The Netherlands', 0, 'Terms Of Service: your country'),
-(7, 'website', 'homelink', 'http://www.xlrstats.com/', 0, 'URL to your main community site (http://www.blah.com)'),
-(8, 'website', 'must_accept_cookies', '1', 0, 'Users must allow us to save cookies in Europe. Set this to "Yes" to satisfy the European Cookie Law'),
-(9, 'website', 'google_analytics_account', '', 1, 'Your Google Analytics account for traffic analysis purposes.'),
-(10, 'server', 'max_days', '60', 0, 'Maximum number of days before a player is considered M.I.A.'),
-(11, 'server', 'theme', 'default', 0, 'Theme'),
-(12, 'server', 'showMIA', '1', 0, 'Show M.I.A. playerblock'),
-(13, 'server', 'show_donate_button', '0', 1, 'Show XLRstats donation button'),
-(14, 'website', 'license', '', 1, 'Your XLRstats license key (visit http://www.xlrstats.com/license_server/licenses/add for a key)'),
-(15, 'website', 'show_banlist', '1', 0, 'Show Bans or Penalties '),
-(16, 'website', 'show_bans_only', '0', 0, 'Show bans only (or also penalties and kicks)'),
-(17, 'server', 'ban_dispute_link', '', 0, 'Link to your ban-appeal forum - leave blank to use disqus comments'),
-(18, 'server', 'ban_disputable', '1', 0, 'Allow banned players to dispute a ban'),
-(19, 'server', 'min_kills', '100', 0, 'Minimum number of kills before showing up in a league (not for certain leaderboards)');
+(1, 'website', 'license', '', 1, 'Your XLRstats license key'),
+(2, 'server', 'disqus_shortname', '', 0, '<b>[Empty]</b> Your <b>www.disqus.com shortname</b> to allow comments on several places'),
+(3, 'server', 'theme', 'default', 0, '<b>[default]</b> Theme'),
+(4, 'server', 'min_connections', '10', 0, '<b>[10]</b> Minimum number of connections before showing up in a league'),
+(5, 'server', 'min_kills', '100', 0, '<b>[100]</b> Minimum number of kills before showing up in a league'),
+(6, 'server', 'max_days', '60', 0, '<b>[60]</b> Maximum number of days before a player is considered M.I.A.'),
+(7, 'server', 'hide_banned', '1', 0, '<b>[Yes]</b> Hide banned players from the leagues?'),
+(8, 'website', 'show_banlist', '1', 0, '<b>[Yes]</b> Show Bans or Penalties '),
+(9, 'website', 'show_bans_only', '0', 0, '<b>[No]</b> Show bans only (or also penalties and kicks)'),
+(10, 'server', 'ban_dispute_link', '', 0, '<b>[Empty]</b> Link to your ban-appeal forum - leave empty to use disqus comments'),
+(11, 'server', 'ban_disputable', '1', 0, '<b>[Yes]</b> Allow banned players to dispute a ban'),
+(12, 'server', 'showMIA', '1', 0, '<b>[Yes]</b> Show M.I.A. playerblock'),
+(13, 'server', 'opponents_count', '15', 0, '<b>[15]</b> How many opponents to show in the opponents tab on the playerstats pages'),
+(14, 'website', 'homelink', 'http://www.xlrstats.com/', 0, '<b>[http://www.xlrstats.com/]</b> URL to your main community site (http://www.blah.com)'),
+(15, 'website', 'tos_organisation', 'xlrstats.com', 0, '<b>[xlrstats.com]</b> Terms Of Service: your clan-, community- or organisationname'),
+(16, 'website', 'tos_country', 'The Netherlands', 0, '<b>[The Netherlands]</b> Terms Of Service: your country'),
+(17, 'website', 'must_accept_cookies', '1', 0, '<b>[Yes]</b> To satisfy the European Cookie Law'),
+(18, 'website', 'google_analytics_account', '', 1, '<b>[Empty]</b> Your Google Ananlytics account'),
+(19, 'website', 'show_donate_button', '1', 1, '<b>[No]</b> Show XLRstats donation button'),
+(20, 'tables', 'table_playerstats', 'xlr_playerstats', 0, '<b>[xlr_playerstats]</b> Table name for playerstats'),
+(21, 'tables', 'table_opponents', 'xlr_opponents', 0, '<b>[xlr_opponents]</b> Table name for opponents'),
+(22, 'tables', 'table_bodyparts', 'xlr_bodyparts', 0, '<b>[xlr_bodyparts]</b> Table name for bodyparts'),
+(23, 'tables', 'table_playerbody', 'xlr_playerbody', 0, '<b>[xlr_playerbody]</b> Table name for playerbody'),
+(24, 'tables', 'table_mapstats', 'xlr_mapstats', 0, '<b>[xlr_mapstats]</b> Table name for mapstats'),
+(25, 'tables', 'table_playermaps', 'xlr_playermaps', 0, '<b>[xlr_playermaps]</b> Table name for playermaps'),
+(26, 'tables', 'table_weaponstats', 'xlr_weaponstats', 0, '<b>[xlr_weaponstats]</b> Table name for weaponstats'),
+(27, 'tables', 'table_weaponusage', 'xlr_weaponusage', 0, '<b>[xlr_weaponusage]</b> Table name for weaponusage'),
+(28, 'tables', 'table_actionstats', 'xlr_actionstats', 0, '<b>[xlr_actionstats]</b> Table name for actionstats'),
+(29, 'tables', 'table_playeractions', 'xlr_playeractions', 0, '<b>[xlr_playeractions]</b> Table name for playeractions'),
+(30, 'tables', 'table_history_monthly', 'xlr_history_monthly', 0, '<b>[xlr_history_monthly]</b> Table name for history_monthly'),
+(31, 'tables', 'table_history_weekly', 'xlr_history_weekly', 0, '<b>[xlr_history_weekly]</b> Table name for history_weekly'),
+(32, 'tables', 'table_ctime', 'ctime', 0, '<b>[ctime]</b> Table name for ctime');
 
 -- --------------------------------------------------------
 
