@@ -35,7 +35,6 @@ class Penalty extends AppModel {
 	 * @var string
 	 */
 	public $useTable = 'penalties';
-	public $tablePrefix = '';
 
 	/**
 	 * Database assosciations

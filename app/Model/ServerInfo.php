@@ -16,7 +16,6 @@
 class ServerInfo extends AppModel{
 	public $b3Database = true;
 	public $useTable = 'current_svars';			// Use a different table name
-	public $tablePrefix = '';
 
 	//public $hasMany = array(
 	//	'ServerPlayer'=> array(

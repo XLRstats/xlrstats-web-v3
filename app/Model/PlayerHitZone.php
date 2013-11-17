@@ -34,7 +34,7 @@ class PlayerHitZone extends AppModel {
 	 *
 	 * @var string
 	 */
-	public $useTable = 'playerbody';
+	public $useTable = 'xlr_playerbody';
 
 	/**
 	 * Database associations
@@ -47,4 +47,9 @@ class PlayerHitZone extends AppModel {
 			'foreignKey'	=>	'bodypart_id',
 		)
 	);
+
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_playerbody'));
+	}
 }

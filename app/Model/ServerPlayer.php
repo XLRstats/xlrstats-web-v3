@@ -16,5 +16,4 @@
 class ServerPlayer extends AppModel{
 	public $b3Database = true;
 	public $useTable = 'current_clients'; // TODO: make this configurable
-	public $tablePrefix = '';
 }

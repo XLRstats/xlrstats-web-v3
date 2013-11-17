@@ -33,6 +33,10 @@ class WeeklyStat extends AppModel {
 	 *
 	 * @var string
 	 */
-	public $useTable = 'history_weekly';
+	public $useTable = 'xlr_history_weekly';
 
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_history_weekly'));
+	}
 }

@@ -34,6 +34,10 @@ class WeaponStat extends AppModel {
 	 *
 	 * @var string
 	 */
-    public $useTable = 'weaponstats';
+    public $useTable = 'xlr_weaponstats';
 
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_weaponstats'));
+	}
 }

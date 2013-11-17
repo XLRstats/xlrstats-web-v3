@@ -10,10 +10,15 @@
 class League extends AppModel {
 	public $b3Database = true;
 	public $name = 'League';
-	public $useTable = 'playerstats';
+	public $useTable = 'xlr_playerstats';
 	public $belongsTo = array(
 		'Player'	=> array(
 			'foreignKey'	=>	'client_id'
 		)
 	);
+
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_playerstats'));
+	}
 }

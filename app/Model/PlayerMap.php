@@ -34,7 +34,7 @@ class PlayerMap extends AppModel {
 	 *
 	 * @var string
 	 */
-	public $useTable = 'playermaps';
+	public $useTable = 'xlr_playermaps';
 
 	/**
 	 * Database associations
@@ -51,4 +51,9 @@ class PlayerMap extends AppModel {
 			'foreignKey' => 'player_id',
 		)
 	);
+
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_playermaps'));
+	}
 }

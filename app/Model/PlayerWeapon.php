@@ -34,7 +34,7 @@ class PlayerWeapon extends AppModel {
 	 *
 	 * @var string
 	 */
-	public $useTable = 'weaponusage';
+	public $useTable = 'xlr_weaponusage';
 
 	/**
 	 * Database associations
@@ -51,4 +51,9 @@ class PlayerWeapon extends AppModel {
 			'foreignKey' => 'player_id',
 		)
 	);
+
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_weaponusage'));
+	}
 }

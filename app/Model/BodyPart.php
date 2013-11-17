@@ -33,6 +33,11 @@ class BodyPart extends AppModel {
 	 *
 	 * @var string
 	 */
-	public $useTable = 'bodyparts';
+	public $useTable = 'xlr_bodyparts';
+
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_bodyparts'));
+	}
 
 }

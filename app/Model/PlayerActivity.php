@@ -36,11 +36,8 @@ class PlayerActivity extends AppModel {
 	 */
 	public $useTable = 'ctime';
 
-	/**
-	 * Override the prefix set in database.php
-	 *
-	 * @var string
-	 */
-	public $tablePrefix = '';
-
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_ctime'));
+	}
 }

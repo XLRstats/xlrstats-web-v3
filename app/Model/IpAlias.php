@@ -35,7 +35,6 @@ class IpAlias extends AppModel {
 	 * @var string
 	 */
 	public $useTable = 'ipaliases';
-	public $tablePrefix = '';
 
 	/**
 	 * Database assosciations

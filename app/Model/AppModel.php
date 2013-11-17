@@ -63,7 +63,7 @@ class AppModel extends Model {
 				'login' => $login,
 				'password' => $password,
 				'database' => $database,
-				'prefix' => 'xlr_',
+				'prefix' => '',
 				//'encoding' => 'utf8',
 			);
 			try {

@@ -35,7 +35,6 @@ class Alias extends AppModel {
 	 * @var string
 	 */
 	public $useTable = 'aliases';
-	public $tablePrefix = '';
 
 	/**
 	 * Database assosciations

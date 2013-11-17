@@ -33,7 +33,7 @@ class Opponent extends AppModel {
 	 *
 	 * @var string
 	 */
-	public $useTable = 'opponents';
+	public $useTable = 'xlr_opponents';
 
 	/**
 	 * Database assosciations
@@ -50,4 +50,9 @@ class Opponent extends AppModel {
 			'foreignKey' => 'target_id',
 		)
 	);
+
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_opponents'));
+	}
 }

@@ -10,7 +10,7 @@
 class PlayerStat extends AppModel {
 	public $b3Database = true;
 	public $name = 'PlayerStat';
-    public $useTable = 'playerstats';
+    public $useTable = 'xlr_playerstats';
 	public $belongsTo = array(
         'Player'=>  array(
             'foreignKey'    => 'client_id',
@@ -29,3 +29,9 @@ class PlayerStat extends AppModel {
         ),
 	);*/
 }
+
+	function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_playerstats'));
+		//$this->useTable = Configure::read('options.table_playerstats');
+	}
