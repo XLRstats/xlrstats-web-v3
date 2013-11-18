@@ -217,7 +217,7 @@ INSERT INTO `options` (`id`, `group`, `name`, `value`, `locked`, `description`) 
 (12, 'server', 'showMIA', '1', 0, '<b>[Yes]</b> Show M.I.A. playerblock'),
 (13, 'server', 'opponents_count', '15', 0, '<b>[15]</b> How many opponents to show in the opponents tab on the playerstats pages'),
 (14, 'website', 'homelink', 'http://www.xlrstats.com/', 0, '<b>[http://www.xlrstats.com/]</b> URL to your main community site (http://www.blah.com)'),
-(15, 'website', 'tos_organisation', 'xlrstats.com', 0, '<b>[xlrstats.com]</b> Terms Of Service: your clan-, community- or organisationname'),
+(15, 'website', 'tos_organisation', 'xlrstats.com', 0, '<b>[xlrstats.com]</b> Terms Of Service: your clan-, community- or organisation name'),
 (16, 'website', 'tos_country', 'The Netherlands', 0, '<b>[The Netherlands]</b> Terms Of Service: your country'),
 (17, 'website', 'must_accept_cookies', '1', 0, '<b>[Yes]</b> To satisfy the European Cookie Law'),
 (18, 'website', 'google_analytics_account', '', 1, '<b>[Empty]</b> Your Google Ananlytics account'),
