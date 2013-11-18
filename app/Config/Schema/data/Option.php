@@ -30,7 +30,7 @@ class Option {
 		array('id' => '12','group' => 'server','name' => 'showMIA','value' => '1','locked' => '0','description' => '<b>[Yes]</b> Show M.I.A. playerblock'),
 		array('id' => '13','group' => 'server','name' => 'opponents_count','value' => '15','locked' => '0','description' => '<b>[15]</b> How many opponents to show in the opponents tab on the playerstats pages'),
 		array('id' => '14','group' => 'website','name' => 'homelink','value' => 'http://www.xlrstats.com/','locked' => '0','description' => '<b>[http://www.xlrstats.com/]</b> URL to your main community site (http://www.blah.com)'),
-		array('id' => '15','group' => 'website','name' => 'tos_organisation','value' => 'xlrstats.com','locked' => '0','description' => '<b>[xlrstats.com]</b> Terms Of Service: your clan-, community- or organisationname'),
+		array('id' => '15','group' => 'website','name' => 'tos_organisation','value' => 'xlrstats.com','locked' => '0','description' => '<b>[xlrstats.com]</b> Terms Of Service: your clan-, community- or organisation name'),
 		array('id' => '16','group' => 'website','name' => 'tos_country','value' => 'The Netherlands','locked' => '0','description' => '<b>[The Netherlands]</b> Terms Of Service: your country'),
 		array('id' => '17','group' => 'website','name' => 'must_accept_cookies','value' => '1','locked' => '0','description' => '<b>[Yes]</b> To satisfy the European Cookie Law'),
 		array('id' => '18','group' => 'website','name' => 'google_analytics_account','value' => '','locked' => '1','description' => '<b>[Empty]</b> Your Google Ananlytics account'),
