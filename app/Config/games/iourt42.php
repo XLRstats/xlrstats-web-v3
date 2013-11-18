@@ -145,6 +145,8 @@ $config = array(
 		'torso_lower' => array('4' => 'Kevlar'),
 		'left_arm_upper' => array('5' => 'Left Arm'),
 		'right_arm_upper' => array('6' => 'Right Arm'),
+		'groin' => array('7' => 'Groin'),
+		'butt' => array('8' => 'Butt'),
 		'left_leg_upper' => array('9' => 'Upper Left Leg'),
 		'right_leg_upper' => array('10' => 'Upper Right Leg'),
 		'left_leg_lower' => array('11' => 'Lower Left Leg'),
