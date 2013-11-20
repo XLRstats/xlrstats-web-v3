@@ -80,7 +80,7 @@
 				});
 		"); } ?>
 
-		<?php include_once 'analyticstracking.php' // TODO: Remove before packaging! ?>
+		<?php echo $this->element('google-analytics'); ?>
 
 		<!--[if lt IE 7]>
 		<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
