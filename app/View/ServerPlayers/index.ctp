@@ -177,7 +177,7 @@ $serverInfo = $this->requestAction('server_info');
 			));
 		} ?>
 
-			<tr><td colspan="5" style="text-align: right" class="muted"><small><?php echo  $this->Number->toPercentage($registeredCount / $position * 100, 0) . ' ' . __('of this team is competing in XLRstats.') ?></small></td></tr>
+			<tr><td colspan="5" style="text-align: right" class="muted"><small><?php echo $this->Number->toPercentage($registeredCount / $position * 100, 0) . ' ' . __('of this team is competing in XLRstats.') ?></small></td></tr>
 			</table></div>
 
 	<?php } ?>

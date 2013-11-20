@@ -188,6 +188,13 @@ class ServerPlayersController extends AppController {
 			 * Get the fixed info.
 			 */
 			$serverClients = $this->xmlItem['B3Status']['Clients'];
+			if ($serverClients['@Total'] == 1) {
+				$_s['Client'][0] = $serverClients['Client'];
+				$serverClients = array();
+				$serverClients = $_s;
+				$serverClients['@Total'] = 1;
+				ksort($serverClients);
+			}
 			//pr($serverClients);
 
 			/* Collect our available teams */
@@ -204,6 +211,7 @@ class ServerPlayersController extends AppController {
 
 			/* Create an array with teams and their clients */
 			$teams = array();
+			$_res = array();
 			foreach ($serverClients as $list => $client) {
 				if (substr($list, 0, 1) != '@') {
 					foreach ($client as $k => $v) {
