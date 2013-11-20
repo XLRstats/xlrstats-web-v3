@@ -40,7 +40,11 @@ class OptionsController extends DashboardAppController {
 	 */
 	public function admin_index() {
 		$options = $this->Option->find('all');
-		$this->set('options', $options);
+		if ($this->request->is('requested')) {
+			return $options;
+		} else {
+			$this->set('options', $options);
+		}
 	}
 
 	//-------------------------------------------------------------------
