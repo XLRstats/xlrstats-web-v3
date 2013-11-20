@@ -47,7 +47,9 @@ class Option {
 		array('id' => '29','group' => 'tables','name' => 'table_playeractions','value' => 'xlr_playeractions','locked' => '0','description' => '<b>[xlr_playeractions]</b> Table name for playeractions'),
 		array('id' => '30','group' => 'tables','name' => 'table_history_monthly','value' => 'xlr_history_monthly','locked' => '0','description' => '<b>[xlr_history_monthly]</b> Table name for history_monthly'),
 		array('id' => '31','group' => 'tables','name' => 'table_history_weekly','value' => 'xlr_history_weekly','locked' => '0','description' => '<b>[xlr_history_weekly]</b> Table name for history_weekly'),
-		array('id' => '32','group' => 'tables','name' => 'table_ctime','value' => 'ctime','locked' => '0','description' => '<b>[ctime]</b> Table name for ctime')
+		array('id' => '32','group' => 'tables','name' => 'table_ctime','value' => 'ctime','locked' => '0','description' => '<b>[ctime]</b> Table name for ctime'),
+		array('id' => '33','group' => 'tables','name' => 'table_current_svars','value' => 'current_svars','locked' => '0','description' => '<b>[current_svars]</b> Table name for status plugin: server variables'),
+		array('id' => '34','group' => 'tables','name' => 'table_current_clients','value' => 'current_clients','locked' => '0','description' => '<b>[current_clients]</b> Table name for status plugin: current clients')
 	);
 }
 

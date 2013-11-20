@@ -234,7 +234,9 @@ INSERT INTO `options` (`id`, `group`, `name`, `value`, `locked`, `description`) 
 (29, 'tables', 'table_playeractions', 'xlr_playeractions', 0, '<b>[xlr_playeractions]</b> Table name for playeractions'),
 (30, 'tables', 'table_history_monthly', 'xlr_history_monthly', 0, '<b>[xlr_history_monthly]</b> Table name for history_monthly'),
 (31, 'tables', 'table_history_weekly', 'xlr_history_weekly', 0, '<b>[xlr_history_weekly]</b> Table name for history_weekly'),
-(32, 'tables', 'table_ctime', 'ctime', 0, '<b>[ctime]</b> Table name for ctime');
+(32, 'tables', 'table_ctime', 'ctime', 0, '<b>[ctime]</b> Table name for ctime'),
+(33, 'tables', 'table_current_svars', 'current_svars', 0, '<b>[current_svars]</b> Table name for status plugin: server variables'),
+(34, 'tables', 'table_current_clients', 'current_clients', 0, '<b>[current_clients]</b> Table name for status plugin: current clients');
 
 -- --------------------------------------------------------
 

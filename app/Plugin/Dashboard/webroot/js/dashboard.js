@@ -89,6 +89,8 @@ $(document).ready(function() {
         '#table_history_monthly, ' +
         '#table_history_weekly, ' +
         '#table_ctime, ' +
+        '#table_current_svars, ' +
+        '#table_current_clients, ' +
         '#text-field').editable();
 
     // Select Fields
