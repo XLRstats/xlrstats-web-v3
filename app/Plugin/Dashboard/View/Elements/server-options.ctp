@@ -13,7 +13,7 @@
  * @version       0.1
  */
 
-$options = $this->requestAction('dashboard/options');
+$serverOptions = $this->requestAction('dashboard/server_options');
 
 $booleanValues = array(
 	'hide_banned',
@@ -24,28 +24,21 @@ $booleanValues = array(
 	'show_bans_only',
 	'ban_disputable',
 );
-
 ?>
 
 <table id="options" class="table table-bordered table-striped table-hover">
 	<thead>
 	<th><?php echo __('Description'); ?></th>
 	<th><?php echo __('Value'); ?></th>
-	<th><?php echo __('Locked'); ?></th>
 	</thead>
 	<tbody>
 	<?php
-	foreach($options as $option):
+	foreach($serverOptions as $option):
 		if($option['Option']['group'] == $group):
-			if($option['Option']['locked'] == 1):
-				$class = 'warning';
-			else:
-				$class = '';
-			endif;
 			?>
-			<tr class="<?php echo $class; ?>">
-				<td width="40%"><?php echo $option['Option']['description']; ?></td>
-				<td width="30%">
+			<tr>
+				<td width="50%"><?php echo $option['Option']['description']; ?></td>
+				<td width="50%">
 					<?php
 					$type = 'text';
 					if(in_array($option['Option']['name'], $booleanValues)):
@@ -65,28 +58,9 @@ $booleanValues = array(
 					echo $this->Html->link($link, '#', array(
 							'id' => $option['Option']['name'],
 							'data-type' => $type,                   //type of input (text, textarea, select, etc)
-							'data-url' => 'options/edit',           //url to server-side script to process submitted value
-							'data-pk' => $option['Option']['id'],   //primary key of record to be updated (ID in db)
+							'data-url' => 'server_options/edit',    //url to server-side script to process submitted value
+							'data-pk' => $option['Option']['name'], //*** we use option name here instead of primary key
 							'data-name' => 'value',                 //name of field to be updated (column in db)
-						)
-					);
-					?>
-				</td>
-				<td width="30%">
-					<?php
-					// Print 'Yes' or 'No' instead of 1 or 0
-					$link = $option['Option']['locked'];
-					if($link == 1):
-						$link = 'Yes';
-					else:
-						$link = 'No';
-					endif;
-					echo $this->Html->link($link, '#', array(
-							'id' => $option['Option']['name']. '_locked',
-							'data-type' => 'select',                //type of input (text, textarea, select, etc)
-							'data-url' => 'options/edit',           //url to server-side script to process submitted value
-							'data-pk' => $option['Option']['id'],   //primary key of record to be updated (ID in db)
-							'data-name' => 'locked',                //name of field to be updated (column in db)
 						)
 					);
 					?>

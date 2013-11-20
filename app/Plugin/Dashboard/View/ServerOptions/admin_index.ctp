@@ -12,6 +12,7 @@
  * @since         XLRstats v3.0
  * @version       0.1
  */
+
 $serverName = $this->XlrFunctions->stripColors($serverName);
 $this->set('title_for_layout', __('Server Options | %s', $serverName));
 ?>
@@ -29,53 +30,28 @@ $this->set('title_for_layout', __('Server Options | %s', $serverName));
 	</blockquote>
 </div>
 
-<table id="options" class="table table-bordered table-striped table-hover">
-	<thead>
-		<th><?php echo __('Description'); ?></th>
-		<th><?php echo __('Value'); ?></th>
-	</thead>
-	<tbody>
-		<?php foreach($serverOptions as $option): ?>
-			<tr>
-				<td width="50%"><?php echo $option['Option']['description']; ?></td>
-				<td width="50%">
-					<?php
-					$booleanValues = array(
-						'hide_banned',
-						'must_accept_cookies',
-						'showMIA',
-						'show_donate_button',
-						'show_banlist',
-						'show_bans_only',
-						'ban_disputable',
-					);
+<div class="server-option-tabs">
 
-					$type = 'text';
-					if(in_array($option['Option']['name'], $booleanValues)):
-						$type = 'select';
-					endif;
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#server" data-toggle="tab">XLRstats Options</a></li>
+		<li><a href="#website" data-toggle="tab">Website Options</a></li>
+		<li><a href="#tables" data-toggle="tab">Database Tables</a></li>
+	</ul>
 
-					// Print 'Yes' or 'No' instead of 1 or 0
-					$link = $option['Option']['value'];
-					if(in_array($option['Option']['name'], $booleanValues)):
-						if($link == 1):
-							$link = 'Yes';
-						else:
-							$link = 'No';
-						endif;
-					endif;
+	<div class="tab-content">
 
-					echo $this->Html->link($link, '#', array(
-							'id' => $option['Option']['name'],
-							'data-type' => $type,                   //type of input (text, textarea, select, etc)
-							'data-url' => 'server_options/edit',    //url to server-side script to process submitted value
-							'data-pk' => $option['Option']['name'], //*** we use option name here instead of primary key
-							'data-name' => 'value',                 //name of field to be updated (column in db)
-						)
-					);
-					?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-	</tbody>
-</table>
+		<div id="server" class="tab-pane active">
+			<?php echo $this->element('Dashboard.server-options', array('group' => 'server')); ?>
+		</div>
+
+		<div id="website" class="tab-pane">
+			<?php echo $this->element('Dashboard.server-options', array('group' => 'website')); ?>
+		</div>
+
+		<div id="tables" class="tab-pane">
+			<?php echo $this->TwitterBootstrap->alert(__('<b>WARNING:</b> This is for advanced users only. Do not change table names if you don\'t know what you\'re doing!'), array('style' => 'error'));?>
+			<?php echo $this->element('Dashboard.server-options', array('group' => 'tables')); ?>
+		</div>
+
+	</div>
+</div>

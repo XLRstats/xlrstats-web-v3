@@ -79,7 +79,11 @@ class ServerOptionsController extends DashboardAppController {
 		}
 		//pr($serverOptions);
 
-		$this->set('serverOptions', $serverOptions);
+		if ($this->request->is('requested')) {
+			return $serverOptions;
+		} else {
+			$this->set('serverOptions', $serverOptions);
+		}
 
 		$serverName = $this->getServerName($serverID);
 		$this->set('serverName', $serverName);
