@@ -64,63 +64,24 @@ $(document).ready(function() {
      * Options Page X-editable
      **********************************************/
         //Text fields
-    $(	'#min_connections, ' +
-        '#disqus_shortname, ' +
-        '#opponents_count, ' +
-        '#tos_organisation, ' +
-        '#tos_country, ' +
-        '#homelink, ' +
-        '#google_analytics_account, ' +
-        '#max_days, ' +
-        '#theme, ' +
-        '#license, ' +
-        '#ban_dispute_link, ' +
-        '#min_kills, ' +
-        '#table_playerstats, ' +
-        '#table_opponents, ' +
-        '#table_bodyparts, ' +
-        '#table_playerbody, ' +
-        '#table_mapstats, ' +
-        '#table_playermaps, ' +
-        '#table_weaponstats, ' +
-        '#table_weaponusage, ' +
-        '#table_actionstats, ' +
-        '#table_playeractions, ' +
-        '#table_history_monthly, ' +
-        '#table_history_weekly, ' +
-        '#table_ctime, ' +
-        '#table_current_svars, ' +
-        '#table_current_clients, ' +
-        '#text-field').editable();
+    $(	'#min_connections, #disqus_shortname, #opponents_count, #tos_organisation, #tos_country, #homelink, ' +
+        '#google_analytics_account, #max_days, #theme, #license, #ban_dispute_link, #min_kills, #table_playerstats, ' +
+        '#table_opponents, #table_bodyparts, #table_playerbody, #table_mapstats, #table_playermaps, #table_weaponstats, ' +
+        '#table_weaponusage, #table_actionstats, #table_playeractions, #table_history_monthly, #table_history_weekly, ' +
+        '#table_ctime, #table_current_svars, #table_current_clients').editable();
 
-    // Select Fields
-    $(	'#hide_banned, ' +
-        '#must_accept_cookies, ' +
-        '#showMIA, ' +
-        '#show_donate_button, ' +
-        '#show_banlist, ' +
-        '#show_bans_only, ' +
-        '#ban_disputable, ' +
+        // Select Fields
+    $(	'#hide_banned, #must_accept_cookies, #showMIA, #show_donate_button, #show_banlist, #show_bans_only, #ban_disputable, ' +
         //Locked
-        '#min_connections_locked, ' +
-        '#hide_banned_locked, ' +
-        '#disqus_shortname_locked, ' +
-        '#opponents_count_locked, ' +
-        '#tos_organisation_locked, ' +
-        '#tos_country_locked, ' +
-        '#homelink_locked, ' +
-        '#must_accept_cookies_locked, ' +
-        '#google_analytics_account_locked, ' +
-        '#max_days_locked, ' +
-        '#theme_locked, ' +
-        '#showMIA_locked, ' +
-        '#show_donate_button_locked, ' +
-        '#license_locked, ' +
-        '#show_banlist_locked, ' +
-        '#show_bans_only_locked, ' +
-        '#ban_dispute_link_locked, ' +
-        '#ban_disputable_locked, ' +
-        '#min_kills_locked').editable({
+        '#min_connections_locked, #hide_banned_locked, #disqus_shortname_locked, #opponents_count_locked, ' +
+        '#tos_organisation_locked, #tos_country_locked, #homelink_locked, #must_accept_cookies_locked, ' +
+        '#google_analytics_account_locked, #max_days_locked, #theme_locked, #showMIA_locked, #show_donate_button_locked, ' +
+        '#license_locked, #show_banlist_locked, #show_bans_only_locked, #ban_dispute_link_locked, #ban_disputable_locked, ' +
+        '#min_kills_locked, #table_playerstats_locked, #table_opponents_locked, #table_bodyparts_locked, ' +
+        '#table_playerbody_locked, #table_mapstats_locked, #table_playermaps_locked, #table_weaponstats_locked, ' +
+        '#table_weaponusage_locked, #table_actionstats_locked, #table_playeractions_locked, #table_history_monthly_locked, ' +
+        '#table_history_weekly_locked, #table_ctime_locked, #table_current_svars_locked, ' +
+        '#table_current_clients_locked').editable({
             source: [
                 {value: 1, text: 'Yes'},
                 {value: 0, text: 'No'}
