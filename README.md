@@ -13,7 +13,7 @@ Here is our beta code for the **XLRstats v3 - League Edition**
 
 ## installation
 
-You will find the [installation instructions here](install.md).
+You will find the [installation instructions here](https://github.com/XLRstats/xlrstats-web-v3/blob/master/INSTALL.md).
 
 ## updating
 
