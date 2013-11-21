@@ -13,8 +13,11 @@
  * @version       0.1
  */
 
+$serverName = $this->requestAction('app/getServername');
+$serverName = $this->XlrFunctions->stripColors($serverName);
+$this->set('title_for_layout', __('%s • %s • XLRstats', $leagueValue[3], $serverName));
+
 $this->Html->script('jquery.sparkline', array('inline' => false));
-$this->set('title_for_layout', $leagueValue[3]);
 
 /**
  * Do we show the sidebar with MIA players?

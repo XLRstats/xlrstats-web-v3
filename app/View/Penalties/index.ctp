@@ -12,6 +12,11 @@
  * @since         XLRstats v3.0
  * @version       0.1
  */
+
+$serverName = $this->requestAction('app/getServername');
+$serverName = $this->XlrFunctions->stripColors($serverName);
+$this->set('title_for_layout', __('Penalties • %s • XLRstats', $serverName));
+
 $imgUrl = FULL_BASE_URL . $this->base . '/img/';
 ?>
 <script type="text/javascript" charset="utf-8">

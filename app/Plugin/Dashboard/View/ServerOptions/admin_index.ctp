@@ -14,7 +14,7 @@
  */
 
 $serverName = $this->XlrFunctions->stripColors($serverName);
-$this->set('title_for_layout', __('Server Options | %s', $serverName));
+$this->set('title_for_layout', __('Server Options • %s • XLRstats', $serverName));
 ?>
 
 <script type="text/javascript" charset="utf-8">

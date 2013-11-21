@@ -13,6 +13,11 @@
  * @version       0.1
  */
 
+$serverName = $this->requestAction('app/getServername');
+$serverName = $this->XlrFunctions->stripColors($serverName);
+$playerName = Sanitize::html($playerStats['Player']['name']);
+$this->set('title_for_layout', __('%s • %s • XLRstats', $playerName, $serverName));
+
 //pr($playerStats);
 $this->Html->script('gauge.min', array('inline' => false));
 $this->Html->script('highcharts', array('inline' => false));
@@ -39,7 +44,7 @@ $myPage = false;
 				?>
 			</div>
 			<div class="player-name">
-				<?php echo Sanitize::html($playerStats['Player']['name']); ?>
+				<?php echo $playerName; ?>
 				<span class="player-flag"><?php echo $this->Html->image('flags/' . $playerStats['Player']['flag'][0] . '.gif', array(
 					'style' => 'margin-top:-15px;',
 					'rel' => 'tooltip',

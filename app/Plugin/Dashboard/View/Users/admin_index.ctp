@@ -12,6 +12,8 @@
  * @since         XLRstats v3.0
  * @version       0.1
  */
+
+$this->set('title_for_layout', __('Users • XLRstats'));
 ?>
 <script type="text/javascript" charset="utf-8">
 	/* Set the defaults for DataTables initialisation */

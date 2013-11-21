@@ -13,6 +13,10 @@
  * @version       0.1
  */
 
+$serverName = $this->requestAction('app/getServername');
+$serverName = $this->XlrFunctions->stripColors($serverName);
+$this->set('title_for_layout', __('Maps • %s • XLRstats', $serverName));
+
 if (empty($topKillMaps)) {
 	echo '<div class="alert alert-info">' . __('No data to display!') . '</div>';
 	return false;

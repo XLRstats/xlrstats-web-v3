@@ -8,10 +8,12 @@
  *
  * @link          http://www.xlrstats.com
  * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
- * @package       app.Plugin.Dashboard.View
+ * @package       app.Plugin.Dashboard.View.ServerGroups
  * @since         XLRstats v3.0
  * @version       0.1
  */
+
+$this->set('title_for_layout', __('Server Groups • XLRstats'));
 ?>
 
 <script type="text/javascript" charset="utf-8">
