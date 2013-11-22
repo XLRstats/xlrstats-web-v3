@@ -6,7 +6,7 @@ Here is our beta code for the **XLRstats v3 - League Edition**
 
 ## requirements
 
-* B3 version 1.9.0 or newer with xlrstats plugin enabled
+* B3 version 1.10.0 or newer with xlrstats plugin enabled (will still work with older B3 versions although some features will be missing)
 * Hosting environment with __mod_rewrite__ enabled
 * PHP version 5.3.0 or newer
 * MySQL database to store the configuration for the website
