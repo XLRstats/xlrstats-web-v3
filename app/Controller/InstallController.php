@@ -63,7 +63,7 @@ class InstallController extends Controller {
 	 */
 	public function index() {
 		$this->clearCache();
-		//$this->redirect('/install/license');
+		//$this->redirect(array('action' => 'license'));
 	}
 
 	/**
@@ -76,7 +76,7 @@ class InstallController extends Controller {
 
 		if (isset($this->params['named']['lang']) && preg_match('/^[a-z]{3}$/', $this->params['named']['lang'])) {
 			CakeSession::write('Config.language', $this->params['named']['lang']);
-			$this->redirect('/install/license');
+			$this->redirect(array('action' => 'license'));
 		}
 
 		$Folder = new Folder(ROOT . DS . 'Locale' . DS);
@@ -96,7 +96,7 @@ class InstallController extends Controller {
 
 		if (empty($languages)) {
 			CakeSession::write('Config.language', 'eng');
-			$this->redirect('/install/license');
+			$this->redirect(array('action' => 'license'));
 		}
 
 		$this->set('languages', $languages);
@@ -114,7 +114,7 @@ class InstallController extends Controller {
 
 		if (isset($this->data['License'])) {
 			$this->__stepSuccess('license');
-			$this->redirect('/install/server_test');
+			$this->redirect(array('action' => 'server_test'));
 		}
 	}
 
@@ -129,12 +129,12 @@ class InstallController extends Controller {
 		Configure::write('installPercentage', ($_step / $this->totalInstallSteps * 100));
 
 		if (!$this->__stepSuccess('license', true)) {
-			$this->redirect('/install/');
+			$this->redirect(array('action' => 'index'));
 		}
 
 		if (!empty($this->data['Test'])) {
 			$this->__stepSuccess('server_test');
-			$this->redirect('/install/database');
+			$this->redirect(array('action' => 'database'));
 		}
 
 		$tests = array(
@@ -210,7 +210,7 @@ class InstallController extends Controller {
 		Configure::write('installPercentage', ($_step / $this->totalInstallSteps * 100));
 
 		if (!$this->__stepSuccess(array('license', 'server_test'), true)) {
-			$this->redirect('/install/');
+			$this->redirect(array('action' => 'index'));
 		}
 
 		$config_exists = file_exists(APP . 'Config' . DS . 'database.php');
@@ -309,15 +309,15 @@ class InstallController extends Controller {
 					$salt = Security::generateAuthKey();
 					$seed = mt_rand() . mt_rand();
 					$file = APP . DS . 'Config' . DS . 'security.php';
-          $contents = "<?php\n";
-          $contents .= "Configure::write('Security.salt', '" . $salt . "');\n";
-          $contents .= "Configure::write('Security.cipherSeed', '" . $seed . "');\n";
-          file_put_contents($file, $contents);
+					$contents = "<?php\n";
+					$contents .= "Configure::write('Security.salt', '" . $salt . "');\n";
+					$contents .= "Configure::write('Security.cipherSeed', '" . $seed . "');\n";
+					file_put_contents($file, $contents);
 
 					Cache::write('XlrInstallDatabase', 'success'); // fix: Security keys change
 					//$this->Session->write('XlrInstallDatabase', 'success');
 					$this->__stepSuccess('database');
-					$this->redirect('/install/user_account');
+					$this->redirect(array('action' => 'user_account'));
 				} else {
 					$this->Session->setFlash(__('Could not dump database.'),null, null, 'error');
 				}
@@ -346,7 +346,7 @@ class InstallController extends Controller {
 
 			Cache::delete('XlrInstallDatabase');
 		} else {
-			$this->redirect('/install/');
+			$this->redirect(array('action' => 'index'));
 		}
 
 		if (isset($this->data['User'])) {
@@ -361,7 +361,7 @@ class InstallController extends Controller {
 
 			if ($this->User->add($data)) {
 				$this->__stepSuccess('user_account');
-				$this->redirect('/install/first_server');
+				$this->redirect(array('action' => 'first_server'));
 			} else {
 				$errors = '';
 
@@ -388,7 +388,7 @@ class InstallController extends Controller {
 		Configure::write('installPercentage', ($_step / $this->totalInstallSteps * 100));
 
 		if (!$this->__stepSuccess(array('license', 'server_test', 'database', 'user_account'), true)) {
-			$this->redirect('/install/');
+			$this->redirect(array('action' => 'index'));
 		}
 		if (isset($this->data['Server'])) {
 			$this->loadModel('Dashboard.Server');
@@ -396,7 +396,7 @@ class InstallController extends Controller {
 
 			if ($this->Server->save($data)) {
 				$this->__stepSuccess('first_server');
-				$this->redirect('/install/finish');
+				$this->redirect(array('action' => 'finish'));
 			} else {
 				$errors = '';
 
@@ -423,7 +423,7 @@ class InstallController extends Controller {
 		Configure::write('installPercentage', ($_step / $this->totalInstallSteps * 100));
 
 		if (!$this->__stepSuccess(array('license', 'server_test', 'database', 'user_account', 'first_server'), true)) {
-			$this->redirect('/install/');
+			$this->redirect(array('action' => 'index'));
 		}
 
 		App::import('Utility', 'File');
@@ -436,7 +436,7 @@ class InstallController extends Controller {
 			//CakeSession::write('Config.language', 'eng');
 			$this->clearCache();
 			$this->Session->setFlash(__("Installation successful! You're about to login to the administration dashboard. PLease enter your XLRstats key in the 'Options' section first."),null, null, 'success');
-			$this->redirect('/dashboard/');
+			$this->redirect(array('plugin' => 'dashboard', 'action' => 'index'));
 		} else {
 			$this->Session->setFlash(__("Could not write 'install' file. Check file/folder permissions and refresh this page."),null, null, 'error');
 

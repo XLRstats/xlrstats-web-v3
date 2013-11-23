@@ -207,8 +207,6 @@ class XlrFunctionsComponent extends Component {
 	 */
 	public function getLicenseDetails($key)
 	{
-		//$url = 'http://www.xlrstats.com/license/api/guest/servicelicense/check';
-		//$url = 'http://www.xlrstats.com/license_server/licenses/check';
 		$excl = array(
 			'http://xlr8or.snt.utwente.nl',
 			'http://localhost'
@@ -216,7 +214,7 @@ class XlrFunctionsComponent extends Component {
 		if (in_array(FULL_BASE_URL, $excl)) {
 			return false;
 		}
-		$url = 'http://xlr8or.snt.utwente.nl/xlrstats/license_server/licenses/check';
+		$url = 'aHR0cDovL3hscjhvci5zbnQudXR3ZW50ZS5ubC94bHJzdGF0cy9saWNlbnNlX3NlcnZlci9saWNlbnNlcy9jaGVjaw,,';
 		$params = array();
 		$params['license']  = $key;
 		$params['host']     = FULL_BASE_URL;
@@ -226,7 +224,7 @@ class XlrFunctionsComponent extends Component {
 		if (function_exists('curl_version')) {
 			// If we have cURL, use it
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_URL, $this->base64_url_decode($url));
 			curl_setopt($ch, CURLOPT_VERBOSE, 0);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -252,12 +250,15 @@ class XlrFunctionsComponent extends Component {
 				'content' => $data));
 
 			$context = stream_context_create($opts);
-			$result = file_get_contents($url, false, $context);
+			$result = file_get_contents($this->base64_url_decode($url), false, $context);
 		}
 
 		return json_decode($result, true);
 	}
 
+	/**
+	 * @return bool|mixed
+	 */
 	public function isLicenseValid() {
 		// The license server will only be polled once p/5minutes when invalid, and once p/week when valid
 		if (Configure::check('license.valid')) {
@@ -286,5 +287,19 @@ class XlrFunctionsComponent extends Component {
 		}
 	}
 
+	/**
+	 * @param $input
+	 * @return string
+	 */
+	private function base64_url_encode($input) {
+		return strtr(base64_encode($input), '+/=', '-_,');
+	}
 
+	/**
+	 * @param $input
+	 * @return string
+	 */
+	private function base64_url_decode($input) {
+		return base64_decode(strtr($input, '-_,', '+/='));
+	}
 }
