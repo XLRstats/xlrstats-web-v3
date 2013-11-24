@@ -31,7 +31,7 @@ if (!is_writable(dirname(APP . 'tmp' . DS . 'test'))) {
 /**
  * XLRstats version
  */
-	define('XLR_VERSION', 'v3.0.0-beta.6');
+	define('XLR_VERSION', 'v3.0.0-beta.7');
 
 /**
  * CakePHP Debug Level:
