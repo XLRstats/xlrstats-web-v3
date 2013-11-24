@@ -36,7 +36,6 @@ class ServerInfoController extends AppController {
 	 * @var array
 	 */
 	public $helpers = array(
-		'XlrFunctions',
 		'Number'
 	);
 

@@ -14,7 +14,6 @@
  * @version       0.1
  */
 
-App::uses('Sanitize', 'Utility');
 
 class PlayerStatsController extends AppController {
 
@@ -39,7 +38,6 @@ class PlayerStatsController extends AppController {
 	 */
 	public $components = array(
 		'RequestHandler',
-		'XlrFunctions',
 		'GeoIP',
 		'Session',
 	);

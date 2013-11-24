@@ -13,7 +13,6 @@
  * @version       0.1
  */
 
-App::uses('Sanitize', 'Utility');
 
 class PlayerActivitiesController extends AppController {
 

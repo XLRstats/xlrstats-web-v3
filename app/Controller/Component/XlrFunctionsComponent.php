@@ -72,29 +72,6 @@ class XlrFunctionsComponent extends Component {
 	//-------------------------------------------------------------------
 
 	/**
-	 * Function that replaces names with a fixed name or the empty name default
-	 *
-	 * @param $playerName
-	 * @param string $fixedName
-	 * @param int $nameLength
-	 * @param string $defaultName
-	 * @return array
-	 */
-	public function fixName($playerName, $fixedName='', $nameLength=10, $defaultName='Unknown Soldier')
-	{
-		if ($fixedName == '')
-			unset($fixedName);
-		if ($playerName == '')
-			$playerName = $defaultName;
-
-		$displayName = htmlspecialchars($fixedName ? $fixedName : $playerName);
-		$playerName = truncate_utf8($displayName, $nameLength, True, True);
-		return array($playerName, $displayName);
-	}
-
-	//-------------------------------------------------------------------
-
-	/**
 	 * Returns an array with image and country name based on ip address
 	 *
 	 * @param $ip
@@ -201,6 +178,8 @@ class XlrFunctionsComponent extends Component {
 		return $result;
 	}
 
+	//-------------------------------------------------------------------
+
 	/**
 	 * @param $key
 	 * @return mixed
@@ -256,6 +235,8 @@ class XlrFunctionsComponent extends Component {
 		return json_decode($result, true);
 	}
 
+	//-------------------------------------------------------------------
+
 	/**
 	 * @return bool|mixed
 	 */
@@ -287,6 +268,8 @@ class XlrFunctionsComponent extends Component {
 		}
 	}
 
+	//-------------------------------------------------------------------
+
 	/**
 	 * @param $input
 	 * @return string
@@ -301,5 +284,38 @@ class XlrFunctionsComponent extends Component {
 	 */
 	private function base64_url_decode($input) {
 		return base64_decode(strtr($input, '-_,', '+/='));
+	}
+
+	/**
+	 * Function that replaces names with a fixed name or the empty name default and sanitizes it
+	 *
+	 * @param $playerName
+	 * @param string $fixedName
+	 * @param string $defaultName
+	 * @return string
+	 */
+	public function fixName($playerName, $fixedName='', $defaultName='Unknown Soldier')
+	{
+		if ($fixedName != '') {
+			$playerName = $fixedName;
+		}
+		if ($playerName == '')
+			$playerName = $defaultName;
+
+		$displayName = $this->sanitizeMe($playerName);
+		return $displayName;
+	}
+
+	//-------------------------------------------------------------------
+
+	/**
+	 * Sanitation function for displaying database content in html
+	 * http://www.php.net/manual/en/function.htmlentities.php
+	 *
+	 * @param $str
+	 * @return string
+	 */
+	public function sanitizeMe($str) {
+		return htmlentities($str, ENT_QUOTES, 'UTF-8');
 	}
 }

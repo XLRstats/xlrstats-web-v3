@@ -555,5 +555,34 @@ class XlrfunctionsHelper extends Helper {
 		return $result;
 	}
 
+	/**
+	 * Function that replaces names with a fixed name or the empty name default and sanitizes it
+	 *
+	 * @param $playerName
+	 * @param string $fixedName
+	 * @param string $defaultName
+	 * @return string
+	 */
+	public function fixName($playerName, $fixedName='', $defaultName='Unknown Soldier')
+	{
+		if ($fixedName != '') {
+			$playerName = $fixedName;
+		}
+		if ($playerName == '')
+			$playerName = $defaultName;
 
+		$displayName = $this->sanitizeMe($playerName);
+		return $displayName;
+	}
+
+	/**
+	 * Sanitation function for displaying database content in html
+	 * http://www.php.net/manual/en/function.htmlentities.php
+	 *
+	 * @param $str
+	 * @return string
+	 */
+	public function sanitizeMe($str) {
+		return htmlentities($str, ENT_QUOTES, 'UTF-8');
+	}
 }

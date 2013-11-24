@@ -14,7 +14,6 @@
  */
 
 App::uses('Xml', 'Utility');
-App::uses('Sanitize', 'Utility');
 
 class ServerPlayersController extends AppController {
 
@@ -47,7 +46,6 @@ class ServerPlayersController extends AppController {
 	 * @var array
 	 */
 	public $helpers = array(
-		'XlrFunctions',
 		'Number'
 	);
 
@@ -82,11 +80,11 @@ class ServerPlayersController extends AppController {
 		foreach ($result as $teams => $players) {
 			foreach ($players as $k => $player) {
 				$positions[] = array(
-					'client' => Sanitize::html($player['ServerPlayer']['Name']),
+					'client' => $this->XlrFunctions->fixName($player['ServerPlayer']['Name']),
 					'latitude' => $this->GeoIPCity->getLatitude($player['ServerPlayer']['IP']),
 					'longitude' => $this->GeoIPCity->getLongitude($player['ServerPlayer']['IP'])
 				);
-				$playerNames[] = $player['ServerPlayer']['Name'];
+				$playerNames[] = $this->XlrFunctions->fixName($player['ServerPlayer']['Name']);
 			}
 		}
 

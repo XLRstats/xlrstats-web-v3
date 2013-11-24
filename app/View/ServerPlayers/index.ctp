@@ -146,9 +146,9 @@ $serverInfo = $this->requestAction('server_info');
 					'exact'		=> true,
 				));
 			if ($trunkedName != $v['ServerPlayer']['Name']) {
-				$trunkedName = '<span rel="tooltip" data-original-title="' . Sanitize::html($v['ServerPlayer']['Name']) . '">' . $trunkedName . '</span>';
+				$trunkedName = '<span rel="tooltip" data-original-title="' . $this->XlrFunctions->fixName($v['ServerPlayer']['Name']) . '">' . $trunkedName . '</span>';
 			} else {
-				$trunkedName = Sanitize::html($trunkedName);
+				$trunkedName = $this->XlrFunctions->fixName($trunkedName);
 			}
 			if (isset($v['ServerPlayer']['playerstats_id'])) {
 				$name = $this->Html->link($trunkedName, array(

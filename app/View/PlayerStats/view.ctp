@@ -15,7 +15,7 @@
 
 $serverName = $this->requestAction('app/getServername');
 $serverName = $this->XlrFunctions->stripColors($serverName);
-$playerName = Sanitize::html($playerStats['Player']['name']);
+$playerName = $this->XlrFunctions->fixName($playerStats['Player']['name']);
 $this->set('title_for_layout', __('%s • %s • XLRstats', $playerName, $serverName));
 
 //pr($playerStats);

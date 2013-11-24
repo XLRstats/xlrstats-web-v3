@@ -29,7 +29,6 @@ class IpAliasesController extends AppController {
 	 */
 	public $helpers = array(
 		'Js' => array('Jquery'),
-		'XlrFunctions'
 	);
 
 	/**
@@ -38,7 +37,6 @@ class IpAliasesController extends AppController {
 	 * @var array
 	 */
 	public $components = array(
-		'XlrFunctions',
 		'GeoIP',
 		'RequestHandler',
 		'DataTable',

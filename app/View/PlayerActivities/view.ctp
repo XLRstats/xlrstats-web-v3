@@ -67,7 +67,7 @@ $durations = $this->Js->value($duration);
                 filename:'xlrstats_activity'
             },
             title:{
-                text:'<?php echo __('Activity Chart') . ' ' . Sanitize::paranoid($playerActivity['PlayerActivity']['nick']) ?>'
+                text:'<?php echo __('Activity Chart') . ' ' . $this->XlrFunctions->fixName($playerActivity['PlayerActivity']['nick']) ?>'
             },
             subtitle: {
                 text: 'Total Playing time past 31 days: <?php echo round($totalPlayTime/60, 2) ?> hrs. (Avg. <?php echo round($totalPlayTime/60/31, 2) ?> hrs per day)<br /><br />(Click and drag in the plot area to zoom in)'

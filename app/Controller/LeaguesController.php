@@ -34,8 +34,7 @@ class LeaguesController extends AppController {
 		'Form',
 		'Js' => array(
 			'Jquery',
-		),
-		'XlrFunctions',
+		)
 	);
 
 	/**
@@ -44,7 +43,6 @@ class LeaguesController extends AppController {
 	 * @var array
 	 */
 	public $components = array(
-		'XlrFunctions',
 		'GeoIP',
 		'RequestHandler',
 		'DataTable',

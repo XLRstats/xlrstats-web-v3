@@ -265,6 +265,7 @@ class InstallController extends Controller {
 
 						if (!$config_exists) {
 							$this->__removeDatabaseFile();
+							$this->__removeEmailFile();
 						}
 
 						return;

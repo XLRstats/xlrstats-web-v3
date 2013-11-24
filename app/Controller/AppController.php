@@ -65,6 +65,7 @@ class AppController extends Controller {
 	 * @var array
 	 */
 	public $helpers = array(
+		'XlrFunctions',
 		'TwitterBootstrap.TwitterBootstrap',
 		'Gravatar.Gravatar'
 	);
