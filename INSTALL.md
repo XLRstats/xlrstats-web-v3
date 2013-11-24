@@ -47,7 +47,7 @@ This method is for advanced users or if you can't use the installer for some rea
 Can't start installation, you only get the ``Cannot continue`` message.
 
 #### Solution:
-Make sure `app/Config`, `app/Config/core.php` and `app/tmp` (including all it's subfolders) are writable by the webserver.
+Make sure `app/Config` and `app/tmp` (including all it's subfolders) are writable by the webserver.
 
 ### Symptom:
 Installer looks crappy, and you get errors like: ``"404 /install/license not found"``
