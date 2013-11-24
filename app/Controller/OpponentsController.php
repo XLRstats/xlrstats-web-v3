@@ -28,7 +28,6 @@ class OpponentsController extends AppController {
 	 * @var array
 	 */
 	public $helpers = array(
-		'XlrFunctions',
 		'Number',
 		'Js' => array('Jquery')
 	);
@@ -39,7 +38,6 @@ class OpponentsController extends AppController {
 	 * @var array
 	 */
 	public $components = array(
-		'XlrFunctions',
 		'GeoIP',
 		'RequestHandler',
 	);
@@ -92,7 +90,16 @@ class OpponentsController extends AppController {
 				'limit' => $opponentsCount,
 			)
 		);
-
+		if (!$data) {
+			if ($this->request->is('requested')) {
+				return false;
+			}
+			else {
+				$this->set('opponents', array());
+				$this->set('analytics', array());
+				return false;
+			}
+		}
 
 		/**
 		 * Add some values to the array, like rank and position
@@ -118,7 +125,11 @@ class OpponentsController extends AppController {
 			$_id[$k] = $v['Target']['id'];
 			$_skillgain[$k] = $v['0']['skillgain'];
 			$_winprobability[$k] = $v['0']['winprobability'];
-			$_winrate[$k] = $v['0']['confrontations'] / $v['Opponent']['kills'];
+			if ($v['Opponent']['kills'] == 0) {
+				$_winrate[$k] = 1;
+			} else {
+				$_winrate[$k] = $v['0']['confrontations'] / $v['Opponent']['kills'];
+			}
 		}
 
 		array_multisort($_winrate, SORT_DESC, $_skillgain, $_winprobability, $_name, $_id);
