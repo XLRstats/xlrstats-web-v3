@@ -1,27 +1,18 @@
 <?php
-/***************************************************************************
- * Xlrstats Webmodule
- * Webfront for XLRstats for B3 (www.bigbrotherbot.com)
- * (c) 2004-2010 www.xlr8or.com (mailto:xlr8or@xlr8or.com)
- ***************************************************************************/
+/**
+ * XLRstats : Real Time Player Stats (http://www.xlrstats.com)
+ * (CC) BY-NC-SA 2005-2013, Mark Weirath, Özgür Uysal
+ *
+ * Licensed under the Creative Commons BY-NC-SA 3.0 License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link          http://www.xlrstats.com
+ * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @package       app.Config.games
+ * @since         XLRstats v3.0
+ * @version       0.1
+ */
 
-/***************************************************************************
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
- *  http://www.gnu.org/copyleft/gpl.html
- ***************************************************************************/
 $config = array(
 	'gameName' => 'Call of Duty: World at War',
 );
@@ -30,13 +21,13 @@ $config = array(
 // These are the standard cod:waw settings
 //*********************
 
-// Teamnames and colors
+// Team names and colors
 function getTeamName($gamename) {
   $x_t[-1] = 'Spectators';
   $x_t[1] = 'Spectators';
   $x_t[2] = 'Marine Raiders / Red Army';
   $x_t[3] = 'Wehrmacht / Imperial Army';
-  
+
   return $x_t;
 }
 
@@ -174,10 +165,10 @@ function getWeaponName() {
   $x_w['walther_mp'] = t('Walther P38');
   $x_w['mod_melee'] = t('Knife');
   $x_w['mod_falling'] = t('Falling');
-  
-  //No weapon? 
+
+  //No weapon?
   $x_w['none'] = t('Bad luck...');
-  
+
   //These are not in iw_14.iwd, I'm not very sure about them
   $x_w['explodable_barrel'] = t('Barrel Explosion');
   $x_w['destructible_car'] = t('Vehicle Explosion');
@@ -214,9 +205,9 @@ function getMapName() {
   $x_m['mp_drum'] = t('Battery');
   $x_m['mp_bgate'] = t('Breach');
   $x_m['mp_vodka'] = t('Revolution');
-  
+
   // Custom Maps CoDWaW
-  
+
   return $x_m;
 }
 
@@ -229,7 +220,7 @@ function getEventName() {
   $x_e['re_pickup'] = t('Pickup');
   $x_e['re_capture'] = t('Capture');
   $x_e['re_drop'] = t('Drop');
-  
+
   return $x_m;
 }
 
@@ -254,7 +245,7 @@ function getBodypartName() {
   $x_b['right_leg_lower'] = t('right_leg_lower');
   $x_b['right_foot'] = t('right_foot');
   $x_b['none'] = t('totaldisrupt');
-  
+
   return $x_b;
 }
 */

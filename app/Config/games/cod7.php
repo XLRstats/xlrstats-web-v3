@@ -8,10 +8,11 @@
  *
  * @link          http://www.xlrstats.com
  * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
- * @package       app.
+ * @package       app.Config.games
  * @since         XLRstats v3.0
  * @version       0.1
  */
+
 $config = array(
 	'gameName' => 'Call of Duty: Black Ops',
 
@@ -19,8 +20,8 @@ $config = array(
  * Team names
  */
 	'teams' => array(
-		'2' => 'Tropas / Speznas',   // Red team
-		'3' => 'OP 40 / Black Ops',  // Blue team
+		'2' => 'Tropas / Speznas',	// Red team
+		'3' => 'OP 40 / Black Ops',	// Blue team
 		'-1' => 'Spectators'
 	),
 

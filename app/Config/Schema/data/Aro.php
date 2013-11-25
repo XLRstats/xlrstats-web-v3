@@ -14,11 +14,19 @@
  */
 
 class Aro {
+
+/**
+ * @var string
+ */
 	public $table = 'aros';
+
+/**
+ * @var array
+ */
 	public $records = array(
-		array('id' => '1','parent_id' => NULL,'model' => 'Group','foreign_key' => '1','alias' => 'Super Admin','lft' => '1','rght' => '2'),
-		array('id' => '2','parent_id' => NULL,'model' => 'Group','foreign_key' => '2','alias' => 'Admin','lft' => '3','rght' => '4'),
-		array('id' => '3','parent_id' => NULL,'model' => 'Group','foreign_key' => '3','alias' => 'User','lft' => '5','rght' => '6')
+		array('id' => '1', 'parent_id' => null, 'model' => 'Group', 'foreign_key' => '1', 'alias' => 'Super Admin', 'lft' => '1', 'rght' => '2'),
+		array('id' => '2', 'parent_id' => null, 'model' => 'Group', 'foreign_key' => '2', 'alias' => 'Admin', 'lft' => '3', 'rght' => '4'),
+		array('id' => '3', 'parent_id' => null, 'model' => 'Group', 'foreign_key' => '3', 'alias' => 'User', 'lft' => '5', 'rght' => '6')
 	);
 }
 

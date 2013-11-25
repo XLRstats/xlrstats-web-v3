@@ -14,9 +14,16 @@
  */
 
 class ServerGroup {
+
+/**
+ * @var string
+ */
 	public $table = 'server_groups';
+
+/**
+ * @var array
+ */
 	public $records = array(
-		array('id' => '1','name' => 'default','description' => 'This is the default server group','active_group' => '0')
+		array('id' => '1', 'name' => 'default', 'description' => 'This is the default server group', 'active_group' => '0')
 	);
 }
-

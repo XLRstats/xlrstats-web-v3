@@ -14,11 +14,18 @@
  */
 
 class Group {
+
+/**
+ * @var string
+ */
 	public $table = 'groups';
+
+/**
+ * @var array
+ */
 	public $records = array(
-		array('id' => '1','name' => 'Super Admin','level' => '100','created' => '2013-03-30 18:26:27','modified' => '2013-03-30 18:26:27'),
-		array('id' => '2','name' => 'Admin','level' => '40','created' => '2013-03-30 18:27:17','modified' => '2013-03-30 18:27:17'),
-		array('id' => '3','name' => 'User','level' => '1','created' => '2013-03-30 18:27:43','modified' => '2013-03-30 18:27:43')
+		array('id' => '1', 'name' => 'Super Admin', 'level' => '100', 'created' => '2013-03-30 18:26:27', 'modified' => '2013-03-30 18:26:27'),
+		array('id' => '2', 'name' => 'Admin', 'level' => '40', 'created' => '2013-03-30 18:27:17', 'modified' => '2013-03-30 18:27:17'),
+		array('id' => '3', 'name' => 'User', 'level' => '1', 'created' => '2013-03-30 18:27:43', 'modified' => '2013-03-30 18:27:43')
 	);
 }
-

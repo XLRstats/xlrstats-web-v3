@@ -58,7 +58,7 @@ $config = array(
 		'U_AK12' => array('AK-12', 'description', 'image.png'),
 		'U_M416' => array('M416', 'description', 'image.png'),
 		'U_SCAR-H' => array('SCAR-H', 'description', 'image.png'),
-		
+
 		// Underslug
 		'U_AEK971_M320_HE' => array('AEK-971 M320 HE', 'description', 'image.png'),
 		'U_AEK971_M320_LVG' => array('AEK-971 M320 LVG', 'description', 'image.png'),
@@ -96,7 +96,7 @@ $config = array(
 		'U_XM25' => array('XM25 AIRBURST', 'description', 'image.png'),
 		'U_XM25_Flechette' => array('XM25 DART', 'description', 'image.png'),
 		'U_XM25_Smoke' => array('XM25 SMOKE', 'description', 'image.png'),
-		
+
 		// Carbines
 		'U_A91' => array('A91', 'description', 'image.png'),
 		'U_GalilACE' => array('ACE 21 CQB', 'description', 'image.png'),
@@ -109,7 +109,7 @@ $config = array(
 		'U_MTAR21' => array('MTAR21', 'description', 'image.png'),
 		'U_SG553LB' => array('SG553', 'description', 'image.png'),
 		'U_Type95B' => array('TYPE-95B-1', 'description', 'image.png'),
-		
+
 		// DMR/PDW
 		'U_GalilACE53' => array('ACE 53 SV', 'description', 'image.png'),
 		'U_M39EBR' => array('M39 EMR', 'description', 'image.png'),
@@ -119,7 +119,7 @@ $config = array(
 		'U_SCAR-HSV' => array('SCAR-H SV', 'description', 'image.png'),
 		'U_SKS' => array('SKS', 'description', 'image.png'),
 		'U_SVD12' => array('SVD-12', 'description', 'image.png'),
-		
+
 		// Sniper Rifles
 		'U_SRS' => array('338-Recon', 'description', 'image.png'),
 		'U_CS-LR4' => array('CS-LR4', 'description', 'image.png'),
@@ -131,7 +131,7 @@ $config = array(
 		'U_Scout' => array('Scout Elite', 'description', 'image.png'),
 		'U_M200' => array('SSR-61', 'description', 'image.png'),
 		'U_SV98' => array('SV98', 'description', 'image.png'),
-		
+
 		// LMG
 		'U_LSAT' => array('LSAT', 'description', 'image.png'),
 		'U_M240' => array('M240B', 'description', 'image.png'),
@@ -143,7 +143,7 @@ $config = array(
 		'U_RPK12' => array('RPK-12', 'description', 'image.png'),
 		'U_Type88' => array('TYPE 88 LMG', 'description', 'image.png'),
 		'U_Ultimax' => array('U-100 MK5', 'description', 'image.png'),
-		
+
 		// SMG
 		'U_CBJ-MS' => array('CBJ-MS', 'description', 'image.png'),
 		'U_Scorpion' => array('CZ-3A1', 'description', 'image.png'),
@@ -155,7 +155,7 @@ $config = array(
 		'U_PP2000' => array('PP-2000', 'description', 'image.png'),
 		'U_UMP45' => array('UMP45', 'description', 'image.png'),
 		'U_UMP9' => array('UMP9', 'description', 'image.png'),
-		
+
 		// Shotguns
 		'U_870' => array('870 MCS', 'description', 'image.png'),
 		'U_DBV12' => array('DBV-12', 'description', 'image.png'),
@@ -167,7 +167,7 @@ $config = array(
 		'U_SPAS12' => array('SPAS-12', 'description', 'image.png'),
 		'U_UTAS' => array('UTS 15', 'description', 'image.png'),
 		'U_M26Mass' => array('M26 MASS', 'description', 'image.png'),
-		
+
 		// Handguns
 		'U_Taurus44' => array('.44 MAGNUM', 'description', 'image.png'),
 		'U_HK45C' => array('COMPACT 45', 'description', 'image.png'),
@@ -181,14 +181,14 @@ $config = array(
 		'U_MP443' => array('MP443', 'description', 'image.png'),
 		'U_P226' => array('P226', 'description', 'image.png'),
 		'U_QSZ92' => array('QSZ-92', 'description', 'image.png'),
-		
+
 		// Grenades
 		'U_Flashbang' => array('Flashbang', 'description', 'image.png'),
 		'U_M34' => array('M34 INCENDIARY', 'description', 'image.png'),
 		'U_M67' => array('M67 FRAG', 'description', 'image.png'),
 		'U_Grenade_RGO' => array('RGO IMPACT', 'description', 'image.png'),
 		'U_V40' => array('V40 MINI', 'description', 'image.png'),
-		
+
 		// map pick up
 		'U_AMR2' => array('AMR-2', 'description', 'image.png'),
 		'U_AMR2_MED' => array('AMR-2 MID', 'description', 'image.png'),
@@ -198,7 +198,7 @@ $config = array(
 		'U_M82A3_CQB' => array('M82A3 CQB', 'description', 'image.png'),
 		'U_M82A3_MED' => array('M82A3 MID', 'description', 'image.png'),
 		'U_USAS-12' => array('USAS-12', 'description', 'image.png'),
-		
+
 		// Gadgets
 		'U_C4' => array('C4', 'description', 'image.png'),
 		'U_C4_Support' => array('C4', 'description', 'image.png'),
@@ -219,11 +219,11 @@ $config = array(
 		'U_Repairtool' => array('REPAIR TOOL', 'description', 'image.png'),
 
 		// Commander
-		'U_Tomahawk' => array('CRUISE MISSILE', 'description', 'image.png'),		
+		'U_Tomahawk' => array('CRUISE MISSILE', 'description', 'image.png'),
 
 		// Knifes
 		'Melee' => array('Melee', 'description', 'image.png'),
-		
+
 		// misc
 		'U_NLAW' => array('MBT LAW', 'description', 'image.png'),
 

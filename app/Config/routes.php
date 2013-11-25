@@ -20,24 +20,24 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
- *  Extensions to parse
+ * Extensions to parse
  */
 	Router::parseExtensions('rss', 'json');
 
-  $serverRegex = '[0-9]+';
+	$serverRegex = '[0-9]+';
 
 /**
  * Installer
- *
  */
-  if ((!file_exists(APP . 'Config' . DS . 'database.php') || !file_exists(APP . 'Config' . DS . 'email.php') || !file_exists(APP . 'Config' . DS . 'install')) && Configure::read('Installer.enable')) {
-  	Router::connect('/', array('controller' => 'install'));
-  	Router::connect('/:anything', array('controller' => 'install'), array('anything' => '(?!install).*'));
-  } else {
-  	Router::connect('/:server', Configure::read('Route.default'), array('server' => $serverRegex));
-  	Router::connect('/', Configure::read('Route.default'));
-  }
+if ((!file_exists(APP . 'Config' . DS . 'database.php') || !file_exists(APP . 'Config' . DS . 'email.php') || !file_exists(APP . 'Config' . DS . 'install')) && Configure::read('Installer.enable')) {
+	Router::connect('/', array('controller' => 'install'));
+	Router::connect('/:anything', array('controller' => 'install'), array('anything' => '(?!install).*'));
+} else {
+	Router::connect('/:server', Configure::read('Route.default'), array('server' => $serverRegex));
+	Router::connect('/', Configure::read('Route.default'));
+}
 
 /**
  * ...and connect the rest of 'Pages' controller's urls.
@@ -66,5 +66,6 @@
  * Load the CakePHP default routes. Remove this if you do not want to use
  * the built-in default routes.
  */
-require CAKE . 'Config' . DS . 'routes.php';
+	/** @noinspection PhpIncludeInspection */
+	require CAKE . 'Config' . DS . 'routes.php';
 

@@ -14,14 +14,21 @@
  */
 
 class ArosAco {
+
+/**
+ * @var string
+ */
 	public $table = 'aros_acos';
+
+/**
+ * @var array
+ */
 	public $records = array(
-		array('id' => '1','aro_id' => '1','aco_id' => '1','_create' => '1','_read' => '1','_update' => '1','_delete' => '1'),
-		array('id' => '2','aro_id' => '2','aco_id' => '3','_create' => '1','_read' => '1','_update' => '1','_delete' => '1'),
-		array('id' => '3','aro_id' => '2','aco_id' => '21','_create' => '1','_read' => '1','_update' => '1','_delete' => '1'),
-		array('id' => '4','aro_id' => '2','aco_id' => '27','_create' => '1','_read' => '1','_update' => '1','_delete' => '1'),
-		array('id' => '5','aro_id' => '2','aco_id' => '49','_create' => '1','_read' => '1','_update' => '1','_delete' => '1'),
-		array('id' => '6','aro_id' => '2','aco_id' => '52','_create' => '1','_read' => '1','_update' => '1','_delete' => '1')
+		array('id' => '1', 'aro_id' => '1', 'aco_id' => '1', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'),
+		array('id' => '2', 'aro_id' => '2', 'aco_id' => '3', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'),
+		array('id' => '3', 'aro_id' => '2', 'aco_id' => '21', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'),
+		array('id' => '4', 'aro_id' => '2', 'aco_id' => '27', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'),
+		array('id' => '5', 'aro_id' => '2', 'aco_id' => '49', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1'),
+		array('id' => '6', 'aro_id' => '2', 'aco_id' => '52', '_create' => '1', '_read' => '1', '_update' => '1', '_delete' => '1')
 	);
 }
-

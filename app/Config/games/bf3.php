@@ -115,7 +115,7 @@ $config = array(
 		'SVD' => array('SVD Semi Automatic Sniper Rifle', 'description', 'svd.png'),
 
 		//Support
-		'Weapons/XP2_L86/L86' => array('L86A2 Machine Gun', 'description', 'xp2_l86.png'),  // CQ DLC
+		'Weapons/XP2_L86/L86' => array('L86A2 Machine Gun', 'description', 'xp2_l86.png'), // CQ DLC
 		'LSAT' => array('LSAT Machine Gun', 'description', 'xp2_lsat.png'), // CQ DLC
 		'M240' => array('M240B Machine Gun', 'description', 'm240.png'),
 		'M249' => array('M249 Machine Gun', 'description', 'm249.png'),
@@ -131,10 +131,10 @@ $config = array(
 		'870MCS' => array('Remington 870 Shotgun', 'description', 'remington870.png'),
 		'DAO-12' => array('DAO 12 Semi Automatic Shotgun', 'description', 'dao12.png'),
 		'M1014' => array('M1014 Semi Automatic Shotgun', 'description', 'm1014.png'),
-		'jackhammer' => array('MK3A1 Automatic Shotgun', 'description', 'xp1_jackhammer.png'),  // B2K DLC
+		'jackhammer' => array('MK3A1 Automatic Shotgun', 'description', 'xp1_jackhammer.png'), // B2K DLC
 		'Siaga20k' => array('Saiga 12 Semi Automatic Shotgun', 'description', 'saiga12.png'),
 		'USAS-12' => array('USAS 12 Semi Automatic Shotgun', 'description', 'usas12.png'),
-		'SPAS-12' => array('SPAS-12 Pump Action Shutgun', 'description', 'xp2_spas12.png'),  // CQ DLC
+		'SPAS-12' => array('SPAS-12 Pump Action Shutgun', 'description', 'xp2_spas12.png'), // CQ DLC
 
 		//Sidearms
 		'M1911' => array('M1911 Pistol', 'description', 'm1911.png'),
@@ -160,23 +160,23 @@ $config = array(
 		'AS Val' => array('AS VAL Assault Rifle', 'description', 'asval.png'),
 
 		//Rocket Launchers
-		'RPG-7' => array('RPG-7V2 Rocket Launcher', 'description', 'rpg7.png'),                                     //Engineer
-		'SMAW' => array('SMAW Rocket Launcher', 'description', 'smaw.png'),                                       //Engineer
-		'FGM-148' => array('FGM-148 Javelin', 'description', 'fgm148.png'),                      //Engineer
-		'FIM92' => array('FIM-92 Stinger Anti Air Missile Launcher', 'description', 'fim92a_stinger.png'),                  //Engineer
-		'Weapons/Sa18IGLA/Sa18IGLA' => array('SA-18 IGLA Anti Air Missile Launcher', 'description', 'sa18igla.png'),  //Engineer
+		'RPG-7' => array('RPG-7V2 Rocket Launcher', 'description', 'rpg7.png'),											//Engineer
+		'SMAW' => array('SMAW Rocket Launcher', 'description', 'smaw.png'),												//Engineer
+		'FGM-148' => array('FGM-148 Javelin', 'description', 'fgm148.png'),												//Engineer
+		'FIM92' => array('FIM-92 Stinger Anti Air Missile Launcher', 'description', 'fim92a_stinger.png'),				//Engineer
+		'Weapons/Sa18IGLA/Sa18IGLA' => array('SA-18 IGLA Anti Air Missile Launcher', 'description', 'sa18igla.png'),	//Engineer
 
 		//Equipment
-		'Weapons/Gadgets/C4/C4' => array('C4 explosives', 'description', 'c4.png'),                  //Support
-		'Weapons/Gadgets/Claymore/Claymore' => array('M18 Claymore', 'description', 'claymore.png'),       //Support
-		'M15 AT Mine' => array('M15 AT Mine', 'description', 'mine.png'),                                  //Engineer
-		'Repair Tool' => array('Repair Tool', 'description', 'repairtool.png'),                              //Engineer
-		'Defib' => array('Defibrillator', 'description', 'defib.png'),                                  //Assault
-		'M26Mass' => array('M26 MASS', 'description', 'm26mass.png'),                                     //Assault
-		'M320' => array('M320 Grenade Launcher', 'description', 'm320.png'),                           //Assault
-		'Weapons/Knife/Knife' => array('Knife', 'description', 'combatknife.png'),                            //General
-		'Knife_RazorBlade' => array('Knife', 'description', 'combatknife.png'),                               //General
-		'M67' => array('M67 Hand Grenade', 'description', 'm67-grenade.png'),                                 //General
+		'Weapons/Gadgets/C4/C4' => array('C4 explosives', 'description', 'c4.png'),						//Support
+		'Weapons/Gadgets/Claymore/Claymore' => array('M18 Claymore', 'description', 'claymore.png'),	//Support
+		'M15 AT Mine' => array('M15 AT Mine', 'description', 'mine.png'),								//Engineer
+		'Repair Tool' => array('Repair Tool', 'description', 'repairtool.png'),							//Engineer
+		'Defib' => array('Defibrillator', 'description', 'defib.png'),									//Assault
+		'M26Mass' => array('M26 MASS', 'description', 'm26mass.png'),									//Assault
+		'M320' => array('M320 Grenade Launcher', 'description', 'm320.png'),							//Assault
+		'Weapons/Knife/Knife' => array('Knife', 'description', 'combatknife.png'),						//General
+		'Knife_RazorBlade' => array('Knife', 'description', 'combatknife.png'),							//General
+		'M67' => array('M67 Hand Grenade', 'description', 'm67-grenade.png'),							//General
 		'Medkit' => array('Medkit', 'description', 'medkit.png'),
 
 		//Misc
@@ -328,5 +328,3 @@ $config = array(
 		'-1' => 'Spectators'
 	),
 );
-
-?>

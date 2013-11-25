@@ -1,27 +1,18 @@
 <?php
-/***************************************************************************
- * Xlrstats Webmodule
- * Webfront for XLRstats for B3 (www.bigbrotherbot.com)
- * (c) 2004-2010 www.xlr8or.com (mailto:xlr8or@xlr8or.com)
- ***************************************************************************/
+/**
+ * XLRstats : Real Time Player Stats (http://www.xlrstats.com)
+ * (CC) BY-NC-SA 2005-2013, Mark Weirath, Özgür Uysal
+ *
+ * Licensed under the Creative Commons BY-NC-SA 3.0 License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link          http://www.xlrstats.com
+ * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @package       app.Config.games
+ * @since         XLRstats v3.0
+ * @version       0.1
+ */
 
-/***************************************************************************
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
- *  http://www.gnu.org/copyleft/gpl.html
- ***************************************************************************/
 $config = array(
 	'gameName' => 'Call of Duty',
 );
@@ -30,7 +21,7 @@ $config = array(
 // These are the standard CoD1 settings
 //*********************
 
-// Teamnames and colors
+// Team names and colors
 $team1 = "Axis"; // red team
 $team2 = "Allies"; // blue team
 $spectators = "Spectators";
@@ -81,7 +72,7 @@ $w['thompson_semi_mp'] = "Thompson (Semi)";
 //AWE weapons
 $w['sten_silenced_mp'] = "Silenced Sten";
 
-//No weapon? 
+//No weapon?
 $w['none'] = "Bad luck...";
 
 //*********************

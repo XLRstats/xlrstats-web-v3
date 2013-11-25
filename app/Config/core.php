@@ -199,12 +199,13 @@ Configure::write('Routing.prefixes', array('admin'));
  * A random string used in security hashing methods.
  * To decrypt this message use http://infoencrypt.com/ 
  */
-  if (file_exists(APP . DS . 'Config' . DS . 'security.php')) {
-    require_once APP . DS . 'Config' . DS . 'security.php';
-  } else {
-  	Configure::write('Security.salt', 'justforinstallation');
-  	Configure::write('Security.cipherSeed', '0123456789');
-  }
+if (file_exists(APP . DS . 'Config' . DS . 'security.php')) {
+	/** @noinspection PhpIncludeInspection */
+	require_once APP . DS . 'Config' . DS . 'security.php';
+} else {
+	Configure::write('Security.salt', 'justforinstallation');
+	Configure::write('Security.cipherSeed', '0123456789');
+}
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).

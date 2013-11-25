@@ -1,27 +1,18 @@
 <?php
-/***************************************************************************
- * Xlrstats Webmodule
- * Webfront for XLRstats for B3 (www.bigbrotherbot.com)
- * (c) 2004-2010 www.xlr8or.com (mailto:xlr8or@xlr8or.com)
- ***************************************************************************/
+/**
+ * XLRstats : Real Time Player Stats (http://www.xlrstats.com)
+ * (CC) BY-NC-SA 2005-2013, Mark Weirath, Özgür Uysal
+ *
+ * Licensed under the Creative Commons BY-NC-SA 3.0 License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link          http://www.xlrstats.com
+ * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @package       app.Config.games
+ * @since         XLRstats v3.0
+ * @version       0.1
+ */
 
-/***************************************************************************
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
- *  http://www.gnu.org/copyleft/gpl.html
- ***************************************************************************/
 $config = array(
 	'gameName' => 'Call of Duty 2',
 
@@ -29,8 +20,8 @@ $config = array(
 	 * Team names
 	 */
 	'teams' => array(
-		'2' => 'Axis',    // Red team
-		'3' => 'Allies',  // Blue team
+		'2' => 'Axis',		// Red team
+		'3' => 'Allies',	// Blue team
 		'-1' => 'Spectators'
 	),
 
@@ -43,52 +34,52 @@ $config = array(
 		// Map names
 		//*********************
 		// Stock CoD
-		'mp_bocage' =>array('Bocage', 'description', 'mp_bocage.jpg'), 
-		'mp_brecourt' =>array('Brecourt', 'description', 'mp_brecourt.jpg'), 
-		'mp_carentan' =>array('Carentan', 'description', 'mp_carentan.jpg'), 
-		'mp_chateau' =>array('Chateau', 'description', 'mp_chateau.jpg'), 
-		'mp_dawnville' =>array('Dawnville', 'description', 'mp_dawnville.jpg'), 
-		'mp_depot' =>array('Depot', 'description', 'mp_depot.jpg'), 
-		'mp_harbor' =>array('Harbor', 'description', 'mp_harbor.jpg'), 
-		'mp_hurtgen' =>array('Hurtgen', 'description', 'mp_hurtgen.jpg'), 
-		'mp_neuville' =>array('Neuville', 'description', 'mp_neuville.jpg'), 
-		'mp_pavlov' =>array('Pavlov', 'description', 'mp_pavlov.jpg'), 
-		'mp_powcamp' =>array('POW Camp', 'description', 'mp_powcamp.jpg'), 
-		'mp_railyard' =>array('Railyard', 'description', 'mp_railyard.jpg'), 
-		'mp_rocket' =>array('Rocket', 'description', 'mp_rocket.jpg'), 
-		'mp_ship' =>array('Ship', 'description', 'mp_ship.jpg'), 
-		'mp_stalingrad' =>array('Stalingrad', 'description', 'mp_stalingrad.jpg'), 
-		
+		'mp_bocage' => array('Bocage', 'description', 'mp_bocage.jpg'),
+		'mp_brecourt' => array('Brecourt', 'description', 'mp_brecourt.jpg'),
+		'mp_carentan' => array('Carentan', 'description', 'mp_carentan.jpg'),
+		'mp_chateau' => array('Chateau', 'description', 'mp_chateau.jpg'),
+		'mp_dawnville' => array('Dawnville', 'description', 'mp_dawnville.jpg'),
+		'mp_depot' => array('Depot', 'description', 'mp_depot.jpg'),
+		'mp_harbor' => array('Harbor', 'description', 'mp_harbor.jpg'),
+		'mp_hurtgen' => array('Hurtgen', 'description', 'mp_hurtgen.jpg'),
+		'mp_neuville' => array('Neuville', 'description', 'mp_neuville.jpg'),
+		'mp_pavlov' => array('Pavlov', 'description', 'mp_pavlov.jpg'),
+		'mp_powcamp' => array('POW Camp', 'description', 'mp_powcamp.jpg'),
+		'mp_railyard' => array('Railyard', 'description', 'mp_railyard.jpg'),
+		'mp_rocket' => array('Rocket', 'description', 'mp_rocket.jpg'),
+		'mp_ship' => array('Ship', 'description', 'mp_ship.jpg'),
+		'mp_stalingrad' => array('Stalingrad', 'description', 'mp_stalingrad.jpg'),
+
 		//Stock UO
-		'mp_uo_stanjel' =>array('Stanjel (UO)', 'description', 'mp_uo_stanjel.jpg'), 
-		'mp_arnhem' =>array('Arnhem', 'description', 'mp_arnhem.jpg'), 
-		'mp_berlin' =>array('Berlin', 'description', 'mp_berlin.jpg'), 
-		'mp_italy' =>array('Italy', 'description', 'mp_italy.jpg'), 
-		'mp_sicily' =>array('Sicily', 'description', 'mp_sicily.jpg'), 
-		'mp_kharkov' =>array('Kharkov', 'description', 'mp_kharkov.jpg'), 
-		'mp_kursk' =>array('Kursk', 'description', 'mp_kursk.jpg'), 
-		'mp_rhinevalley' =>array('Rhine Valley', 'description', 'mp_rhinevalley.jpg'), 
-		'mp_ponyri' =>array('Ponyri', 'description', 'mp_ponyri.jpg'), 
-		'mp_foy' =>array('Foy', 'description', 'mp_foy.jpg'), 
-		'mp_cassino' =>array('Monte Cassino', 'description', 'mp_cassino.jpg'), 
-		
+		'mp_uo_stanjel' => array('Stanjel (UO)', 'description', 'mp_uo_stanjel.jpg'),
+		'mp_arnhem' => array('Arnhem', 'description', 'mp_arnhem.jpg'),
+		'mp_berlin' => array('Berlin', 'description', 'mp_berlin.jpg'),
+		'mp_italy' => array('Italy', 'description', 'mp_italy.jpg'),
+		'mp_sicily' => array('Sicily', 'description', 'mp_sicily.jpg'),
+		'mp_kharkov' => array('Kharkov', 'description', 'mp_kharkov.jpg'),
+		'mp_kursk' => array('Kursk', 'description', 'mp_kursk.jpg'),
+		'mp_rhinevalley' => array('Rhine Valley', 'description', 'mp_rhinevalley.jpg'),
+		'mp_ponyri' => array('Ponyri', 'description', 'mp_ponyri.jpg'),
+		'mp_foy' => array('Foy', 'description', 'mp_foy.jpg'),
+		'mp_cassino' => array('Monte Cassino', 'description', 'mp_cassino.jpg'),
+
 		//Custom CoD
-		'nuenen' =>array('Nuenen', 'description', 'nuenen.jpg'), 
-		'mp_stanjel' =>array('Stanjel', 'description', 'mp_stanjel.jpg'), 
-		'mp_maaloy_final' =>array('Maaloy (final)', 'description', 'mp_maaloy_final.jpg'), 
-		'mp_omahabeach' =>array('Omaha Beach', 'description', 'mp_omahabeach.jpg'), 
-		'univermag' =>array('Univermag', 'description', 'univermag.jpg'), 
-		'mp_falaisevilla' =>array('Falaise Villa', 'description', 'mp_falaisevilla.jpg'), 
-		'mp_viervilleN' =>array('Vierville (N)', 'description', 'mp_viervilleN.jpg'), 
-		'mp_amberville' =>array('Amberville', 'description', 'mp_amberville.jpg'), 
-		'german_town' =>array('German Town', 'description', 'german_town.jpg'), 
-		'mp_tigertown' =>array('Tiger Town', 'description', 'mp_tigertown.jpg'), 
-		'mp_abbey' =>array('Abbey', 'description', 'mp_abbey.jpg'), 
-		'mp_jailbreak' =>array('Jailbreak', 'description', 'mp_jailbreak.jpg'), 
-		'mp_stcomedumont' =>array('St Come du Mont', 'description', 'mp_stcomedumont.jpg'), 
-		
-		'unknown' =>array('Custom Map', 'description', 'unknown.jpg'), 
-		'None' =>array('-Unknown-', 'description', 'None.jpg'), 
+		'nuenen' => array('Nuenen', 'description', 'nuenen.jpg'),
+		'mp_stanjel' => array('Stanjel', 'description', 'mp_stanjel.jpg'),
+		'mp_maaloy_final' => array('Maaloy (final)', 'description', 'mp_maaloy_final.jpg'),
+		'mp_omahabeach' => array('Omaha Beach', 'description', 'mp_omahabeach.jpg'),
+		'univermag' => array('Univermag', 'description', 'univermag.jpg'),
+		'mp_falaisevilla' => array('Falaise Villa', 'description', 'mp_falaisevilla.jpg'),
+		'mp_viervilleN' => array('Vierville (N)', 'description', 'mp_viervilleN.jpg'),
+		'mp_amberville' => array('Amberville', 'description', 'mp_amberville.jpg'),
+		'german_town' => array('German Town', 'description', 'german_town.jpg'),
+		'mp_tigertown' => array('Tiger Town', 'description', 'mp_tigertown.jpg'),
+		'mp_abbey' => array('Abbey', 'description', 'mp_abbey.jpg'),
+		'mp_jailbreak' => array('Jailbreak', 'description', 'mp_jailbreak.jpg'),
+		'mp_stcomedumont' => array('St Come du Mont', 'description', 'mp_stcomedumont.jpg'),
+
+		'unknown' => array('Custom Map', 'description', 'unknown.jpg'),
+		'None' => array('-Unknown-', 'description', 'None.jpg'),
 	),
 
 	'weapons' => array(
@@ -136,7 +127,7 @@ $config = array(
 		'stielhandgranate_mp' => array('Grenade (German)', 'description', 'stielhandgranate_mp.png'),
 		'thompson_mp' => array('Thompson', 'description', 'thompson_mp.png'),
 		'thompson_semi_mp' => array('Thompson (Semi)', 'description', 'thompson_semi_mp.png'),
-		
+
 		//Stock UO
 		'gewehr43_mp' => array('Gewehr 43', 'description', 'gewehr43_mp.png'),
 		'g43_mp' => array('Gewehr 43', 'description', 'g43_mp.png'),
@@ -163,15 +154,15 @@ $config = array(
 		'dp28_mp' => array('Degtyarev-Pekhotny 28 (DP-28)', 'description', 'dp28_mp.png'),
 		'tt33_mp' => array('Tokarev TT-33', 'description', 'tt33_mp.png'),
 		'binoculars_artillery_mp' => array('Pinpointing Artillery Support', 'description', 'binoculars_artillery_mp.png'),
-		
+
 		//AWE weapons
 		'sten_silenced_mp' => array('Silenced Sten', 'description', 'sten_silenced_mp.png'),
 		'cook2_frag_grenade_german_mp' => array('Grenade (German)', 'description', 'frag_grenade_german_mp.png'),
 		'cook2_frag_grenade_british_mp' => array('Grenade (British)', 'description', 'frag_grenade_british_mp.png'),
 		'cook2_frag_grenade_american_mp' => array('Grenade (American)', 'description', 'frag_grenade_american_mp.png'),
 		'cook2_frag_grenade_russian_mp' => array('Grenade (Russian)', 'description', 'frag_grenade_russian_mp.png'),
-		
-		//No weapon? 
+
+		//No weapon?
 		'none' => array('Bad luck...', 'description', 'image.png'),
 	),
 

@@ -1,27 +1,18 @@
 <?php
-/***************************************************************************
- * Xlrstats Webmodule
- * Webfront for XLRstats for B3 (www.bigbrotherbot.com)
- * (c) 2004-2010 www.xlr8or.com (mailto:xlr8or@xlr8or.com)
- ***************************************************************************/
+/**
+ * XLRstats : Real Time Player Stats (http://www.xlrstats.com)
+ * (CC) BY-NC-SA 2005-2013, Mark Weirath, Özgür Uysal
+ *
+ * Licensed under the Creative Commons BY-NC-SA 3.0 License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link          http://www.xlrstats.com
+ * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @package       app.Config.games
+ * @since         XLRstats v3.0
+ * @version       0.1
+ */
 
-/***************************************************************************
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Library General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
- *  http://www.gnu.org/copyleft/gpl.html
- ***************************************************************************/
 $config = array(
 	'gameName' => 'BattleField Bad Company 2',
 );
@@ -129,7 +120,7 @@ $w['BMDA#Cannon'] = "BMD-3 Bakhcha (Cannon)";
 $w['BMD3#PFW RearRight'] = "BMD-3 Bakhcha (Rear Right Gun)";
 $w['BMD3#PFW RearLeft'] = "BMD-3 Bakhcha(Rear Left Gun)";
 
-$w['BMDA#GMG'] = "BMD-3 Bakhcha AA"; 
+$w['BMDA#GMG'] = "BMD-3 Bakhcha AA";
 
 //Water
 $w['PBLB#GMG'] = "Patrol Boat";
@@ -156,7 +147,7 @@ $w['UAV1#Bomb'] = "UAV (Bomb)";
 //Stationary
 $w['X312#Gun'] = "Heavy MG X312";
 $w['KORD#Gun'] = "Heavy MG KORD";
-$w['KORN#Missile Launcher'] = "Stationary AT KORN"; 
+$w['KORN#Missile Launcher'] = "Stationary AT KORN";
 $w['TOW2#Launcher'] = "Stationary AT TOW2";
 $w['ZU23#Cannons'] = "Anti-Air Gun";
 $w['VADS#AutoCannon'] = "VADS Auto Cannon";

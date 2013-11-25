@@ -16,9 +16,9 @@
 Configure::write('globals', array(
 
 		'advanced' => array(
-			/** Set to true if servers should be filtered based on servergroup with the same name  as the current subdomain */
+			// Set to true if servers should be filtered based on servergroup with the same name  as the current subdomain
 			'subDomains' => false,
-			/** User Groups to grant group based rights */
+			// User Groups to grant group based rights
 			'serverGroupAdmins' => array(
 				'Admin',
 			),

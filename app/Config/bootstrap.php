@@ -230,12 +230,18 @@ CakePlugin::loadAll(array(
  * XLRstats configuration: include all 'default' php files from app/Config/xlrstats
  * needs to be moved over to the installation procedure later.
  */
-include(APP.'Config/xlrstats/globals.php');
-include(APP.'Config/xlrstats/leagues.php');
-include(APP.'Config/xlrstats/levels.php');
-include(APP.'Config/xlrstats/ranks.php');
-include(APP.'Config/xlrstats/gamelaunchers.php');
-include(APP.'Config/xlrstats/games.php');
+/** @noinspection PhpIncludeInspection */
+include (APP . 'Config/xlrstats/globals.php');
+/** @noinspection PhpIncludeInspection */
+include (APP . 'Config/xlrstats/leagues.php');
+/** @noinspection PhpIncludeInspection */
+include (APP . 'Config/xlrstats/levels.php');
+/** @noinspection PhpIncludeInspection */
+include (APP . 'Config/xlrstats/ranks.php');
+/** @noinspection PhpIncludeInspection */
+include (APP . 'Config/xlrstats/gamelaunchers.php');
+/** @noinspection PhpIncludeInspection */
+include (APP . 'Config/xlrstats/games.php');
 
 /**
  * We use this to disable the main domain and reroute it to a static page which acts as the XLRstats.com homepage
@@ -250,7 +256,7 @@ if ( isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'www.xlrstats.com
 
 App::uses('PhpReader', 'Configure');
 Configure::config('default', new PhpReader());
-Configure::config('xlrstats', new PhpReader(APP.'Config/xlrstats/'));
+Configure::config('xlrstats', new PhpReader(APP . 'Config/xlrstats/'));
 
 /**
  * Users Plugin: User roles, verification mail and routes setup

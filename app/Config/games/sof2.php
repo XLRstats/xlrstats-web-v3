@@ -8,10 +8,11 @@
  *
  * @link          http://www.xlrstats.com
  * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
- * @package       app.
+ * @package       app.Config.games
  * @since         XLRstats v3.0
  * @version       0.1
  */
+
 $config = array(
 	'gameName' => 'Soldier of Fortune',
 );

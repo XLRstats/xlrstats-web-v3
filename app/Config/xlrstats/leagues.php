@@ -1,8 +1,19 @@
 <?php
-
-/*
- * The basic leagues.
+/**
+ * XLRstats : Real Time Player Stats (http://www.xlrstats.com)
+ * (CC) BY-NC-SA 2005-2013, Mark Weirath, Özgür Uysal
+ *
+ * Licensed under the Creative Commons BY-NC-SA 3.0 License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link          http://www.xlrstats.com
+ * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @package       app.Config.xlrstats
+ * @since         XLRstats v3.0
+ * @version       0.1
  */
+
+// Basic leagues
 Configure::write('league', array(
 	1 => array('League.skill', 1400, 9999999, 'Expert League', 'Compete with the best of the best, these are the top players with skills over 1400 points! Fight your way up and beat the best!', '#b94a48'),
 	2 => array('League.skill', 1250, 1400, 'Premier League', 'The League of well skilled players. Runners up and long time steady players is what this league is all about.', '#f89406'),
