@@ -14,10 +14,23 @@
  */
 
 App::uses('Component', 'Controller');
+/**
+ * Class GeoIPComponent
+ */
 class GeoIPComponent extends Component {
 
-	public $gi = null; // object reference
+/**
+ * object reference
+ *
+ * @var null
+ */
+	public $gi = null;
 
+	//-------------------------------------------------------------------
+
+/**
+ * @param Controller $controller
+ */
 	public function initialize(Controller $controller) {
 		$settings = array(
 			'res' => APP . WEBROOT_DIR . DS . 'GeoIP.dat', // absolute path
@@ -27,21 +40,38 @@ class GeoIPComponent extends Component {
 		$this->gi = geoip_open($settings['res'], GEOIP_STANDARD);
 	}
 
+	//-------------------------------------------------------------------
+
+/**
+ * @param Controller $controller
+ */
 	public function shutdown(Controller $controller) {
 		geoip_close($this->gi); // cleanup
 	}
 
+	//-------------------------------------------------------------------
+
+/**
+ * @param null $address
+ * @return bool|string
+ */
 	public function country_code($address = null) {
 		$countryCode = geoip_country_code_by_addr($this->gi, $address);
-		if($countryCode == null) {
+		if ($countryCode == null) {
 			$countryCode = '-';
 		}
 		return $countryCode;
 	}
 
+	//-------------------------------------------------------------------
+
+/**
+ * @param null $address
+ * @return bool|string
+ */
 	public function country_name($address = null) {
 		$countryName = geoip_country_name_by_addr($this->gi, $address);
-		if($countryName == null) {
+		if ($countryName == null) {
 			$countryName = 'Unknown';
 		}
 		return $countryName;

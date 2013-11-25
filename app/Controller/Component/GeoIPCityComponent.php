@@ -14,10 +14,16 @@
  */
 
 App::uses('Component', 'Controller');
+/**
+ * Class GeoIPCityComponent
+ */
 class GeoIPCityComponent extends Component {
 
 	public $gic = null; // object reference
 
+/**
+ * @param Controller $controller
+ */
 	public function initialize(Controller $controller) {
 		$settings = array(
 			'res' => APP . WEBROOT_DIR . DS . 'GeoLiteCity.dat', // absolute path
@@ -27,46 +33,99 @@ class GeoIPCityComponent extends Component {
 		$this->gic = geoip_open($settings['res'], GEOIP_STANDARD);
 	}
 
+	//-------------------------------------------------------------------
+
+/**
+ * @param Controller $controller
+ */
 	public function shutdown(Controller $controller) {
 		geoip_close($this->gic); // cleanup
 	}
 
-	public function getLatitude ($address = null) {
+	//-------------------------------------------------------------------
+
+/**
+ * @param null $address
+ * @return string
+ */
+	public function getLatitude($address = null) {
 		$record = GeoIP_record_by_addr($this->gic, $address);
-		if (empty($record)) return '41.766667';
+		if (empty($record)) {
+			return '41.766667';
+		}
 		return $record->latitude;
 	}
 
-	public function getLongitude ($address = null) {
+	//-------------------------------------------------------------------
+
+/**
+ * @param null $address
+ * @return string
+ */
+	public function getLongitude($address = null) {
 		$record = GeoIP_record_by_addr($this->gic, $address);
-		if (empty($record)) return '-50.233333';
+		if (empty($record)) {
+			return '-50.233333';
+		}
 		return $record->longitude;
 	}
 
-	public function getCity ($address = null) {
+	//-------------------------------------------------------------------
+
+/**
+ * @param null $address
+ * @return string
+ */
+	public function getCity($address = null) {
 		$record = GeoIP_record_by_addr($this->gic, $address);
-		if (empty($record)) return 'Unknown';
+		if (empty($record)) {
+			return 'Unknown';
+		}
 		$cityName = utf8_decode($record->city);
 		return $cityName;
 	}
 
-	public function getRegion ($address = null) {
+	//-------------------------------------------------------------------
+
+/**
+ * @param null $address
+ * @return string
+ */
+	public function getRegion($address = null) {
 		$record = GeoIP_record_by_addr($this->gic, $address);
-		if (empty($record)) return 'Unknown';
+		if (empty($record)) {
+			return 'Unknown';
+		}
 		$region = utf8_decode($GEOIP_REGION_NAME[$record->country_code][$record->region]);
 		return $region;
 	}
 
-	public function getCountry ($address = null) {
+	//-------------------------------------------------------------------
+
+/**
+ * @param null $address
+ * @return string
+ */
+	public function getCountry($address = null) {
 		$record = GeoIP_record_by_addr($this->gic, $address);
-		if (empty($record)) return 'Unknown';
+		if (empty($record)) {
+			return 'Unknown';
+		}
 		$country = utf8_decode($record->country_name);
 		return $country;
 	}
 
-	public function getPosition ($address = null) {
+	//-------------------------------------------------------------------
+
+/**
+ * @param null $address
+ * @return string
+ */
+	public function getPosition($address = null) {
 		$record = GeoIP_record_by_addr($this->gic, $address);
-		if (empty($record)) return '41.766667,-50.233333';
+		if (empty($record)) {
+			return '41.766667,-50.233333';
+		}
 		$position = $record->latitude . ',' . $record->longitude;
 		return $position;
 	}
