@@ -15,40 +15,45 @@
 
 class AchievementsController extends AppController {
 
-	/**
-	 * Used Models
-	 *
-	 * @var array
-	 */
+/**
+ * Used Models
+ *
+ * @var array
+ */
 	public $uses = array('PlayerWeapon');
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler',
 	);
 
 	//-------------------------------------------------------------------
 
-	public function view ($playerID = null) {
-
-		/* Get achievements for this game */
+/**
+ * @param null $playerID
+ * @return array
+ */
+	public function view($playerID = null) {
+		// Get achievements for this game
 		$achievementList = Configure::read('achievements');
-		/* Set a number of achievements to collect*/
+		// Set a number of achievements to collect
 		$achievementCount = count($achievementList);
 		$limitIndividualWeapons = 100 - $achievementCount;
-		if ($limitIndividualWeapons <= 0) $limitIndividualWeapons = 0;
-		/* Initiate the results array */
+		if ($limitIndividualWeapons <= 0) {
+			$limitIndividualWeapons = 0;
+		}
+		// Initiate the results array
 		$achievements = array();
 
 		if ($achievementList != '') {
-			/* Cycle through the achievement list, query database and put them in a new array */
+			// Cycle through the achievement list, query database and put them in a new array
 			foreach ($achievementList as $k => $v) {
 
-				/* Get the total kills sum of all weapons in an achievement group */
+				// Get the total kills sum of all weapons in an achievement group
 				$result = $this->PlayerWeapon->find('all', array(
 					'fields' => array(
 						'SUM(PlayerWeapon.kills) as totalkills',
@@ -58,23 +63,23 @@ class AchievementsController extends AppController {
 						'WeaponStat.name' => $v
 					),
 				));
-				/* Fill the array */
+				// Fill the array
 				$achievements[$k] = $result[0][0]['totalkills'];
 			}
 		}
 
 		if ($limitIndividualWeapons > 0) {
-			/* Add individual weapons up to the limit threshold */
+			// Add individual weapons up to the limit threshold
 			$result = $this->PlayerWeapon->find('all', array(
 				'fields' => array(
 					'PlayerWeapon.kills',
 					'WeaponStat.name',
 				),
-				'conditions' => array('PlayerWeapon.player_id' => $playerID,),
+				'conditions' => array('PlayerWeapon.player_id' => $playerID, ),
 				'limit' => $limitIndividualWeapons,
 				'order' => array('PlayerWeapon.kills DESC'),
 			));
-			/* Add the individual weapons to the achievements array */
+			// Add the individual weapons to the achievements array
 			foreach ($result as $k => $v) {
 				$_name = $v['WeaponStat']['name'];
 				$_kills = $v['PlayerWeapon']['kills'];
@@ -84,9 +89,9 @@ class AchievementsController extends AppController {
 
 		if ($this->request->is('requested')) {
 			return array($achievements);
-		}
-		else {
+		} else {
 			$this->set('achievements', $achievements);
 		}
+		return null;
 	}
 }

@@ -15,27 +15,27 @@
 
 class IpAliasesController extends AppController {
 
-	/**
-	 * Models used
-	 *
-	 * @var array
-	 */
+/**
+ * Models used
+ *
+ * @var array
+ */
 	public $uses = array('PlayerStat', 'IpAlias');
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array(
 		'Js' => array('Jquery'),
 	);
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'GeoIP',
 		'RequestHandler',
@@ -45,13 +45,12 @@ class IpAliasesController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Displays player's Ip aliases via dataTables.
-	 *
-	 * @param int $playerID is passed to the dataTable script's "sAjaxSource".
-	 */
-	public function view ($playerID = null) {
-
+/**
+ * Displays player's Ip aliases via dataTables.
+ *
+ * @param int $playerID is passed to the dataTable script's "sAjaxSource".
+ */
+	public function view($playerID = null) {
 		/* Prevent direct access to this method */
 		if (!$this->request->is('ajax')) {
 			$this->Session->setFlash(__('That was not a valid request...'), null, null, 'error');
@@ -60,47 +59,45 @@ class IpAliasesController extends AppController {
 
 		$this->set('playerID', $playerID);
 		$this->layout = 'ajax';
-
 	}
 
-	/**
-	 * Queries player IPs and pass data to view file json/ip_aliases_json.ctp
-	 * to be processed by dataTables.
-	 *
-	 * Sample data returned:
-	 * Array
-	 * (
-	 * 		[sEcho] => 1
-	 * 		[iTotalRecords] => 2613
-	 * 		[iTotalDisplayRecords] => 89
-	 * 		[aaData] => Array
-	 * 			(
-	 * 				[0] => Array
-	 * 					(
-	 * 						[0] => Array
-	 * 							(
-	 * 								[0] => Array
-	 * 									(
-	 * 										[0] => gb
-	 * 										[1] => United Kingdom
-	 * 									)
-	 * 								[1] => 94.13.38.240
-	 * 							)
-	 * 						[1] => 1
-	 * 						[2] => 1319984292
-	 * 						[3] => 1319984292
-	 * 					)
-	 * 			)
-	 * )
-	 *
-	 * @param null $playerID player id
-	 * @return mixed
-	 */
-	public function ipAliasesJson ($playerID = null) {
+	//-------------------------------------------------------------------
 
-		/**
-		 * Find correct B3 client ID ($b3ID) belonging to XLRstats player ID
-		 */
+/**
+ * Queries player IPs and pass data to view file json/ip_aliases_json.ctp
+ * to be processed by dataTables.
+ *
+ * Sample data returned:
+ * Array
+ * (
+ * 		[sEcho] => 1
+ * 		[iTotalRecords] => 2613
+ * 		[iTotalDisplayRecords] => 89
+ * 		[aaData] => Array
+ * 			(
+ * 				[0] => Array
+ * 					(
+ * 						[0] => Array
+ * 							(
+ * 								[0] => Array
+ * 									(
+ * 										[0] => gb
+ * 										[1] => United Kingdom
+ * 									)
+ * 								[1] => 94.13.38.240
+ * 							)
+ * 						[1] => 1
+ * 						[2] => 1319984292
+ * 						[3] => 1319984292
+ * 					)
+ * 			)
+ * )
+ *
+ * @param null $playerID player id
+ * @return mixed
+ */
+	public function ipAliasesJson($playerID = null) {
+		// Find correct B3 client ID ($b3ID) belonging to XLRstats player ID
 		$player = $this->PlayerStat->find('first', array(
 				'conditions' => array(
 					'PlayerStat.id' => $playerID,
@@ -109,9 +106,7 @@ class IpAliasesController extends AppController {
 		);
 		$b3ID = $player['Player']['id'];
 
-		/**
-		 * Build conditions for player's Ipaliases
-		 */
+		// Build conditions for player's Ipaliases
 		$conditions = array(
 			'IpAlias.client_id' => $b3ID,
 			//'IpAlias.inactive !=' => 1,
@@ -129,9 +124,8 @@ class IpAliasesController extends AppController {
 
 		$data = $this->DataTable->getResponse('IpAlias');
 
-
 		//Add flag information to the array
-		foreach($data['aaData'] as $k => &$v) {
+		foreach ($data['aaData'] as $k => &$v) {
 			$v[0] = array($this->XlrFunctions->getFlag($v[0]), $v[0]);
 		}
 
@@ -142,6 +136,7 @@ class IpAliasesController extends AppController {
 		} else {
 			$this->set('ipAliases', $data);
 		}
-
+		return null;
 	}
+
 }

@@ -15,25 +15,25 @@
 
 class AliasesController extends AppController {
 
-	/**
-	 * Models used
-	 *
-	 * @var array
-	 */
+/**
+ * Models used
+ *
+ * @var array
+ */
 	public $uses = array('PlayerStat', 'Alias');
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array('Js' => array('Jquery'));
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler',
 		'DataTable',
@@ -42,14 +42,13 @@ class AliasesController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Displays player's aliases via dataTables.
-	 *
-	 * @param int $playerID is passed to the dataTable script's "sAjaxSource".
-	 */
-	public function view ($playerID = null) {
-
-		/* Prevent direct access to this method */
+/**
+ * Displays player's aliases via dataTables.
+ *
+ * @param int $playerID is passed to the dataTable script's "sAjaxSource".
+ */
+	public function view($playerID = null) {
+		// Prevent direct access to this method
 		if (!$this->request->is('ajax')) {
 			$this->Session->setFlash(__('That was not a valid request...'), null, null, 'error');
 			$this->redirect(array('plugin' => null, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'home'));
@@ -61,36 +60,33 @@ class AliasesController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Queries player aliases and pass data to view file json/aliases_json.ctp
-	 * to be processed by dataTables.
-	 *
-	 * Sample data returned:
-	 * Array
-	 * 	(
-	 * 		[sEcho] => 1
-	 * 		[iTotalRecords] => 862
-	 * 		[iTotalDisplayRecords] => 4
-	 * 		[aaData] => Array
-	 * 			(
-	 * 				[0] => Array
-	 * 					(
-	 * 						[0] => Freelander[*]	//alias
-	 * 						[1] => 1				//# of times uses
-	 * 						[2] => 1173819374		//first used
-	 * 						[3] => 1182456815		//last used
-	 * 					)
-	 * 	)		)
-	 * 
-	 *
-	 * @param null $playerID player id
-	 * @return mixed
-	 */
-	public function aliasesJson ($playerID = null) {
-
-		/**
-		 * Find correct B3 client ID ($b3ID) belonging to XLRstats player ID
-		 */
+/**
+ * Queries player aliases and pass data to view file json/aliases_json.ctp
+ * to be processed by dataTables.
+ *
+ * Sample data returned:
+ * Array
+ * 	(
+ * 		[sEcho] => 1
+ * 		[iTotalRecords] => 862
+ * 		[iTotalDisplayRecords] => 4
+ * 		[aaData] => Array
+ * 			(
+ * 				[0] => Array
+ * 					(
+ * 						[0] => Freelander[*]	//alias
+ * 						[1] => 1				//# of times uses
+ * 						[2] => 1173819374		//first used
+ * 						[3] => 1182456815		//last used
+ * 					)
+ * 	)		)
+ *
+ *
+ * @param null $playerID player id
+ * @return mixed
+ */
+	public function aliasesJson($playerID = null) {
+		// Find correct B3 client ID ($b3ID) belonging to XLRstats player ID
 		$player = $this->PlayerStat->find('first', array(
 				'conditions' => array(
 					'PlayerStat.id' => $playerID,
@@ -99,9 +95,7 @@ class AliasesController extends AppController {
 		);
 		$b3ID = $player['Player']['id'];
 
-		/**
-		 * Build conditions for player's aliases
-		 */
+		// Build conditions for player's aliases
 		$conditions = array(
 			'Alias.client_id' => $b3ID,
 		);
@@ -125,7 +119,7 @@ class AliasesController extends AppController {
 		} else {
 			$this->set('aliases', $data);
 		}
-
+		return null;
 	}
 
 }

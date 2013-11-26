@@ -16,11 +16,42 @@
 App::uses('Controller', 'Controller');
 App::uses('ClearCache', 'ClearCache.Lib');
 
+/**
+ * Class InstallController
+ */
 class InstallController extends Controller {
+
+/**
+ * Name
+ *
+ * @var string
+ */
 	public $name = 'Install';
+
+/**
+ * Model
+ *
+ * @var array
+ */
 	public $uses = array();
+
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array('Session');
+
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array('Html', 'Form', 'Number', 'TwitterBootstrap.TwitterBootstrap');
+
+/**
+ * @var array
+ */
 	private $__defaultDbConfig = array(
 		'name' => 'default',
 		'datasource' => 'Database/Mysql',
@@ -34,12 +65,17 @@ class InstallController extends Controller {
 		'encoding' => 'UTF8',
 		'port' => '3306'
 	);
+
+/**
+ * @var int
+ */
 	public $totalInstallSteps = 6;
 
+	//-------------------------------------------------------------------
 
-	/**
-	 *
-	 */
+/**
+ * Before filter
+ */
 	public function beforeFilter() {
 		$this->layout = 'install';
 		Configure::write('installTotalSteps', $this->totalInstallSteps);
@@ -56,21 +92,25 @@ class InstallController extends Controller {
 		@set_time_limit(0);
 	}
 
-	/**
-	 * Step 0, Select language.
-	 *
-	 * @return void
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Step 0, Select language.
+ *
+ * @return void
+ */
 	public function index() {
-		$this->clearCache();
+		$this->__clearCache();
 		//$this->redirect(array('action' => 'license'));
 	}
 
-	/**
-	 * Step 0, Select language. ( change this to index() )
-	 *
-	 * @return void
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Step 0, Select language. ( change this to index() )
+ *
+ * @return void
+ */
 	public function language() {
 		App::uses('I18n', 'I18n');
 
@@ -102,11 +142,13 @@ class InstallController extends Controller {
 		$this->set('languages', $languages);
 	}
 
-	/**
-	 * Step 1, License agreement
-	 *
-	 * @return void
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Step 1, License agreement
+ *
+ * @return void
+ */
 	public function license() {
 		$_step = 1;
 		Configure::write('installStep', $_step);
@@ -118,11 +160,13 @@ class InstallController extends Controller {
 		}
 	}
 
-	/**
-	 * Step 2, Server test
-	 *
-	 * @return void
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Step 2, Server test
+ *
+ * @return void
+ */
 	public function server_test() {
 		$_step = 2;
 		Configure::write('installStep', $_step);
@@ -162,10 +206,10 @@ class InstallController extends Controller {
 				'test' => is_writable(TMP . 'cache'),
 				'msg' => __('tmp/cache folder is not writable.')
 			),
-//			'installer_writable' => array(
-//				'test' => is_writable(TMP . 'cache' . DS . 'installer'),
-//				'msg' => __('tmp/cache/installer folder is not writable.')
-//			),
+			//'installer_writable' => array(
+			//'test' => is_writable(TMP . 'cache' . DS . 'installer'),
+			//'msg' => __('tmp/cache/installer folder is not writable.')
+			//),
 			'models_writable' => array(
 				'test' => is_writable(TMP . 'cache' . DS . 'models'),
 				'msg' => __('tmp/cache/models folder is not writable.')
@@ -174,18 +218,18 @@ class InstallController extends Controller {
 				'test' => is_writable(TMP . 'cache' . DS . 'persistent'),
 				'msg' => __('tmp/cache/persistent folder is not writable.')
 			),
-//			'i18n_writable' => array(
-//				'test' => is_writable(TMP . 'cache' . DS . 'i18n'),
-//				'msg' => __('tmp/cache/i18n folder is not writable.')
-//			),
+			//'i18n_writable' => array(
+			//'test' => is_writable(TMP . 'cache' . DS . 'i18n'),
+			//'msg' => __('tmp/cache/i18n folder is not writable.')
+			//),
 			'Config_writable' => array(
 				'test' => is_writable(APP . 'Config'),
 				'msg' => __('app/Config folder is not writable.')
 			),
-//			'core.php_writable' => array(
-//				'test' => is_writable(APP . 'Config' . DS . 'core.php'),
-//				'msg' => __('app/Config/core.php file is not writable.')
-//			)
+			//'core.php_writable' => array(
+			//'test' => is_writable(APP . 'Config' . DS . 'core.php'),
+			//'msg' => __('app/Config/core.php file is not writable.')
+			//)
 		);
 
 		$results = array_unique(Hash::extract($tests, '{s}.test'));
@@ -198,12 +242,14 @@ class InstallController extends Controller {
 		}
 	}
 
-	/**
-	 * Step 3, Database
-	 *
-	 * @param bool $skip
-	 * @return void
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Step 3, Database
+ *
+ * @param bool $skip
+ * @return void
+ */
 	public function database($skip = false) {
 		$_step = 3;
 		Configure::write('installStep', $_step);
@@ -213,38 +259,38 @@ class InstallController extends Controller {
 			$this->redirect(array('action' => 'index'));
 		}
 
-		$config_exists = file_exists(APP . 'Config' . DS . 'database.php');
+		$configExists = file_exists(APP . 'Config' . DS . 'database.php');
 
-		$this->set('config_exists', $config_exists);
+		$this->set('config_exists', $configExists);
 
-		if (!empty($this->data) || ($config_exists && $skip)) {
+		if (!empty($this->data) || ($configExists && $skip)) {
 			App::uses('ConnectionManager', 'Model');
-			$this->clearCache();
+			$this->__clearCache();
 
-			$continue_email = true;
-			$continue_db = true;
+			$continueEmail = true;
+			$continueDb = true;
 
-			if (!$config_exists) {
+			if (!$configExists) {
 				$data = $this->data;
 				$data['datasource'] = 'Database/Mysql';
 				$data['persistent'] = false;
 				$data = Hash::merge($this->__defaultDbConfig, $data);
-				$continue_email = $this->__writeEmailFile($data);
-				$continue_db = $this->__writeDatabaseFile($data);
+				$continueEmail = $this->__writeEmailFile($data);
+				$continueDb = $this->__writeDatabaseFile($data);
 			}
 
-			if (!$continue_email) {
-				$this->Session->setFlash(__('Could not write email.php file! You will not be able to send user verification emails.'),null, null, 'error');
+			if (!$continueEmail) {
+				$this->Session->setFlash(__('Could not write email.php file! You will not be able to send user verification emails.'), null, null, 'error');
 			}
 
-			if ($continue_db) {
+			if ($continueDb) {
 				try {
 					$db = ConnectionManager::getDataSource('default');
 					$data = $db->config;
 				} catch (Exception $e) {
-					$this->Session->setFlash(__('Could not connect to database.'),null, null, 'error');
+					$this->Session->setFlash(__('Could not connect to database.'), null, null, 'error');
 
-					if (!$config_exists) {
+					if (!$configExists) {
 						$this->__removeDatabaseFile();
 					}
 
@@ -261,9 +307,9 @@ class InstallController extends Controller {
 
 				foreach (array_keys($schema->tables) as $table) {
 					if (in_array($data['prefix'] . $table, $sources)) {
-						$this->Session->setFlash(__('A previous installation of XLRstats already exists, please empty your database!'),null, null, 'error');
+						$this->Session->setFlash(__('A previous installation of XLRstats already exists, please empty your database!'), null, null, 'error');
 
-						if (!$config_exists) {
+						if (!$configExists) {
 							$this->__removeDatabaseFile();
 							$this->__removeEmailFile();
 						}
@@ -283,6 +329,7 @@ class InstallController extends Controller {
 				$modelDataObjects = App::objects('class', $dataPath, false);
 
 				foreach ($modelDataObjects as $model) {
+					/** @noinspection PhpIncludeInspection */
 					include_once $dataPath . $model . '.php';
 
 					$model = new $model;
@@ -320,19 +367,21 @@ class InstallController extends Controller {
 					$this->__stepSuccess('database');
 					$this->redirect(array('action' => 'user_account'));
 				} else {
-					$this->Session->setFlash(__('Could not dump database.'),null, null, 'error');
+					$this->Session->setFlash(__('Could not dump database.'), null, null, 'error');
 				}
 			} else {
-				$this->Session->setFlash(__('Could not write database.php file.'),null, null, 'error');
+				$this->Session->setFlash(__('Could not write database.php file.'), null, null, 'error');
 			}
 		}
 	}
 
-	/**
-	 * Step 4, User account
-	 *
-	 * @return void
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Step 4, User account
+ *
+ * @return void
+ */
 	public function user_account() {
 		$_step = 4;
 		Configure::write('installStep', $_step);
@@ -372,17 +421,18 @@ class InstallController extends Controller {
 
 				$this->Session->setFlash(
 					'<b>' . __('Could not create new user, please try again.') . "</b><br/>" .
-					$errors
-					,null, null, 'error');
+					$errors, null, null, 'error');
 			}
 		}
 	}
 
-	/**
-	 * Step 5, First server
-	 *
-	 * @return void
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Step 5, First server
+ *
+ * @return void
+ */
 	public function first_server() {
 		$_step = 5;
 		Configure::write('installStep', $_step);
@@ -407,17 +457,18 @@ class InstallController extends Controller {
 
 				$this->Session->setFlash(
 					'<b>' . __('Could not create new user, please try again.') . "</b><br/>" .
-					$errors
-					,null, null, 'error');
+					$errors, null, null, 'error');
 			}
 		}
 	}
 
-	/**
-	 * Step 6, Finish
-	 *
-	 * @return void
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Step 6, Finish
+ *
+ * @return void
+ */
 	public function finish() {
 		$_step = 6;
 		Configure::write('installStep', $_step);
@@ -435,19 +486,21 @@ class InstallController extends Controller {
 			$this->__stepSuccess('finish');
 			$this->Session->delete('XlrInstall');
 			//CakeSession::write('Config.language', 'eng');
-			$this->clearCache();
-			$this->Session->setFlash(__("Installation successful! You're about to login to the administration dashboard. PLease enter your XLRstats key in the 'Options' section first."),null, null, 'success');
+			$this->__clearCache();
+			$this->Session->setFlash(__("Installation successful! You're about to login to the administration dashboard. PLease enter your XLRstats key in the 'Options' section first."), null, null, 'success');
 			$this->redirect(array('plugin' => 'dashboard', 'action' => 'index'));
 		} else {
-			$this->Session->setFlash(__("Could not write 'install' file. Check file/folder permissions and refresh this page."),null, null, 'error');
+			$this->Session->setFlash(__("Could not write 'install' file. Check file/folder permissions and refresh this page."), null, null, 'error');
 
 		}
 	}
 
-	/**
-	 * @param $data
-	 * @return bool
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * @param $data
+ * @return bool
+ */
 	private function __writeDatabaseFile($data) {
 		App::import('Utility', 'File');
 
@@ -485,17 +538,21 @@ class InstallController extends Controller {
 		return $r;
 	}
 
-	/**
-	 *
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Removes database file
+ */
 	private function __removeDatabaseFile() {
 		@unlink(APP . DS . 'Config' . DS . 'database.php');
 	}
 
-	/**
-	 * @param $data
-	 * @return bool
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * @param $data
+ * @return bool
+ */
 	private function __writeEmailFile($data) {
 		App::import('Utility', 'File');
 
@@ -521,18 +578,22 @@ class InstallController extends Controller {
 		return $r;
 	}
 
-	/**
-	 *
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Removes email file
+ */
 	private function __removeEmailFile() {
 		@unlink(APP . DS . 'Config' . DS . 'email.php');
 	}
 
-	/**
-	 * @param $step
-	 * @param bool $check
-	 * @return bool
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * @param $step
+ * @param bool $check
+ * @return bool
+ */
 	private function __stepSuccess($step, $check = false) {
 		//pr($this->Session->read("XlrInstall"));
 		if (!$check) {
@@ -550,14 +611,14 @@ class InstallController extends Controller {
 		} else {
 			return $this->Session->check("XlrInstall.{$step}");
 		}
-
-		return false;
 	}
 
-	/**
-	 *
-	 */
-	private function clearCache () {
+	//-------------------------------------------------------------------
+
+/**
+ * Clears cache
+ */
+	private function __clearCache() {
 		$ClearCache = new ClearCache();
 		error_reporting(0);
 		$ClearCache->run();

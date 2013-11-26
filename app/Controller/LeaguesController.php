@@ -15,18 +15,18 @@
 
 class LeaguesController extends AppController {
 
-	/**
-	 * Used Models (so the dataSource gets set for all these models when switching databases)
-	 *
-	 * @var array
-	 */
+/**
+ * Used Models (so the dataSource gets set for all these models when switching databases)
+ *
+ * @var array
+ */
 	public $uses = array('League', 'Player', 'Penalty');
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array(
 		'Number',
 		'Html',
@@ -37,11 +37,11 @@ class LeaguesController extends AppController {
 		)
 	);
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'GeoIP',
 		'RequestHandler',
@@ -51,30 +51,28 @@ class LeaguesController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * An overview of available leagues from our configuration file.
-	 * Let the View file handle the request
-	 */
+/**
+ * An overview of available leagues from our configuration file.
+ * Let the View file handle the request
+ */
 	public function index() {
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Displays a league via dataTables.
-	 *
-	 * @param int $leagueID is passed to the dataTable script's "sAjaxSource".
-	 */
+/**
+ * Displays a league via dataTables.
+ *
+ * @param int $leagueID is passed to the dataTable script's "sAjaxSource".
+ */
 	public function view($leagueID = null) {
-		/**
-		 * Prevent faulty routing when switching servers
-		 */
+		// Prevent faulty routing when switching servers
 		if (!isset($leagueID) || (!array_key_exists($leagueID, Configure::read('league')) && $leagueID != 0)) {
 			$this->Session->setFlash(__('That League does not exist...'), null, null, 'error');
 			$this->redirect(array('plugin' => null, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'home'));
 		}
 
-		$leagueValue = $this->getLeagueValues($leagueID);
+		$leagueValue = $this->__getLeagueValues($leagueID);
 		$this->set('leagueValue', $leagueValue);
 		$this->set('leagueID', $leagueID);
 		$minimumConnections = Configure::read('options.min_connections');
@@ -85,70 +83,65 @@ class LeaguesController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Queries selected league and pass data to view file json/leagues_json.ctp
-	 * to be processed by dataTables.
-	 *
-	 * Sample data returned:
-	 * Array
-	 *	(
-	 *		[sEcho] => 1
-	 *		[iTotalRecords] => 1363
-	 *		[iTotalDisplayRecords] => 1
-	 *		[aaData] => Array
-	 *			(
-	 *				[0] => Array
-	 *					(
-	 * 					[0] => pos#                     //position number
-	 * 					[1] => Freelander00				//name
-	 * 					[2] => 1263.27					//skill
-	 * 					[3] => 1.32035					//ratio
-	 * 					[4] => 8037						//kills
-	 * 					[5] => 6087						//deaths
-	 * 					[6] => 81						//teamkills
-	 * 					[7] => 16						//winstreak
-	 * 					[8] => 193						//rounds
-	 * 					[9] => 68						//suicides
-	 * 					[10] => 63						//teamdeaths
-	 * 					[11] => -9						//losestreak
-	 * 					[12] => 214						//connections
-	 * 					[13] => 92.44.39.140			//ip
-	 * 					[14] => 128						//group_bits
-	 * 					[15] => 13						//player id
-	 * 					[16] => 19						//rank
-	 * 					[17] => 2						//skill league
-	 * 					[18] => Array
-	 * 						(
-	 * 							[0] => tr				//country code for flag
-	 * 							[1] => Turkey			//country
-	 * 						)
-	 * 					[19] => Array
-	 * 						(
-	 * 							[level] => 100			//level
-	 * 							[name] => Super Admin	//level name
-	 * 						)
-	 *			)
-	 *	)
-	 *
-	 * @param int $leagueID
-	 * @return mixed
-	 */
+/**
+ * Queries selected league and pass data to view file json/leagues_json.ctp
+ * to be processed by dataTables.
+ *
+ * Sample data returned:
+ * Array
+ *	(
+ *		[sEcho] => 1
+ *		[iTotalRecords] => 1363
+ *		[iTotalDisplayRecords] => 1
+ *		[aaData] => Array
+ *			(
+ *				[0] => Array
+ *					(
+ * 					[0] => pos#                     //position number
+ * 					[1] => Freelander00				//name
+ * 					[2] => 1263.27					//skill
+ * 					[3] => 1.32035					//ratio
+ * 					[4] => 8037						//kills
+ * 					[5] => 6087						//deaths
+ * 					[6] => 81						//teamkills
+ * 					[7] => 16						//winstreak
+ * 					[8] => 193						//rounds
+ * 					[9] => 68						//suicides
+ * 					[10] => 63						//teamdeaths
+ * 					[11] => -9						//losestreak
+ * 					[12] => 214						//connections
+ * 					[13] => 92.44.39.140			//ip
+ * 					[14] => 128						//group_bits
+ * 					[15] => 13						//player id
+ * 					[16] => 19						//rank
+ * 					[17] => 2						//skill league
+ * 					[18] => Array
+ * 						(
+ * 							[0] => tr				//country code for flag
+ * 							[1] => Turkey			//country
+ * 						)
+ * 					[19] => Array
+ * 						(
+ * 							[level] => 100			//level
+ * 							[name] => Super Admin	//level name
+ * 						)
+ *			)
+ *	)
+ *
+ * @param int $leagueID
+ * @return mixed
+ */
 	public function leaguesJson($leagueID = null) {
-
-		$leagueValue = $this->getLeagueValues($leagueID);
+		$leagueValue = $this->__getLeagueValues($leagueID);
 		$this->set('leagueValue', $leagueValue);
 
-		/**
-		 * Build up the array of conditions we need to select on
-		 */
+		// Build up the array of conditions we need to select on
 		$conditions = array(
-			$leagueValue[0] . ' BETWEEN ? AND ?' => array($leagueValue[1],$leagueValue[2]),
+			$leagueValue[0] . ' BETWEEN ? AND ?' => array($leagueValue[1], $leagueValue[2]),
 			'League.hide' => 0,
 		);
 
-		/**
-		 * If the league is not based on Player.connections, we'll keep a threshold of $minimumConnections AND $minimumKills
-		 */
+		// If the league is not based on Player.connections, we'll keep a threshold of $minimumConnections AND $minimumKills
 		$minimumConnections = Configure::read('options.min_connections');
 		$minimumKills = Configure::read('options.min_kills');
 		if ($leagueValue[0] != 'Player.connections') {
@@ -156,17 +149,13 @@ class LeaguesController extends AppController {
 			$conditions['League.kills >'] = $minimumKills;
 		}
 
-		/**
-		 * Hide players that have not played in # days (disable with 0 or empty setting)
-		 */
+		// Hide players that have not played in # days (disable with 0 or empty setting)
 		$maxDays = Configure::read('options.max_days');
 		if ($maxDays != '' && $maxDays != 0) {
-			$conditions['('. gmdate('U') .' - Player.time_edit) <'] = $maxDays*60*60*24;
+			$conditions['(' . gmdate('U') . ' - Player.time_edit) <'] = $maxDays * 60 * 60 * 24;
 		}
 
-		/**
-		 * Hide banned players
-		 */
+		// Hide banned players
 		$hideBanned = (bool)Configure::read('options.hide_banned');
 
 		if ($hideBanned) {
@@ -225,7 +214,7 @@ class LeaguesController extends AppController {
 				'League.id',
 			),
 			'conditions' => $conditions,
-			/**
+			/*
 			 * dataTables sort the data automatically based on our script configuration.
 			 * We should sort it manually here just in case we call $data via requestAction()
 			 */
@@ -236,13 +225,12 @@ class LeaguesController extends AppController {
 		$data = $this->DataTable->getResponse('League');
 
 		//Add a dummy value to the beginning of each weapon data array. We will modify it in view file as position numbers.
-		for($i=0; $i<count($data['aaData']); $i++) {
+		$dataLength = count($data['aaData']);
+		for ($i = 0; $i < $dataLength; $i++) {
 			array_unshift($data['aaData'][$i], 'pos#');
 		}
 
-		/**
-		 * Add some values to the array, like rank and position
-		 */
+		// Add some values to the array, like rank and position
 		foreach ($data['aaData'] as $k => $v) {
 			array_push(
 				$data['aaData'][$k],
@@ -257,50 +245,35 @@ class LeaguesController extends AppController {
 
 		$nrRows = $this->League->getAffectedRows();
 
-		/*
-		 * If the data is internally requested from another part of the website (ie. an element) don't store it for
-		 * the view, but just return the $data array
-		 */
 		if ($this->request->is('requested')) {
 			return array($data, $nrRows);
-		}
-		/**
-		 * Else, if it is not requested internally, store the data as an array in the variable to use in the view
-		 */
-		else {
+		} else {
 			$this->set('xlrLeague', $data);
 		}
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * @param int $leagueID
-	 * @return array
-	 */
+/**
+ * @param int $leagueID
+ * @return array
+ */
 	public function getAwards($leagueID = 0) {
-
-		$leagueValue = $this->getLeagueValues($leagueID);
+		$leagueValue = $this->__getLeagueValues($leagueID);
 		$this->set('leagueID', $leagueID);
 
-		/**
-		 * Using Cache to reduce load on DB
-		 * config '1hour' in bootstrap.php caches 1 hrs on File
-		 */
+		// Using Cache to reduce load on DB config '1hour' in bootstrap.php caches 1 hrs on File
 		$awardLeague = 'leagueawards-' . Configure::read('server_id') . '-' . $leagueID;
 		$data = Cache::read($awardLeague, '1hour');
 		if (!$data) {
-			/**
-			 * Build up the array of conditions we need to select on
-			 */
+			// Build up the array of conditions we need to select on
 			$conditions = array(
-				$leagueValue[0] . ' BETWEEN ? AND ?' => array($leagueValue[1],$leagueValue[2]),
+				$leagueValue[0] . ' BETWEEN ? AND ?' => array($leagueValue[1], $leagueValue[2]),
 				'League.hide' => 0,
 			);
 
-			/**
-			 * If the league is not based on Player.connections, we'll keep a threshold of $minimumConnections AND $minimumKills
-			 */
+			// If the league is not based on Player.connections, we'll keep a threshold of $minimumConnections AND $minimumKills
 			$minimumConnections = Configure::read('options.min_connections');
 			$minimumKills = Configure::read('options.min_kills');
 			if ($leagueValue[0] != 'Player.connections') {
@@ -308,17 +281,13 @@ class LeaguesController extends AppController {
 				$conditions['League.kills >'] = $minimumKills;
 			}
 
-			/**
-			 * Hide players that have not played in # days (disable with 0 or empty setting)
-			 */
+			// Hide players that have not played in # days (disable with 0 or empty setting)
 			$maxDays = Configure::read('options.max_days');
 			if ($maxDays != '' && $maxDays != 0) {
-				$conditions['('. gmdate('U') .' - Player.time_edit) <'] = $maxDays*60*60*24;
+				$conditions['(' . gmdate('U') . ' - Player.time_edit) <'] = $maxDays * 60 * 60 * 24;
 			}
 
-			/**
-			 * Hide banned players
-			 */
+			// Hide banned players
 			$hideBanned = (bool)Configure::read('options.hide_banned');
 
 			if ($hideBanned) {
@@ -430,30 +399,33 @@ class LeaguesController extends AppController {
 
 		if ($this->request->is('requested')) {
 			return array($data);
-		}
-		else {
+		} else {
 			$this->set('leagueawards', $data);
 		}
-
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
+/**
+ * Get Missing in Action players
+ *
+ * @param int $leagueID
+ * @param bool $random
+ * @param int $limit
+ * @return array|null
+ */
 	public function getMia($leagueID = 0, $random = false, $limit = 15) {
-		$leagueValue = $this->getLeagueValues($leagueID);
+		$leagueValue = $this->__getLeagueValues($leagueID);
 		$this->set('leagueValue', $leagueValue);
 
-		/**
-		 * Build up the array of conditions we need to select on
-		 */
+		// Build up the array of conditions we need to select on
 		$conditions = array(
-			$leagueValue[0] . ' BETWEEN ? AND ?' => array($leagueValue[1],$leagueValue[2]),
+			$leagueValue[0] . ' BETWEEN ? AND ?' => array($leagueValue[1], $leagueValue[2]),
 			'League.hide' => 0,
 		);
 
-		/**
-		 * If the league is not based on Player.connections, we'll keep a threshold of $minimumConnections AND $minimumKills
-		 */
+		// If the league is not based on Player.connections, we'll keep a threshold of $minimumConnections AND $minimumKills
 		$minimumConnections = Configure::read('options.min_connections');
 		$minimumKills = Configure::read('options.min_kills');
 		if ($leagueValue[0] != 'Player.connections') {
@@ -461,22 +433,16 @@ class LeaguesController extends AppController {
 			$conditions['League.kills >'] = $minimumKills;
 		}
 
-		/**
-		 * Select players that have not played in # days (disable with 0 or empty setting)
-		 */
+		// Select players that have not played in # days (disable with 0 or empty setting)
 		$maxDays = Configure::read('options.max_days');
 		if ($maxDays != '' && $maxDays != 0) {
-			$conditions['('. gmdate('U') .' - Player.time_edit) >='] = $maxDays*60*60*24;
+			$conditions['(' . gmdate('U') . ' - Player.time_edit) >='] = $maxDays * 60 * 60 * 24;
 		} else {
-			/**
-			 * All players are shown, so no players are MIA, break it off here and return null
-			 */
+			// All players are shown, so no players are MIA, break it off here and return null
 			return null;
 		}
 
-		/**
-		 * Hide banned players
-		 */
+		// Hide banned players
 		$hideBanned = (bool)Configure::read('options.hide_banned');
 
 		if ($hideBanned) {
@@ -514,11 +480,12 @@ class LeaguesController extends AppController {
 			$conditions[] = $subQueryExpression;
 		}
 
-		/**
-		 * Prepare data
-		 */
-		if ($random) $order = 'RAND()';
-		else $order = 'League.skill desc';
+		// Prepare data
+		if ($random) {
+			$order = 'RAND()';
+		} else {
+			$order = 'League.skill desc';
+		}
 
 		$data = $this->League->find('all',
 			array(
@@ -532,30 +499,32 @@ class LeaguesController extends AppController {
 		//pr($data);
 		if ($this->request->is('requested')) {
 			return array($data, $nrRows);
-		}
-		else {
+		} else {
 			$this->set('leagueawards', $data);
 		}
-
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
+/**
+ * Return the date a player is seen last time
+ *
+ * @param int $leagueID
+ * @param int $limit
+ * @return array
+ */
 	public function getLastSeen($leagueID = 0, $limit = 15) {
-		$leagueValue = $this->getLeagueValues($leagueID);
+		$leagueValue = $this->__getLeagueValues($leagueID);
 		$this->set('leagueValue', $leagueValue);
 
-		/**
-		 * Build up the array of conditions we need to select on
-		 */
+		// Build up the array of conditions we need to select on
 		$conditions = array(
-			$leagueValue[0] . ' BETWEEN ? AND ?' => array($leagueValue[1],$leagueValue[2]),
+			$leagueValue[0] . ' BETWEEN ? AND ?' => array($leagueValue[1], $leagueValue[2]),
 			'League.hide' => 0,
 		);
 
-		/**
-		 * If the league is not based on Player.connections, we'll keep a threshold of $minimumConnections AND $minimumKills
-		 */
+		// If the league is not based on Player.connections, we'll keep a threshold of $minimumConnections AND $minimumKills
 		$minimumConnections = Configure::read('options.min_connections');
 		$minimumKills = Configure::read('options.min_kills');
 		if ($leagueValue[0] != 'Player.connections') {
@@ -563,9 +532,7 @@ class LeaguesController extends AppController {
 			$conditions['League.kills >'] = $minimumKills;
 		}
 
-		/**
-		 * Hide banned players
-		 */
+		// Hide banned players
 		$hideBanned = (bool)Configure::read('options.hide_banned');
 
 		if ($hideBanned) {
@@ -603,9 +570,7 @@ class LeaguesController extends AppController {
 			$conditions[] = $subQueryExpression;
 		}
 
-		/**
-		 * Prepare data
-		 */
+		// Prepare data
 		$order = 'Player.time_edit desc';
 
 		$data = $this->League->find('all',
@@ -620,27 +585,27 @@ class LeaguesController extends AppController {
 		//pr($data);
 		if ($this->request->is('requested')) {
 			return array($data, $nrRows);
-		}
-		else {
+		} else {
 			$this->set('leagueawards', $data);
 		}
-
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Gets configuration values for the selected league
-	 * Defaults to 'All stats' values when no league is given
-	 *
-	 * @param int $leagueID
-	 * @return mixed
-	 */
-	private function getLeagueValues($leagueID = 0) {
+/**
+ * Gets configuration values for the selected league
+ * Defaults to 'All stats' values when no league is given
+ *
+ * @param int $leagueID
+ * @return mixed
+ */
+	private function __getLeagueValues($leagueID = 0) {
 		$leagueValuesAll = array();
 		if ($leagueID == 0) {
 			$leagueValuesAll[0] = array('League.skill', 0, 9999999, __('All stats'), __('A complete list of all qualified players.'));
-		} else { $leagueValuesAll = Configure::read('league');
+		} else {
+			$leagueValuesAll = Configure::read('league');
 		}
 
 		$leagueValues = $leagueValuesAll[$leagueID];

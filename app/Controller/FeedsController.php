@@ -15,22 +15,26 @@
 
 App::uses('Xml', 'Utility');
 
+/**
+ * Class FeedsController
+ */
 class FeedsController extends AppController {
 
-	/**
-	 * @var string URL to default feed if no feed_id was given in URL or feed_id does not exist in the config
-	 */
+/**
+ * @var string URL to default feed if no feed_id was given in URL or feed_id does not exist in the config
+ */
 	public $feedURL = "http://forum.bigbrotherbot.net/website-news/?type=rss;action=.xml";
-	/**
-	 * @var array
-	 */
+
+/**
+ * @var array
+ */
 	public $rssItem = array();
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array('Html', 'Form', 'Js' => array('Jquery'));
 
 	//-------------------------------------------------------------------
@@ -39,15 +43,16 @@ class FeedsController extends AppController {
 		//pr(Configure::read('globals.feed'));
 	}
 
-	/**
-	 * Parse the feed and return as an array
-	 *
-	 * @param string $feedID
-	 * @return array
-	 * @internal param $
-	 */
-	public function view($feedID = '') {
+	//-------------------------------------------------------------------
 
+/**
+ * Parse the feed and return as an array
+ *
+ * @param string $feedID
+ * @return array
+ * @internal param $
+ */
+	public function view($feedID = '') {
 		if ($feedID != '') {
 			if ((Configure::read('globals.feed.' . $feedID ) != null)) {
 				$feedDetails = Configure::read('globals.feed.' . $feedID);
@@ -69,10 +74,16 @@ class FeedsController extends AppController {
 			$this->set('feedInfo', $feedInfo);
 			$this->set('data', $data);
 		}
+		return null;
 	}
 
-	public function view_development($feedID = '') {
+	//-------------------------------------------------------------------
 
+/**
+ * @param string $feedID
+ * @return array|bool|null
+ */
+	public function view_development($feedID = '') {
 		if ($feedID != '') {
 			if ((Configure::read('globals.developmentfeed.' . $feedID ) != null)) {
 				$feedDetails = Configure::read('globals.developmentfeed.' . $feedID);
@@ -101,5 +112,7 @@ class FeedsController extends AppController {
 			$this->set('feedInfo', $feedInfo);
 			$this->set('data', $data);
 		}
+		return null;
 	}
+
 }
