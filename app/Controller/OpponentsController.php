@@ -15,28 +15,28 @@
 
 class OpponentsController extends AppController {
 
-	/**
-	 * Models used
-	 *
-	 * @var array
-	 */
+/**
+ * Models used
+ *
+ * @var array
+ */
 	public $uses = array('Opponent', 'PlayerStat', 'Player');
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array(
 		'Number',
 		'Js' => array('Jquery')
 	);
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'GeoIP',
 		'RequestHandler',
@@ -44,9 +44,9 @@ class OpponentsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Total list of confrontations (do not make this recursive)
-	 */
+/**
+ * Total list of confrontations (do not make this recursive)
+ */
 	public function index() {
 		$this->Opponent->unbindModel(
 			array('belongsTo' => array('Killer', 'Target'))
@@ -57,18 +57,17 @@ class OpponentsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * List confrontations for a specific player (killer) via dataTables
-	 *
-	 * @param null $playerID
-	 * @return array
-	 */
-	public function view ($playerID = null) {
+/**
+ * List confrontations for a specific player (killer) via dataTables
+ *
+ * @param null $playerID
+ * @return array
+ */
+	public function view($playerID = null) {
 		//$this->set('playerID', $playerID);
 		$this->layout = 'ajax';
 
 		$opponentsCount = Configure::read('options.opponents_count') ? Configure::read('options.opponents_count') : 15;
-
 
 		$conditions = array(
 			'Opponent.killer_id' => $playerID,
@@ -93,17 +92,14 @@ class OpponentsController extends AppController {
 		if (!$data) {
 			if ($this->request->is('requested')) {
 				return false;
-			}
-			else {
+			} else {
 				$this->set('opponents', array());
 				$this->set('analytics', array());
 				return false;
 			}
 		}
 
-		/**
-		 * Add some values to the array, like rank and position
-		 */
+		// Add some values to the array, like rank and position
 		foreach ($data as $k => $v) {
 			$data[$k]['Target']['rank'] = $this->XlrFunctions->getRank($data[$k]['Target']['kills']);
 			$data[$k]['Target']['skilleague'] = $this->XlrFunctions->getLeague($data[$k]['Target']['skill']);
@@ -113,61 +109,55 @@ class OpponentsController extends AppController {
 			$data[$k]['0']['skillgain'] = 4 * (1 - $data[$k]['0']['winprobability']);
 		}
 
-/*		foreach ($data as $k => $v) {
-			$analytics[$v['Target']['Player']['name']] = array(
-				'skill' => $v['Target']['skill'],
-				'skillgain' => $v['0']['skillgain'],
-				'winprobability' => $v['0']['winprobability']
-			);
-		}*/
 		foreach ($data as $k => $v) {
 			$_name[$k] = $v['Target']['Player']['name'];
 			$_id[$k] = $v['Target']['id'];
-			$_skillgain[$k] = $v['0']['skillgain'];
-			$_winprobability[$k] = $v['0']['winprobability'];
+			$_skillGain[$k] = $v['0']['skillgain'];
+			$_winProbability[$k] = $v['0']['winprobability'];
 			if ($v['Opponent']['kills'] == 0) {
-				$_winrate[$k] = 1;
+				$_winRate[$k] = 1;
 			} else {
-				$_winrate[$k] = $v['0']['confrontations'] / $v['Opponent']['kills'];
+				$_winRate[$k] = $v['0']['confrontations'] / $v['Opponent']['kills'];
 			}
 		}
 
-		array_multisort($_winrate, SORT_DESC, $_skillgain, $_winprobability, $_name, $_id);
-		$analytics['worstHistory'] = array($_name['0'], $_id['0'], $_winprobability['0'], 'Worst Enemy', 'Better avoid this opponent next time', 'xlr_pro_killstreak.png');
+		array_multisort($_winRate, SORT_DESC, $_skillGain, $_winProbability, $_name, $_id);
+		$analytics['worstHistory'] = array($_name['0'], $_id['0'], $_winProbability['0'], 'Worst Enemy', 'Better avoid this opponent next time', 'xlr_pro_killstreak.png');
 
-		array_multisort($_skillgain, SORT_DESC, $_winprobability, $_winrate, $_name, $_id);
-		$analytics['mostSkillGain'] = array($_name['0'], $_id['0'], $_skillgain['0'], 'Skill Booster', 'Gain optimal skill by winning next confrontation', 'xlr_pro_default.png');
+		array_multisort($_skillGain, SORT_DESC, $_winProbability, $_winRate, $_name, $_id);
+		$analytics['mostSkillGain'] = array($_name['0'], $_id['0'], $_skillGain['0'], 'Skill Booster', 'Gain optimal skill by winning next confrontation', 'xlr_pro_default.png');
 
-		array_multisort($_winprobability, SORT_DESC, $_skillgain, $_winrate, $_name, $_id);
-		$analytics['bestChance'] = array($_name['0'], $_id['0'], $_winprobability['0'], 'Push Over', 'Collect your easy points here', 'xlr_shame_loosestreak.png');
+		array_multisort($_winProbability, SORT_DESC, $_skillGain, $_winRate, $_name, $_id);
+		$analytics['bestChance'] = array($_name['0'], $_id['0'], $_winProbability['0'], 'Push Over', 'Collect your easy points here', 'xlr_shame_loosestreak.png');
 
-		array_multisort($_winrate, SORT_ASC, $_skillgain, $_winprobability, $_name, $_id);
-		$analytics['bestHistory'] = array($_name['0'], $_id['0'], $_winprobability['0'], 'Skill Sponsor', 'Paid his dues, better thank this opponent next time around', 'xlr_shame_deaths.png');
+		array_multisort($_winRate, SORT_ASC, $_skillGain, $_winProbability, $_name, $_id);
+		$analytics['bestHistory'] = array($_name['0'], $_id['0'], $_winProbability['0'], 'Skill Sponsor', 'Paid his dues, better thank this opponent next time around', 'xlr_shame_deaths.png');
 
-        //pr($_name);
+		//pr($_name);
 		//pr($_skill);
-		//pr($_skillgain);
-		//pr($_winprobability);
+		//pr($_skillGain);
+		//pr($_winProbability);
 
 		if ($this->request->is('requested')) {
 			return array($data);
-		}
-		else {
+		} else {
 			$this->set('opponents', $data);
 			$this->set('analytics', $analytics);
 		}
 		//pr($analytics);
 		//pr($data);
+
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * View a specific confrontation
-	 *
-	 * @param null $id
-	 */
-	public function detail ($id = null) {
+/**
+ * View a specific confrontation
+ *
+ * @param null $id
+ */
+	public function detail($id = null) {
 		$this->Opponent->id = $id;
 		$this->Opponent->recursive = 2;
 		$data = $this->Opponent->read();
@@ -176,8 +166,14 @@ class OpponentsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	public function compare ($killerID = null, $targetID = null) {
-
+/**
+ * Returns a detailed comparison of two players' statistics
+ *
+ * @param null $killerID
+ * @param null $targetID
+ * @return array|null
+ */
+	public function compare($killerID = null, $targetID = null) {
 		$conditions = array(
 			'Opponent.killer_id' => $killerID,
 			'Opponent.target_id' => $targetID,
@@ -197,10 +193,7 @@ class OpponentsController extends AppController {
 			)
 		);
 
-
-		/**
-		 * Add some values to the array, like rank and position
-		 */
+		// Add some values to the array, like rank and position
 		foreach ($data as $k => $v) {
 			$data[$k]['Killer']['rank'] = $this->XlrFunctions->getRank($data[$k]['Killer']['kills']);
 			$data[$k]['Target']['rank'] = $this->XlrFunctions->getRank($data[$k]['Target']['kills']);
@@ -218,14 +211,21 @@ class OpponentsController extends AppController {
 
 		if ($this->request->is('requested')) {
 			return array($data);
-		}
-		else {
+		} else {
 			$this->set('opponents', $data);
 		}
 		//pr($data);
+
+		return null;
 	}
 
-	public function shortList ($playerID = null) {
+	//-------------------------------------------------------------------
+
+/**
+ * @param null $playerID
+ * @return array
+ */
+	public function shortList($playerID = null) {
 		$conditions = array(
 			'Opponent.killer_id' => $playerID,
 			'Target.hide' => 0,
@@ -245,10 +245,11 @@ class OpponentsController extends AppController {
 		);
 		if ($this->request->is('requested')) {
 			return array($data);
-		}
-		else {
+		} else {
 			$this->set('opponents', $data);
 		}
 		//pr($data);
+		return null;
 	}
+
 }

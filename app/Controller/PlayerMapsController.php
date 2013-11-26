@@ -15,28 +15,28 @@
 
 class PlayerMapsController extends AppController {
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array('Js' => array('Jquery'));
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler',
 		'DataTable',
 		'Paginator',
 	);
 
-	/**
-	 * Models
-	 * @var array
-	 */
+/**
+ * Models
+ * @var array
+ */
 	public $uses = array(
 		'PlayerStat',
 		'PlayerMap'
@@ -44,11 +44,11 @@ class PlayerMapsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Displays player's maps via dataTables.
-	 *
-	 * @param int $playerID is passed to the dataTable script's "sAjaxSource".
-	 */
+/**
+ * Displays player's maps via dataTables.
+ *
+ * @param int $playerID is passed to the dataTable script's "sAjaxSource".
+ */
 	public function view($playerID = null) {
 		$this->set('playerID', $playerID);
 		$this->layout = 'ajax';
@@ -67,37 +67,36 @@ class PlayerMapsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Queries player maps and pass data to view file json/player_maps_json.ctp
-	 * to be processed by dataTables.
-	 *
-	 * Sample data returned:
-	 * Array
-	 * (
-	 * 		[sEcho] => 1
-	 * 		[iTotalRecords] => 3777
-	 * 		[iTotalDisplayRecords] => 17
-	 * 		[aaData] => Array
-	 * 			(
-	 * 				[0] => Array
-	 * 					(
-	 * 						[0] => pos#		//position number
-	 *  					[1] => MP_001	//map name
-	 * 						[2] => 314		//kills
-	 * 						[3] => 165		//deaths
-	 * 						[4] => 4		//teamkills
-	 * 						[5] => 1		//teamdeaths
-	 * 						[6] => 3		//suicides
-	 * 						[7] => 19		//map id
-	 * 					)
-	 * 			)
-	 * )
-	 *
-	 * @param null $playerID player id
-	 * @return mixed
-	 */
-	public function playerMapsJson ($playerID = null) {
-
+/**
+ * Queries player maps and pass data to view file json/player_maps_json.ctp
+ * to be processed by dataTables.
+ *
+ * Sample data returned:
+ * Array
+ * (
+ * 		[sEcho] => 1
+ * 		[iTotalRecords] => 3777
+ * 		[iTotalDisplayRecords] => 17
+ * 		[aaData] => Array
+ * 			(
+ * 				[0] => Array
+ * 					(
+ * 						[0] => pos#		//position number
+ *  					[1] => MP_001	//map name
+ * 						[2] => 314		//kills
+ * 						[3] => 165		//deaths
+ * 						[4] => 4		//teamkills
+ * 						[5] => 1		//teamdeaths
+ * 						[6] => 3		//suicides
+ * 						[7] => 19		//map id
+ * 					)
+ * 			)
+ * )
+ *
+ * @param null $playerID player id
+ * @return mixed
+ */
+	public function playerMapsJson($playerID = null) {
 		$conditions = array(
 			'PlayerMap.player_id' => $playerID
 		);
@@ -118,7 +117,8 @@ class PlayerMapsController extends AppController {
 		$data = $this->DataTable->getResponse('PlayerMap');
 
 		//Add a dummy value to the beginning of each player weapon data array. We will modify it in view file as position numbers.
-		for($i=0; $i<count($data['aaData']); $i++) {
+		$dataLength = count($data['aaData']);
+		for ($i = 0; $i < $dataLength; $i++) {
 			array_unshift($data['aaData'][$i], 'pos#');
 		}
 		//pr($data);
@@ -129,20 +129,20 @@ class PlayerMapsController extends AppController {
 			$this->set('playerMaps', $data);
 		}
 
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns and array of top player maps for the selected action.
-	 *
-	 * @param null $playerID
-	 * @param string $action Accepted values are 'kills | deaths | teamkills | teamdeaths | suicides'. Default is 'kills'
-	 * @param int $mapCount number of weapons to be returned. Default is 5
-	 * @return array
-	 */
+/**
+ * Returns and array of top player maps for the selected action.
+ *
+ * @param null $playerID
+ * @param string $action Accepted values are 'kills | deaths | teamkills | teamdeaths | suicides'. Default is 'kills'
+ * @param int $mapCount number of weapons to be returned. Default is 5
+ * @return array
+ */
 	public function getPlayerTopMaps($playerID = null, $action = 'kills', $mapCount = 5) {
-
 		$playerData = $this->PlayerStat->find('first', array(
 				'conditions' => array (
 					'PlayerStat.id' => $playerID
@@ -162,13 +162,13 @@ class PlayerMapsController extends AppController {
 
 		$playerTopMaps = array();
 		foreach ($topMaps as $map) {
-			if($map['PlayerMap'][$action] > 0) {
+			if ($map['PlayerMap'][$action] > 0) {
 				$playerTopMaps[$map['MapStat']['name']] = $map['PlayerMap'][$action];
 			}
 		}
 
 		$other = $playerTotalAction - array_sum($playerTopMaps);
-		if($other > 0) {
+		if ($other > 0) {
 			$playerTopMaps['Other'] = $playerTotalAction - array_sum($playerTopMaps);
 		}
 

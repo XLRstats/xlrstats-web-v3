@@ -16,23 +16,22 @@
 
 class PlayerActivitiesController extends AppController {
 
-	/**
-	 * Sets models we are using
-	 *
-	 * @var array
-	 */
+/**
+ * Sets models we are using
+ *
+ * @var array
+ */
 	public $uses = array('PlayerStat', 'PlayerActivity');
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns player activity
-	 *
-	 * @param null $playerID player ID
-	 * @return mixed
-	 */
+/**
+ * Returns player activity
+ *
+ * @param null $playerID player ID
+ * @return mixed
+ */
 	public function view($playerID = null) {
-
 		$player = $this->PlayerStat->find('first', array (
 				'conditions' => array(
 					'PlayerStat.id' => $playerID,
@@ -62,5 +61,7 @@ class PlayerActivitiesController extends AppController {
 			$this->set('activity', $activity);
 		}
 
+		return null;
 	}
+
 }

@@ -15,22 +15,22 @@
 
 class MonthlyStatsController extends AppController {
 
-	/**
-	 * Models used
-	 *
-	 * @var array
-	 */
+/**
+ * Models used
+ *
+ * @var array
+ */
 	public $uses = array('PlayerStat', 'MonthlyStat');
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns player's monthly stats
-	 *
-	 * @param null $playerID
-	 */
+/**
+ * Returns player's monthly stats
+ *
+ * @param null $playerID
+ * @return null
+ */
 	public function view($playerID = null) {
-
 		$player = $this->PlayerStat->find('first', array(
 				'conditions' => array(
 					'PlayerStat.id' => $playerID,
@@ -52,9 +52,9 @@ class MonthlyStatsController extends AppController {
 		} else {
 			$this->set('monthlyStats', $monthlyStats);
 		}
-
 		$this->layout = 'ajax';
 
+		return null;
 	}
 
 }

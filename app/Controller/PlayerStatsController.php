@@ -17,25 +17,25 @@
 
 class PlayerStatsController extends AppController {
 
-	/**
-	 * Used Models (so the dataSource gets set for all these models when switching databases)
-	 *
-	 * @var array
-	 */
+/**
+ * Used Models (so the dataSource gets set for all these models when switching databases)
+ *
+ * @var array
+ */
 	public $uses = array('PlayerStat', 'Player', 'Penalty', 'UserSoldier');
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array('Html', 'Time', 'Gravatar.Gravatar');
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler',
 		'GeoIP',
@@ -44,9 +44,9 @@ class PlayerStatsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Not used
-	 */
+/**
+ * Not used
+ */
 	public function index() {
 		$this->Session->setFlash(__('That was not a valid request...'), null, null, 'error');
 		$this->redirect(array('plugin' => null, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'home'));
@@ -54,17 +54,14 @@ class PlayerStatsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Player's stats page
-	 *
-	 * @param integer $id Player id
-	 * @return array
-	 */
+/**
+ * Player's stats page
+ *
+ * @param integer $id Player id
+ * @return array
+ */
 	public function view($id = null) {
-
-		/**
-		 * Prevent faulty routing when switching servers
-		 */
+		// Prevent faulty routing when switching servers
 		if (!isset($id)) {
 			$this->Session->setFlash(__('That was not a valid request...'), null, null, 'error');
 			$this->redirect(array('plugin' => null, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'home'));
@@ -73,9 +70,7 @@ class PlayerStatsController extends AppController {
 		$this->PlayerStat->id = $id;
 		$data = $this->PlayerStat->read();
 
-		/**
-		 * make sure we don't have an empty array - meaning no actual player
-		 */
+		// make sure we don't have an empty array - meaning no actual player
 		if (empty($data)) {
 			if ($this->request->is('requested')) {
 				return array($data);
@@ -85,23 +80,19 @@ class PlayerStatsController extends AppController {
 			}
 		}
 
-		/**
-		 * Add required values to array
-		 */
+		// Add required values to array
 		$data['PlayerStat']['rank'] = $this->XlrFunctions->getRank($data['PlayerStat']['kills']);
 		$data['PlayerStat']['league'] = $this->XlrFunctions->getLeague($data['PlayerStat']['skill']);
 		$data['Player']['flag'] = $this->XlrFunctions->getFlag($data['Player']['ip']);
 		$data['Player']['level'] = $this->XlrFunctions->getLevel($data['Player']['group_bits']);
 		if ($data['PlayerStat']['deaths'] != 0) {
 			$data['PlayerStat']['ratio'] = $data['PlayerStat']['kills'] / $data['PlayerStat']['deaths'];
-		}
-		else {
+		} else {
 			$data['PlayerStat']['ratio'] = 0;
 		}
 
-
 		$_n = $this->XlrFunctions->getRankProgress($data['PlayerStat']['kills']);
-		if($_n != null) {
+		if ($_n != null) {
 			$_progress = $_n;
 		} else {
 			$_progress = 'TopRank'; //Player achieved the highest rank
@@ -117,9 +108,7 @@ class PlayerStatsController extends AppController {
 			$data['PlayerStat']['league'] = false;
 		}
 
-		/**
-		 * Calculate K/D ratio $gaugeValue as we're using an unbalanced scale (1 is always in the middle)
-		 */
+		// Calculate K/D ratio $gaugeValue as we're using an unbalanced scale (1 is always in the middle)
 		$ratio = $data['PlayerStat']['ratio'];
 		$gaugeMax =	round($ratio) + 2; //Dynamic max value
 		$this->set('gaugeMax', $gaugeMax);
@@ -134,29 +123,26 @@ class PlayerStatsController extends AppController {
 
 		//pr($data);
 
-
-
-		/**
-		 * If the data is internally requested from another part of the website (ie. an element) don't store it for
-		 * the view, but just return the $data array
-		 */
 		if ($this->request->is('requested')) {
 			return array($data);
-		}
-		/**
-		 * Else, if it is not requested internally, store the data as an array in the variable to use in the view
-		 */
-		else {
+		} else {
 			$this->set('playerStats', $data);
 			$this->set('isBookMarked', $this->checkBookmark($id));
 		}
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	public function checkBookmark ($playerID) {
-		/* Return false if not logged in */
-		if (empty($this->user['User']['id'])) return false;
+/**
+ * @param $playerID
+ * @return bool
+ */
+	public function checkBookmark($playerID) {
+		// Return false if not logged in
+		if (empty($this->user['User']['id'])) {
+			return false;
+		}
 
 		$this->UserSoldier->unbindModel(array(
 			'belongsTo' => array('User', 'Server', 'Playerstat')));
@@ -173,39 +159,33 @@ class PlayerStatsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Gets player's league ranking
-	 *
-	 * @param $league Player's league id
-	 * @param $playerID Player ID
-	 * @return mixed
-	 */
-	public function getPlayerLeagueRanking ($league, $playerID) {
+/**
+ * Gets player's league ranking
+ *
+ * @param $league Player's league id
+ * @param $playerID Player ID
+ * @return mixed
+ */
+	public function getPlayerLeagueRanking($league, $playerID) {
 		$leagueValue = Configure::read('league.' . $league);
 		$minimumConnections = Configure::read('options.min_connections');
 		$minimumKills = Configure::read('options.min_kills');
-		/*
-		 * Build up the array of conditions we need to select on
-		 */
+
 		$conditions = array(
-			'PlayerStat.skill BETWEEN ? AND ?' => array($leagueValue[1],$leagueValue[2]),
+			'PlayerStat.skill BETWEEN ? AND ?' => array($leagueValue[1], $leagueValue[2]),
 			'PlayerStat.hide' => 0,
 			'PlayerStat.kills >' => $minimumKills,
 			'Player.connections >' => $minimumConnections,
 			'PlayerStat.client_id = Player.id',
 		);
 
-		/**
-		 * Hide players that have not played in # days (disable with 0 or empty setting)
-		 */
+		// Hide players that have not played in # days (disable with 0 or empty setting)
 		$maxDays = Configure::read('options.max_days');
 		if ($maxDays != '' && $maxDays != 0) {
-			$conditions['('. gmdate('U') .' - Player.time_edit) <'] = $maxDays*60*60*24;
+			$conditions['(' . gmdate('U') . ' - Player.time_edit) <'] = $maxDays * 60 * 60 * 24;
 		}
 
-		/**
-		 * Hide banned players
-		 */
+		// Hide banned players
 		$hideBanned = (bool)Configure::read('options.hide_banned');
 
 		if ($hideBanned) {
@@ -243,16 +223,10 @@ class PlayerStatsController extends AppController {
 			$conditions[] = $subQueryExpression;
 		}
 
-
-		/**
-		 * Create a var to hold player ranking
-		 */
+		// Create a var to hold player ranking
 		$this->PlayerStat->query('SET @place = 0');
 
-		/**
-		 * Building sub query to be nested in main query
-		 * This will just create the query, not execute it.
-		 */
+		// Building sub query to be nested in main query. This will just create the query, not execute it.
 		$db = $this->PlayerStat->getDataSource();
 		$subQuery = $db->buildStatement(
 			array(
@@ -262,8 +236,8 @@ class PlayerStatsController extends AppController {
 					'PlayerStat.client_id',
 					'Player.name'
 					),
-				'table'      => $db->fullTableName($this->PlayerStat),
-				'joins'      => array(',' . $db->fullTableName($this->Player) . ' AS Player'), // Not sure if this is the proper way
+				'table' => $db->fullTableName($this->PlayerStat),
+				'joins' => array(',' . $db->fullTableName($this->Player) . ' AS Player'), // Not sure if this is the proper way
 				'alias' => 'PlayerStat',
 				'conditions' => $conditions,
 				'order' => array('PlayerStat.skill' => 'desc'),
@@ -271,10 +245,8 @@ class PlayerStatsController extends AppController {
 			$this->PlayerStat
 		);
 
-		/**
-		 * Run final nested query to get player's league ranking
-		 */
-		$playerLeagueRanking = $this->PlayerStat->query('SELECT * FROM ('.$subQuery.') derivated_table WHERE id = ' . $playerID);
+		// Run final nested query to get player's league ranking
+		$playerLeagueRanking = $this->PlayerStat->query('SELECT * FROM (' . $subQuery . ') derivated_table WHERE id = ' . $playerID);
 
 		return $playerLeagueRanking;
 		//pr($playerLeagueRanking);
@@ -282,9 +254,9 @@ class PlayerStatsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Player search by name
-	 */
+/**
+ * Player search by name
+ */
 	public function search() {
 		if (isset($this->data['PlayerStat']['q'])) {
 			$searchData = $this->data['PlayerStat']['q'];

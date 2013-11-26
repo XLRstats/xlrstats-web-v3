@@ -15,14 +15,13 @@
 
 class PlayerHitZonesController extends AppController {
 
-	/**
-	 * Returns player's hit zones for both hitting and being hit
-	 *
-	 * @param null $playerID
-	 * @return mixed
-	 */
+/**
+ * Returns player's hit zones for both hitting and being hit
+ *
+ * @param null $playerID
+ * @return mixed
+ */
 	public function view($playerID = null) {
-
 		$hitZones = $this->PlayerHitZone->find('all', array(
 			'conditions' => array(
 				'PlayerHitZone.player_id' => $playerID
@@ -30,13 +29,13 @@ class PlayerHitZonesController extends AppController {
 			'order' => 'PlayerHitZone.kills desc'
 		));
 
-		foreach($hitZones as $hitZone) {
+		foreach ($hitZones as $hitZone) {
 			$kills[] = $hitZone['PlayerHitZone']['kills'];
 		}
 		$totalKills = array_sum($kills);
 
 		$n = count($hitZones);
-		for($i = 0; $i<$n; $i++) {
+		for ($i = 0; $i < $n; $i++) {
 			$percentage = $hitZones[$i]['PlayerHitZone']['kills'] / $totalKills;
 			$hitZones[$i]['PlayerHitZone']['percentage'] = $percentage;
 		}
@@ -49,5 +48,6 @@ class PlayerHitZonesController extends AppController {
 
 		$this->layout = 'ajax';
 
+		return null;
 	}
 }
