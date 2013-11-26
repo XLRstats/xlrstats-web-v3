@@ -68,7 +68,7 @@ $(document).ready(function() {
         '#google_analytics_account, #max_days, #theme, #license, #ban_dispute_link, #min_kills, #table_playerstats, ' +
         '#table_opponents, #table_bodyparts, #table_playerbody, #table_mapstats, #table_playermaps, #table_weaponstats, ' +
         '#table_weaponusage, #table_actionstats, #table_playeractions, #table_history_monthly, #table_history_weekly, ' +
-        '#table_ctime, #table_current_svars, #table_current_clients').editable();
+        '#table_ctime, #table_current_svars, #table_current_clients, #text-field').editable();
 
         // Select Fields
     $(	'#hide_banned, #must_accept_cookies, #showMIA, #show_donate_button, #show_banlist, #show_bans_only, #ban_disputable, ' +
