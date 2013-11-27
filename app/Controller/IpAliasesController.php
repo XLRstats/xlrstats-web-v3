@@ -70,27 +70,27 @@ class IpAliasesController extends AppController {
  * Sample data returned:
  * Array
  * (
- * 		[sEcho] => 1
- * 		[iTotalRecords] => 2613
- * 		[iTotalDisplayRecords] => 89
- * 		[aaData] => Array
- * 			(
- * 				[0] => Array
- * 					(
- * 						[0] => Array
- * 							(
- * 								[0] => Array
- * 									(
- * 										[0] => gb
- * 										[1] => United Kingdom
- * 									)
- * 								[1] => 94.13.38.240
- * 							)
- * 						[1] => 1
- * 						[2] => 1319984292
- * 						[3] => 1319984292
- * 					)
- * 			)
+ *      [sEcho] => 1
+ *      [iTotalRecords] => 2613
+ *      [iTotalDisplayRecords] => 89
+ *      [aaData] => Array
+ *          (
+ *              [0] => Array
+ *                  (
+ *                      [0] => Array
+ *                          (
+ *                              [0] => Array
+ *                                  (
+ *                                      [0] => gb               //country code
+ *                                      [1] => United Kingdom   //country
+ *                                  )
+ *                              [1] => 94.13.38.240             //ip
+ *                          )
+ *                      [1] => 1                                //times used
+ *                      [2] => 1319984292                       //time add
+ *                      [3] => 1319984292                       //time edit
+ *                  )
+ *          )
  * )
  *
  * @param null $playerID player id

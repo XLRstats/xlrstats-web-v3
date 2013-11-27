@@ -66,21 +66,21 @@ class AliasesController extends AppController {
  *
  * Sample data returned:
  * Array
- * 	(
- * 		[sEcho] => 1
- * 		[iTotalRecords] => 862
- * 		[iTotalDisplayRecords] => 4
- * 		[aaData] => Array
- * 			(
- * 				[0] => Array
- * 					(
- * 						[0] => Freelander[*]	//alias
- * 						[1] => 1				//# of times uses
- * 						[2] => 1173819374		//first used
- * 						[3] => 1182456815		//last used
- * 					)
- * 	)		)
- *
+ *  (
+ *      [sEcho] => 1
+ *      [iTotalRecords] => 862
+ *      [iTotalDisplayRecords] => 4
+ *      [aaData] => Array
+ *           (
+ *              [0] => Array
+ *                  (
+ *                      [0] => Freelander[*]    //alias
+ *                      [1] => 1                //# of times uses
+ *                      [2] => 1173819374       //first used
+ *                      [3] => 1182456815       //last used
+ *                   )
+ *            )
+ *  )
  *
  * @param null $playerID player id
  * @return mixed

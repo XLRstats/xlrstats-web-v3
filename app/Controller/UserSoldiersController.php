@@ -18,35 +18,35 @@
  */
 class UserSoldiersController extends AppController {
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler'
 	);
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * index method
-	 *
-	 * @return void
-	 */
+/**
+ * index method
+ *
+ * @return void
+ */
 	public function index() {
 		$this->redirect(array('plugin' => null, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'home'));
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * view method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function view($id = null) {
 		$this->UserSoldier->id = $id;
 		if (!$this->UserSoldier->exists()) {
@@ -57,13 +57,13 @@ class UserSoldiersController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * listing method
-	 *
-	 * @param null $id
-	 * @return array
-	 * @throws NotFoundException
-	 */
+/**
+ * listing method
+ *
+ * @param null $id
+ * @return array
+ * @throws NotFoundException
+ */
 	public function listing($id = null) {
 		$data = $this->UserSoldier->listUserSoldiers($id);
 
@@ -72,15 +72,16 @@ class UserSoldiersController extends AppController {
 		} else {
 			$this->set('userSoldiers', $data);
 		}
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * add method
-	 *
-	 * @return void
-	 */
+/**
+ * add method
+ *
+ * @return void
+ */
 	public function add() {
 		//debug($this->user['User']['id']);
 		if ($this->request->is('post')) {
@@ -108,13 +109,13 @@ class UserSoldiersController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * edit method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function edit($id = null) {
 		$this->UserSoldier->id = $id;
 		if (!$this->UserSoldier->exists()) {
@@ -134,14 +135,14 @@ class UserSoldiersController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * delete method
-	 *
-	 * @throws MethodNotAllowedException
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * delete method
+ *
+ * @throws MethodNotAllowedException
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
@@ -165,4 +166,5 @@ class UserSoldiersController extends AppController {
 			'controller' => 'users',
 			'action' => 'edit'));
 	}
+
 }

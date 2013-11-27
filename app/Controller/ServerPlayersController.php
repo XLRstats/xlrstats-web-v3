@@ -17,22 +17,22 @@ App::uses('Xml', 'Utility');
 
 class ServerPlayersController extends AppController {
 
-	/**
-	 * Used Models
-	 *
-	 * @var array
-	 */
+/**
+ * Used Models
+ *
+ * @var array
+ */
 	public $uses = array(
 		'ServerPlayer',
 		'PlayerStat',
 		'Player'
 	);
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler',
 		'Session',
@@ -40,29 +40,28 @@ class ServerPlayersController extends AppController {
 		'GeoIPCity'
 	);
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array(
 		'Number'
 	);
 
-	/**
-	 * Creates lists with Clients per team
-	 *
-	 * @return array
-	 * @throws NotFoundException
-	 */
-	public function index () {
+	//-------------------------------------------------------------------
 
+/**
+ * Creates lists with Clients per team
+ *
+ * @return array
+ * @throws NotFoundException
+ */
+	public function index() {
 		$serverID = Configure::read('server_id');
 		$this->serverID = $serverID;
 
-		/**
-		 * Check if we need to parse a database table or an xml file
-		 */
+		// Check if we need to parse a database table or an xml file
 		$_status = Configure::read('servers.' . $this->serverID . '.statusurl');
 		if ($_status == null || $_status == 'none') {
 			$result = $this->parseTable();
@@ -72,9 +71,7 @@ class ServerPlayersController extends AppController {
 			throw new NotFoundException('ServerInfo type definition in Configuration not valid.');
 		}
 
-		/**
-		 * Create an array with Google Maps positions for the worldmap and create an array of playernames for requested results
-		 */
+		// Create an array with Google Maps positions for the worldmap and create an array of playernames for requested results
 		$positions = array();
 		$playerNames = array();
 		foreach ($result as $teams => $players) {
@@ -88,12 +85,10 @@ class ServerPlayersController extends AppController {
 			}
 		}
 
-		/**
-		 * If a player is known to xlrstats -> add a few playerstats values to the array
-		 */
+		// If a player is known to xlrstats -> add a few playerstats values to the array
 		foreach ($result as $teams => $players) {
 			foreach ($players as $k => $player) {
-				/* add flag of the player */
+				// add flag of the player
 				$result[$teams][$k]['ServerPlayer']['flag'] = $this->XlrFunctions->getFlag($player['ServerPlayer']['IP']);
 				//$result[$teams][$k]['ServerPlayer']['level'] = $this->XlrFunctions->getLevel($player['ServerPlayer']['Level']);
 				$playerById = $this->PlayerStat->findByClientId($player['ServerPlayer']['DBID']);
@@ -120,13 +115,16 @@ class ServerPlayersController extends AppController {
 			//pr($serverLocation);
 			$this->set('serverLocation', $serverLocation);
 		}
+		return null;
 	}
 
-	/**
-	 * Parse Online Client info from table
-	 *
-	 * @return array
-	 */
+	//-------------------------------------------------------------------
+
+/**
+ * Parse Online Client info from table
+ *
+ * @return array
+ */
 	public function parseTable() {
 		try {
 			if (isset($this->ServerPlayer) && !empty($this->ServerPlayer->table)) {
@@ -151,15 +149,17 @@ class ServerPlayersController extends AppController {
 		} catch (Exception $e) {
 			return array();
 		}
+		return null;
 	}
 
-	/**
-	 * Parse serverInfo from status.xml file
-	 *
-	 * @return array
-	 */
-	function parseXML() {
+	//-------------------------------------------------------------------
 
+/**
+ * Parse serverInfo from status.xml file
+ *
+ * @return array
+ */
+	public function parseXML() {
 		if ((Configure::read('servers.' . $this->serverID . '.statusurl') != null)) {
 			$serverDetails = Configure::read('servers.' . $this->serverID . '.statusurl');
 			$this->statusURL = $serverDetails;
@@ -169,22 +169,16 @@ class ServerPlayersController extends AppController {
 		try {
 			$parsedXML = Xml::build($this->statusURL);
 
-			/**
-			 * xml to array conversion
-			 */
+			// xml to array conversion
 			$this->xmlItem = Xml::toArray($parsedXML);
 			//pr($this->xmlItem);
 
-			/**
-			 * Make a shortcut and return an empty array, the xml file appears to be empty
-			 */
+			// Make a shortcut and return an empty array, the xml file appears to be empty
 			if (!isset($this->xmlItem['B3Status']['Clients'])) {
 				return array();
 			}
 
-			/**
-			 * Get the fixed info.
-			 */
+			// Get the fixed info.
 			$serverClients = $this->xmlItem['B3Status']['Clients'];
 			if ($serverClients['@Total'] == 1) {
 				$_s['Client'][0] = $serverClients['Client'];
@@ -195,19 +189,7 @@ class ServerPlayersController extends AppController {
 			}
 			//pr($serverClients);
 
-			/* Collect our available teams */
-/*			$_teams = array();
-			foreach ($serverClients as $list => $client) {
-				if (substr($list, 0, 1) != '@') {
-					foreach ($client as $k => $v) {
-						$_teams[] = $v['@Team'];
-					}
-				}
-			}
-			$_teams = array_unique($_teams);*/
-			//pr($_teams);
-
-			/* Create an array with teams and their clients */
+			// Create an array with teams and their clients
 			$teams = array();
 			$_res = array();
 			foreach ($serverClients as $list => $client) {
@@ -229,7 +211,6 @@ class ServerPlayersController extends AppController {
 		}
 		//pr($teams);
 		return $teams;
-
 	}
 
 }

@@ -21,9 +21,9 @@ App::uses('AppController', 'Controller');
  */
 class PluginreqController extends AppController {
 
-	/**
-	 * Return raw set of values
-	 */
+/**
+ * Return raw set of values
+ */
 	public function index() {
 		$this->layout = null;
 		$minKills = Configure::read('options.min_kills');

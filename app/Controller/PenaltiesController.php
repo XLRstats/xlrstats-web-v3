@@ -222,25 +222,25 @@ class PenaltiesController extends AppController {
  * Sample data returned:
  * Array
  * (
- * 		[sEcho] => 1
- * 		[iTotalRecords] => 3222
- * 		[iTotalDisplayRecords] => 3
- * 		[aaData] => Array
- * 			(
- * 				[0] => Array
- * 					(
- * 						[0] => pos#			//position number
- * 						[1] => Warning		//type
- * 						[2] => ^7do not use commands that you do not have access to, try using !help //reason
- * 						[3] => 				//data
- * 						[4] => 1319997409	//time_add
- * 						[5] => 1320001009	//time_expire
- * 						[6] => nocmd		//keyword
- * 						[7] => 1319997409	//time_edit
- * 						[8] => mikelegend87	//player name
- * 						[9] => 23			//penalty id
- * 					)
- * 			)
+ *      [sEcho] => 1
+ *      [iTotalRecords] => 3222
+ *      [iTotalDisplayRecords] => 3
+ *      [aaData] => Array
+ *          (
+ *              [0] => Array
+ *                  (
+ *                      [0] => pos#         //position number
+ *                      [1] => Warning      //type
+ *                      [2] => ^7do not use commands that you do not have access to, try using !help //reason
+ *                      [3] =>              //data
+ *                      [4] => 1319997409   //time_add
+ *                      [5] => 1320001009   //time_expire
+ *                      [6] => nocmd        //keyword
+ *                      [7] => 1319997409   //time_edit
+ *                      [8] => mikelegend87 //player name
+ *                      [9] => 23           //penalty id
+ *                  )
+ *          )
  * )
  *
  * @param null $playerID player id

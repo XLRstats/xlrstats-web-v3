@@ -89,44 +89,44 @@ class LeaguesController extends AppController {
  *
  * Sample data returned:
  * Array
- *	(
- *		[sEcho] => 1
- *		[iTotalRecords] => 1363
- *		[iTotalDisplayRecords] => 1
- *		[aaData] => Array
- *			(
- *				[0] => Array
- *					(
- * 					[0] => pos#                     //position number
- * 					[1] => Freelander00				//name
- * 					[2] => 1263.27					//skill
- * 					[3] => 1.32035					//ratio
- * 					[4] => 8037						//kills
- * 					[5] => 6087						//deaths
- * 					[6] => 81						//teamkills
- * 					[7] => 16						//winstreak
- * 					[8] => 193						//rounds
- * 					[9] => 68						//suicides
- * 					[10] => 63						//teamdeaths
- * 					[11] => -9						//losestreak
- * 					[12] => 214						//connections
- * 					[13] => 92.44.39.140			//ip
- * 					[14] => 128						//group_bits
- * 					[15] => 13						//player id
- * 					[16] => 19						//rank
- * 					[17] => 2						//skill league
- * 					[18] => Array
- * 						(
- * 							[0] => tr				//country code for flag
- * 							[1] => Turkey			//country
- * 						)
- * 					[19] => Array
- * 						(
- * 							[level] => 100			//level
- * 							[name] => Super Admin	//level name
- * 						)
- *			)
- *	)
+ *  (
+ *      [sEcho] => 1
+ *      [iTotalRecords] => 1363
+ *      [iTotalDisplayRecords] => 1
+ *      [aaData] => Array
+ *          (
+ *              [0] => Array
+ *                  (
+ *                      [0] => pos#                     //position number
+ *                      [1] => Freelander00             //name
+ *                      [2] => 1263.27                  //skill
+ *                      [3] => 1.32035                  //ratio
+ *                      [4] => 8037                     //kills
+ *                      [5] => 6087                     //deaths
+ *                      [6] => 81                       //teamkills
+ *                      [7] => 16                       //winstreak
+ *                      [8] => 193                      //rounds
+ *                      [9] => 68                       //suicides
+ *                      [10] => 63                      //teamdeaths
+ *                      [11] => -9                      //losestreak
+ *                      [12] => 214                     //connections
+ *                      [13] => 92.44.39.140            //ip
+ *                      [14] => 128                     //group_bits
+ *                      [15] => 13                      //player id
+ *                      [16] => 19                      //rank
+ *                      [17] => 2                       //skill league
+ *                      [18] => Array
+ *                          (
+ *                              [0] => tr               //country code for flag
+ *                              [1] => Turkey           //country
+ *                          )
+ *                      [19] => Array
+ *                          (
+ *                              [level] => 100          //level
+ *                              [name] => Super Admin   //level name
+ *                          )
+ *          )
+ *  )
  *
  * @param int $leagueID
  * @return mixed

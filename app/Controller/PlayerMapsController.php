@@ -74,23 +74,23 @@ class PlayerMapsController extends AppController {
  * Sample data returned:
  * Array
  * (
- * 		[sEcho] => 1
- * 		[iTotalRecords] => 3777
- * 		[iTotalDisplayRecords] => 17
- * 		[aaData] => Array
- * 			(
- * 				[0] => Array
- * 					(
- * 						[0] => pos#		//position number
- *  					[1] => MP_001	//map name
- * 						[2] => 314		//kills
- * 						[3] => 165		//deaths
- * 						[4] => 4		//teamkills
- * 						[5] => 1		//teamdeaths
- * 						[6] => 3		//suicides
- * 						[7] => 19		//map id
- * 					)
- * 			)
+ *      [sEcho] => 1
+ *      [iTotalRecords] => 3777
+ *      [iTotalDisplayRecords] => 17
+ *      [aaData] => Array
+ *          (
+ *              [0] => Array
+ *                  (
+ *                      [0] => pos#     //position number
+ *                      [1] => MP_001   //map name
+ *                      [2] => 314      //kills
+ *                      [3] => 165      //deaths
+ *                      [4] => 4        //teamkills
+ *                      [5] => 1        //teamdeaths
+ *                      [6] => 3        //suicides
+ *                      [7] => 19       //map id
+ *                  )
+ *          )
  * )
  *
  * @param null $playerID player id

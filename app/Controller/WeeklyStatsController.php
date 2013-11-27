@@ -15,22 +15,22 @@
 
 class WeeklyStatsController extends AppController {
 
-	/**
-	 * Sets models we are using
-	 *
-	 * @var array
-	 */
+/**
+ * Sets models we are using
+ *
+ * @var array
+ */
 	public $uses = array('PlayerStat', 'WeeklyStat');
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns player's weekly stats
-	 *
-	 * @param null $playerID
-	 */
+/**
+ * Returns player's weekly stats
+ *
+ * @param null $playerID
+ * @return null
+ */
 	public function view($playerID = null) {
-
 		$player = $this->PlayerStat->find('first', array(
 				'conditions' => array(
 					'PlayerStat.id' => $playerID,
@@ -54,7 +54,7 @@ class WeeklyStatsController extends AppController {
 		}
 
 		$this->layout = 'ajax';
-
+		return null;
 	}
 
 }

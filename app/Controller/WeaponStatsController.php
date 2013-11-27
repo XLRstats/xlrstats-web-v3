@@ -14,32 +14,35 @@
  */
 
 class WeaponStatsController extends AppController {
-	/**
-	 * @var array
-	 */
+
+/**
+ * @var array
+ */
 	public $uses = array('WeaponStat', 'PlayerWeapon');
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler',
 		'DataTable',
 		'Paginator',
 	);
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array('Html', 'Form', 'Js');
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Displays a list of weapons
-	 */
+/**
+ * Displays a list of weapons
+ */
 	public function index() {
 		$topKillWeapons = $this->getTopWeapons('kills', 5);
 		$this->set('topKillWeapons', $topKillWeapons);
@@ -51,42 +54,41 @@ class WeaponStatsController extends AppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Queries all weapon stats and pass data to view file app/View/WeaponStats/json/weapons_json.ctp
-	 * to be processed by dataTables.
-	 *
-	 * Sample data returned:
-	 * Array
-	 * (
-	 *      [sEcho] => 1
-	 *      [iTotalRecords] => 93
-	 *      [iTotalDisplayRecords] => 93
-	 *      [aaData] => Array
-	 *          (
-	 *              [0] => Array
-	 *                  (
-	 *                      [0] => pos#     //position
-	 *                      [1] => M16A4    //weapon name
-	 *                      [2] => 3314     //kills
-	 *                      [3] => 90       //team kills
-	 *                      [4] => 12       //suicides
-	 *                      [5] => 1        //weapon id
-	 *                  )
-	 *              [1] => Array
-	 *                  (
-	 *                      [0] => pos#
-	 *                      [1] => Weapons/AK74M/AK74
-	 *                      [2] => 1519
-	 *                      [3] => 55
-	 *                      [4] => 29
-	 *                      [0] => 2
-	 *                  )
-	 *             )
-	 * )
-	 * @return mixed
-	 */
-	public function weaponStatsJson () {
-
+/**
+ * Queries all weapon stats and pass data to view file app/View/WeaponStats/json/weapons_json.ctp
+ * to be processed by dataTables.
+ *
+ * Sample data returned:
+ * Array
+ * (
+ *      [sEcho] => 1
+ *      [iTotalRecords] => 93
+ *      [iTotalDisplayRecords] => 93
+ *      [aaData] => Array
+ *          (
+ *              [0] => Array
+ *                  (
+ *                      [0] => pos#     //position
+ *                      [1] => M16A4    //weapon name
+ *                      [2] => 3314     //kills
+ *                      [3] => 90       //team kills
+ *                      [4] => 12       //suicides
+ *                      [5] => 1        //weapon id
+ *                  )
+ *              [1] => Array
+ *                  (
+ *                      [0] => pos#
+ *                      [1] => Weapons/AK74M/AK74
+ *                      [2] => 1519
+ *                      [3] => 55
+ *                      [4] => 29
+ *                      [0] => 2
+ *                  )
+ *             )
+ * )
+ * @return mixed
+ */
+	public function weaponStatsJson() {
 		$this->paginate = array(
 			'fields' => array (
 				'WeaponStat.name',
@@ -100,7 +102,8 @@ class WeaponStatsController extends AppController {
 		$data = $this->DataTable->getResponse('WeaponStat');
 
 		//Add a dummy value to the beginning of each weapon data array. We will modify it in view file as position numbers.
-		for($i=0; $i<count($data['aaData']); $i++) {
+		$dataLength = count($data['aaData']);
+		for ($i = 0; $i < $dataLength; $i++) {
 			array_unshift($data['aaData'][$i], 'pos#');
 		}
 
@@ -109,19 +112,19 @@ class WeaponStatsController extends AppController {
 		} else {
 			$this->set('weaponStats', $data);
 		}
-		//pr($data);
+
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Displays statistics of a specific weapon
-	 * @param null $weaponID
-	 * @internal param null $id
-	 * @return void
-	 */
-	public function view ($weaponID = null) {
-
+/**
+ * Displays statistics of a specific weapon
+ *
+ * @param null $weaponID
+ * @return array
+ */
+	public function view($weaponID = null) {
 		$this->WeaponStat->id = $weaponID;
 		$weaponData = $this->WeaponStat->read();
 
@@ -141,36 +144,32 @@ class WeaponStatsController extends AppController {
 
 		if ($this->request->is('requested')) {
 			return array($weaponData);
-		}
-		else {
+		} else {
 			$this->set('weaponData', $weaponData);
 			$this->set('playerData', $playerData);
 		}
-		//pr($weaponData);
-		//pr($playerData);
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns and array of top weapons for the selected action.
-	 *
-	 * @param string $action Accepted values are 'kills | teamkills | suicides'. Default is 'kills'
-	 * @param int $weaponCount number of weapons to be returned. Default is 5
-	 * @return array
-	 */
+/**
+ * Returns and array of top weapons for the selected action.
+ *
+ * @param string $action Accepted values are 'kills | teamkills | suicides'. Default is 'kills'
+ * @param int $weaponCount number of weapons to be returned. Default is 5
+ * @return array
+ */
 	public function getTopWeapons($action = 'kills', $weaponCount = 5) {
-
 		$topWeapons = $this->WeaponStat->find('all', array(
 				'limit' => $weaponCount,
 				'order' => 'WeaponStat.' . $action . ' desc'
 			)
 		);
 
-		//pr($topWeapons);
 		$_topWeapons = array();
 		foreach ($topWeapons as $weapon) {
-			if($weapon['WeaponStat'][$action] > 0) {
+			if ($weapon['WeaponStat'][$action] > 0) {
 				$_topWeapons[$weapon['WeaponStat']['name']] = $weapon['WeaponStat'][$action];
 			}
 		}
@@ -181,14 +180,11 @@ class WeaponStatsController extends AppController {
 			)
 		));
 		$other = $totalActions[0][0]['totals'] - array_sum($_topWeapons);
-		if($other > 0) {
+		if ($other > 0) {
 			$_topWeapons['Other'] = $other;
 		}
 
-		//pr($totalActions);
-		//pr($_topWeapons);
 		return $_topWeapons;
 	}
-	
-	
+
 }
