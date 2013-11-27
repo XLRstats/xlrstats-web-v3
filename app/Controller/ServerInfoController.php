@@ -137,7 +137,7 @@ class ServerInfoController extends AppController {
 		$curMap = $this->MapStat->findByName($result['Map']);
 		$result['current_map_id'] = array_key_exists('MapStat', $curMap) ? $curMap['MapStat']['id'] : '';
 		$favMap = $this->MapStat->find('first', array('order' => 'rounds DESC'));
-		$result['favorite_map'] = $favMap['MapStat']['name'];
+		$result['favorite_map'] = array_key_exists('MapStat', $favMap) ? $favMap['MapStat']['name'] : 'n.a.';
 		$result['favorite_map_id'] = array_key_exists('MapStat', $favMap) ? $favMap['MapStat']['id'] : '';
 
 		//pr($result);
