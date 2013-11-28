@@ -32,29 +32,29 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
 
-	/**
-	 * @var bool set to true in model if you want to use the b3Database to retrieve statistics data.
-	 * Defaults to false to avoid conflicts with external plugins that depend on the default connection to be app-related.
-	 */
+/**
+ * @var bool set to true in model if you want to use the b3Database to retrieve statistics data.
+ * Defaults to false to avoid conflicts with external plugins that depend on the default connection to be app-related.
+ */
 	public $b3Database = false;
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Dynamically creates a B3 DataSource object at runtime based on server selection.
-	 * Sets DataSource as 'default' if $this->b3Database is set to false.
-	 *
-	 * @param bool $id
-	 * @param null $table
-	 * @param null $ds
-	 */
-	function __construct($id = false, $table = null, $ds = null) {
+/**
+ * Dynamically creates a B3 DataSource object at runtime based on server selection.
+ * Sets DataSource as 'default' if $this->b3Database is set to false.
+ *
+ * @param bool $id
+ * @param null $table
+ * @param null $ds
+ */
+	public function __construct($id = false, $table = null, $ds = null) {
 		if ($this->b3Database) {
 			$serverId = Configure::read('server_id');
-			$host = Configure::read('servers.'.$serverId.'.dbhost');
-			$login = Configure::read('servers.'.$serverId.'.dbuser');
-			$password = Configure::read('servers.'.$serverId.'.dbpass');
-			$database = Configure::read('servers.'.$serverId.'.dbname');
+			$host = Configure::read('servers.' . $serverId . '.dbhost');
+			$login = Configure::read('servers.' . $serverId . '.dbuser');
+			$password = Configure::read('servers.' . $serverId . '.dbpass');
+			$database = Configure::read('servers.' . $serverId . '.dbname');
 
 			$config = array (
 				'datasource' => 'Database/Mysql',

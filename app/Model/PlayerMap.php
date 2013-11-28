@@ -15,32 +15,32 @@
 
 class PlayerMap extends AppModel {
 
-	/**
-	 * Can connect to b3Database?
-	 *
-	 * @var bool
-	 */
+/**
+ * Can connect to b3Database?
+ *
+ * @var bool
+ */
 	public $b3Database = true;
 
-	/**
-	 * Name
-	 *
-	 * @var string
-	 */
+/**
+ * Name
+ *
+ * @var string
+ */
 	public $name = 'PlayerMap';
 
-	/**
-	 * Database table name
-	 *
-	 * @var string
-	 */
+/**
+ * Database table name
+ *
+ * @var string
+ */
 	public $useTable = 'xlr_playermaps';
 
-	/**
-	 * Database associations
-	 *
-	 * @var array
-	 */
+/**
+ * Database associations
+ *
+ * @var array
+ */
 	public $belongsTo = array(
 		'MapStat'	=> array(
 			'className'		=>	'MapStat',
@@ -52,11 +52,14 @@ class PlayerMap extends AppModel {
 		)
 	);
 
-	/**
-	 *
-	 */
-	function __construct() {
+	//-------------------------------------------------------------------
+
+/**
+ * Overrides __construct method to be able to use custom tables names
+ */
+	public function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_playermaps'));
 	}
+
 }

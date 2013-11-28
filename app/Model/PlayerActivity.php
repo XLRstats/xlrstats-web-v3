@@ -15,31 +15,33 @@
 
 class PlayerActivity extends AppModel {
 
-	/**
-	 * Can connect to xlrstats database?
-	 *
-	 * @var bool
-	 */
+/**
+ * Can connect to xlrstats database?
+ *
+ * @var bool
+ */
 	public $b3Database = true;
 
-	/**
-	 * Name
-	 *
-	 * @var string
-	 */
+/**
+ * Name
+ *
+ * @var string
+ */
 	public $name = 'PlayerActivity';
 
-	/**
-	 * Database table name
-	 *
-	 * @var string
-	 */
+/**
+ * Database table name
+ *
+ * @var string
+ */
 	public $useTable = 'ctime';
 
-	/**
-	 *
-	 */
-	function __construct() {
+	//-------------------------------------------------------------------
+
+/**
+ * Overrides __construct method to be able to use custom tables names
+ */
+	public function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_ctime'));
 	}

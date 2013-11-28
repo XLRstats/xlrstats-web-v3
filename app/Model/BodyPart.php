@@ -8,37 +8,40 @@
  *
  * @link          http://www.xlrstats.com
  * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
- * @package       app.
+ * @package       app.Model
  * @since         XLRstats v3.0
  * @version       0.1
  */
 
 class BodyPart extends AppModel {
-	/**
-	 * Can connect to b3Database
-	 *
-	 * @var bool
-	 */
+
+/**
+ * Can connect to b3Database
+ *
+ * @var bool
+ */
 	public $b3Database = true;
 
-	/**
-	 * Name
-	 *
-	 * @var string
-	 */
+/**
+ * Name
+ *
+ * @var string
+ */
 	public $name = 'BodyPart';
 
-	/**
-	 * Database table name
-	 *
-	 * @var string
-	 */
+/**
+ * Database table name
+ *
+ * @var string
+ */
 	public $useTable = 'xlr_bodyparts';
 
-	/**
-	 *
-	 */
-	function __construct() {
+	//-------------------------------------------------------------------
+
+/**
+ * Overrides __construct method to be able to use custom tables names
+ */
+	public function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_bodyparts'));
 	}

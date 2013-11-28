@@ -13,14 +13,20 @@
  * @version       0.1
  */
 
-class ServerInfo extends AppModel{
-	/**
-	 * @var bool
-	 */
+class ServerInfo extends AppModel {
+
+/**
+ * Can connect to b3Database?
+ *
+ * @var bool
+ */
 	public $b3Database = true;
-	/**
-	 * @var string
-	 */
-	public $useTable = 'current_svars';			// Use a different table name
+
+/**
+ * Database table name
+ *
+ * @var string
+ */
+	public $useTable = 'current_svars';
 
 }

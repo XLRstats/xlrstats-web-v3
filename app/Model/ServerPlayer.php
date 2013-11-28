@@ -13,13 +13,20 @@
  * @version       0.1
  */
 
-class ServerPlayer extends AppModel{
-	/**
-	 * @var bool
-	 */
+class ServerPlayer extends AppModel {
+
+/**
+ * Can connect to b3Database?
+ *
+ * @var bool
+ */
 	public $b3Database = true;
-	/**
-	 * @var string
-	 */
+
+/**
+ * Database table name
+ *
+ * @var string
+ */
 	public $useTable = 'current_clients'; // TODO: make this configurable
+
 }

@@ -15,32 +15,32 @@
 
 class Penalty extends AppModel {
 
-	/**
-	 * Use the XLRstats database
-	 *
-	 * @var bool
-	 */
+/**
+ * Use the XLRstats database
+ *
+ * @var bool
+ */
 	public $b3Database = true;
 
-	/**
-	 * Model name
-	 *
-	 * @var string
-	 */
+/**
+ * Model name
+ *
+ * @var string
+ */
 	public $name = 'Penalty';
 
-	/**
-	 * Database table name
-	 *
-	 * @var string
-	 */
+/**
+ * Database table name
+ *
+ * @var string
+ */
 	public $useTable = 'penalties';
 
-	/**
-	 * Database assosciations
-	 *
-	 * @var array
-	 */
+/**
+ * Database associations
+ *
+ * @var array
+ */
 	public $belongsTo = array(
 		'Player' => array(
 			'className' => 'Player',

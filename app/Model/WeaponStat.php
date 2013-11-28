@@ -15,32 +15,35 @@
 
 class WeaponStat extends AppModel {
 
-	/**
-	 * Can connect to b3 database?
-	 *
-	 * @var bool
-	 */
+/**
+ * Can connect to b3 database?
+ *
+ * @var bool
+ */
 	public $b3Database = true;
 
-	/**
-	 * Name
-	 *
-	 * @var string
-	 */
+/**
+ * Name
+ *
+ * @var string
+ */
 	public $name = 'WeaponStat';
 
-	/**
-	 * Database table name
-	 *
-	 * @var string
-	 */
-    public $useTable = 'xlr_weaponstats';
+/**
+ * Database table name
+ *
+ * @var string
+ */
+	public $useTable = 'xlr_weaponstats';
 
-	/**
-	 *
-	 */
-	function __construct() {
+	//-------------------------------------------------------------------
+
+/**
+ * Overrides __construct method to be able to use custom tables names
+ */
+	public function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_weaponstats'));
 	}
+
 }

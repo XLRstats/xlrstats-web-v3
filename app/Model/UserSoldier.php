@@ -13,89 +13,68 @@
  * @version       0.1
  */
 
-/**
- * Class UserSoldier
- */
 class UserSoldier extends AppModel {
-	/**
-	 * Do we connect to B3 database?
-	 *
-	 * @var bool
-	 */
+
+/**
+ * Do we connect to B3 database?
+ *
+ * @var bool
+ */
 	public $b3Database = false;
 
-	/**
-	 * Prefix
-	 *
-	 * @var string
-	 */
+/**
+ * Prefix
+ *
+ * @var string
+ */
 	public $tablePrefix = '';
 
-	/**
-	 * Validation rules
-	 *
-	 * @var array
-	 */
+/**
+ * Validation rules
+ *
+ * @var array
+ */
 	public $validate = array(
 		'server_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'playerstats_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 	);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-	/**
-	 * belongsTo associations
-	 *
-	 * @var array
-	 */
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
 	public $belongsTo = array(
 		'User' => array(
 			'className' => 'Dashboard.User',
 			'foreignKey' => 'user_id',
-			//'conditions' => '',
-			//'fields' => '',
-			//'order' => ''
 		),
 		'Server' => array(
 			'className' => 'Dashboard.Server',
 			'foreignKey' => 'server_id',
-			//'conditions' => '',
-			//'fields' => '',
-			//'order' => ''
 		),
 		'PlayerStat' => array(
 			'className' => 'PlayerStat',
 			'foreignKey' => 'playerstats_id',
-			//'conditions' => '',
-			//'fields' => '',
-			//'order' => '',
 		)
 	);
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * @param null $id
-	 * @return array
-	 */
+/**
+ * Returns a list of user soldiers
+ *
+ * @param null $id
+ * @return array
+ */
 	public function listUserSoldiers($id = null) {
 		$this->unbindModel(array(
 			'belongsTo' => array(

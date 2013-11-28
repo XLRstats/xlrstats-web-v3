@@ -14,32 +14,36 @@
  */
 
 class MonthlyStat extends AppModel {
-	/**
-	 * Can connect to b3Database
-	 *
-	 * @var bool
-	 */
+
+/**
+ * Can connect to b3Database
+ *
+ * @var bool
+ */
 	public $b3Database = true;
 
-	/**
-	 * Name
-	 *
-	 * @var string
-	 */
+/**
+ * Name
+ *
+ * @var string
+ */
 	public $name = 'MonthlyStat';
 
-	/**
-	 * Database table name
-	 *
-	 * @var string
-	 */
+/**
+ * Database table name
+ *
+ * @var string
+ */
 	public $useTable = 'xlr_history_monthly';
 
-	/**
-	 *
-	 */
-	function __construct() {
+	//-------------------------------------------------------------------
+
+/**
+ * Overrides __construct method to be able to use custom tables names
+ */
+	public function __construct() {
 		$this->setSource(Configure::read('options.table_history_monthly'));
 		parent::__construct();
 	}
+
 }

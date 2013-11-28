@@ -14,32 +14,26 @@
  */
 
 class Opponent extends AppModel {
-	/**
-	 * Use the XLRstats database
-	 *
-	 * @var bool
-	 */
+
+/**
+ * Use the XLRstats database
+ *
+ * @var bool
+ */
 	public $b3Database = true;
 
-	/**
-	 * Model name
-	 *
-	 * @var string
-	 */
-	//public $name = 'Opponent';
-
-	/**
-	 * Database table name
-	 *
-	 * @var string
-	 */
+/**
+ * Database table name
+ *
+ * @var string
+ */
 	public $useTable = 'xlr_opponents';
 
-	/**
-	 * Database assosciations
-	 *
-	 * @var array
-	 */
+/**
+ * Database assosciations
+ *
+ * @var array
+ */
 	public $belongsTo = array(
 		'Killer' => array(
 			'className' => 'PlayerStat',
@@ -51,11 +45,14 @@ class Opponent extends AppModel {
 		)
 	);
 
-	/**
-	 *
-	 */
-	function __construct() {
+	//-------------------------------------------------------------------
+
+/**
+ * Overrides __construct method to be able to use custom tables names
+ */
+	public function __construct() {
 		parent::__construct();
 		$this->setSource(Configure::read('options.table_opponents'));
 	}
+
 }
