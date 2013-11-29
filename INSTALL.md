@@ -34,10 +34,28 @@ This method is for advanced users or if you can't use the installer for some rea
 4. Copy `app/Config/database.php.default` to `app/Config/database.php`, open it and modify the public $default array so you can access the database as mentioned in step 1.
 5. Execute `app/Config/Schema/xlrstats.sql` on your database to create the tables necessary for the XLRstats webfront.
 6. Copy `app/Config/email.php.default` to `app/Config/email.php`, open it and modify the public $default array according to your servers email capabilities.
-7. Open `..app/Config/core.php` and find __'Security.salt'__. Change the value of setting with a random string sequence. Then find __'Security.cipherSeed'__ and change the value of that setting with a random numeric string (digits). Finally find __'Installer.enable'__ and change its value to __false__.
-8. Add a server to the database (using a tool like phpMyAdmin) by inserting a row to the __'servers'__ table with the credentials to connect to a B3 database. You need at least one server to make the webfront work properly.
-9. Open the XLRstats website and register for an account. Verify your account by clicking the link in the email that you will automatically receive. After registration modify your account in the database (using a tool like phpMyAdmin) and change the field group_id to 1.
-10. You're now done... To access the administration dashboard: Open the website, log in and choose __'Dashboard'__ in the pull down menu in the upper right corner (click your name).
+7. Create a new file in `..app/Config/` and name it `security.php`. Copy/paste the codesnippet below this list into that file and __change the values of Security.salt and Security.cypherseed to unique values!__
+8. Open `app/Config/core.php`, search for `Configure::write('Installer.enable', true);` and change it to __false__ to disable the installer.
+9. Add a server to the database (using a tool like phpMyAdmin) by inserting a row to the __'servers'__ table with the credentials to connect to a B3 database. You need at least one server to make the webfront work properly.
+10. Open the XLRstats website and register for an account. Verify your account by clicking the link in the email that you will automatically receive. After registration modify your account in the database (using a tool like phpMyAdmin) and change the field group_id to 1.
+11. You're now done... To access the administration dashboard: Open the website, log in and choose __'Dashboard'__ in the pull down menu in the upper right corner (click your name).
+
+__Content of `app/Config/security.php`:__
+
+```
+<?php
+/**
+ * A random string used in security hashing methods.
+ * To decrypt this message use http://infoencrypt.com/
+ */
+Configure::write('Security.salt', 'ChangeMe!!!-ACims4H1u/sUCk2WP9gGdcwo40QdKXRtFNiOjj2fA1ktg==');
+
+/**
+ * A random numeric string (digits only) used to encrypt/decrypt strings.
+ */
+Configure::write('Security.cipherSeed', '123456789456123123');
+```
+
 
 -----
 
