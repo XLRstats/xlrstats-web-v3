@@ -15,36 +15,40 @@
 
 App::uses('User', 'Users.Model');
 
+/**
+ * Class AppUser
+ */
 class AppUser extends User {
-	/**
-	 * Database table
-	 * @var string
-	 */
+
+/**
+ * Database table
+ * @var string
+ */
 	public $useTable = 'users';
 
-	/**
-	 * Alias
-	 *
-	 * @var string
-	 */
+/**
+ * Alias
+ *
+ * @var string
+ */
 	public $alias = 'User';
 
-	/**
-	 * Database associations
-	 *
-	 * @var array
-	 */
+/**
+ * Database associations
+ *
+ * @var array
+ */
 	public $belongsTo = array(
 		'Group' => array(
 			'className' => 'Dashboard.Group'
 		)
 	);
 
-	/**
-	 * hasAndBelongsToMany associations
-	 *
-	 * @var array
-	 */
+/**
+ * hasAndBelongsToMany associations
+ *
+ * @var array
+ */
 	public $hasAndBelongsToMany = array(
 		'ServerGroup' => array(
 			'className' => 'Dashboard.ServerGroup',
@@ -55,46 +59,46 @@ class AppUser extends User {
 		)
 	);
 
-	/**
-	 * Add ACL behaviour and set 'enabled' to false to avoid the afterSave to be called.
-	 * This will prevent users being added to 'aros' table.
-	 *
-	 * @var array
-	 */
+/**
+ * Add ACL behaviour and set 'enabled' to false to avoid the afterSave to be called.
+ * This will prevent users being added to 'aros' table.
+ *
+ * @var array
+ */
 	public $actsAs = array('Acl' => array('type' => 'requester', 'enabled' => false));
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * This is used by the AclBehavior to determine parent->child relationships.
-	 * Returns null as we're using Group Only ACL
-	 *
-	 * @return array|null
-	 */
+/**
+ * This is used by the AclBehavior to determine parent->child relationships.
+ * Returns null as we're using Group Only ACL
+ *
+ * @return array|null
+ */
 	public function parentNode() {
 		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Required for group only ACL
-	 *
-	 * @param $user
-	 * @return array
-	 */
+/**
+ * Required for group only ACL
+ *
+ * @param $user
+ * @return array
+ */
 	public function bindNode($user) {
 		return array('model' => 'Group', 'foreign_key' => $user['AppUser']['group_id']);
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns an array of user data
-	 *
-	 * @param null $id
-	 * @return array
-	 */
+/**
+ * Returns an array of user data
+ *
+ * @param null $id
+ * @return array
+ */
 	public function getUserData($id = null) {
 		$userData = $this->find('first', array(
 			'conditions' => array(

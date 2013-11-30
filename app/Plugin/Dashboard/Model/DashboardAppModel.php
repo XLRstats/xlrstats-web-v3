@@ -15,6 +15,8 @@
 
 App::uses('AppModel', 'Model');
 
+/**
+ * Class DashboardAppModel
+ */
 class DashboardAppModel extends AppModel {
-
 }

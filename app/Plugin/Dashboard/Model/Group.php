@@ -14,28 +14,33 @@
  */
 
 App::uses('DashboardAppModel', 'Dashboard.Model');
+
+/**
+ * Class Group
+ */
 class Group extends DashboardAppModel {
 
-	/**
-	 * Model name
-	 *
-	 * @var string
-	 */
+/**
+ * Model name
+ *
+ * @var string
+ */
 	public $name = 'Group';
 
-	/**
-	 * Behaviours
-	 *
-	 * @var array
-	 */
+/**
+ * Behaviours
+ *
+ * @var array
+ */
 	public $actsAs = array('Acl' => array('type' => 'requester'));
 
-	/**
-	 * This is used by the AclBehavior to determine parent->child relationships
-	 *
-	 * @return null
-	 */
+/**
+ * This is used by the AclBehavior to determine parent->child relationships
+ *
+ * @return null
+ */
 	public function parentNode() {
 		return null;
 	}
+
 }

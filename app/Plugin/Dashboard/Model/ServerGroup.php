@@ -14,38 +14,39 @@
  */
 
 class ServerGroup extends AppModel {
-	/**
-	 * This is not a stats model, but a webfront configuration model
-	 * @var bool
-	 */
+
+/**
+ * This is not a stats model, but a webfront configuration model
+ * @var bool
+ */
 	public $b3Database = false;
 
-	/**
-	 * Name
-	 *
-	 * @var string
-	 */
+/**
+ * Name
+ *
+ * @var string
+ */
 	public $name = 'ServerGroup';
 
-	/**
-	 * Tables
-	 *
-	 * @var string
-	 */
+/**
+ * Tables
+ *
+ * @var string
+ */
 	public $useTable = 'server_groups';
 
-	/**
-	 * Prefix
-	 *
-	 * @var string
-	 */
+/**
+ * Prefix
+ *
+ * @var string
+ */
 	public $tablePrefix = '';
 
-	/**
-	 * Validation parameters
-	 *
-	 * @var array
-	 */
+/**
+ * Validation parameters
+ *
+ * @var array
+ */
 	public $validate = array(
 		'name' => array(
 			'required' => array(
@@ -71,7 +72,5 @@ class ServerGroup extends AppModel {
 		)
 
 	);
-
-	//-------------------------------------------------------------------
 
 }

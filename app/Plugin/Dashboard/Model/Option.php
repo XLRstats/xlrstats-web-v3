@@ -15,40 +15,44 @@
 
 App::uses('DashboardAppModel', 'Dashboard.Model');
 
+/**
+ * Class Option
+ */
 class Option extends DashboardAppModel {
-	/**
-	 * This is not a stats model, but a webfront configuration model
-	 *
-	 * @var bool
-	 */
+
+/**
+ * This is not a stats model, but a web front configuration model
+ *
+ * @var bool
+ */
 	public $b3Database = false;
 
-	/**
-	 * Model name
-	 *
-	 * @var string
-	 */
+/**
+ * Model name
+ *
+ * @var string
+ */
 	public $name = 'Option';
 
-	/**
-	 * DB table
-	 *
-	 * @var string
-	 */
+/**
+ * DB table
+ *
+ * @var string
+ */
 	public $useTable = 'options';
 
-	/**
-	 * Prefix
-	 *
-	 * @var string
-	 */
+/**
+ * Prefix
+ *
+ * @var string
+ */
 	public $tablePrefix = '';
 
-	/**
-	 * Validation rules
-	 *
-	 * @var array
-	 */
+/**
+ * Validation rules
+ *
+ * @var array
+ */
 	public $validate = array(
 			'name' => array (
 				'rule'	=> array('minLength', '5'),
@@ -58,24 +62,24 @@ class Option extends DashboardAppModel {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Stores xlrstats global options in application configuration
-	 */
+/**
+ * Stores xlrstats global options in application configuration
+ */
 	public function load() {
 		$settings = $this->find('all');
 
 		foreach ($settings as $variable) {
-			Configure::write('options.'.$variable['Option']['name'], $variable['Option']['value']);
+			Configure::write('options.' . $variable['Option']['name'], $variable['Option']['value']);
 		}
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns an array of locked server options
-	 *
-	 * @return array
-	 */
+/**
+ * Returns an array of locked server options
+ *
+ * @return array
+ */
 	public function lockedOptions() {
 		$data = $this->find('all', array(
 			'fields' => 'Option.name',
@@ -87,4 +91,5 @@ class Option extends DashboardAppModel {
 		}
 		return $options;
 	}
+
 }

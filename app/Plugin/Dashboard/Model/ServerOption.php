@@ -14,39 +14,40 @@
  */
 
 class ServerOption extends AppModel {
-	/**
-	 * This is not a stats model, but a webfront configuration model
-	 * @var bool
-	 */
+
+/**
+ * This is not a stats model, but a webfront configuration model
+ *
+ * @var bool
+ */
 	public $b3Database = false;
 
-	/**
-	 * Name
-	 *
-	 * @var string
-	 */
+/**
+ * Name
+ *
+ * @var string
+ */
 	public $name = 'ServerOption';
 
-	/**
-	 * Tables
-	 *
-	 * @var string
-	 */
+/**
+ * Tables
+ *
+ * @var string
+ */
 	public $useTable = 'server_options';
 
-	/**
-	 * Prefix
-	 *
-	 * @var string
-	 */
+/**
+ * Prefix
+ *
+ * @var string
+ */
 	public $tablePrefix = '';
 
-
-	/**
-	 * Model associations
-	 *
-	 * @var array
-	 */
+/**
+ * Model associations
+ *
+ * @var array
+ */
 	public $belongsTo = array(
 		'Server' => array(
 			'className' => 'Dashboard.Server',
@@ -56,10 +57,10 @@ class ServerOption extends AppModel {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Stores xlrstats server specific options in application configuration
-	 */
-	function load() {
+/**
+ * Stores xlrstats server specific options in application configuration
+ */
+	public function load() {
 		$settings = $this->find('all', array(
 			'conditions' => array(
 				'ServerOption.server_id' => Configure::read('server_id')
@@ -67,18 +68,18 @@ class ServerOption extends AppModel {
 		));
 
 		foreach ($settings as $variable) {
-			Configure::write('options.'.$variable['ServerOption']['name'], $variable['ServerOption']['value']);
+			Configure::write('options.' . $variable['ServerOption']['name'], $variable['ServerOption']['value']);
 		}
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns server options for a specific server
-	 *
-	 * @param $serverID
-	 * @return array
-	 */
+/**
+ * Returns server options for a specific server
+ *
+ * @param $serverID
+ * @return array
+ */
 	public function getServerOptions($serverID) {
 		$serverOptions = $this->find('all', array(
 				'conditions' => array(
