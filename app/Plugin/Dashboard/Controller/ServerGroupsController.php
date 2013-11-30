@@ -14,6 +14,7 @@
  */
 
 App::uses('DashboardAppController', 'Dashboard.Controller');
+
 /**
  * ServerGroups Controller
  *
@@ -21,22 +22,22 @@ App::uses('DashboardAppController', 'Dashboard.Controller');
  */
 class ServerGroupsController extends DashboardAppController {
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler'
 	);
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_index method
-	 *
-	 * @return void
-	 */
+/**
+ * admin_index method
+ *
+ * @return void
+ */
 	public function admin_index() {
 		$serverGroups = $this->ServerGroup->find('all');
 		$this->set('serverGroups', $serverGroups);
@@ -44,13 +45,13 @@ class ServerGroupsController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_view method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_view($id = null) {
 		if (!$this->ServerGroup->exists($id)) {
 			throw new NotFoundException(__('Invalid server group'));
@@ -61,11 +62,11 @@ class ServerGroupsController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_add method
-	 *
-	 * @return void
-	 */
+/**
+ * admin_add method
+ *
+ * @return void
+ */
 	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->ServerGroup->create();
@@ -81,34 +82,34 @@ class ServerGroupsController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Edit function for server groups that works with X-editable jQuery plugin.
-	 * Updates database with the new value.
-	 *
-	 * This method normally does not require a view file and yet we maintain
-	 * a view file (admin_edit.ctp) for debugging purposes only.
-	 */
+/**
+ * Edit function for server groups that works with X-editable jQuery plugin.
+ * Updates database with the new value.
+ *
+ * This method normally does not require a view file and yet we maintain
+ * a view file (admin_edit.ctp) for debugging purposes only.
+ */
 	public function admin_edit() {
 		$primaryKey = $this->request->data['pk'];
 		$name = $this->request->data['name'];
 		$value = $this->request->data['value'];
 
-		if($name == 'name') {
+		if ($name == 'name') {
 			$value = strtolower($value);
 		}
 
 		if ($this->request->is('ajax')) {
 			$this->ServerGroup->read(null, $primaryKey);
 			$this->ServerGroup->set($name, $value);
-			if($this->ServerGroup->save()) {
+			if ($this->ServerGroup->save()) {
 				$this->set('value', $value);
 			} else {
-				if(function_exists('http_response_code')) {
+				if (function_exists('http_response_code')) {
 					$this->response->statusCode(400);
 				} else {
 					header('HTTP 400 Bad Request', true, 400);
 				}
-				foreach($this->ServerGroup->validationErrors[$name] as $validationError) {
+				foreach ($this->ServerGroup->validationErrors[$name] as $validationError) {
 					echo $validationError;
 				}
 			}
@@ -117,16 +118,16 @@ class ServerGroupsController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_delete method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * admin_delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_delete($id = null) {
 		$this->ServerGroup->id = $id;
-		if($id == 1) {
+		if ($id == 1) {
 			$this->Session->setFlash(__('You cannot delete the default server group'));
 			$this->redirect(array('action' => 'index'));
 		}

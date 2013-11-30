@@ -14,6 +14,7 @@
  */
 
 App::uses('DashboardAppController', 'Dashboard.Controller');
+
 /**
  * Servers Controller
  *
@@ -21,18 +22,18 @@ App::uses('DashboardAppController', 'Dashboard.Controller');
  */
 class ServersController extends DashboardAppController {
 
-	/**
-	 * Helpers
-	 *
-	 * @var array
-	 */
+/**
+ * Helpers
+ *
+ * @var array
+ */
 	public $helpers = array('Js' => array('Jquery'));
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler',
 		'DataTable',
@@ -41,20 +42,25 @@ class ServersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
+/**
+ * Check user's server access
+ * 
+ * @param null $id
+ * @return bool
+ */
 	public function checkServerAccess($id = null) {
-
-		/* Super Admin always has access */
+		// Super Admin always has access
 		if ($this->user['User']['group_id'] == 1) {
 			return true;
 		}
 
-		/* Collect all servergroups the user is in */
+		// Collect all servergroups the user is in
 		if (!empty($this->user['ServerGroup'])) {
 			foreach ($this->user['ServerGroup'] as $serverGroup) {
 				$userServerGroupIds[] = $serverGroup['id'];
 			}
 		} else {
-			/* No servergroups available */
+			// No servergroups available
 			return false;
 		}
 		foreach ($userServerGroupIds as $groupId) {
@@ -72,38 +78,39 @@ class ServersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	public function userServerGroupIds($field='ServerGroup.id') {
+/**
+ * Returns conditions required for filtering based on user server group id
+ *
+ * @param string $field
+ * @return array|null
+ */
+	public function userServerGroupIds($field = 'ServerGroup.id') {
 		if (Configure::read('globals.advanced.subDomains')) {
-			$subdomain = Configure::read('server.subdomain');
+			$subDomain = Configure::read('server.subdomain');
 		} else {
-			$subdomain = false;
+			$subDomain = false;
 		}
 
-		if (!$subdomain) {
+		if (!$subDomain) {
 			foreach ($this->user['ServerGroup'] as $serverGroup) {
 				$userServerGroupIds[] = $serverGroup['id'];
 			}
 		} else {
-			foreach($this->user['ServerGroup'] as $serverGroup) {
-				if ($subdomain == $serverGroup['name']) {
+			foreach ($this->user['ServerGroup'] as $serverGroup) {
+				if ($subDomain == $serverGroup['name']) {
 					$userServerGroupIds[] = $serverGroup['id'];
 				}
 			}
 		}
 
 		if ($this->user['User']['group_id'] == 1) {
-			/* Super Admins see all servers */
+			// Super Admins see all servers
 			$conditions = null;
 		} elseif (count($userServerGroupIds) == 1) {
-			/**
-			 * Admins see servers from the groups they have access to
-			 * If they belong to 1 group:
-			 */
+			// Admins see servers from the groups they have access to. If they belong to single group:
 			$conditions = array($field => $userServerGroupIds[0]);
 		} else {
-			/**
-			 * Or if they belong to more groups:
-			 */
+			// Or if they belong to multiple groups:
 			$conditions = array($field . ' IN' => $userServerGroupIds);
 		}
 		return $conditions;
@@ -111,41 +118,40 @@ class ServersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Lists servers via dataTables.
-	 */
+/**
+ * Lists servers via dataTables.
+ */
 	public function admin_index() {
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Queries available servers and pass data to plugin view file at
-	 * app/Plugin/Dashboard/View/Servers/json/admin_servers_json.ctp
-	 * to be processed by dataTables.
-	 *
-	 * Sample data returned:
-	 * Array(
-	 * 		[sEcho] => 1
-	 * 		[iTotalRecords] => 2
-	 * 		[iTotalDisplayRecords] => 2
-	 * 		[aaData] => Array(
-	 * 			[0] => Array(
-	 * 				[0] => 1				//server id
-	 * 				[1] => 1				//active (boolean)
-	 * 				[2] => cod2				//gamename
-	 * 				[3] => SNT CoD2 Server	//server name
-	 * 				[4] => default			//server group
-	 * 				[5] => 					//empty field for control buttons
-	 * 			)
-	 * 		)
-	 * )
-	 * 
-	 *
-	 * @return mixed
-	 */
-	public function admin_serversJson () {
-
+/**
+ * Queries available servers and pass data to plugin view file at
+ * app/Plugin/Dashboard/View/Servers/json/admin_servers_json.ctp
+ * to be processed by dataTables.
+ *
+ * Sample data returned:
+ * Array(
+ *      [sEcho] => 1
+ *      [iTotalRecords] => 2
+ *      [iTotalDisplayRecords] => 2
+ *      [aaData] => Array(
+ *          [0] => Array(
+ *              [0] => 1                //server id
+ *              [1] => 1                //active (boolean)
+ *              [2] => cod2             //gamename
+ *              [3] => SNT CoD2 Server  //server name
+ *              [4] => default          //server group
+ *              [5] =>                  //empty field for control buttons
+ *          )
+ *      )
+ * )
+ *
+ *
+ * @return mixed
+ */
+	public function admin_serversJson() {
 		$conditions = $this->userServerGroupIds();
 
 		$this->paginate = array(
@@ -168,17 +174,18 @@ class ServersController extends DashboardAppController {
 			$this->set('servers', $data);
 		}
 
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_view method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_view($id = null) {
 		if (!$this->checkServerAccess($id)) {
 			$this->Session->setFlash(__('You cannot view this server.'), null, null, 'error');
@@ -193,11 +200,11 @@ class ServersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_add method
-	 *
-	 * @return void
-	 */
+/**
+ * admin_add method
+ *
+ * @return void
+ */
 	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->Server->create();
@@ -215,13 +222,13 @@ class ServersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_edit method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * admin_edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_edit($id = null) {
 		if (!$this->checkServerAccess($id)) {
 			$this->Session->setFlash(__('You cannot edit this server.'), null, null, 'error');
@@ -248,14 +255,14 @@ class ServersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_delete method
-	 *
-	 * @throws MethodNotAllowedException
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * admin_delete method
+ *
+ * @throws MethodNotAllowedException
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_delete($id = null) {
 		if (!$this->checkServerAccess($id)) {
 			$this->Session->setFlash(__('You cannot delete this server.'), null, null, 'error');
@@ -275,4 +282,5 @@ class ServersController extends DashboardAppController {
 		$this->Session->setFlash(__('Server was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
 }

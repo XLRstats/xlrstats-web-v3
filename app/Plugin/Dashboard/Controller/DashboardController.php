@@ -19,10 +19,11 @@ App::uses('DashboardAppController', 'Dashboard.Controller');
  * Dashboard Controller
  */
 class DashboardController extends DashboardAppController {
-	/**
-	 * Dashboard index
-	 * Redirects to servers index
-	 */
+
+/**
+ * Dashboard index
+ * Redirects to servers index
+ */
 	public function admin_index() {
 		$this->redirect(array(
 				'controller' => 'servers',
@@ -30,4 +31,5 @@ class DashboardController extends DashboardAppController {
 			)
 		);
 	}
+
 }

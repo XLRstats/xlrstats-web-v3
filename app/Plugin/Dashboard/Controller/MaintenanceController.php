@@ -14,18 +14,32 @@
  */
 
 App::uses('DashboardAppController', 'Dashboard.Controller');
+
 /**
  * Class MaintenanceController
  */
 class MaintenanceController extends DashboardAppController {
+
+/**
+ * @var array
+ */
 	public $uses = array();
 
+	//-------------------------------------------------------------------
+
+/**
+ * admin_index method
+ */
 	public function admin_index() {
 	}
 
-	public function admin_clearcache() {
+	//-------------------------------------------------------------------
+
+/**
+ * Clears the cache
+ */
+	public function admin_clearCache() {
 		//Nothing here, the view file will handle the clearing of the cache.
 	}
+
 }
-
-

@@ -16,16 +16,19 @@
 App::uses('UsersController', 'Users.Controller');
 App::uses('AuthComponent', 'Controller/Component');
 
-/* make dashboard use debug so we have less problems with the cache after making changes */
+// make dashboard use debug so we have less problems with the cache after making changes
 Configure::write('debug', 2);
 
+/**
+ * Class AppUsersController
+ */
 class AppUsersController extends UsersController {
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler',
 		'Session',
@@ -39,19 +42,19 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Executes logic before action
-	 */
+/**
+ * Executes logic before action
+ */
 	public function beforeFilter() {
 		parent::beforeFilter();
 
-		/* Disable DebugKit for others than Super Admins */
+		// Disable DebugKit for others than Super Admins
 		if (AuthComponent::user('group_id') != '1') {
 			$this->Components->unload('DebugKit.Toolbar');
 		}
-		/**
-		 * Change the layout for users plugin to default Dashboard layout
-		 */
+
+		// Change the layout for users plugin to default Dashboard layout
+
 		if ($this->isAuthorized()) {
 			$this->layout = 'Dashboard.dashboard';
 		}
@@ -61,9 +64,9 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Override the _setupAuth() from the Users Plugin
-	 */
+/**
+ * Override the _setupAuth() from the Users Plugin
+ */
 	protected function _setupAuth() {
 		if (!is_null(Configure::read('Users.allowRegistration')) && !Configure::read('Users.allowRegistration')) {
 			$this->Auth->deny('add');
@@ -88,11 +91,11 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * User Profile action
-	 *
-	 * @return void
-	 */
+/**
+ * User Profile action
+ *
+ * @return void
+ */
 	public function edit() {
 		$this->layout = 'default';
 		if (!$this->user) {
@@ -107,11 +110,11 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * User register action
-	 *
-	 * @return void
-	 */
+/**
+ * User register action
+ *
+ * @return void
+ */
 	public function add() {
 		$this->layout = 'Dashboard.user';
 
@@ -121,7 +124,7 @@ class AppUsersController extends UsersController {
 		}
 
 		if (!empty($this->request->data)) {
-			if(Configure::read('globals.advanced.subDomains')) {
+			if (Configure::read('globals.advanced.subDomains')) {
 				$this->request->data['ServerGroup']['ServerGroup'] = $this->Session->read('server_group_id');
 			} else {
 				$this->request->data['ServerGroup']['ServerGroup'] = 1;
@@ -142,52 +145,51 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Admin Index
-	 *
-	 * Lists users via dataTables handled admin_indexJson()
-	 */
+/**
+ * Admin Index
+ *
+ * Lists users via dataTables handled admin_indexJson()
+ */
 	public function admin_index() {
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns an array of users and pass data to plugin view file at
-	 * Users/json/admin_index_json.ctp to be processed by dataTables.
-	 *
-	 * If subDomain option is set to true in global config, subdomain admins can list only users
-	 * belong to the subdomain.
-	 *
-	 * Super Admins can list all users.
-	 *
-	 * Sample data returned:
-	 * Array
-	 * (
-	 * 		[sEcho] => 1
-	 * 		[iTotalRecords] => 38
-	 * 		[iTotalDisplayRecords] => 38
-	 * 		[aaData] => Array
-	 * 			(
-	 * 				[0] => Array
-	 * 					(
-	 * 						[0] => 1 						// User Id
-	 * 						[1] => superuser 				// Name
-	 * 						[2] => Super Admin 				// Group Name
-	 * 						[3] => superuser@example.com 	// Email
-	 * 						[4] => 1 						// Email Verified
-	 * 						[5] => 1 						// Active
-	 * 						[6] => 2013-03-30 19:38:12 		// Joined
-	 * 						[7] => 2013-10-27 14:41:24 		// Last Login
-	 * 						[8] => 							// Empty field for action buttons
-	 * 					)
-	 * 			)
-	 * )
-	 *
-	 * @return mixed
-	 */
+/**
+ * Returns an array of users and pass data to plugin view file at
+ * Users/json/admin_index_json.ctp to be processed by dataTables.
+ *
+ * If subDomain option is set to true in global config, subdomain admins can list only users
+ * belong to the subdomain.
+ *
+ * Super Admins can list all users.
+ *
+ * Sample data returned:
+ * Array
+ * (
+ *      [sEcho] => 1
+ *      [iTotalRecords] => 38
+ *      [iTotalDisplayRecords] => 38
+ *      [aaData] => Array
+ *          (
+ *              [0] => Array
+ *                  (
+ *                      [0] => 1                        // User Id
+ *                      [1] => superuser                // Name
+ *                      [2] => Super Admin              // Group Name
+ *                      [3] => superuser@example.com    // Email
+ *                      [4] => 1                        // Email Verified
+ *                      [5] => 1                        // Active
+ *                      [6] => 2013-03-30 19:38:12      // Joined
+ *                      [7] => 2013-10-27 14:41:24      // Last Login
+ *                      [8] =>                          // Empty field for action buttons
+ *                  )
+ *          )
+ * )
+ *
+ * @return mixed
+ */
 	public function admin_indexJson() {
-
 		$options = array(
 			'fields' => array(
 				'User.id',
@@ -201,7 +203,7 @@ class AppUsersController extends UsersController {
 			)
 		);
 
-		if(Configure::read('globals.advanced.subDomains') && $this->user['Group']['level'] < 100) {
+		if (Configure::read('globals.advanced.subDomains') && $this->user['Group']['level'] < 100) {
 			$options['joins'] = array(
 				array('table' => 'server_groups_users',
 					'alias' => 'ServerGroupUsers',
@@ -226,28 +228,29 @@ class AppUsersController extends UsersController {
 		} else {
 			$this->set('users', $data);
 		}
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Admin add
-	 *
-	 * If the user is an admin, new users are assigned a server group id automatically. When subDomain is set to true,
-	 * this is the current server group id. In a normal installation, this is the default server group id which is "1".
-	 *
-	 * Super Admins can choose the server group when adding new users.
-	 *
-	 * @return void
-	 */
+/**
+ * Admin add
+ *
+ * If the user is an admin, new users are assigned a server group id automatically. When subDomain is set to true,
+ * this is the current server group id. In a normal installation, this is the default server group id which is "1".
+ *
+ * Super Admins can choose the server group when adding new users.
+ *
+ * @return void
+ */
 	public function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->request->data['User']['tos'] = true;
 			$this->request->data['User']['email_verified'] = true;
 
 			// automatic server group id assignment for lower level admins
-			if($this->user['Group']['level'] < 100) {
-				if(Configure::read('globals.advanced.subDomains')) {
+			if ($this->user['Group']['level'] < 100) {
+				if (Configure::read('globals.advanced.subDomains')) {
 					$this->request->data['ServerGroup']['ServerGroup'] = $this->Session->read('server_group_id');
 				} else {
 					$this->request->data['ServerGroup']['ServerGroup'] = 1;
@@ -262,7 +265,7 @@ class AppUsersController extends UsersController {
 			}
 		}
 
-		/**
+		/*
 		 * Return a list of user groups with the same level or lower level than the admin so that an admin
 		 * cannot add a higher level admin than himself
 		 */
@@ -275,7 +278,7 @@ class AppUsersController extends UsersController {
 		$this->set('groups', $groups);
 
 		//Set user groups only for super admins
-		if($this->user['Group']['level'] == 100) {
+		if ($this->user['Group']['level'] == 100) {
 			$serverGroups = $this->User->ServerGroup->find('list');
 			$this->set('serverGroups', $serverGroups);
 		}
@@ -283,29 +286,29 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Edit user data.
-	 *
-	 * If subDomain option is set to true in global config, subdomain admins:
-	 * - cannot edit non subdomain users
-	 * - cannot change a user's server group.
-	 *
-	 * Admins:
-	 * - cannot set a user as Super Admin
-	 *
-	 * @param null $userId
-	 * @return void
-	 */
+/**
+ * Edit user data.
+ *
+ * If subDomain option is set to true in global config, subdomain admins:
+ * - cannot edit non subdomain users
+ * - cannot change a user's server group.
+ *
+ * Admins:
+ * - cannot set a user as Super Admin
+ *
+ * @param null $userId
+ * @return void
+ */
 	public function admin_edit($userId = null) {
 		if (!$userId && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid User', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action' => 'index'));
 		}
 
 		if (!empty($this->data)) {
 			if ($this->User->saveAll($this->data)) {
 				$this->Session->setFlash(__('The User has been saved', true));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The User could not be saved. Please, try again.', true));
 			}
@@ -315,29 +318,29 @@ class AppUsersController extends UsersController {
 			$this->data = $this->User->read(null, $userId);
 
 			//Make sure an admin cannot edit a higher level admin account
-			if($this->user['Group']['level'] < $this->data['Group']['level']) {
+			if ($this->user['Group']['level'] < $this->data['Group']['level']) {
 				$this->Session->setFlash(__('You are not authorised to edit this user', true));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect(array('action' => 'index'));
 			}
 
 			//prevent admins accessing non subdomain users in a subdomain installation
-			if(Configure::read('globals.advanced.subDomains') && $this->user['Group']['level'] < 100) {
+			if (Configure::read('globals.advanced.subDomains') && $this->user['Group']['level'] < 100) {
 				$userServerGroups = array();
 
-				if(isset($this->data['ServerGroup'])) {
-					foreach($this->data['ServerGroup'] as $n) {
+				if (isset($this->data['ServerGroup'])) {
+					foreach ($this->data['ServerGroup'] as $n) {
 						$userServerGroups[] = $n['id'];
 					}
 				}
 
-				if(!in_array($this->Session->read('server_group_id'), $userServerGroups)) {
+				if (!in_array($this->Session->read('server_group_id'), $userServerGroups)) {
 					$this->Session->setFlash(__('Invalid User', true));
-					$this->redirect(array('action'=>'index'));
+					$this->redirect(array('action' => 'index'));
 				}
 			}
 		}
 
-		/**
+		/*
 		 * Return a list of user groups with the same level or lower level than the admin so that an admin
 		 * cannot set a higher level admin than himself
 		 */
@@ -350,7 +353,7 @@ class AppUsersController extends UsersController {
 		$this->set('groups', $groups);
 
 		//Set user groups only for super admins
-		if($this->user['Group']['level'] == 100) {
+		if ($this->user['Group']['level'] == 100) {
 			$serverGroups = $this->User->ServerGroup->find('list');
 			$this->set('serverGroups', $serverGroups);
 		}
@@ -358,20 +361,20 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Delete a user account
-	 *
-	 * Admins cannot delete a Super Admin account
-	 *
-	 * @param string $userId User ID
-	 * @return void
-	 */
+/**
+ * Delete a user account
+ *
+ * Admins cannot delete a Super Admin account
+ *
+ * @param string $userId User ID
+ * @return void
+ */
 	public function admin_delete($userId = null) {
 		//Make sure admins cannot delete higher level admins
 		$targetUser = $this->User->read(null, $userId);
-		if($this->user['Group']['level'] < $targetUser['Group']['level']) {
+		if ($this->user['Group']['level'] < $targetUser['Group']['level']) {
 			$this->Session->setFlash(__('You are not authorised to delete this user', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action' => 'index'));
 		}
 
 		if ($this->User->delete($userId)) {
@@ -385,11 +388,11 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Common login action
-	 *
-	 * @return void
-	 */
+/**
+ * Common login action
+ *
+ * @return void
+ */
 	public function login() {
 		$this->layout = 'Dashboard.user';
 
@@ -402,11 +405,11 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Allows the user to enter a new password, it needs to be confirmed by entering the old password
-	 *
-	 * @return void
-	 */
+/**
+ * Allows the user to enter a new password, it needs to be confirmed by entering the old password
+ *
+ * @return void
+ */
 	public function change_password() {
 		$this->layout = 'Dashboard.user';
 		parent::change_password();
@@ -414,16 +417,16 @@ class AppUsersController extends UsersController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Reset Password Action
-	 *
-	 * Handles the trigger of the reset, also takes the token, validates it and let the user enter
-	 * a new password.
-	 *
-	 * @param string $token Token
-	 * @param string $user User Data
-	 * @return void
-	 */
+/**
+ * Reset Password Action
+ *
+ * Handles the trigger of the reset, also takes the token, validates it and let the user enter
+ * a new password.
+ *
+ * @param string $token Token
+ * @param string $user User Data
+ * @return void
+ */
 	public function reset_password($token = null, $user = null) {
 		$this->layout = 'Dashboard.user';
 		parent::reset_password($token, $user);

@@ -22,22 +22,22 @@ App::uses('DashboardAppController', 'Dashboard.Controller');
  */
 class OptionsController extends DashboardAppController {
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler'
 	);
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_index method
-	 *
-	 * @return void
-	 */
+/**
+ * admin_index method
+ *
+ * @return array
+ */
 	public function admin_index() {
 		$options = $this->Option->find('all');
 		if ($this->request->is('requested')) {
@@ -45,17 +45,18 @@ class OptionsController extends DashboardAppController {
 		} else {
 			$this->set('options', $options);
 		}
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Edit function for options that works with X-editable jQuery plugin.
-	 * Updates database with the new value.
-	 *
-	 * This method normally does not require a view file but we still set the output value and maintain
-	 * a view file (admin_edit.ctp) for debugging purposes only.
-	 */
+/**
+ * Edit function for options that works with X-editable jQuery plugin.
+ * Updates database with the new value.
+ *
+ * This method normally does not require a view file but we still set the output value and maintain
+ * a view file (admin_edit.ctp) for debugging purposes only.
+ */
 	public function admin_edit() {
 		$primaryKey = $this->request->data['pk'];
 		$name = $this->request->data['name'];
@@ -68,7 +69,7 @@ class OptionsController extends DashboardAppController {
 
 			$this->set('value', $value);
 		} else {
-			if(function_exists('http_response_code')) {
+			if (function_exists('http_response_code')) {
 				$this->response->statusCode(400);
 			} else {
 				header('HTTP 400 Bad Request', true, 400);

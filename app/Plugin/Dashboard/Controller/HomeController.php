@@ -14,28 +14,32 @@
  */
 
 App::uses('DashboardAppController', 'Dashboard.Controller');
+
+/**
+ * Class HomeController
+ */
 class HomeController extends DashboardAppController {
 
-	/**
-	 * Controller Name
-	 *
-	 * @var string
-	 */
+/**
+ * Controller Name
+ *
+ * @var string
+ */
 	public $name = 'Home';
 
-	/**
-	 * This controller does not use a model
-	 *
-	 * @var array
-	 */
+/**
+ * This controller does not use a model
+ *
+ * @var array
+ */
 	public $uses = array();
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Server Home
-	 */
-	function admin_index() {
+/**
+ * Server Home
+ */
+	public function admin_index() {
 	}
 
 }

@@ -14,27 +14,28 @@
  */
 
 App::uses('DashboardAppController', 'Dashboard.Controller');
+
 /**
  * Class PlayerSoldiersController
  */
 class PlayerSoldiersController extends DashboardAppController {
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler'
 	);
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_index method
-	 *
-	 * @return void
-	 */
+/**
+ * admin_index method
+ *
+ * @return void
+ */
 	public function admin_index() {
 		$this->PlayerSoldier->recursive = 2;
 
@@ -43,13 +44,13 @@ class PlayerSoldiersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_view method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_view($id = null) {
 		$this->PlayerSoldier->id = $id;
 		$this->PlayerSoldier->recursive = 2;
@@ -62,11 +63,11 @@ class PlayerSoldiersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_add method
-	 *
-	 * @return void
-	 */
+/**
+ * admin_add method
+ *
+ * @return void
+ */
 	public function admin_add() {
 		$this->PlayerSoldier->recursive = 2;
 
@@ -97,13 +98,13 @@ class PlayerSoldiersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_edit method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * admin_edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_edit($id = null) {
 		$this->PlayerSoldier->id = $id;
 		$this->PlayerSoldier->recursive = 2;
@@ -139,14 +140,14 @@ class PlayerSoldiersController extends DashboardAppController {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * admin_delete method
-	 *
-	 * @throws MethodNotAllowedException
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
+/**
+ * admin_delete method
+ *
+ * @throws MethodNotAllowedException
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();

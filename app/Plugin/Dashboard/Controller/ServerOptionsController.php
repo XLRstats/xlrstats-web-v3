@@ -14,36 +14,38 @@
  */
 
 App::uses('DashboardAppController', 'Dashboard.Controller');
+
 /**
  * ServerOptions Controller
  *
  * @property ServerOption $ServerOption
  */
 class ServerOptionsController extends DashboardAppController {
-	/**
-	 * Models used
-	 *
-	 * @var array
-	 */
+
+/**
+ * Models used
+ *
+ * @var array
+ */
 	public $uses = array(
 		'Dashboard.ServerOption',
 		'Dashboard.Option'
 	);
 
-	/**
-	 * Components
-	 *
-	 * @var array
-	 */
+/**
+ * Components
+ *
+ * @var array
+ */
 	public $components = array(
 		'RequestHandler'
 	);
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns an array of server specific options
-	 */
+/**
+ * Returns an array of server specific options
+ */
 	public function admin_index() {
 		$globalOptions = $this->Option->find('all');
 
@@ -51,19 +53,19 @@ class ServerOptionsController extends DashboardAppController {
 		$serverOptions = $this->ServerOption->getServerOptions($serverID);
 
 		$changedServerOptions = array();
-		foreach($serverOptions as $k => $v) {
+		foreach ($serverOptions as $k => $v) {
 			$changedServerOptions[$v['ServerOption']['name']] = $v['ServerOption']['value'];
 		}
 
 		$globalOptions = Hash::flatten($globalOptions);
 
 		//Replace global option values with server option values
-		foreach($changedServerOptions as $k => $v) {
+		foreach ($changedServerOptions as $k => $v) {
 			$key = array_search($k, $globalOptions, true);
-			if($key) {
+			if ($key) {
 				$key = explode('.', $key);
 				$n = $key[0];
-				foreach($globalOptions as $i) {
+				foreach ($globalOptions as $i) {
 					$globalOptions[$n . '.Option.value'] = $v;
 				}
 			}
@@ -72,8 +74,8 @@ class ServerOptionsController extends DashboardAppController {
 		$serverOptions = Hash::expand($globalOptions);
 
 		//Remove locked options
-		foreach($serverOptions as $k => $v) {
-			if($v['Option']['locked'] == 1) {
+		foreach ($serverOptions as $k => $v) {
+			if ($v['Option']['locked'] == 1) {
 				unset($serverOptions[$k]);
 			}
 		}
@@ -88,17 +90,18 @@ class ServerOptionsController extends DashboardAppController {
 		$serverName = $this->getServerName($serverID);
 		$this->set('serverName', $serverName);
 
+		return null;
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Edit function for server specific options that works with X-editable jQuery plugin.
-	 * Updates database with the new value or adds a new row if option is not yet available in the DB table
-	 *
-	 * This method does not require a view file and yet we maintain a view file (admin_edit.ctp)
-	 * for debugging purposes only.
-	 */
+/**
+ * Edit function for server specific options that works with X-editable jQuery plugin.
+ * Updates database with the new value or adds a new row if option is not yet available in the DB table
+ *
+ * This method does not require a view file and yet we maintain a view file (admin_edit.ctp)
+ * for debugging purposes only.
+ */
 	public function admin_edit() {
 		$optionName = $this->request->data['pk'];
 		$name = $this->request->data['name'];
@@ -112,9 +115,9 @@ class ServerOptionsController extends DashboardAppController {
 			)
 		);
 
-		if($row) {
+		if ($row) {
 			$primaryKey = $row['ServerOption']['id'];
-			if($this->request->is('ajax')) {
+			if ($this->request->is('ajax')) {
 				$this->ServerOption->read(null, $primaryKey);
 				$this->ServerOption->set($name, $value);
 				$this->ServerOption->save();
@@ -122,7 +125,7 @@ class ServerOptionsController extends DashboardAppController {
 				header('HTTP 400 Bad Request', true, 400);
 			}
 		} else {
-			if($this->request->is('ajax')) {
+			if ($this->request->is('ajax')) {
 				$data = array(
 					'ServerOption' => array(
 						'server_id' => Configure::read('server_id'),
@@ -132,7 +135,7 @@ class ServerOptionsController extends DashboardAppController {
 				);
 				$this->ServerOption->save($data);
 			} else {
-				if(function_exists('http_response_code')) {
+				if (function_exists('http_response_code')) {
 					$this->response->statusCode(400);
 				} else {
 					header('HTTP 400 Bad Request', true, 400);

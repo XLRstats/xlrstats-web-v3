@@ -16,13 +16,19 @@
 App::uses('AppController', 'Controller');
 App::uses('AuthComponent', 'Controller/Component');
 
-/* make dashboard use debug so we have less problems with the cache after making changes */
+// make dashboard use debug so we have less problems with the cache after making changes
 Configure::write('debug', 2);
 
+/**
+ * Class DashboardAppController
+ */
 class DashboardAppController extends AppController {
 
-	function beforeFilter() {
-		/**
+/**
+ * Executes logic before action
+ */
+	public function beforeFilter() {
+		/*
 		 * We do not use the default layout name 'default' for dashboard plugin so that we can use application's
 		 * default layout when necessary.
 		 */
@@ -30,7 +36,7 @@ class DashboardAppController extends AppController {
 
 		parent::beforeFilter();
 
-		/* Disable DebugKit for others than Super Admins */
+		// Disable DebugKit for others than Super Admins
 		if (AuthComponent::user('group_id') != '1') {
 			$this->Components->unload('DebugKit.Toolbar');
 		}
