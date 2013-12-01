@@ -76,7 +76,7 @@ if ($opponents['Killer']['Player']['connections'] < Configure::read('options.min
 } else {
 	$leagueNameKiller = __(Configure::read('league.' . $opponents['Killer']['skilleague'] . '.3'));
 	$leagueColorKiller = __(Configure::read('league.' . $opponents['Killer']['skilleague'] . '.5'));
-	$leagueKiller = $this->Html->link('<span class="label" style="background-color:' . $leagueColorKiller. '">' . $leagueNameKiller . '</span>',
+	$leagueKiller = $this->Html->link('<span class="label" style="background-color:' . $leagueColorKiller . '">' . $leagueNameKiller . '</span>',
 		array(
 			'controller' => 'leagues',
 			'action' => 'view',
@@ -106,34 +106,30 @@ if ($opponents['Target']['Player']['connections'] < Configure::read('options.min
 };
 
 /* Performance -------------------------------------------------------------------------------------------*/
-if ($opponents['Opponent']['retals'] !=0 ) {
-	$_ratioKiller = $opponents['Opponent']['kills'] / $opponents['0']['confrontations'];
-	$_ratioTarget = 1 - $_ratioKiller;
+if ($opponents['Opponent']['retals'] != 0 ) {
+	$ratioKiller = $opponents['Opponent']['kills'] / $opponents['0']['confrontations'];
+	$ratioTarget = 1 - $ratioKiller;
 
-	$_ratioPercentageKiller = $this->Number->toPercentage($_ratioKiller * 100, 0);
-	$_ratioPercentageTarget = $this->Number->toPercentage($_ratioTarget * 100, 0);
+	$ratioPercentageKiller = $this->Number->toPercentage($ratioKiller * 100, 0);
+	$ratioPercentageTarget = $this->Number->toPercentage($ratioTarget * 100, 0);
 
-	if ($_ratioKiller >= 0.5 ) {
-		$_iconKiller = '<p class="text-success"><i class="icon-thumbs-up"></i><strong>';
-		$_iconTarget = '<p class="text-error"><i class="icon-thumbs-down"></i><strong>';
+	if ($ratioKiller >= 0.5 ) {
+		$iconKiller = '<p class="text-success"><i class="icon-thumbs-up"></i><strong>';
+		$iconTarget = '<p class="text-error"><i class="icon-thumbs-down"></i><strong>';
+	} else {
+		$iconKiller = '<p class="text-error"><i class="icon-thumbs-down"></i><strong>';
+		$iconTarget = '<p class="text-success"><i class="icon-thumbs-up"></i><strong>';
 	}
-	else {
-		$_iconKiller = '<p class="text-error"><i class="icon-thumbs-down"></i><strong>';
-		$_iconTarget = '<p class="text-success"><i class="icon-thumbs-up"></i><strong>';
-	}
 
-	$performanceKiller = $_iconKiller . ' ' . $_ratioPercentageKiller . '</strong></p>';
-	$performanceTarget = $_iconTarget . ' ' . $_ratioPercentageTarget . '</strong></p>';
-}
-elseif ($opponents['Opponent']['kills'] == 0) {
+	$performanceKiller = $iconKiller . ' ' . $ratioPercentageKiller . '</strong></p>';
+	$performanceTarget = $iconTarget . ' ' . $ratioPercentageTarget . '</strong></p>';
+} elseif ($opponents['Opponent']['kills'] == 0) {
 	$performanceKiller = '<i class="icon-thumbs-down"></i>';
 	$performanceTarget = '<i class="icon-thumbs-down"></i>';
-}
-elseif ($opponents['Opponent']['retals'] == 0) {
+} elseif ($opponents['Opponent']['retals'] == 0) {
 	$performanceKiller = '<i class="icon-thumbs-down"></i>';
 	$performanceTarget = '<i class="icon-thumbs-down"></i>';
-}
-else {
+} else {
 	$performanceKiller = '<i class="icon-minus"></i>';
 	$performanceTarget = '<i class="icon-minus"></i>';
 }
@@ -141,16 +137,14 @@ else {
 /* Win Probability and Pure Skill Gain in kill -----------------------------------------------------------*/
 if ($opponents['Killer']['winprobability'] >= 0.5) {
 	$winProbabilityKiller = '<p class="text-success"><i class="icon-thumbs-up"></i> <strong>' . $this->Number->toPercentage($opponents['Killer']['winprobability'] * 100) . '</strong></p>';
-}
-else {
+} else {
 	$winProbabilityKiller = '<p class="text-error"><i class="icon-thumbs-down"></i> <strong>' . $this->Number->toPercentage($opponents['Killer']['winprobability'] * 100) . '</strong></p>';
 }
 $skillGainKiller = $this->NUmber->precision($opponents['Killer']['skillgain'], 2);
 
 if ($opponents['Target']['winprobability'] >= 0.5) {
 	$winProbabilityTarget = '<p class="text-success"><i class="icon-thumbs-up"></i> <strong>' . $this->Number->toPercentage($opponents['Target']['winprobability'] * 100) . '</strong></p>';
-}
-else {
+} else {
 	$winProbabilityTarget = '<p class="text-error"><i class="icon-thumbs-down"></i> <strong>' . $this->Number->toPercentage($opponents['Target']['winprobability'] * 100) . '</strong></p>';
 }
 $skillGainTarget = $this->NUmber->precision($opponents['Target']['skillgain'], 2);
@@ -160,8 +154,7 @@ $skillGainTarget = $this->NUmber->precision($opponents['Target']['skillgain'], 2
 if ($opponents['Killer']['skill'] >= $opponents['Target']['skill']) {
 	$skillCompareIconKiller = '<p class="text-success"><i class="icon-hand-up"></i> <strong>';
 	$skillCompareIconTarget = '<p class="text-error"><i class="icon-hand-down"></i> <strong>';
-}
-else {
+} else {
 	$skillCompareIconKiller = '<p class="text-error"><i class="icon-hand-down"></i> <strong>';
 	$skillCompareIconTarget = '<p class="text-success"><i class="icon-hand-up"></i> <strong>';
 }
@@ -180,8 +173,7 @@ $skillTarget = $this->Number->format( $opponents['Target']['skill'], array(
 if ($opponents['Killer']['ratio'] >= $opponents['Target']['ratio']) {
 	$ratioCompareIconKiller = '<p class="text-success"><i class="icon-hand-up"></i> <strong>';
 	$ratioCompareIconTarget = '<p class="text-error"><i class="icon-hand-down"></i> <strong>';
-}
-else {
+} else {
 	$ratioCompareIconKiller = '<p class="text-error"><i class="icon-hand-down"></i> <strong>';
 	$ratioCompareIconTarget = '<p class="text-success"><i class="icon-hand-up"></i> <strong>';
 }
@@ -197,113 +189,103 @@ $ratioTarget = $this->Number->format( $opponents['Target']['ratio'], array(
 )) . '</strong></p>';
 
 /* Kills -------------------------------------------------------------------------------------------------*/
-$_killDiff = $opponents['Target']['kills'] - $opponents['Killer']['kills'];
-if ($_killDiff <= 0) {
-	$killDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_killDiff) . __(' less kills') . ')</small>';
-	$killDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_killDiff) . __(' more kills') . ')</small>';
-}
-else {
-	$killDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_killDiff) . __(' more kills') . ')</small>';
-	$killDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_killDiff) . __(' less kills') . ')</small>';
+$killDiff = $opponents['Target']['kills'] - $opponents['Killer']['kills'];
+if ($killDiff <= 0) {
+	$killDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($killDiff) . __(' less kills') . ')</small>';
+	$killDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($killDiff) . __(' more kills') . ')</small>';
+} else {
+	$killDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($killDiff) . __(' more kills') . ')</small>';
+	$killDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($killDiff) . __(' less kills') . ')</small>';
 }
 
 /* Deaths -----------------------------------------------------------------------------------------------*/
-$_deathDiff = $opponents['Target']['deaths'] - $opponents['Killer']['deaths'];
-if ($_deathDiff <= 0) {
-	$deathDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_deathDiff) . __(' less deaths') . ')</small>';
-	$deathDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_deathDiff) . __(' more deaths') . ')</small>';
-}
-else {
-	$deathDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_deathDiff) . __(' more deaths') . ')</small>';
-	$deathDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_deathDiff) . __(' less deaths') . ')</small>';
+$deathDiff = $opponents['Target']['deaths'] - $opponents['Killer']['deaths'];
+if ($deathDiff <= 0) {
+	$deathDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($deathDiff) . __(' less deaths') . ')</small>';
+	$deathDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($deathDiff) . __(' more deaths') . ')</small>';
+} else {
+	$deathDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($deathDiff) . __(' more deaths') . ')</small>';
+	$deathDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($deathDiff) . __(' less deaths') . ')</small>';
 }
 
 /* Teamkills --------------------------------------------------------------------------------------------*/
-$_teamkillDiff = $opponents['Target']['teamkills'] - $opponents['Killer']['teamkills'];
-if ($_teamkillDiff <= 0) {
-	$teamkillDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_teamkillDiff) . __(' less teamkills') . ')</small>';
-	$teamkillDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_teamkillDiff) . __(' more teamkills') . ')</small>';
-}
-else {
-	$teamkillDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_teamkillDiff) . __(' more teamkills') . ')</small>';
-	$teamkillDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_teamkillDiff) . __(' less teamkills') . ')</small>';
+$teamkillDiff = $opponents['Target']['teamkills'] - $opponents['Killer']['teamkills'];
+if ($teamkillDiff <= 0) {
+	$teamkillDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($teamkillDiff) . __(' less teamkills') . ')</small>';
+	$teamkillDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($teamkillDiff) . __(' more teamkills') . ')</small>';
+} else {
+	$teamkillDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($teamkillDiff) . __(' more teamkills') . ')</small>';
+	$teamkillDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($teamkillDiff) . __(' less teamkills') . ')</small>';
 }
 
 /* Suicides ---------------------------------------------------------------------------------------------*/
-$_suicideDiff = $opponents['Target']['suicides'] - $opponents['Killer']['suicides'];
-if ($_suicideDiff <= 0) {
-	$suicideDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_suicideDiff) . __(' less suicides') . ')</small>';
-	$suicideDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_suicideDiff) . __(' more suicides') . ')</small>';
-}
-else {
-	$suicideDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_suicideDiff) . __(' more suicides') . ')</small>';
-	$suicideDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_suicideDiff) . __(' less suicides') . ')</small>';
+$suicideDiff = $opponents['Target']['suicides'] - $opponents['Killer']['suicides'];
+if ($suicideDiff <= 0) {
+	$suicideDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($suicideDiff) . __(' less suicides') . ')</small>';
+	$suicideDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($suicideDiff) . __(' more suicides') . ')</small>';
+} else {
+	$suicideDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($suicideDiff) . __(' more suicides') . ')</small>';
+	$suicideDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($suicideDiff) . __(' less suicides') . ')</small>';
 }
 
 /* Winstreaks -------------------------------------------------------------------------------------------*/
-$_winstreakDiff = $opponents['Target']['winstreak'] - $opponents['Killer']['winstreak'];
-if ($_winstreakDiff <= 0) {
-	$winstreakDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_winstreakDiff) . __(' less winstreaks') . ')</small>';
-	$winstreakDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_winstreakDiff) . __(' more winstreaks') . ')</small>';
-}
-else {
-	$winstreakDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_winstreakDiff) . __(' more winstreaks') . ')</small>';
-	$winstreakDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_winstreakDiff) . __(' less winstreaks') . ')</small>';
+$winstreakDiff = $opponents['Target']['winstreak'] - $opponents['Killer']['winstreak'];
+if ($winstreakDiff <= 0) {
+	$winstreakDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($winstreakDiff) . __(' less winstreaks') . ')</small>';
+	$winstreakDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($winstreakDiff) . __(' more winstreaks') . ')</small>';
+} else {
+	$winstreakDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($winstreakDiff) . __(' more winstreaks') . ')</small>';
+	$winstreakDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($winstreakDiff) . __(' less winstreaks') . ')</small>';
 }
 
 /* Losestreaks ------------------------------------------------------------------------------------------*/
-$_losestreakDiff = $opponents['Target']['losestreak'] - $opponents['Killer']['losestreak'];
-if ($_losestreakDiff <= 0) {
-	$losestreakDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_losestreakDiff) . __(' less losestreaks') . ')</small>';
-	$losestreakDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_losestreakDiff) . __(' more losestreaks') . ')</small>';
-}
-else {
-	$losestreakDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_losestreakDiff) . __(' more losestreaks') . ')</small>';
-	$losestreakDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_losestreakDiff) . __(' less losestreaks') . ')</small>';
+$losestreakDiff = $opponents['Target']['losestreak'] - $opponents['Killer']['losestreak'];
+if ($losestreakDiff <= 0) {
+	$losestreakDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($losestreakDiff) . __(' less losestreaks') . ')</small>';
+	$losestreakDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($losestreakDiff) . __(' more losestreaks') . ')</small>';
+} else {
+	$losestreakDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($losestreakDiff) . __(' more losestreaks') . ')</small>';
+	$losestreakDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($losestreakDiff) . __(' less losestreaks') . ')</small>';
 }
 
 /* Assists ----------------------------------------------------------------------------------------------*/
-$_assistDiff = $opponents['Target']['assists'] - $opponents['Killer']['assists'];
-if ($_assistDiff <= 0) {
-	$assistDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_assistDiff) . __(' less assists') . ')</small>';
-	$assistDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_assistDiff) . __(' more assists') . ')</small>';
-}
-else {
-	$assistDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_assistDiff) . __(' more assists') . ')</small>';
-	$assistDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_assistDiff) . __(' less assists') . ')</small>';
+$assistDiff = $opponents['Target']['assists'] - $opponents['Killer']['assists'];
+if ($assistDiff <= 0) {
+	$assistDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($assistDiff) . __(' less assists') . ')</small>';
+	$assistDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($assistDiff) . __(' more assists') . ')</small>';
+} else {
+	$assistDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($assistDiff) . __(' more assists') . ')</small>';
+	$assistDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($assistDiff) . __(' less assists') . ')</small>';
 }
 
 /* Assiststkill -----------------------------------------------------------------------------------------*/
-$_assistskillDiff = $opponents['Target']['assistskill'] - $opponents['Killer']['assistskill'];
-if ($_assistskillDiff <= 0) {
-	$assistskillDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_assistskillDiff) . __(' less assistskills') . ')</small>';
-	$assistskillDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_assistskillDiff) . __(' more assistskills') . ')</small>';
-}
-else {
-	$assistskillDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_assistskillDiff) . __(' more assistskills') . ')</small>';
-	$assistskillDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_assistskillDiff) . __(' less assistskills') . ')</small>';
+$assistskillDiff = $opponents['Target']['assistskill'] - $opponents['Killer']['assistskill'];
+if ($assistskillDiff <= 0) {
+	$assistskillDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($assistskillDiff) . __(' less assistskills') . ')</small>';
+	$assistskillDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($assistskillDiff) . __(' more assistskills') . ')</small>';
+} else {
+	$assistskillDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($assistskillDiff) . __(' more assistskills') . ')</small>';
+	$assistskillDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($assistskillDiff) . __(' less assistskills') . ')</small>';
 }
 
 /* Connections -------------------------------------------------------------------------------------------*/
-$_connectionDiff = $opponents['Target']['Player']['connections'] - $opponents['Killer']['Player']['connections'];
-if ($_connectionDiff <= 0) {
-	$connectionDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_connectionDiff) . __(' less connections') . ')</small>';
-	$connectionDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_connectionDiff) . __(' more connections') . ')</small>';
-}
-else {
-	$connectionDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_connectionDiff) . __(' more connections') . ')</small>';
-	$connectionDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_connectionDiff) . __(' less connections') . ')</small>';
+$connectionDiff = $opponents['Target']['Player']['connections'] - $opponents['Killer']['Player']['connections'];
+if ($connectionDiff <= 0) {
+	$connectionDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($connectionDiff) . __(' less connections') . ')</small>';
+	$connectionDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($connectionDiff) . __(' more connections') . ')</small>';
+} else {
+	$connectionDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($connectionDiff) . __(' more connections') . ')</small>';
+	$connectionDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($connectionDiff) . __(' less connections') . ')</small>';
 }
 
 /* Rounds ------------------------------------------------------------------------------------------------*/
-$_roundDiff = $opponents['Target']['rounds'] - $opponents['Killer']['rounds'];
-if ($_roundDiff <= 0) {
-	$roundDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($_roundDiff) . __(' less rounds') . ')</small>';
-	$roundDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($_roundDiff) . __(' more rounds') . ')</small>';
-}
-else {
-	$roundDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($_roundDiff) . __(' more rounds') . ')</small>';
-	$roundDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($_roundDiff) . __(' less rounds') . ')</small>';
+$roundDiff = $opponents['Target']['rounds'] - $opponents['Killer']['rounds'];
+if ($roundDiff <= 0) {
+	$roundDiffTarget = '<small>(<i class="icon-hand-down"></i>' . abs($roundDiff) . __(' less rounds') . ')</small>';
+	$roundDiffKiller = '<small>(<i class="icon-hand-up"></i>' . abs($roundDiff) . __(' more rounds') . ')</small>';
+} else {
+	$roundDiffTarget = '<small>(<i class="icon-hand-up"></i>' . abs($roundDiff) . __(' more rounds') . ')</small>';
+	$roundDiffKiller = '<small>(<i class="icon-hand-down"></i>' . abs($roundDiff) . __(' less rounds') . ')</small>';
 }
 
 

@@ -24,7 +24,7 @@ endif;
 
 foreach ($monthlyStats as $stat) {
 	$monthName = date("F", mktime(0, 0, 0, $stat['MonthlyStat']['month'], 10));
-	$ratio[] =  floatval($this->Number->precision($stat['MonthlyStat']['ratio'], 2));
+	$ratio[] = floatval($this->Number->precision($stat['MonthlyStat']['ratio'], 2));
 	$skill[] = floatval($this->Number->precision($stat['MonthlyStat']['skill'], 0));
 	$month[] = __('%s %s', $monthName, $stat['MonthlyStat']['year']);
 }

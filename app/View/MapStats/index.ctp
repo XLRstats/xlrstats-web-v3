@@ -52,9 +52,10 @@ $pieChart['teamkills']['title'] = __('Top %s Team Kill Maps', $pieChart['teamkil
 $pieChart['suicides']['title'] = __('Top %s Suicide Maps', $pieChart['suicides']['count']);
 
 // Last pie chart. We'll use this to draw a border bottom or not
-foreach($pieChart as $key => $value) {
-	if($value['count'] > 0)
+foreach ($pieChart as $key => $value) {
+	if ($value['count'] > 0) {
 		$charts[] = $key;
+	}
 }
 $lastChart = end($charts);
 
@@ -116,68 +117,69 @@ $lastChart = end($charts);
 	foreach($pieChart as $key => $value):
 		if($value['count'] > 0):
 		?>
-	$(function () {
-		var chart;
+		$(function () {
+			var chart;
 
-		$(document).ready(function () {
+			$(document).ready(function () {
 
-			// Build the chart
-			chart = new Highcharts.Chart({
-				chart: {
-					renderTo: '<?php echo $key.'-maps'; ?>',
-					plotBackgroundColor: null,
-					plotBorderWidth: null,
-					plotShadow: false
-				},
-				credits: {
-					enabled: false
-				},
-				exporting: {
-					enabled: false
-				},
-				title: {
-					text: '<?php echo $value['title']; ?>',
-					style: {
-						'font-family': '"Cuprum",sans-serif'
-					}
-				},
-				subtitle: {
-					text: '<?php echo __('<b>Top Map:</b> %s', $this->XlrFunctions->getMapName($value['favorite'])); ?>',
-					style: {
-						'font-family': '"Lato",sans-serif;'
+				// Build the chart
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: '<?php echo $key . '-maps'; ?>',
+						plotBackgroundColor: null,
+						plotBorderWidth: null,
+						plotShadow: false
 					},
-					x:0,
-					y:35
-				},
-				tooltip: {
-					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-				},
-				legend: false,
-				plotOptions: {
-					pie: {
-						allowPointSelect: true,
-						cursor: 'pointer',
-						dataLabels: {
-							enabled: false
-
+					credits: {
+						enabled: false
+					},
+					exporting: {
+						enabled: false
+					},
+					title: {
+						text: '<?php echo $value['title']; ?>',
+						style: {
+							'font-family': '"Cuprum",sans-serif'
+						}
+					},
+					subtitle: {
+						text: '<?php echo __('<b>Top Map:</b> %s', $this->XlrFunctions->getMapName($value['favorite'])); ?>',
+						style: {
+							'font-family': '"Lato",sans-serif;'
 						},
-						showInLegend: true
-					}
-				},
-				series: [{
-					type: 'pie',
-					name: '<?php echo __('Percentage'); ?>',
-					data: [
-						<?php echo $value['data'];?>
-					]
-				}]
-			});
-		});
+						x:0,
+						y:35
+					},
+					tooltip: {
+						pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+					},
+					legend: false,
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: false
 
-	});
-	<?php endif;
-endforeach;
-?>
+							},
+							showInLegend: true
+						}
+					},
+					series: [{
+						type: 'pie',
+						name: '<?php echo __('Percentage'); ?>',
+						data: [
+							<?php echo $value['data'];?>
+						]
+					}]
+				});
+			});
+
+		});
+	<?php
+		endif;
+	endforeach;
+	?>
 
 	/* Make sure modal box doesn't load the same content */
 	$('body').on('hidden', '.modal', function () {
@@ -225,7 +227,7 @@ endforeach;
 					$borderBottom = null;
 				endif;
 				?>
-				<div id="<?php echo $key.'-maps'; ?>" style="min-width: 326px; height: 250px; margin: 0 auto; <?php echo $borderBottom; ?>"></div>
+				<div id="<?php echo $key . '-maps'; ?>" style="min-width: 326px; height: 250px; margin: 0 auto; <?php echo $borderBottom; ?>"></div>
 			<?php
 			endif;
 		endforeach; ?>

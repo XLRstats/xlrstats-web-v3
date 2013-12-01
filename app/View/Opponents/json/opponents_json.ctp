@@ -79,33 +79,28 @@ foreach ($opponents as $k => $v) {
 	};
 
 	/* Performance -------------------------------------------------------------------------------------------*/
-	if ($v['Opponent']['retals'] !=0 ) {
-		$_ratio = $v['Opponent']['kills'] / $v['0']['confrontations'];
-		$_ratioPercentage = $this->Number->toPercentage($_ratio * 100, 0);
-		if ($_ratio >= 0.5 ) {
-			$_icon = '<p class="text-success"><i class="icon-thumbs-up"></i><strong>';
+	if ($v['Opponent']['retals'] != 0 ) {
+		$ratio = $v['Opponent']['kills'] / $v['0']['confrontations'];
+		$ratioPercentage = $this->Number->toPercentage($ratio * 100, 0);
+		if ($ratio >= 0.5 ) {
+			$icon = '<p class="text-success"><i class="icon-thumbs-up"></i><strong>';
+		} else {
+			$icon = '<p class="text-error"><i class="icon-thumbs-down"></i><strong>';
 		}
-		else {
-			$_icon = '<p class="text-error"><i class="icon-thumbs-down"></i><strong>';
-		}
-		$performance = $_icon . ' ' . $_ratioPercentage . '</strong></p>';
+		$performance = $icon . ' ' . $ratioPercentage . '</strong></p>';
 
-	}
-	elseif ($v['Opponent']['kills'] == 0) {
+	} elseif ($v['Opponent']['kills'] == 0) {
 		$performance = '<i class="icon-thumbs-down"></i>';
-	}
-	elseif ($v['Opponent']['retals'] == 0) {
+	} elseif ($v['Opponent']['retals'] == 0) {
 		$performance = '<i class="icon-thumbs-up"></i>';
-	}
-	else {
+	} else {
 		$performance = '<i class="icon-minus"></i>';
 	}
 
 	/* Win Probability and Pure Skill Gain in kill -----------------------------------------------------------*/
 	if ($v['0']['winprobability'] >= 0.5) {
 		$winProbability = '<p class="text-success"><i class="icon-thumbs-up"></i> <strong>' . $this->Number->toPercentage($v['0']['winprobability'] * 100) . '</strong></p>';
-	}
-	else {
+	} else {
 		$winProbability = '<p class="text-error"><i class="icon-thumbs-down"></i> <strong>' . $this->Number->toPercentage($v['0']['winprobability'] * 100) . '</strong></p>';
 	}
 	$skillGain = $this->NUmber->precision($v['0']['skillgain'], 2);
@@ -113,8 +108,7 @@ foreach ($opponents as $k => $v) {
 	/* Skill -------------------------------------------------------------------------------------------------*/
 	if ($v['Target']['skill'] >= $v['Killer']['skill']) {
 		$skillCompareIcon = '<p class="text-error"><i class="icon-hand-up"></i><strong>';
-	}
-	else {
+	} else {
 		$skillCompareIcon = '<p class="text-success"><i class="icon-hand-down"></i><strong>';
 	}
 	$skill = $this->Number->format( $v['Target']['skill'], array(
@@ -124,47 +118,43 @@ foreach ($opponents as $k => $v) {
 	)) . '</strong></p>';
 
 	/* Kills -------------------------------------------------------------------------------------------------*/
-	$_killDiff = $v['Target']['kills'] - $v['Killer']['kills'];
-	if ($_killDiff <= 0) {
-		$killDiff = '<i class="icon-hand-down"></i>' . abs($_killDiff) . __(' less kills total');
-	}
-	else {
-		$killDiff = '<i class="icon-hand-up"></i>' . abs($_killDiff) . __(' more kills total');
+	$killDiff = $v['Target']['kills'] - $v['Killer']['kills'];
+	if ($killDiff <= 0) {
+		$killDiff = '<i class="icon-hand-down"></i>' . abs($killDiff) . __(' less kills total');
+	} else {
+		$killDiff = '<i class="icon-hand-up"></i>' . abs($killDiff) . __(' more kills total');
 	}
 
 	/* Deaths -----------------------------------------------------------------------------------------------*/
-	$_deathDiff = $v['Target']['deaths'] - $v['Killer']['deaths'];
-	if ($_deathDiff <= 0) {
-		$deathDiff = '<i class="icon-hand-down"></i>' . abs($_deathDiff) . __(' less deaths total');
-	}
-	else {
-		$deathDiff = '<i class="icon-hand-up"></i>' . abs($_deathDiff) . __(' more deaths total');
+	$deathDiff = $v['Target']['deaths'] - $v['Killer']['deaths'];
+	if ($deathDiff <= 0) {
+		$deathDiff = '<i class="icon-hand-down"></i>' . abs($deathDiff) . __(' less deaths total');
+	} else {
+		$deathDiff = '<i class="icon-hand-up"></i>' . abs($deathDiff) . __(' more deaths total');
 	}
 
 	/* Connections -------------------------------------------------------------------------------------------*/
-	$_connectionDiff = $v['Target']['Player']['connections'] - $v['Killer']['Player']['connections'];
-	if ($_connectionDiff <= 0) {
-		$connectionDiff = '<i class="icon-hand-down"></i>' . abs($_connectionDiff) . __(' less connections total');
-	}
-	else {
-		$connectionDiff = '<i class="icon-hand-up"></i>' . abs($_connectionDiff) . __(' more connections total');
+	$connectionDiff = $v['Target']['Player']['connections'] - $v['Killer']['Player']['connections'];
+	if ($connectionDiff <= 0) {
+		$connectionDiff = '<i class="icon-hand-down"></i>' . abs($connectionDiff) . __(' less connections total');
+	} else {
+		$connectionDiff = '<i class="icon-hand-up"></i>' . abs($connectionDiff) . __(' more connections total');
 	}
 
 	/* Rounds ------------------------------------------------------------------------------------------------*/
-	$_roundDiff = $v['Target']['rounds'] - $v['Killer']['rounds'];
-	if ($_roundDiff <= 0) {
-		$roundDiff = '<i class="icon-hand-down"></i>' . abs($_roundDiff) . __(' less rounds total');
-	}
-	else {
-		$roundDiff = '<i class="icon-hand-up"></i>' . abs($_roundDiff) . __(' more rounds total');
+	$roundDiff = $v['Target']['rounds'] - $v['Killer']['rounds'];
+	if ($roundDiff <= 0) {
+		$roundDiff = '<i class="icon-hand-down"></i>' . abs($roundDiff) . __(' less rounds total');
+	} else {
+		$roundDiff = '<i class="icon-hand-up"></i>' . abs($roundDiff) . __(' more rounds total');
 	}
 
 	/* Defining cell contents --------------------------------------------------------------------------------*/
-	$opponentCell = $nameLink . '<br />'. $compareLink . $flag . $rank . $level;
+	$opponentCell = $nameLink . '<br />' . $compareLink . $flag . $rank . $level;
 	$totalConfrontationsCell = '<strong>' . $v['0']['confrontations'] . '</strong>'; //<br /><small>You made ' . $v['Opponent']['kills'] . ' kills, died ' . $v['Opponent']['retals'] . ' times';
 	//$performanceCell = $performance . '<br />' . $winProbability;
 	$probabilityCell = $winProbability . '<small>+' . $skillGain . ' skill <sup class="muted">(1)</sup></small>';
-	$opponentSkillCell = $skillCompareIcon  . $skill . $league;
+	$opponentSkillCell = $skillCompareIcon . $skill . $league;
 	//$opponentHistoryCell = $killDiff . '<br />' . $deathDiff;
 	//$opponentExperienceCell = $connectionDiff . '<br />' . $roundDiff;
 

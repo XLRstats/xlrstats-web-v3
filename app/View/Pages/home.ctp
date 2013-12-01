@@ -60,28 +60,28 @@ $this->set('title_for_layout', __('XLRstats • %s', $serverName));
 					<div class="league-title">
 						<span class="view-league-btn pull-right"
 								rel="popover" data-trigger="hover" data-placement="left"
-								data-title="<?php echo __(Configure::read('league.'.$leagueNumber[$i].'.3')); ?>"
-								data-content="<?php echo __(Configure::read('league.'.$leagueNumber[$i].'.4')); ?>">
+								data-title="<?php echo __(Configure::read('league.' . $leagueNumber[$i] . '.3')); ?>"
+								data-content="<?php echo __(Configure::read('league.' . $leagueNumber[$i] . '.4')); ?>">
 							<?php echo $this->Html->Link('<i class="icon-play-circle icon-white"></i>', array(
 							'controller' => 'leagues', 'action' => 'view', 'server' => Configure::read('server_id'), $leagueNumber[$i],
 						), array('escape' => false)) ?>
 						</span>
 						<h4>
 							<?php
-							$_leagueNrInt = (int)$leagueNumber[$i];
-							if (isset($leaguesConfig[$_leagueNrInt][5])) {
-								$leagueColor = $leaguesConfig[$_leagueNrInt][5];
+							$leagueNrInt = (int)$leagueNumber[$i];
+							if (isset($leaguesConfig[$leagueNrInt][5])) {
+								$leagueColor = $leaguesConfig[$leagueNrInt][5];
 							} else {
 								//TODO: Need to css this leagueColor
 								$leagueColor = '#999999';
 							}
-							if ($leaguesConfig[$_leagueNrInt][0] == 'League.skill') {
-								$leagueIcon = '<i class="icon-star" style="color:'.$leagueColor.'; margin-right: 10px"></i>';
+							if ($leaguesConfig[$leagueNrInt][0] == 'League.skill') {
+								$leagueIcon = '<i class="icon-star" style="color:' . $leagueColor . '; margin-right: 10px"></i>';
 							} else {
-								$leagueIcon = '<i class="icon-calendar" style="color:'.$leagueColor.'; margin-right: 10px"></i>';
+								$leagueIcon = '<i class="icon-calendar" style="color:' . $leagueColor . '; margin-right: 10px"></i>';
 							}
 							?>
-							<?php echo $leagueIcon . $this->Html->Link(__(Configure::read('league.'.$leagueNumber[$i].'.3')), array(
+							<?php echo $leagueIcon . $this->Html->Link(__(Configure::read('league.' . $leagueNumber[$i] . '.3')), array(
 							'controller' => 'leagues', 'action' => 'view', 'server' => Configure::read('server_id'), $leagueNumber[$i]
 							)) ?>
 						</h4>
@@ -114,15 +114,15 @@ $this->set('title_for_layout', __('XLRstats • %s', $serverName));
 								</td>
 								<td><?php
 									//Player Name
-									$_name = $this->Text->truncate($player[1],
+									$name = $this->Text->truncate($player[1],
 										$nameTruncation,
 										array(
 											'ending'	=> '...',
 											'exact'		=> true,
 										));
-									if ($_name == $player[1]) {
+									if ($name == $player[1]) {
 										echo $this->Html->link(
-											$_name,
+											$name,
 											array(
 												'controller' => 'player_stats',
 												'action' => 'view',
@@ -131,7 +131,7 @@ $this->set('title_for_layout', __('XLRstats • %s', $serverName));
 										);
 									} else {
 										echo $this->Html->link(
-											$_name,
+											$name,
 											array(
 												'controller' => 'player_stats',
 												'action' => 'view',
@@ -160,7 +160,12 @@ $this->set('title_for_layout', __('XLRstats • %s', $serverName));
 									));
 
 								?></td>
-								<td style="text-align:right; padding-right:15px; <?php if($detailedStats) echo 'font-weight:bold;' ?>">
+								<td style="text-align:right; padding-right:15px;
+								<?php
+									if ($detailedStats) {
+										echo 'font-weight:bold; ';
+									}
+								?>">
 									<?php
 									//Skill
 									echo $this->Number->format($player[2], array(
@@ -231,7 +236,7 @@ $this->set('title_for_layout', __('XLRstats • %s', $serverName));
 			);
 			?>
 			<div class="pull-right">
-				<?php echo $this->Html->link('<i class="icon-trophy"></i> '  . __('All awards'), array(
+				<?php echo $this->Html->link('<i class="icon-trophy"></i> ' . __('All awards'), array(
 					'plugin' => null,
 					'admin' => false,
 					'controller' => 'pages',
@@ -239,7 +244,7 @@ $this->set('title_for_layout', __('XLRstats • %s', $serverName));
 					'server' => Configure::read('server_id'),
 					'awards'
 				), array(
-					'title' =>  __('View all awards on one page'),
+					'title' => __('View all awards on one page'),
 					'class' => 'btn btn-success',
 					'escape' => false
 				)) ?>

@@ -9,7 +9,7 @@ echo '<h3>Cakephp version: ' . Configure::version() . '</h3>';
 //Configure::dump('test.php', 'default');
 
 App::uses('Folder', 'Utility');
-$dir = new Folder(APP.'Config');
+$dir = new Folder(APP . 'Config');
 $files = $dir->findRecursive('xlr.*');
 
 Cache::clear();
@@ -57,7 +57,7 @@ echo '    <div id="collapseTwo" class="accordion-body collapse">';
 echo '      <div class="accordion-inner">';
 
 foreach (Configure::read('level') as $key => $level):
-	echo $key  . ': ' . $level[1] . ' (group_bits: ' . $level[0] . ')<br />';
+	echo $key . ': ' . $level[1] . ' (group_bits: ' . $level[0] . ')<br />';
 endforeach;
 
 echo '      </div>';
@@ -76,7 +76,7 @@ echo '    <div id="collapseThree" class="accordion-body collapse">';
 echo '      <div class="accordion-inner">';
 
 foreach (Configure::read('rank') as $key => $rank):
-	echo $key  . ': ' . $rank[0] . ': (' . $rank[1] . '+ kills)<br />';
+	echo $key . ': ' . $rank[0] . ': (' . $rank[1] . '+ kills)<br />';
 endforeach;
 
 echo '      </div>';

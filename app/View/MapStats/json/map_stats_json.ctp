@@ -13,14 +13,15 @@
  * @version       0.1
  */
 
-for($i=0; $i<count($mapStats['aaData']) ;$i++) {
-	foreach($mapStats['aaData'][$i] as $k => &$v) {
-		if($k == 0) {
+$count = count($mapStats['aaData']);
+for ($i = 0; $i < $count; $i++) {
+	foreach ($mapStats['aaData'][$i] as $k => &$v) {
+		if ($k == 0) {
 			//Position numbers
 			$v = $this->request->query['iDisplayStart']++;
 			$v += 1;
 		}
-		if($k == 1) {
+		if ($k == 1) {
 			$mapImage = $this->XlrFunctions->getMapImage($v);
 			$mapName = $this->Html->link('<b><small>' . $this->XlrFunctions->getMapName($v) . '</small></b>',
 				array(
@@ -35,7 +36,7 @@ for($i=0; $i<count($mapStats['aaData']) ;$i++) {
 					'data-target' => '#map-modal'
 				)
 			);
-			if($mapImage) {
+			if ($mapImage) {
 				$v = '<div style="text-align:center;">' . $mapImage . '<br />' . $mapName . '</div>';
 			} else {
 				$v = '<div style="text-align:center;">' . $mapName . '</div>';
