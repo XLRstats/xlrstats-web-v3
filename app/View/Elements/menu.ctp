@@ -58,23 +58,25 @@
 						<?php endif; ?>
 					</ul>
 					<?php
-					$serverCount = count(Configure::read('servers'));
-					if($serverCount > 1):
-						?>
-						<ul class="nav pull-right">
-							<li class="divider-vertical"></li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('SERVERS') ?> <b class="caret"></b></a>
-								<ul class="dropdown-menu uses-cookie">
-									<?php echo $this->element('menu_servers'); ?>
-								</ul>
-							</li>
-						</ul>
-					<?php
+					if ($this->request->plugin != 'dashboard'):
+						$serverCount = count(Configure::read('servers'));
+						if($serverCount > 1):
+							?>
+							<ul class="nav pull-right">
+								<li class="divider-vertical"></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('SERVERS') ?> <b class="caret"></b></a>
+									<ul class="dropdown-menu uses-cookie">
+										<?php echo $this->element('menu_servers'); ?>
+									</ul>
+								</li>
+							</ul>
+						<?php
+						endif;
 					endif;
-					echo $this->Form->create("PlayerStat", array('url' => '/' . Configure::read('server_id') . '/player_stats/search', 'class' => 'navbar-search pull-right'));
-					echo $this->Form->input("q", array('label' => false, 'class' => 'search-query span2', 'placeholder' => 'Player Search'));
-					echo $this->Form->end();
+						echo $this->Form->create("PlayerStat", array('url' => '/' . Configure::read('server_id') . '/player_stats/search', 'class' => 'navbar-search pull-right'));
+						echo $this->Form->input("q", array('label' => false, 'class' => 'search-query span2', 'placeholder' => 'Player Search'));
+						echo $this->Form->end();
 					?>
 				</div><!--/.nav-collapse -->
 			</div>
