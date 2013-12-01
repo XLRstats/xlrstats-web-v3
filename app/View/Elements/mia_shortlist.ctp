@@ -13,19 +13,21 @@
  * @version       0.1
  */
 
-$_mia = $this->requestAction('leagues/getmia/' . $leagueID . '/' . $random . '/' . $limit);
-$_mia = $_mia['0'];
+$mia = $this->requestAction('leagues/getmia/' . $leagueID . '/' . $random . '/' . $limit);
+$mia = $mia['0'];
 $nameTruncation = 30;
-//pr($_mia);
+//pr($mia);
 
-if (empty($_mia)) return null;
+if (empty($mia)) {
+	return null;
+}
 
 echo '<table class="table table-bordered-v2 table-hover">';
 echo '<thead>';
-echo $this->Html->tableHeaders(array( '<h4>'. __('M.I.A.') . '</h4>'));
+echo $this->Html->tableHeaders(array( '<h4>' . __('M.I.A.') . '</h4>'));
 echo '</thead>';
 echo '<tbody>';
-foreach ($_mia as $k => $v) {
+foreach ($mia as $k => $v) {
 
 	$daysMissing = $this->Number->precision((gmdate('U') - $v['Player']['time_edit']) / 86400, 0);
 	$trunkedName = $this->Text->truncate($v['Player']['name'],
@@ -48,8 +50,7 @@ foreach ($_mia as $k => $v) {
 				'data-original-title' => $daysMissing . ' ' . __('days')
 			)
 		);
-	}
-	else {
+	} else {
 		$namelink = $this->Html->link($trunkedName,
 			array(
 				'controller' => 'player_stats',

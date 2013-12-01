@@ -23,5 +23,5 @@ $data = $feed[1];
 <?php
 
 foreach ($data as $feedItem) {
-	echo  '<strong><i class="icon-wrench"></i></strong> <small>' . $this->Time->format('r', $feedItem['updated']) . '</small>: ' . $feedItem['title'] . '<br />';
+	echo '<strong><i class="icon-wrench"></i></strong> <small>' . $this->Time->format('r', $feedItem['updated']) . '</small>: ' . $feedItem['title'] . '<br />';
 }

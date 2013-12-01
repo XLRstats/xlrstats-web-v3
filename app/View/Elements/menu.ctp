@@ -31,9 +31,6 @@
 						<li <?php if($this->name == 'Pages') echo 'class="active"'; ?>> <!-- if(isset($this->viewVars['page']) AND $this->viewVars['page'] == 'home') -->
 							<?php echo $this->Html->link(__('XLRSTATS'), array('plugin' => null, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'home')); ?>
 						</li>
-						<!-- <li <?php if($this->name == 'PlayerStats') echo 'class="active"'; ?>>
-							<?php echo $this->Html->link(__('PLAYERSTATS'), array('plugin' => null, 'admin' => false, 'controller' => 'player_stats', 'action' => 'index', 'server' => Configure::read('server_id'))); ?> -->
-						</li>
 						<li class="dropdown <?php if($this->name == 'Leagues') echo 'active'; ?>">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('LEAGUES') ?> <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -69,7 +66,7 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo __('SERVERS') ?> <b class="caret"></b></a>
 								<ul class="dropdown-menu uses-cookie">
-									<?php echo $this->element('menu_servers');  ?>
+									<?php echo $this->element('menu_servers'); ?>
 								</ul>
 							</li>
 						</ul>

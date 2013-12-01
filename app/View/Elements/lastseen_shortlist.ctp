@@ -13,20 +13,22 @@
  * @version       0.1
  */
 
-$_lastSeen = $this->requestAction('leagues/getLastSeen/' . $leagueID . '/' . $limit);
-$_nrRows = $_lastSeen['1'];
-$_lastSeen = $_lastSeen['0'];
+$lastSeen = $this->requestAction('leagues/getLastSeen/' . $leagueID . '/' . $limit);
+$nrRows = $lastSeen['1'];
+$lastSeen = $lastSeen['0'];
 $nameTruncation = 30;
-//pr($_lastSeen);
+//pr($lastSeen);
 
-if (empty($_lastSeen)) return null;
+if (empty($lastSeen)) {
+	return null;
+}
 
 echo '<table class="table table-bordered-v2 table-hover">';
 echo '<thead>';
-echo $this->Html->tableHeaders(array( '<h4>'. __('Last Seen') . '</h4>'));
+echo $this->Html->tableHeaders(array( '<h4>' . __('Last Seen') . '</h4>'));
 echo '</thead>';
 echo '<tbody>';
-foreach ($_lastSeen as $k => $v) {
+foreach ($lastSeen as $k => $v) {
 
 	$timeSeen = $this->Time->format('F jS Y, H:i', $v['Player']['time_edit']);
 	$timeAgo = $this->Time->format('H:i:s', (date('U') - $v['Player']['time_edit']));
@@ -50,8 +52,7 @@ foreach ($_lastSeen as $k => $v) {
 				'data-original-title' => $timeSeen
 			)
 		);
-	}
-	else {
+	} else {
 		$namelink = $this->Html->link($trunkedName,
 			array(
 				'controller' => 'player_stats',
@@ -71,6 +72,6 @@ foreach ($_lastSeen as $k => $v) {
 }
 echo '</tbody>';
 echo '<tfoot>';
-echo $this->Html->tableCells(array(array(array(__('The %s last seen players', $_nrRows), array('class' => 'muted small')))));
+echo $this->Html->tableCells(array(array(array(__('The %s last seen players', $nrRows), array('class' => 'muted small')))));
 echo '</tfoot>';
 echo '</table>';

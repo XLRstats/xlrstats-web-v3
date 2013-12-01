@@ -13,16 +13,16 @@
  * @version       0.1
  */
 
-$_opponents = $this->requestAction('opponents/shortlist/' . $playerID);
-$_opponents = $_opponents['0'];
+$opponents = $this->requestAction('opponents/shortlist/' . $playerID);
+$opponents = $opponents['0'];
 $nameTruncation = 30;
-//pr($_opponents);
+//pr($opponents);
 
 echo '<table class="table table-hover table-bordered-v2">';
 echo '<thead>';
-echo $this->Html->tableHeaders(array(__('You can also compare ') . $_opponents['0']['Killer']['Player']['name'] . __(' to:')));
+echo $this->Html->tableHeaders(array(__('You can also compare ') . $opponents['0']['Killer']['Player']['name'] . __(' to:')));
 echo '</thead>';
-foreach ($_opponents as $k => $v) {
+foreach ($opponents as $k => $v) {
 
 	$trunkedName = $this->Text->truncate($v['Target']['Player']['name'],
 		$nameTruncation,
@@ -41,8 +41,7 @@ foreach ($_opponents as $k => $v) {
 				$v['Target']['id']
 			)
 		);
-	}
-	else {
+	} else {
 		$namelink = $this->Html->link($trunkedName,
 			array(
 				'controller' => 'opponents',

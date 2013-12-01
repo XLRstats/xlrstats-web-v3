@@ -14,8 +14,13 @@
  */
 
 if (!function_exists('getAwardDescription')) {
-	function getAwardDescription($_val = null) {
-		$_d = array(
+
+	/**
+	 * @param null $val
+	 * @return string
+	 */
+	function getAwardDescription($val = null) {
+		$d = array(
 			'skill' => __('Best skill'),
 			'kills' => __('Most kills'),
 			'ratio' => __('Best Ratio'),
@@ -23,13 +28,14 @@ if (!function_exists('getAwardDescription')) {
 			'rounds' => __('Most rounds played'),
 			'efficiency' => __('Most kills per round'),
 		);
-		if (!isset($_d[$_val])) {
-			$_description = '';
+		if (!isset($d[$val])) {
+			$description = '';
 		} else {
-			$_description = $_d[$_val];
+			$description = $d[$val];
 		}
-		return $_description;
+		return $description;
 	}
+
 }
 
 //-------------------------------------------------------------------
@@ -42,25 +48,23 @@ if (!$awards[0][0]) {
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	Empty League, no awards here...
 	</div>';
-}
-else{
+} else {
 	$result = array();
 
 	/* Create an easier array */
 	foreach ($awards as $k => $v) {
 		foreach ($v as $k2 => $v2) {
 			//pr($v2);
-			$_name = $v2['Player']['name'];
-			$_id = $v2['League']['id'];
-			if (array_key_exists('0', $v2)){
-				$_key = key($v2[0]);
-				$_value = $v2[0][$_key];
+			$name = $v2['Player']['name'];
+			$id = $v2['League']['id'];
+			if (array_key_exists('0', $v2)) {
+				$key = key($v2[0]);
+				$value = $v2[0][$key];
+			} else {
+				$key = key($v2['League']);
+				$value = $v2['League'][$key];
 			}
-			else {
-				$_key = key($v2['League']);
-				$_value = $v2['League'][$_key];
-			}
-			$result[$_key] = array($_name, $_id, $_value);
+			$result[$key] = array($name, $id, $value);
 		}
 		//pr($result);
 	}
@@ -80,8 +84,8 @@ else{
 						'width' => '50px',
 						'class' => 'center'
 					)) ?></td></tr>
-					<tr><td style="text-align: center"><?php
-						echo $this->Html->link($v[0],array(
+					<tr><td style="text-align: center">
+							<?php echo $this->Html->link($v[0], array(
 							'controller' => 'player_stats',
 							'action' => 'view',
 							'server' => Configure::read('server_id'),
@@ -90,7 +94,9 @@ else{
 						?><br /> <small>(<?php echo getAwardDescription($k) . ': ' . $this->Number->precision($v[2], 0) ?>)</small></td></tr>
 				</table>
 			</div>
-		<?php } ?>
+		<?php
+		} ?>
 	</div>
 
-<?php } ?>
+<?php
+}

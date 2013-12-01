@@ -19,11 +19,9 @@
 <div class="login-block pull-right">
 	<?php if (!empty($user)): ?>
 	<div class="btn-group login-block pull-right">
-		<button class="btn btn-link dropdown-toggle" data-toggle="dropdown" href="#">
+		<button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
 			<?php
-			/**
-			 * Display Gravatar
-			 */
+			// Display Gravatar
 			$options = array('size' => 20, 'rating' => 'g');
 			echo $this->Html->link($this->Gravatar->image($user['User']['email'], $options,
 					array(
@@ -53,17 +51,16 @@
 				<?php
 					$mySoldiers = $this->requestAction('user_soldiers/listing/' . $user['User']['id']);
 					if (empty($mySoldiers)) {
-						echo '<li class="nav-header">'. __('You have no Identified Soldiers') . '</li>';
+						echo '<li class="nav-header">' . __('You have no Identified Soldiers') . '</li>';
 					} else {
-						echo '<li class="nav-header">'. __('Identified Soldiers') . '</li>';
+						echo '<li class="nav-header">' . __('Identified Soldiers') . '</li>';
 						foreach ($mySoldiers as $soldier) {
-							$gameIcon = $this->Html->image('ico/icon_'.$soldier['Server']['gamename'].'.gif');
+							$gameIcon = $this->Html->image('ico/icon_' . $soldier['Server']['gamename'] . '.gif');
 							echo '<li>';
 							echo $this->Html->link($gameIcon . ' ' . $soldier['Server']['servername'], array(
 								'plugin' => null,
 								'controller' => 'player_stats',
 								'action' => 'view',
-								'server' => Configure::read('server_id'),
 								$soldier['UserSoldier']['playerstats_id'],
 								'server' => $soldier['UserSoldier']['server_id']), array(
 									'escape' => false

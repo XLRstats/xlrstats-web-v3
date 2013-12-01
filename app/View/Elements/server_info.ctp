@@ -25,7 +25,7 @@ $elementVars = array (
 );
 
 foreach ($elementVars as $key => $value) {
-	if(!isset($$key)) {
+	if (!isset($$key)) {
 		$$key = $value;
 	}
 }
@@ -34,7 +34,7 @@ $serverID = Configure::read('server_id');
 $gameName = Configure::read('servers.' . $serverID . '.gamename');
 
 //Request server data only if we want to display server name with slogan and real time server statistics
-if($serverNameBig || $serverStats) {
+if ($serverNameBig || $serverStats) {
 	$serverInfo = $this->requestAction('server_info');
 }
 
@@ -63,7 +63,8 @@ $playerNames = $this->requestAction('server_players');
 				<div class="span12">
 
 					<div class="pull-left server-info-game-icon">
-						<?php echo $this->Html->image('ico/icon_'.$gameName.'_64x64.png', array(
+						<?php
+						echo $this->Html->image('ico/icon_' . $gameName . '_64x64.png', array(
 						'class' => 'game-icon img-polaroid',
 						'rel' => 'tooltip',
 						'data-original-title' => Configure::read('gameName') ? Configure::read('gameName') : $gameName,
@@ -76,7 +77,7 @@ $playerNames = $this->requestAction('server_players');
 							<?php
 							$buttonContent = '<i class="icon-group"></i> <i class="icon-globe"></i> ';
 							if (!$xfireGame && !$xfireGame && !$gscGame && !$hlswGame) {
-								$buttonContent .=  $this->Html->image('flags/' . $serverInfo['server_country_code'] . '.gif', array(
+								$buttonContent .= $this->Html->image('flags/' . $serverInfo['server_country_code'] . '.gif', array(
 									'style' => 'width:16px; height:11px; margin-bottom: 3px; margin-left: 3px'));
 							}
 							echo $this->Html->link($buttonContent, array(
@@ -84,8 +85,7 @@ $playerNames = $this->requestAction('server_players');
 									'controller' => 'server_players',
 									'action' => 'index',
 									'server' => Configure::read('server_id')
-								)
-								, array(
+								), array(
 									'rel' => 'tooltip',
 									'data-original-title' => __('Online Players & World Map'),
 									'escape' => false,
@@ -105,8 +105,7 @@ $playerNames = $this->requestAction('server_players');
 
 								if ($xfireGame) {
 								echo $this->Html->link($this->Html->image('icon_xfire.jpg'),
-									'xfire://join?game=' . $xfireGame . '&server=' . $serverInfo['Ip'] . ':' . $serverInfo['Port']
-									, array(
+									'xfire://join?game=' . $xfireGame . '&server=' . $serverInfo['Ip'] . ':' . $serverInfo['Port'], array(
 										'rel' => 'tooltip',
 										'data-original-title' => __('Connect with xfire'),
 										'escape' => false,
@@ -115,8 +114,7 @@ $playerNames = $this->requestAction('server_players');
 								}
 								if ($qtrackerGame) {
 								echo $this->Html->link($this->Html->image('icon_qtracker.jpg'),
-									'qtracker://' . $serverInfo['Ip'] . ':' . $serverInfo['Port'] . '/?game=' . $qtrackerGame . '&action=join'
-									, array(
+									'qtracker://' . $serverInfo['Ip'] . ':' . $serverInfo['Port'] . '/?game=' . $qtrackerGame . '&action=join', array(
 										'rel' => 'tooltip',
 										'data-original-title' => __('Connect with qtracker '),
 										'escape' => false,
@@ -125,8 +123,7 @@ $playerNames = $this->requestAction('server_players');
 								}
 								if ($gscGame) {
 								echo $this->Html->link($this->Html->image('icon_gsc.jpg'),
-									'gsc://joinGame:game=' . $gscGame . '&ip=' . $serverInfo['Ip'] . '&port=' . $serverInfo['Port']
-									, array(
+									'gsc://joinGame:game=' . $gscGame . '&ip=' . $serverInfo['Ip'] . '&port=' . $serverInfo['Port'], array(
 										'rel' => 'tooltip',
 										'data-original-title' => __('Connect with gsc '),
 										'escape' => false,
@@ -135,8 +132,7 @@ $playerNames = $this->requestAction('server_players');
 								}
 								if ($hlswGame) {
 								echo $this->Html->link($this->Html->image('icon_hlsw.jpg'),
-									'hlsw://' . $serverInfo['Ip'] . ':' . $serverInfo['Port']
-									, array(
+									'hlsw://' . $serverInfo['Ip'] . ':' . $serverInfo['Port'], array(
 										'rel' => 'tooltip',
 										'data-original-title' => __('Connect with hlsw '),
 										'escape' => false,
@@ -180,7 +176,8 @@ $playerNames = $this->requestAction('server_players');
 				<div class="span12">
 					<h1>
 						<span class="game-icon">
-						<?php echo $this->Html->image('ico/icon_'.$gameName.'.gif', array(
+						<?php
+						echo $this->Html->image('ico/icon_' . $gameName . '.gif', array(
 							'class' => 'img-polaroid',
 							'rel' => 'tooltip',
 							'data-original-title' => Configure::read('gameName') ? Configure::read('gameName') : $gameName,
@@ -208,7 +205,7 @@ $playerNames = $this->requestAction('server_players');
 	<!-- /Server Name Ends -->
 	<?php endif; ?>
 
-	<?php if($serverStats): ?>
+	<?php if ($serverStats): ?>
 	<!-- Server Stats -->
 	<div class="span3">
 		<div class="server-info-box">
@@ -237,8 +234,7 @@ $playerNames = $this->requestAction('server_players');
 				if ($serverInfo['OnlinePlayers'] > 0 ) {
 					if ($serverInfo['OnlinePlayers'] >= $serverInfo['sv_maxclients']) {
 						$badge = '<span class="badge badge-important">';
-					}
-					else {
+					} else {
 						$badge = '<span class="badge badge-success">';
 					}
 					echo $this->Html->link($badge . $serverInfo['OnlinePlayers'] . '</span>', array(
@@ -256,7 +252,7 @@ $playerNames = $this->requestAction('server_players');
 						'escape' => false
 					));
 				} else {
-					echo '<span class="badge">' . $serverInfo['OnlinePlayers']. '</span>';
+					echo '<span class="badge">' . $serverInfo['OnlinePlayers'] . '</span>';
 				}
 			?> / <?php echo $serverInfo['sv_maxclients'] ?></div>
 			<i class="icon-2x icon-group"></i>

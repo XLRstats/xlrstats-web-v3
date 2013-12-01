@@ -31,7 +31,8 @@ $nameTruncation = 30;
 								'class' => 'center'
 							)) ?></td></tr>
 					<tr><td style="text-align: center">
-							<?php if (array_key_exists('Player', $v)) {
+							<?php
+							if (array_key_exists('Player', $v)) {
 								echo $v['Player']['name'];
 								echo '<br /> <small>(' . $k . ': ' . $this->Number->precision($v[0]['penalties'], 0) . ')</small>';
 							} else {
@@ -40,5 +41,6 @@ $nameTruncation = 30;
 							</td></tr>
 				</table>
 			</div>
-		<?php } ?>
+		<?php
+		} ?>
 </div>

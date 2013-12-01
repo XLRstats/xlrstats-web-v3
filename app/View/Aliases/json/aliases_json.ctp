@@ -14,18 +14,20 @@
  */
 
 // Format some array elements
-for($i=0; $i<count($aliases['aaData']) ;$i++) {
-	foreach($aliases['aaData'][$i] as $k => &$v) {
-		// $ of Times Used. Todo: Next line is a bug in B3 alias counting. Seems to start with 0 instead of 1
-		if($k == 1) {
+$count = count($aliases['aaData']);
+for ( $i = 0; $i < $count; $i++) {
+	foreach ($aliases['aaData'][$i] as $k => &$v) {
+		// $ of Times Used.
+		// Next line is a bug in B3 alias counting. Seems to start with 0 instead of 1
+		if ($k == 1) {
 			$v = $v + 1;
 		}
 		// First Used
-		if($k == 2) {
+		if ($k == 2) {
 			$v = $this->Time->format('M jS, Y h:i A', $v, null);
 		}
 		// Last Used
-		if($k == 3) {
+		if ($k == 3) {
 			$v = $this->Time->format('M jS, Y h:i A', $v, null);
 		}
 	}

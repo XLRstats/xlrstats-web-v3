@@ -24,19 +24,23 @@ if (!isset($detailedStats)) {
 /**
  * Setting the length of the player names for truncation so layout is not messed up by long player names
  */
-if ($detailedStats) $nameTruncation = 33;
-else $nameTruncation = 15;
+if ($detailedStats) {
+	$nameTruncation = 33;
+} else {
+	$nameTruncation = 15;
+}
 
-$_players = $this->requestAction('leagues/leaguesJson/' . $leagueNumber);
-$players = $_players[0];
+$playersArray = $this->requestAction('leagues/leaguesJson/' . $leagueNumber);
+$players = $playersArray[0];
 //pr($players);
 $n = 1;
 ?>
 
-<?php if ($_players[1] == 0) {
+<?php
+if ($playersArray[1] == 0) {
 	echo '<div style="margin: 15px">...This League is empty, fill spot with something else?</div>';
 	return;
-	}
+}
 ?>
 
 <table class="table table-hover">
@@ -80,25 +84,24 @@ $n = 1;
 				)); ?>
 			</td>
 			<td><?php
-				$_name = $this->Text->truncate($player['Player']['name'],
+				$name = $this->Text->truncate($player['Player']['name'],
 					$nameTruncation,
 					array(
 						'ending'	=> '...',
 						'exact'		=> true,
 					));
-				if ($_name == $player['Player']['name']) {
+				if ($name == $player['Player']['name']) {
 					echo $this->Html->link(
-						$_name,
+						$name,
 						array(
 							'controller' => 'player_stats',
 							'action' => 'view',
 							'server' => Configure::read('server_id'),
 							$player['League']['id'])
 					);
-				}
-				else {
+				} else {
 					echo $this->Html->link(
-						$_name,
+						$name,
 						array(
 							'controller' => 'player_stats',
 							'action' => 'view',
@@ -111,7 +114,11 @@ $n = 1;
 						));
 				};
 			?></td>
-            <td style="text-align:right; padding-right:15px; <?php if($detailedStats) echo 'font-weight:bold;' ?>"><?php echo $this->Number->format($player['League']['skill'], array(
+            <td style="text-align:right; padding-right:15px;
+            <?php
+			if ($detailedStats) {
+				echo 'font-weight:bold;';
+			} ?>"><?php echo $this->Number->format($player['League']['skill'], array(
 				'places' => 0,
 				'before' => null,
 				'thousands' => '.'

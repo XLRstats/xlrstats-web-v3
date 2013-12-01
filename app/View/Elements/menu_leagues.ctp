@@ -18,28 +18,32 @@ $leagues = Configure::read('league');
 echo '<li class="nav-header">' . __('Available Leagues') . '</li>';
 foreach ($leagues as $id => $league) {
 	if ($league[0] == 'League.skill') {
-		if (isset($league[5])) $leagueColor = $league[5];
-		//TODO: Need to css this leagueColor
-		else $leagueColor = '#999999';
-		$leagueIcon = '<i class="icon-star" style="color:'.$leagueColor.'; margin-right: 10px"></i>';
-		echo '<li>' . $this->Html->Link($leagueIcon . __($league[3]), array('plugin' => null, 'admin' => false, 'controller' => 'leagues', 'action' => 'view', 'server' => Configure::read('server_id'), $id), array('escape' => false)) . '</li>' ;
+		if (isset($league[5])) {
+			$leagueColor = $league[5];
+		} else {
+			$leagueColor = '#999999'; //TODO: Need to css this leagueColor
+		}
+		$leagueIcon = '<i class="icon-star" style="color:' . $leagueColor . '; margin-right: 10px"></i>';
+		echo '<li>' . $this->Html->Link($leagueIcon . __($league[3]), array('plugin' => null, 'admin' => false, 'controller' => 'leagues', 'action' => 'view', 'server' => Configure::read('server_id'), $id), array('escape' => false)) . '</li>';
 	}
 }
 
-//TODO: Need to css this leagueColor
-$leagueColor = '#999999';
-$leagueIcon = '<i class="icon-star" style="color:'.$leagueColor.'; margin-right: 10px"></i>';
-echo '<li>' . $this->Html->Link($leagueIcon . __('All stats'), array('plugin' => null, 'admin' => false, 'controller' => 'leagues', 'action' => 'view', 'server' => Configure::read('server_id'), '0'), array('escape' => false)) . '</li>' ;
+
+$leagueColor = '#999999'; //TODO: Need to css this leagueColor
+$leagueIcon = '<i class="icon-star" style="color:' . $leagueColor . '; margin-right: 10px"></i>';
+echo '<li>' . $this->Html->Link($leagueIcon . __('All stats'), array('plugin' => null, 'admin' => false, 'controller' => 'leagues', 'action' => 'view', 'server' => Configure::read('server_id'), '0'), array('escape' => false)) . '</li>';
 
 echo '<li class="divider"></li>';
 echo '<li class="nav-header">' . __('Available Leaderboards') . '</li>';
 foreach ($leagues as $id => $league) {
 	if ($league[0] != 'League.skill') {
-		if (isset($league[5])) $leagueColor = $league[5];
-		//TODO: Need to css this leagueColor
-		else $leagueColor = '#999999';
-		$leagueIcon = '<i class="icon-calendar" style="color:'.$leagueColor.'; margin-right: 10px"></i>';
-		echo '<li>' . $this->Html->Link($leagueIcon . __($league[3]), array('plugin' => null, 'admin' => false, 'controller' => 'leagues', 'action' => 'view', 'server' => Configure::read('server_id'), $id), array('escape' => false)) . '</li>' ;
+		if (isset($league[5])) {
+			$leagueColor = $league[5];
+		} else {
+			$leagueColor = '#999999'; //TODO: Need to css this leagueColor
+		}
+		$leagueIcon = '<i class="icon-calendar" style="color:' . $leagueColor . '; margin-right: 10px"></i>';
+		echo '<li>' . $this->Html->Link($leagueIcon . __($league[3]), array('plugin' => null, 'admin' => false, 'controller' => 'leagues', 'action' => 'view', 'server' => Configure::read('server_id'), $id), array('escape' => false)) . '</li>';
 	}
 }
 

@@ -13,11 +13,15 @@
  * @version       0.1
  */
 
-if (Configure::read('options.show_donate_button')): ?>
+if (Configure::read('options.show_donate_button')) : ?>
+
 	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 		<input type="hidden" name="cmd" value="_s-xclick">
 		<input type="hidden" name="hosted_button_id" value="M7PRA47W8LZ66">
 		<input type="submit" class="btn btn-mini btn-success" value="Donate!" style="width: 72px">
 		<img alt="" border="0" src="https://www.paypalobjects.com/nl_NL/i/scr/pixel.gif" width="1" height="1">
 	</form>
-<?php endif ?>
+
+<?php
+endif;
+

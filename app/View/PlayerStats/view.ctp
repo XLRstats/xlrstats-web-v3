@@ -48,7 +48,7 @@ $myPage = false;
 				<span class="player-flag"><?php echo $this->Html->image('flags/' . $playerStats['Player']['flag'][0] . '.gif', array(
 					'style' => 'margin-top:-15px;',
 					'rel' => 'tooltip',
-					'data-original-title' => $playerStats['Player']['flag'][1],)); ?>
+					'data-original-title' => $playerStats['Player']['flag'][1], )); ?>
 				</span>
 			</div>
 			<div class="player-level">

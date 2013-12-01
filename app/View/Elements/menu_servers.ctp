@@ -25,7 +25,7 @@ foreach ($servers as $server) {
 	//indication and css class for inactive servers
 	$class = null;
 	$inactive = null;
-	if($server['active'] == 0) {
+	if ($server['active'] == 0) {
 		$class = 'inactive';
 		$inactive = __('(inactive)');
 	}
