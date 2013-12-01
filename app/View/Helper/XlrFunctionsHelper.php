@@ -17,25 +17,30 @@ App::uses('Helper', 'View');
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
 
+/**
+ * Class XlrfunctionsHelper
+ * A collection of helper functions to be used in Views
+ */
 class XlrfunctionsHelper extends Helper {
- 	public $helpers = array(
-		 'Html',
-		 'Number'
-	 );
+
+	public $helpers = array(
+		'Html',
+		'Number'
+	);
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Draws a ratio bullet graph
-	 *
-	 * ### Options
-	 *
-	 * - 'scripts' (boolean) Weather or not the sparkline scripts will be echoed
-	 *
-	 * @param int $value The value to be passed into the chart data
-	 * @param array $options Available options
-	 * @return string
-	 */
+/**
+ * Draws a ratio bullet graph
+ *
+ * ### Options
+ *
+ * - 'scripts' (boolean) Weather or not the sparkline scripts will be echoed
+ *
+ * @param int $value The value to be passed into the chart data
+ * @param array $options Available options
+ * @return string
+ */
 	public function ratioSparklineBulletChart($value, $options = array()) {
 		$options += array('scripts' => true);
 		if ($options['scripts']) {
@@ -49,17 +54,17 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Draws a user level pie chart
-	 *
-	 * ### Options
-	 *
-	 * - 'scripts' (boolean) Weather or not the sparkline scripts will be echoed
-	 *
-	 * @param int $value The value to be passed into the chart data
-	 * @param array $options Available options
-	 * @return string
-	 */
+/**
+ * Draws a user level pie chart
+ *
+ * ### Options
+ *
+ * - 'scripts' (boolean) Weather or not the sparkline scripts will be echoed
+ *
+ * @param int $value The value to be passed into the chart data
+ * @param array $options Available options
+ * @return string
+ */
 	public function levelSparklinePieChart($value, $options = array()) {
 		$options += array('scripts' => true);
 		if ($options['scripts']) {
@@ -73,12 +78,12 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Strips color codes from text.
-	 *
-	 * @param $text
-	 * @return string
-	 */
+/**
+ * Strips color codes from text.
+ *
+ * @param $text
+ * @return string
+ */
 	public function stripColors($text) {
 		$pattern = '/\^[0-9]/';
 		$text = preg_replace($pattern, '', $text);
@@ -87,11 +92,11 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Function to check if an url is our homepage.
-	 *
-	 * @return bool
-	 */
+/**
+ * Function to check if an url is our homepage.
+ *
+ * @return bool
+ */
 	public function isHome() {
 		$here = convertSlash($this->request->here);
 		$installDir = convertSlash($this->request->base);
@@ -105,15 +110,15 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns an array of images for the selected game from
-	 * 'webroot/img/carousel' folder.
-	 *
-	 * If a folder does not exist with the selected game name, then it will
-	 * get the images from 'default' folder.
-	 *
-	 * @return array Returns an array of first image and remaining images
-	 */
+/**
+ * Returns an array of images for the selected game from
+ * 'webroot/img/carousel' folder.
+ *
+ * If a folder does not exist with the selected game name, then it will
+ * get the images from 'default' folder.
+ *
+ * @return array Returns an array of first image and remaining images
+ */
 	public function getCarouselImages() {
 		$serverID = Configure::read('server_id');
 		$gameName = Configure::read('servers.' . $serverID . '.gamename');
@@ -131,7 +136,7 @@ class XlrfunctionsHelper extends Helper {
 		$files = $dir->read(true, false, true);
 		$files = $files[1];
 
-		foreach($files as $file) {
+		foreach ($files as $file) {
 			$n = explode('carousel' . DS, $file);
 			$i = explode(DS, $n[1]);
 			$x[] = $i[0] . '/' . $i[1];
@@ -147,15 +152,15 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns easy weapon name from the game config file.
-	 * If an easy name is not defined for the weapon, then it returns
-	 * the console name.
-	 *
-	 * @param $weapon console name of the weapon
-	 * @return string
-	 */
-	public function getWeaponName($weapon=null) {
+/**
+ * Returns easy weapon name from the game config file.
+ * If an easy name is not defined for the weapon, then it returns
+ * the console name.
+ *
+ * @param $weapon console name of the weapon
+ * @return string
+ */
+	public function getWeaponName($weapon = null) {
 		$weaponList = Configure::read('weapons');
 
 		if (!isset($weaponList[$weapon][0])) {
@@ -164,7 +169,7 @@ class XlrfunctionsHelper extends Helper {
 			$weaponName = $weaponList[$weapon][0];
 		}
 
-		if(empty($weaponName)) {
+		if (empty($weaponName)) {
 			$weaponName = $weapon;
 		}
 
@@ -173,17 +178,17 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns weapon image based on data in game config file
-	 *
-	 * ### Options
-	 *
-	 * - 'style' CSS styles
-	 *
-	 * @param $weapon
-	 * @param array $options
-	 * @return bool | image link
-	 */
+/**
+ * Returns weapon image based on data in game config file
+ *
+ * ### Options
+ *
+ * - 'style' CSS styles
+ *
+ * @param $weapon
+ * @param array $options
+ * @return bool | image link
+ */
 	public function getWeaponImage($weapon, $options = array()) {
 		$weaponList = Configure::read('weapons');
 		if (!isset($weaponList[$weapon][2])) {
@@ -192,11 +197,11 @@ class XlrfunctionsHelper extends Helper {
 
 		$weaponImage = $weaponList[$weapon][2];
 
-		if($weaponImage == 'image.png') {
+		if ($weaponImage == 'image.png') {
 			return false;
 		}
 
-		$imagePath =  Configure::read('weapons.image_path');
+		$imagePath = Configure::read('weapons.image_path');
 		$weaponImage = $imagePath . $weaponImage;
 
 		$imageLink = $this->Html->image($weaponImage, $options);
@@ -206,10 +211,10 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * @param $weapon
-	 * @return bool
-	 */
+/**
+ * @param $weapon
+ * @return bool
+ */
 	public function getWeaponLink($weapon) {
 		$weaponList = Configure::read('weapons');
 
@@ -219,7 +224,7 @@ class XlrfunctionsHelper extends Helper {
 			$weaponLink = $weaponList[$weapon][3];
 		}
 
-		if(empty($weaponLink)) {
+		if (empty($weaponLink)) {
 			$weaponLink = false;
 		}
 
@@ -228,10 +233,10 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * @param $weapon
-	 * @return bool
-	 */
+/**
+ * @param $weapon
+ * @return bool
+ */
 	public function getWeaponDescription($weapon) {
 		$weaponList = Configure::read('weapons');
 
@@ -241,26 +246,27 @@ class XlrfunctionsHelper extends Helper {
 			$weaponDescription = $weaponList[$weapon][1];
 		}
 
-		if(empty($weaponDescription)) {
+		if (empty($weaponDescription)) {
 			$weaponDescription = false;
 		}
 
 		return $weaponDescription;
 	}
+
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns easy map name from the game config file.
-	 * If an easy name is not defined for the map, then it returns
-	 * the console name.
-	 *
-	 * @param $map console name of the map
-	 * @return string
-	 */
+/**
+ * Returns easy map name from the game config file.
+ * If an easy name is not defined for the map, then it returns
+ * the console name.
+ *
+ * @param $map console name of the map
+ * @return string
+ */
 	public function getMapName($map) {
 		$mapName = Configure::read('maps.' . $map . '.0');
 
-		if(!$mapName) {
+		if (!$mapName) {
 			$mapName = $map;
 		}
 		return $mapName;
@@ -268,17 +274,17 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns map image based on data in game config file
-	 *
-	 * ### Options
-	 *
-	 * - 'style' CSS styles
-	 *
-	 * @param $map
-	 * @param array $options
-	 * @return bool | image link
-	 */
+/**
+ * Returns map image based on data in game config file
+ *
+ * ### Options
+ *
+ * - 'style' CSS styles
+ *
+ * @param $map
+ * @param array $options
+ * @return bool | image link
+ */
 	public function getMapImage($map, $options = array()) {
 		$mapList = Configure::read('maps');
 		if (!isset($mapList[$map][2])) {
@@ -287,16 +293,16 @@ class XlrfunctionsHelper extends Helper {
 
 		$mapImage = $mapList[$map][2];
 
-		if($mapImage == 'image.png') {
+		if ($mapImage == 'image.png') {
 			return false;
 		}
 
-		$imagePath =  Configure::read('maps.image_path');
+		$imagePath = Configure::read('maps.image_path');
 		$mapImage = $imagePath . $mapImage;
 
 		$imageOptions = array();
 
-		if(isset($options['style'])) {
+		if (isset($options['style'])) {
 			$imageOptions['style'] = $options['style'];
 		}
 
@@ -307,10 +313,10 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * @param $map
-	 * @return bool
-	 */
+/**
+ * @param $map
+ * @return bool
+ */
 	public function getMapLink($map) {
 		$mapList = Configure::read('maps');
 
@@ -320,7 +326,7 @@ class XlrfunctionsHelper extends Helper {
 			$mapLink = $mapList[$map][3];
 		}
 
-		if(empty($mapLink)) {
+		if (empty($mapLink)) {
 			$mapLink = false;
 		}
 
@@ -329,10 +335,10 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * @param $map
-	 * @return bool
-	 */
+/**
+ * @param $map
+ * @return bool
+ */
 	public function getMapDescription($map) {
 		$mapList = Configure::read('maps');
 
@@ -342,28 +348,28 @@ class XlrfunctionsHelper extends Helper {
 			$mapDescription = $mapList[$map][1];
 		}
 
-		if(empty($mapDescription)) {
+		if (empty($mapDescription)) {
 			$mapDescription = false;
 		}
 
 		return $mapDescription;
 	}
-	//-------------------------------------------------------------------
+
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns easy team name from the game config file.
-	 * If an easy name is not defined for the map, then it returns
-	 * the console name.
-	 *
-	 * @param $team
-	 * @internal param \console $team name of the map
-	 * @return string
-	 */
+/**
+ * Returns easy team name from the game config file.
+ * If an easy name is not defined for the map, then it returns
+ * the console name.
+ *
+ * @param $team
+ * @internal param \console $team name of the map
+ * @return string
+ */
 	public function getTeamName($team) {
 		$teamName = Configure::read('teams.' . $team);
 
-		if(!$teamName) {
+		if (!$teamName) {
 			$teamName = $team;
 		}
 		return $teamName;
@@ -371,16 +377,16 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns fixed name and easy name for body part from game config file.
-	 *
-	 * @param $bodyPart
-	 * @return array
-	 */
+/**
+ * Returns fixed name and easy name for body part from game config file.
+ *
+ * @param $bodyPart
+ * @return array
+ */
 	public function getBodyPartName($bodyPart) {
 		$bodyPartsArray = Configure::read('body_parts');
 
-		if(!$bodyPartsArray) {
+		if (!$bodyPartsArray) {
 			return array('fixed_name' => null, 'body_part_name' => $bodyPart);
 		}
 
@@ -388,7 +394,7 @@ class XlrfunctionsHelper extends Helper {
 		$bodyPartName = $bodyPart;
 
 		foreach ($bodyPartsArray as $key => $value) {
-			if(array_key_exists($bodyPart, $value)) {
+			if (array_key_exists($bodyPart, $value)) {
 				$fixedName = $key;
 				$bodyPartName = $value[$bodyPart];
 			}
@@ -398,16 +404,16 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns a color to be displayed on hit zone markers based
-	 * on the percentage value
-	 *
-	 * @param $percentage
-	 * @return string
-	 */
+/**
+ * Returns a color to be displayed on hit zone markers based
+ * on the percentage value
+ *
+ * @param $percentage
+ * @return string
+ */
 	public function colorizeHitZone($percentage) {
 		$color = 'yellow';
-		if($percentage > 0.2 && $percentage <= 0.35) {
+		if ($percentage > 0.2 && $percentage <= 0.35) {
 			$color = 'orange';
 		} elseif ($percentage > 0.35) {
 			$color = '#FF0000';
@@ -417,14 +423,14 @@ class XlrfunctionsHelper extends Helper {
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * This function returns useful data to display the league boxes for only
-	 * populated leagues on homepage
-	 *
-	 * @return array|bool
-	 */
+/**
+ * This function returns useful data to display the league boxes for only
+ * populated leagues on homepage
+ *
+ * @return array|bool
+ */
 	public function getPopulatedLeagueVars() {
-		for($i = 1; $i<=5; $i++) {
+		for ($i = 1; $i <= 5; $i++) {
 			$leagues[$i] = $this->requestAction('leagues/leaguesJson/' . $i);
 
 			//Remove empty league from the array
@@ -465,34 +471,33 @@ class XlrfunctionsHelper extends Helper {
 		}
 
 		return array($leagues, $leagueNumber, $span, $detailedStats);
-
 	}
 
 	//-------------------------------------------------------------------
 
-	/**
-	 * Returns a JSON formatted list of best weapons or maps to be used in
-	 * pie charts in player's weapon and map tabs.
-	 *
-	 * @param array $topActions an array of best weapons or maps
-	 * @param $bestAction favorite weapon or map
-	 * @param string $option can be weapon or map
-	 * @return string
-	 */
-	public function getTopActionData($topActions = array(), $bestAction, $option = 'weapon') {
+/**
+ * Returns a JSON formatted list of best weapons or maps to be used in
+ * pie charts in player's weapon and map tabs.
+ *
+ * @param array $topActions an array of best weapons or maps
+ * @param $bestAction favorite weapon or map
+ * @param string $option can be weapon or map
+ * @return string
+ */
+	public function getTopActionData($topActions = array(), $bestAction = '', $option = 'weapon') {
 		$topActionData = '';
 
 		foreach ($topActions as $action => $score) {
-			if($option == 'weapon') {
+			if ($option == 'weapon') {
 				$actionName = $this->getWeaponName($action);
 			} elseif ($option == 'map') {
 				$actionName = $this->getMapName($action);
 			}
 			//display the top action sliced and selected in pie chart
-			if($action == $bestAction) {
+			if ($action == $bestAction) {
 				$topActionData .= '{
 					name: "' . $actionName . '",
-					y: '. $score .',
+					y: ' . $score . ',
 					sliced: true,
 					selected: true
 				}, ';
@@ -503,12 +508,10 @@ class XlrfunctionsHelper extends Helper {
 		return $topActionData;
 	}
 
-
-	/**
-	 * @return mixed
-	 */
-	public function showLicenseIcon()
-	{
+/**
+ * @return mixed
+ */
+	public function showLicenseIcon() {
 		// check if the cache is disabled
 		if (Configure::read('Cache.disable')) {
 			return '<a href="#" title="page not cached"><i class="icon-unlock-alt text-error"></i></a>&nbsp;';
@@ -526,8 +529,11 @@ class XlrfunctionsHelper extends Helper {
 				$message = $json['error']['message'];
 				$icon = '<i class="icon-warning-sign text-error"></i>';
 			} else {
-				if ($json['result']['type'] == 'F') $message = __('Free -NON-Commercial- XLRstats License');
-				else $message = __('Commercial XLRstats License');
+				if ($json['result']['type'] == 'F') {
+					$message = __('Free -NON-Commercial- XLRstats License');
+				} else {
+					$message = __('Commercial XLRstats License');
+				}
 				$icon = '<i class="icon-check text-success"></i>';
 			}
 			return $this->Html->link($icon,
@@ -539,10 +545,10 @@ class XlrfunctionsHelper extends Helper {
 		}
 	}
 
-	/**
-	 * @param $data
-	 * @return string
-	 */
+/**
+ * @param $data
+ * @return string
+ */
 	public function listPlayers($data) {
 		$result = '<ul>';
 		foreach ($data as $name) {
@@ -555,33 +561,33 @@ class XlrfunctionsHelper extends Helper {
 		return $result;
 	}
 
-	/**
-	 * Function that replaces names with a fixed name or the empty name default and sanitizes it
-	 *
-	 * @param $playerName
-	 * @param string $fixedName
-	 * @param string $defaultName
-	 * @return string
-	 */
-	public function fixName($playerName, $fixedName='', $defaultName='Unknown Soldier')
-	{
+/**
+ * Function that replaces names with a fixed name or the empty name default and sanitizes it
+ *
+ * @param $playerName
+ * @param string $fixedName
+ * @param string $defaultName
+ * @return string
+ */
+	public function fixName($playerName, $fixedName = '', $defaultName = 'Unknown Soldier') {
 		if ($fixedName != '') {
 			$playerName = $fixedName;
 		}
-		if ($playerName == '')
+		if ($playerName == '') {
 			$playerName = $defaultName;
+		}
 
 		$displayName = $this->sanitizeMe($playerName);
 		return $displayName;
 	}
 
-	/**
-	 * Sanitation function for displaying database content in html
-	 * http://www.php.net/manual/en/function.htmlentities.php
-	 *
-	 * @param $str
-	 * @return string
-	 */
+/**
+ * Sanitation function for displaying database content in html
+ * http://www.php.net/manual/en/function.htmlentities.php
+ *
+ * @param $str
+ * @return string
+ */
 	public function sanitizeMe($str) {
 		return htmlentities($str, ENT_QUOTES, 'UTF-8');
 	}

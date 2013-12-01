@@ -4,7 +4,10 @@ $this->Html->addCrumb('Server Test', 'server_test');
 ?>
 
 <div class="page-header">
-	<h1><?php echo __('Installation'); ?>: <?php echo __('Running server test...'); ?></h1>
+	<h1>
+		<?php echo __('Installation'); ?>:
+		<?php echo __('Running server test...'); ?>
+	</h1>
 </div>
 <div class="row-fluid">
 	<div class="span7">
@@ -22,7 +25,6 @@ $this->Html->addCrumb('Server Test', 'server_test');
 			<p class="alert alert-error"><i
 					class="icon-large icon-warning-sign"></i> <?php echo __("Oops. There's a server compatibility issue. See below."); ?>
 			</p>
-			<p>
 			<ul>
 				<?php foreach ($tests as $name => $testNode): ?>
 					<?php if (!$testNode['test']): ?>
@@ -30,7 +32,6 @@ $this->Html->addCrumb('Server Test', 'server_test');
 					<?php endif; ?>
 				<?php endforeach; ?>
 			</ul>
-			</p>
 			<p class="alert alert-info">
 				<?php echo __('Please fix the issues above and click the button below to check again. Contact your hosting provider if you don\'t know how.'); ?>
 			</p>
@@ -43,10 +44,9 @@ $this->Html->addCrumb('Server Test', 'server_test');
 				)
 			);?>
 		<?php endif; ?>
-		</p>
 	</div>
 	<div class="span5 well pull-right">
-		<legend><?php echo __('This would be a good moment to acquire a license key!'); ?></legend>
+		<h4><?php echo __('This would be a good moment to acquire a license key!'); ?></h4>
 		<p><?php echo __('XLRstats is no longer licensed under GPL, but under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">
 				Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)</a> License.</p>'); ?>
 

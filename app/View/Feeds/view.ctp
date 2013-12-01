@@ -24,7 +24,7 @@
 
 foreach ($data as $feedItem) {
 	//pr($feedItem);
-	echo '<p>' ;
+	echo '<p>';
 	echo '<h5>' . $feedItem['title'] . '</h5>';
 	echo '(Date: ' . $feedItem['pubDate'] . ')';
 	echo '<div>' . $feedItem['description'] . '</div>';

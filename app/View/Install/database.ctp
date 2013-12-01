@@ -5,11 +5,14 @@ $this->Html->addCrumb('Database', 'database');
 ?>
 
 <div class="page-header">
-	<h1><?php echo __('Installation'); ?>: <?php echo __('DataBase'); ?></h1>
+	<h1>
+		<?php echo __('Installation'); ?>:
+		<?php echo __('DataBase'); ?>
+	</h1>
 </div>
 
 
-<?php if ($config_exists): ?>
+<?php if ($configExists): ?>
 	<div class="alert alert-block alert-danger">
 		<h4><i class="icon-warning-sign"></i> Configuration files exist!</h4>
 		<p>
@@ -17,20 +20,20 @@ $this->Html->addCrumb('Database', 'database');
 		</p>
 		<p>
 			If you insist on enforcing a fresh installation you need to clean up this one first. Easiest way to clean up is to:
+		</p>
 			<ol>
 				<li>completely remove the previous installation from your server</li>
 				<li>empty the database, remove all existing tables</li>
 				<li>upload the latest version of the webfront to your server</li>
 				<li>restart the installation process</li>
 			</ol>
-		</p>
 	</div>
-<?php else: ?>
-	<p>
+	<?php else: ?>
+	<div>
 		<em><?php echo __('Enter connection data for your MySQL database. Note: your database must already exist before completing this step.'); ?></em>
 		<p class="alert alert-info"><i class="icon-time"></i> This step can take some time to complete, please be patient while it performs its installation tasks!</p>
-	</p>
-	<p>
+	</div>
+	<div>
 		<hr>
 		<form class="form-horizontal" action="" method="post">
 
@@ -96,5 +99,5 @@ $this->Html->addCrumb('Database', 'database');
 			<input type="submit" value="<?php echo __('Set up configuration files and Database tables'); ?>" class="submit btn btn-success" />
 
 		</form>
-	</p>
-<?php endif; ?>
+	</div>
+<?php endif;

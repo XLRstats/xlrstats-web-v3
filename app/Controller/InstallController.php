@@ -261,7 +261,7 @@ class InstallController extends Controller {
 
 		$configExists = file_exists(APP . 'Config' . DS . 'database.php');
 
-		$this->set('config_exists', $configExists);
+		$this->set('configExists', $configExists);
 
 		if (!empty($this->data) || ($configExists && $skip)) {
 			App::uses('ConnectionManager', 'Model');

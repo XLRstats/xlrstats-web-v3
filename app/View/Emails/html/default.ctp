@@ -15,11 +15,9 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
  */
-?>
-<?php
+
 $content = explode("\n", $content);
 
 foreach ($content as $line):
 	echo '<p> ' . $line . "</p>\n";
 endforeach;
-?>

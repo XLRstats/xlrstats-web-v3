@@ -12,19 +12,19 @@
  * @since         XLRstats v3.0
  * @version       0.1
  */
- ?>
+?>
 
 <?php
 echo '<h3>' . __('Available News Feeds') . ':</h3>';
 echo '<ol>';
 
 $feeds = Configure::read('globals.feed');
-foreach ($feeds as $name => $value){
+foreach ($feeds as $name => $value) {
 	echo '<li>' . $this->Html->Link($value[1], array(
 									'controller'	=>	'feeds',
 									'action'		=>	'view',
 									'server' => Configure::read('server_id'),
 									$name)) . '</li>';
 }
-?>
-	</ol>
+
+echo '</ol>';

@@ -6,9 +6,11 @@ $this->Html->addCrumb('Super Admin Account', 'user_account');
 ?>
 
 <div class="page-header">
-	<h1><?php echo __('Installation'); ?>: <?php echo __('Super Admin Account'); ?></h1>
+	<h1>
+		<?php echo __('Installation'); ?>:
+		<?php echo __('Super Admin Account'); ?>
+	</h1>
 </div>
-<p>
 	<p><?php echo __('Please enter the administrative username and password to use when signing into this installation.'); ?></p>
 
 	<hr>
@@ -77,4 +79,3 @@ $this->Html->addCrumb('Super Admin Account', 'user_account');
 		</fieldset>
 
 	</form>
-</p>
