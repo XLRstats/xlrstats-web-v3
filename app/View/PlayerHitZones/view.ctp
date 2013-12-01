@@ -40,7 +40,8 @@
 				<td><?php echo $hitZone['PlayerHitZone']['kills']; ?></td>
 				<td><?php echo $hitZone['PlayerHitZone']['deaths']; ?></td>
 			</tr>
-			<?php endforeach; ?>
+			<?php
+			endforeach; ?>
 		</table>
 	</div>
 	<div class="span6" style="width:485px";>
@@ -64,8 +65,10 @@
 									?>"
 						data-html="true">
 					</div>
-				<?php endif; ?>
-			<?php endforeach; ?>
+				<?php
+				endif; ?>
+			<?php
+			endforeach; ?>
 		</div>
 	</div>
 </div>
