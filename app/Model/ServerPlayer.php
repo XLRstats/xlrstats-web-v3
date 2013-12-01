@@ -27,6 +27,13 @@ class ServerPlayer extends AppModel {
  *
  * @var string
  */
-	public $useTable = 'current_clients'; // TODO: make this configurable
+	public $useTable = 'current_clients';
 
+/**
+ * Overrides __construct method to be able to use custom tables names
+ */
+	public function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_current_clients'));
+	}
 }

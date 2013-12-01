@@ -29,4 +29,11 @@ class ServerInfo extends AppModel {
  */
 	public $useTable = 'current_svars';
 
+/**
+ * Overrides __construct method to be able to use custom tables names
+ */
+	public function __construct() {
+		parent::__construct();
+		$this->setSource(Configure::read('options.table_current_svars'));
+	}
 }
