@@ -14,15 +14,16 @@
  */
 
 // Format some array elements
-for($i=0; $i<count($penalties['aaData']) ;$i++) {
-	foreach($penalties['aaData'][$i] as $k => &$v) {
+$count = count($penalties['aaData']);
+for ($i = 0; $i < $count; $i++) {
+	foreach ($penalties['aaData'][$i] as $k => &$v) {
 		// Position numbers
-		if($k == 0) {
+		if ($k == 0) {
 			$v = $this->request->query['iDisplayStart']++;
 			$v += 1;
 		}
 		// Penalty Type
-		if($k == 1) {
+		if ($k == 1) {
 			$commentIcon = '<i class="icon-comment-alt"></i>&nbsp;&nbsp;';
 			$type = $v;
 			$class = 'btn btn-small btn-inverse disabled';
@@ -66,11 +67,11 @@ for($i=0; $i<count($penalties['aaData']) ;$i++) {
 			}
 		}
 		// Time Added
-		if($k == 3) {
-			$v = '<small>' . $this->Time->format('M jS, Y h:i A', $v , null). '</small>';
+		if ($k == 3) {
+			$v = '<small>' . $this->Time->format('M jS, Y h:i A', $v, null) . '</small>';
 		}
 		// Time Expires
-		if($k == 4) {
+		if ($k == 4) {
 			if ($v == -1) {
 				$v = '<small>' . __('never') . '</small>';
 			} else {
@@ -78,11 +79,11 @@ for($i=0; $i<count($penalties['aaData']) ;$i++) {
 			}
 		}
 		// Reason
-		if($k == 5) {
+		if ($k == 5) {
 			$v = $this->XlrFunctions->stripColors($v);
 		}
 		// Admin Name
-		if($k == 8) {
+		if ($k == 8) {
 			$v = $v ? $v : 'BigBrotherBot';
 		}
 	}

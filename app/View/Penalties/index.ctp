@@ -148,7 +148,7 @@ $imgUrl = FULL_BASE_URL . $this->base . '/img/';
 			<tr>
 				<th colspan="6">
 					<i class="icon-info-sign" style="margin-right: 5px;"></i>
-					<small>Active penalties on this server. (Time on server: <?php echo  $this->Time->format('M jS, Y h:i A', gmdate('U') , null) ?>)</small>
+					<small>Active penalties on this server. (Time on server: <?php echo $this->Time->format('M jS, Y h:i A', gmdate('U'), null) ?>)</small>
 				</th>
 			</tr>
 			</tfoot>

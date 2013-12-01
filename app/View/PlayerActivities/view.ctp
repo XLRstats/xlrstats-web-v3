@@ -20,11 +20,11 @@ $this->layout = null;
 
 if (empty($activity)):
 	?>
-<div class="alert">
-	<?php echo __('An activity overview is not available for this player'); ?>
-</div>
-<?php
-	return false;
+	<div class="alert">
+		<?php echo __('An activity overview is not available for this player'); ?>
+	</div>
+	<?php
+		return false;
 endif;
 
 $totalPlayTime = 0;
@@ -70,7 +70,7 @@ $durations = $this->Js->value($duration);
                 text:'<?php echo __('Activity Chart') . ' ' . $this->XlrFunctions->fixName($playerActivity['PlayerActivity']['nick']) ?>'
             },
             subtitle: {
-                text: 'Total Playing time past 31 days: <?php echo round($totalPlayTime/60, 2) ?> hrs. (Avg. <?php echo round($totalPlayTime/60/31, 2) ?> hrs per day)<br /><br />(Click and drag in the plot area to zoom in)'
+                text: 'Total Playing time past 31 days: <?php echo round($totalPlayTime / 60, 2) ?> hrs. (Avg. <?php echo round($totalPlayTime / 60 / 31, 2) ?> hrs per day)<br /><br />(Click and drag in the plot area to zoom in)'
             },
             xAxis:{
                 type: 'datetime',

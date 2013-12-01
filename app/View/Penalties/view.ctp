@@ -100,74 +100,75 @@
 	</table>
 </div>
 
-<?php foreach ($penalties as $k => $v) {	?>
+<?php foreach ($penalties as $k => $v) { ?>
 
-<!-- Modal -->
-<div id="penalty<?php echo $v['Penalty']['id']; ?>Modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="penalty<?php echo $v['Penalty']['id']; ?>ModalLabel" aria-hidden="true">
-	<div class="modal-header error">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h4 id="penalty<?php echo $v['Penalty']['id']; ?>ModalLabel"><?php echo __('Penalty issued to') ?> <?php echo $v['Player']['name'] ?> <?php echo __('on')?> <?php echo $this->Time->format('F jS, Y h:i A', $v['Penalty']['time_add'], null) ?></h4>
-	</div>
-	<div class="modal-body">
-		<table class="table table-condensed">
-			<?php
+	<!-- Modal -->
+	<div id="penalty<?php echo $v['Penalty']['id']; ?>Modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="penalty<?php echo $v['Penalty']['id']; ?>ModalLabel" aria-hidden="true">
+		<div class="modal-header error">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h4 id="penalty<?php echo $v['Penalty']['id']; ?>ModalLabel"><?php echo __('Penalty issued to') ?> <?php echo $v['Player']['name'] ?> <?php echo __('on')?> <?php echo $this->Time->format('F jS, Y h:i A', $v['Penalty']['time_add'], null) ?></h4>
+		</div>
+		<div class="modal-body">
+			<table class="table table-condensed">
+				<?php
 
-			$currentTime = gmdate('U');
-			if ($v['Penalty']['time_expire'] == -1) {
-				$timeExpire = __('never');
-			} else {
-				$timeExpire = $this->Time->format('F jS, Y h:i A', $v['Penalty']['time_expire'], null);
-			}
-
-
-			echo $this->Html->tableCells(
-				array(
-					array(__('Type'), $v['Penalty']['type']),
-					array(__('Reason'), $v['Penalty']['reason']),
-					array(__('Issued by'), $v['Admin']['name'] ? $v['Admin']['name'] : __('BigBrotherBot')),
-					array(__('Expires on'), $timeExpire),
-					array('&nbsp;', '&nbsp;')
-				)
-			);
-
-			$disputeLink = '';
-
-			if (Configure::read('options.ban_disputable') && $v['Penalty']['time_expire'] > $currentTime && ($v['Penalty']['type'] == 'Ban' || $v['Penalty']['type'] == 'TempBan')) {
-				if (Configure::read('options.ban_dispute_link') != null) {
-					$disputeLink = $this->Html->link(__('Dispute'), Configure::read('options.ban_dispute_link'), array(
-							'title' => __('Click here to dispute your ban'),
-							'target' => '_blank',
-							'escape' => false,
-						),
-						__('Remember to mention your Player Name and the time the ban was issued'));
+				$currentTime = gmdate('U');
+				if ($v['Penalty']['time_expire'] == -1) {
+					$timeExpire = __('never');
 				} else {
-					$disputeLink = $this->Html->link(__('Dispute'), array(
-							'controller' => 'penalties',
-							'action' => 'detail',
-							'server' => Configure::read('server_id'),
-							$v['Penalty']['id']), array(
-							'title' => __('Click here to dispute your ban'),
-							'escape' => false,
-						)
-					);
+					$timeExpire = $this->Time->format('F jS, Y h:i A', $v['Penalty']['time_expire'], null);
 				}
-			}
 
-			echo $this->Html->tableCells(
-				array(
-					array(__('Keyword'), $v['Penalty']['keyword']),
-					array(__('Duration'), $v['Penalty']['duration'] . ' seconds'),
-					array(__('Data'), $v['Penalty']['data'] ? $v['Penalty']['data'] : __('No data set')),
-					array(__('Time Edited'), $this->Time->format('F jS, Y h:i A', $v['Penalty']['time_edit'], null)),
-					array($disputeLink, '')
-				)
-			);
-			?>
-		</table>
+
+				echo $this->Html->tableCells(
+					array(
+						array(__('Type'), $v['Penalty']['type']),
+						array(__('Reason'), $v['Penalty']['reason']),
+						array(__('Issued by'), $v['Admin']['name'] ? $v['Admin']['name'] : __('BigBrotherBot')),
+						array(__('Expires on'), $timeExpire),
+						array('&nbsp;', '&nbsp;')
+					)
+				);
+
+				$disputeLink = '';
+
+				if (Configure::read('options.ban_disputable') && $v['Penalty']['time_expire'] > $currentTime && ($v['Penalty']['type'] == 'Ban' || $v['Penalty']['type'] == 'TempBan')) {
+					if (Configure::read('options.ban_dispute_link') != null) {
+						$disputeLink = $this->Html->link(__('Dispute'), Configure::read('options.ban_dispute_link'), array(
+								'title' => __('Click here to dispute your ban'),
+								'target' => '_blank',
+								'escape' => false,
+							),
+							__('Remember to mention your Player Name and the time the ban was issued'));
+					} else {
+						$disputeLink = $this->Html->link(__('Dispute'), array(
+								'controller' => 'penalties',
+								'action' => 'detail',
+								'server' => Configure::read('server_id'),
+								$v['Penalty']['id']), array(
+								'title' => __('Click here to dispute your ban'),
+								'escape' => false,
+							)
+						);
+					}
+				}
+
+				echo $this->Html->tableCells(
+					array(
+						array(__('Keyword'), $v['Penalty']['keyword']),
+						array(__('Duration'), $v['Penalty']['duration'] . ' seconds'),
+						array(__('Data'), $v['Penalty']['data'] ? $v['Penalty']['data'] : __('No data set')),
+						array(__('Time Edited'), $this->Time->format('F jS, Y h:i A', $v['Penalty']['time_edit'], null)),
+						array($disputeLink, '')
+					)
+				);
+				?>
+			</table>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		</div>
 	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-	</div>
-</div>
-<!-- Modal End -->
-<?php } ?>
+	<!-- Modal End -->
+<?php
+}

@@ -14,15 +14,16 @@
  */
 
 // Format some array elements
-for($i=0; $i<count($playerPenalties['aaData']) ;$i++) {
-	foreach($playerPenalties['aaData'][$i] as $k => &$v) {
+$count = count($playerPenalties['aaData']);
+for ($i = 0; $i < $count; $i++) {
+	foreach ($playerPenalties['aaData'][$i] as $k => &$v) {
 		// Position numbers
-		if($k == 0) {
+		if ($k == 0) {
 			$v = $this->request->query['iDisplayStart']++;
 			$v += 1;
 		}
 		// Penalty Type
-		if($k == 1) {
+		if ($k == 1) {
 			$v = $this->Html->link($v,
 				'#penalty' . $playerPenalties['aaData'][$i][9] . 'Modal',
 				array(
@@ -31,15 +32,15 @@ for($i=0; $i<count($playerPenalties['aaData']) ;$i++) {
 			);
 		}
 		// Reason
-		if($k == 2) {
+		if ($k == 2) {
 			$v = $this->XlrFunctions->stripColors($v);
 		}
 		// Time Added
-		if($k == 4) {
+		if ($k == 4) {
 			$v = $this->Time->format('M jS, Y h:i A', $v, null);
 		}
 		// Time Expire
-		if($k == 5) {
+		if ($k == 5) {
 			$v = $this->Time->format('M jS, Y h:i A', $v, null);
 		}
 	}

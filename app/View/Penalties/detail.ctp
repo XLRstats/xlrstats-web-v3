@@ -22,7 +22,7 @@ if ($penalty['Penalty']['time_expire'] == -1) {
 ?>
 
 <table class="table table-striped table-bordered table-condensed">
-	<thead><td colspan="2"><h4>Penalty issued to <strong><?php echo $penalty['Player']['name'] ?></strong> on <strong><?php echo $this->Time->format('F jS, Y h:i A', $penalty['Penalty']['time_add'], null) ?></strong></h4></td></thead>
+	<thead><tr><td colspan="2"><h4>Penalty issued to <strong><?php echo $penalty['Player']['name'] ?></strong> on <strong><?php echo $this->Time->format('F jS, Y h:i A', $penalty['Penalty']['time_add'], null) ?></strong></h4></td></tr></thead>
 	<tbody>
         <tr><td><?php echo __('Type') ?></td><td><?php echo $penalty['Penalty']['type'] ?></td></tr>
 		<tr><td><?php echo __('Reason') ?></td><td><?php echo $penalty['Penalty']['reason'] ?></td></tr>
@@ -46,12 +46,12 @@ if ($penalty['Penalty']['time_expire'] == -1) {
 			</span></div>
 	</div>
 <?php } else { ?>
-	<div class="row">
-		<div class="span12"><?php echo '<h4>' . __('This penalty cannot be disputed.') . '</h4>'; ?></span></div>
-	</div>
+		<div class="row">
+			<div class="span12"><?php echo '<h4>' . __('This penalty cannot be disputed.') . '</h4>'; ?></span></div>
+		</div>
 <?php } ?>
 
 <?php
 //pr($penalty);
-?>
+
 
