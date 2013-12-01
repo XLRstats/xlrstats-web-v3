@@ -118,7 +118,7 @@ $this->set('title_for_layout', __('Users • XLRstats'));
 			</tbody>
 			<tfoot>
 			<tr>
-				<th colspan="9"><i class="icon-info-sign" style="margin-right: 5px;"></i><small>Liste of users</small></th>
+				<th colspan="9"><i class="icon-info-sign" style="margin-right: 5px;"></i><small><?php echo __('List of users'); ?></small></th>
 			</tr>
 			</tfoot>
 		</table>

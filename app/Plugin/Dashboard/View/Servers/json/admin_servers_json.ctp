@@ -13,20 +13,20 @@
  * @version       0.1
  */
 
-//Let's modify and format some of the array values
-for($i=0; $i<count($servers['aaData']) ;$i++) {
-	foreach($servers['aaData'][$i] as $k => &$v) {
+$dataLength = count($servers['aaData']);
+for ($i = 0; $i < $dataLength; $i++) {
+	foreach ($servers['aaData'][$i] as $k => &$v) {
 		// Active
-		if($k == 1) {
-			if($v == 1) {
+		if ($k == 1) {
+			if ($v == 1) {
 				$v = '<span style="height: 7px; position: relative; top: 3px; " class="label label-success">&nbsp;</span>';
 			} else {
 				$v = '<span style="height: 7px; position: relative; top: 3px; " class="label label-important">&nbsp;</span>';
 			}
 		}
 		// Game Name
-		if($k == 2) {
-			$v = $this->Html->image('ico/icon_'.$v.'.gif', array(
+		if ($k == 2) {
+			$v = $this->Html->image('ico/icon_' . $v . '.gif', array(
 					//'class' => 'img-polaroid',
 					'rel' => 'tooltip',
 					'data-original-title' => Configure::read('games.' . $v) ? Configure::read('games.' . $v) : $v,
@@ -34,7 +34,7 @@ for($i=0; $i<count($servers['aaData']) ;$i++) {
 			);
 		}
 		// Server Name
-		if($k == 3) {
+		if ($k == 3) {
 			$v = $this->Html->link($v, array(
 					'plugin' => 'dashboard',
 					'controller' => 'home',
@@ -44,7 +44,7 @@ for($i=0; $i<count($servers['aaData']) ;$i++) {
 			);
 		}
 		// Action Buttons
-		if($k == 5) {
+		if ($k == 5) {
 			$v = $this->Html->link('<i class="icon-eye-open"></i>',
 				array(
 					'plugin' => 'dashboard',
@@ -63,7 +63,7 @@ for($i=0; $i<count($servers['aaData']) ;$i++) {
 			$v .= $this->Html->link('<i class="icon-wrench"></i>',
 				array(
 					'server' => $servers['aaData'][$i][0],
-					'action'=>'edit',
+					'action' => 'edit',
 					$servers['aaData'][$i][0],
 				),
 				array(
@@ -77,7 +77,7 @@ for($i=0; $i<count($servers['aaData']) ;$i++) {
 			$v .= $this->Html->link('<i class="icon-cog"></i>',
 				array(
 					'controller' => 'server_options',
-					'action'=>'index',
+					'action' => 'index',
 					'server' => $servers['aaData'][$i][0],
 				),
 				array(
@@ -88,18 +88,6 @@ for($i=0; $i<count($servers['aaData']) ;$i++) {
 					'data-original-title' => __('Options'),
 				)
 			);
-			/*
-			$v .= $this->Html->link('<i class="icon-gamepad"></i>',
-				'#',
-				array(
-					'class' => 'btn btn-mini',
-					'style' => 'margin-right:2px;',
-					'escape' => false,
-					'rel' => 'tooltip',
-					'data-original-title' => __('Players'),
-				)
-			);
-			*/
 			$v .= $this->Form->postLink('<i class="icon-trash"></i>', array(
 					'action' => 'delete', $servers['aaData'][$i][0]
 				),

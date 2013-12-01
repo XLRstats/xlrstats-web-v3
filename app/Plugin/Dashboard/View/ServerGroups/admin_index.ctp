@@ -24,7 +24,7 @@ $this->set('title_for_layout', __('Server Groups • XLRstats'));
 </script>
 
 <div class="page-header">
-	<h1>Servergroups</h1>
+	<h1><?php echo __('Server Groups'); ?></h1>
 </div>
 
 <div>
@@ -53,27 +53,27 @@ $this->set('title_for_layout', __('Server Groups • XLRstats'));
 	<tbody>
 	<?php foreach($serverGroups as $serverGroup): ?>
 		<tr>
-			<td width="5%"><?php echo $serverGroup['ServerGroup']['id']; ?></td>
-			<td width="20%">
+			<td style="width: 5%;"><?php echo $serverGroup['ServerGroup']['id']; ?></td>
+			<td style="width: 20%">
 				<?php
 				echo $this->Html->link($serverGroup['ServerGroup']['name'], '#', array(
 						'id' => 'text-field',
-						'data-type' => 'text',                            //type of input (text, textarea, select, etc)
-						'data-url' => 'server_groups/edit',               //url to server-side script to process submitted value
-						'data-pk' => $serverGroup['ServerGroup']['id'],   //primary key of record to be updated (ID in db)
-						'data-name' => 'name',                            //name of field to be updated (column in db)
+						'data-type' => 'text',							//type of input (text, textarea, select, etc)
+						'data-url' => 'server_groups/edit',				//url to server-side script to process submitted value
+						'data-pk' => $serverGroup['ServerGroup']['id'],	//primary key of record to be updated (ID in db)
+						'data-name' => 'name',							//name of field to be updated (column in db)
 					)
 				);
 				?>
 			</td>
-			<td width="50%">
+			<td style="width: 50%">
 				<?php
 				echo $this->Html->link($serverGroup['ServerGroup']['description'], '#', array(
 						'id' => 'text-field',
-						'data-type' => 'text',                            //type of input (text, textarea, select, etc)
-						'data-url' => 'server_groups/edit',         //url to server-side script to process submitted value
-						'data-pk' => $serverGroup['ServerGroup']['id'],   //primary key of record to be updated (ID in db)
-						'data-name' => 'description',                     //name of field to be updated (column in db)
+						'data-type' => 'text',							//type of input (text, textarea, select, etc)
+						'data-url' => 'server_groups/edit',				//url to server-side script to process submitted value
+						'data-pk' => $serverGroup['ServerGroup']['id'],	//primary key of record to be updated (ID in db)
+						'data-name' => 'description',					//name of field to be updated (column in db)
 					)
 				);
 				?>
@@ -93,7 +93,7 @@ $this->set('title_for_layout', __('Server Groups • XLRstats'));
 							'data-original-title' => __('Delete'),
 						),
 						__('Are you sure you want to delete %s?', $serverGroup['ServerGroup']['name']));
-					endif;
+				endif;
 				?>
 			</td>
 		</tr>

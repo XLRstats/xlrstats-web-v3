@@ -180,27 +180,6 @@ class ServersController extends DashboardAppController {
 	//-------------------------------------------------------------------
 
 /**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->checkServerAccess($id)) {
-			$this->Session->setFlash(__('You cannot view this server.'), null, null, 'error');
-			$this->redirect($this->request->referer());
-		};
-		$this->Server->id = $id;
-		if (!$this->Server->exists()) {
-			throw new NotFoundException(__('Invalid server'));
-		}
-		$this->set('server', $this->Server->read(null, $id));
-	}
-
-	//-------------------------------------------------------------------
-
-/**
  * admin_add method
  *
  * @return void

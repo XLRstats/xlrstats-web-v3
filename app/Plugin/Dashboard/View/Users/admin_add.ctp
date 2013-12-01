@@ -49,7 +49,7 @@ $this->set('title_for_layout', __('Add New User • XLRstats'));
 		echo $this->Form->input('group_id', array(
 			'default' => 3
 		));
-		if(isset($serverGroups)) {
+		if (isset($serverGroups)) {
 			echo $this->Form->input('ServerGroup', array(
 					'type' => 'select',
 					'multiple' => true,

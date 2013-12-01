@@ -22,7 +22,9 @@ $this->set('title_for_layout', __('Options • XLRstats'));
 </script>
 
 <div class="page-header">
-	<h1><?php echo __('Options'); ?><small> - <?php echo __('Global Options'); ?></small></h1>
+	<h1><?php echo __('Options'); ?>
+		<small> - <?php echo __('Global Options'); ?></small>
+	</h1>
 </div>
 
 <div>
@@ -30,7 +32,7 @@ $this->set('title_for_layout', __('Options • XLRstats'));
 		<?php
 		echo __('<i>These are the global options that apply to all servers. You can however override each option
 		for a server in the "Server Options" section of that specific server except for "locked" options. Lock the option
-		if you do not want it to be overriden in server specific options. <strong>Click to Change!</strong></i>');
+		if you do not want it to be overridden in server specific options. <strong>Click to Change!</strong></i>');
 		?>
 	</blockquote>
 </div>

@@ -1,22 +1,22 @@
 <?php
 /**
- * Copyright 2010 - 2011, Cake Development Corporation (http://cakedc.com)
+ * XLRstats : Real Time Player Stats (http://www.xlrstats.com)
+ * (CC) BY-NC-SA 2005-2013, Mark Weirath, Özgür Uysal
  *
  * Licensed under the Creative Commons BY-NC-SA 3.0 License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright Copyright 2010 - 2011, Cake Development Corporation (http://cakedc.com)
- * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @link          http://www.xlrstats.com
+ * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @package       app.Plugin.Dashboard.View.Users
+ * @since         XLRstats v3.0
+ * @version       0.1
  */
 
-/**
- * Calculate a unique playertoken for identification purposes.
- */
+// Calculate a unique player token for identification purposes.
 $token = substr(md5(AuthComponent::user('email')), null, 8);
 
-/**
- * Check if we have a saved playertoken
- */
+// Check if we have a saved playertoken
 $profile = false;
 if (isset($this->request->data['UserDetail']['playertoken'])) {
 	$profile = true;
@@ -43,22 +43,21 @@ echo $this->TwitterBootstrap->page_header('Player Profile Page');
 			<?php //Todo: Need to add playername to my soldiers list in profile page
 			$mySoldiers = $this->requestAction('user_soldiers/listing/' . $user['User']['id']);
 			if (empty($mySoldiers)) {
-				echo '<h3>'. __('You have no Identified Soldiers (yet)') . '</h3>';
+				echo '<h3>' . __('You have no Identified Soldiers (yet)') . '</h3>';
 				echo '<p>';
 				echo __('Want to know how to get identified? Click the red \'Player Identifier Token\' on the left.');
 				echo '</p>';
 			} else {
-				echo '<h3>'. __('Identified Soldiers') . '</h3>';
+				echo '<h3>' . __('Identified Soldiers') . '</h3>';
 				echo '<ul>';
 				foreach ($mySoldiers as $soldier) {
 					//pr($soldier);
-					$gameIcon = $this->Html->image('ico/icon_'.$soldier['Server']['gamename'].'.gif');
+					$gameIcon = $this->Html->image('ico/icon_' . $soldier['Server']['gamename'] . '.gif');
 					echo '<li>';
 					echo $this->Html->link($gameIcon . ' ' . $soldier['Server']['servername'], array(
 							'plugin' => null,
 							'controller' => 'player_stats',
 							'action' => 'view',
-							'server' => Configure::read('server_id'),
 							$soldier['UserSoldier']['playerstats_id'],
 							'server' => $soldier['UserSoldier']['server_id']), array(
 							'escape' => false
@@ -93,7 +92,7 @@ echo $this->TwitterBootstrap->page_header('Player Profile Page');
 	<div class="modal-body">
 		<p><strong>You can use this token in a B3 enable server to connect your player account to this website profile.</strong></p>
 		<ul>
-			<li>Connect to the gameserver and type in chat: <code></a>!xlrid <?php echo $token ?></code><br/>
+			<li>Connect to the gameserver and type in chat: <code>!xlrid <?php echo $token ?></code><br/>
 				- You will now have access to the extra (private) Tabs on your personal playerstats page.<br/><br/>
 			</li>
 			<li>Once identified you can bookmark your playerpage(s) and add the account to your "My Soldiers" list.

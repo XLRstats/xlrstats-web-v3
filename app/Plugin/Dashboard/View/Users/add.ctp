@@ -1,19 +1,24 @@
 <?php
 /**
- * Copyright 2010 - 2012, Cake Development Corporation (http://cakedc.com)
+ * XLRstats : Real Time Player Stats (http://www.xlrstats.com)
+ * (CC) BY-NC-SA 2005-2013, Mark Weirath, Özgür Uysal
  *
  * Licensed under the Creative Commons BY-NC-SA 3.0 License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright Copyright 2010 - 2012, Cake Development Corporation (http://cakedc.com)
- * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @link          http://www.xlrstats.com
+ * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @package       app.Plugin.Dashboard.View.Users
+ * @since         XLRstats v3.0
+ * @version       0.1
  */
 ?>
+
 <div class="login-box clearfix">
 	<div class="login-logo">
 		<?php
 		echo $this->Html->link(
-			$this->Html->image('logo.png', array('title' => 'Powered by XLRstats',)),
+			$this->Html->image('logo.png', array('title' => 'Powered by XLRstats', )),
 			'http://www.xlrstats.com',
 			array('escape' => false)
 		);
@@ -36,10 +41,10 @@
 				echo $this->Form->input('email', array(
 						'label' => __('E-mail (used as login)'),
 						'error' => array(
-							'isValid' => __d('users', 'Must be a valid email address'),
-							'isUnique' => __('An account with that email already exists')
+							'isValid' => __('Must be a valid email address'),
+							'isUnique' => __('An account with that email already exists'),
+							'attributes' => array('class' => 'alert alert-error')
 						),
-						'error' => array('attributes' => array('class' => 'alert alert-error'))
 					)
 				);
 

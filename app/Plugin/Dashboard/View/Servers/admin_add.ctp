@@ -1,3 +1,19 @@
+<?php
+/**
+ * XLRstats : Real Time Player Stats (http://www.xlrstats.com)
+ * (CC) BY-NC-SA 2005-2013, Mark Weirath, Özgür Uysal
+ *
+ * Licensed under the Creative Commons BY-NC-SA 3.0 License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link          http://www.xlrstats.com
+ * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @package       app.Plugin.Dashboard.View.Servers
+ * @since         XLRstats v3.0
+ * @version       0.1
+ */
+?>
+
 <div class="servers form">
 <?php echo $this->Form->create('Server'); ?>
 	<fieldset>
@@ -7,9 +23,9 @@
 		echo $this->Form->input('active');
 		echo '<hr>';
 		echo $this->Form->input('gamename', array(
-			'type'    => 'select',
+			'type' => 'select',
 			'options' => Configure::read('games'),
-			'empty'   => __('Select Game')
+			'empty' => __('Select Game')
 		));
 		echo $this->Form->input('dbhost');
 		echo $this->Form->input('dbuser');
