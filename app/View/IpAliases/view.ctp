@@ -50,7 +50,7 @@
 				/* Ip */ 		{ "sWidth" : "200px", "bSortable" : false },
 				/* num used */ 		null,
 				/* Added */ 		null,
-				/* Edited */ 		null,
+				/* Edited */ 		null
 			],
 			"bFilter": false,
 			"bInfo": false,

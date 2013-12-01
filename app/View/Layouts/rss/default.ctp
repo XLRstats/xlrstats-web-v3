@@ -11,4 +11,4 @@ echo $this->Rss->document(
 		array(), $channel, $this->fetch('content')
 	)
 );
-?>
+

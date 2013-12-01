@@ -24,8 +24,8 @@ $this->Html->script('jquery.sparkline', array('inline' => false));
  */
 $maxDays = Configure::read('options.max_days');
 $showMIA = false;
-$_showMIA = Configure::read('options.showMIA');
-if (isset($maxDays) && $maxDays > 0 && $_showMIA) {
+$showMia = Configure::read('options.showMIA');
+if (isset($maxDays) && $maxDays > 0 && $showMia) {
 	$showMIA = true;
 }
 
@@ -158,7 +158,7 @@ $imgUrl = FULL_BASE_URL . $this->base . '/img/';
         <div class="text-info">
 			<?php echo $leagueValue[4]; ?>
             <div class="pull-right">
-                <button data-toggle="button" rel="tooltip" data-original-title="<?php echo __('Click to toggle options'); ?>" class="btn btn-small" id="search-button" href="#">
+                <button data-toggle="button" rel="tooltip" data-original-title="<?php echo __('Click to toggle options'); ?>" class="btn btn-small" id="search-button">
                     <i class="icon-cog"></i>
                 </button>
             </div>
@@ -197,9 +197,11 @@ $imgUrl = FULL_BASE_URL . $this->base . '/img/';
 						if ($leagueValue[0] == 'League.skill') {
 							echo __('For this League you need at least %s connections and %s kills to appear in this list', $minimumConnections, $minimumKills);
 						} else {
-							$_leageValReadable = explode('.', $leagueValue[0], 2);
-							if ($leagueValue[2] > 99999) $leagueValue[2] = '&infin;';
-							echo __('Showing players with ') . $leagueValue[1] . __(' to ') . $leagueValue[2]. ' ' . $_leageValReadable[1];
+							$leageValReadable = explode('.', $leagueValue[0], 2);
+							if ($leagueValue[2] > 99999) {
+								$leagueValue[2] = '&infin;';
+							}
+							echo __('Showing players with ') . $leagueValue[1] . __(' to ') . $leagueValue[2] . ' ' . $leageValReadable[1];
 						}
 						?>
                     </div>

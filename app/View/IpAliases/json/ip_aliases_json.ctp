@@ -13,11 +13,12 @@
  * @version       0.1
  */
 
- // Format some array elements
-for($i=0; $i<count($ipAliases['aaData']) ;$i++) {
-	foreach($ipAliases['aaData'][$i] as $k => &$v) {
+// Format some array elements
+$count = count($ipAliases['aaData']);
+for ($i = 0; $i < $count; $i++) {
+	foreach ($ipAliases['aaData'][$i] as $k => &$v) {
 		// Flag
-		if($k == 0) {
+		if ($k == 0) {
 			$flag = $this->Html->image('flags/' . $v[0][0] . '.gif', array(
 				'rel' => 'tooltip',
 				'data-original-title' => $v[0][1],
@@ -27,15 +28,15 @@ for($i=0; $i<count($ipAliases['aaData']) ;$i++) {
 			$v = $flag . ' ' . $v[1];
 		}
 		// Times Used. Todo: Next line is a bug in B3 alias counting. Seems to start with 0 instead of 1
-		if($k == 1) {
-			$v = $v + 1;
+		if ($k == 1) {
+			$v += 1;
 		}
 		// First Used
-		if($k == 2) {
+		if ($k == 2) {
 			$v = $this->Time->format('M jS, Y h:i A', $v, null);
 		}
 		// Last Used
-		if($k == 3) {
+		if ($k == 3) {
 			$v = $this->Time->format('M jS, Y h:i A', $v, null);
 		}
 	}

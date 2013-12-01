@@ -15,34 +15,34 @@
 
 $nameTruncation = 15;
 // Format some array elements
-for($i=0; $i<count($xlrLeague['aaData']) ;$i++) {
-	foreach($xlrLeague['aaData'][$i] as $k => &$v) {
+$count = count($xlrLeague['aaData']);
+for ($i = 0; $i < $count; $i++) {
+	foreach ($xlrLeague['aaData'][$i] as $k => &$v) {
 		// Position numbers
-		if($k == 0) {
+		if ($k == 0) {
 			$v = $this->request->query['iDisplayStart']++;
 			$v += 1;
 		}
 		// Name
-		if($k == 1) {
-			$_name = $this->Text->truncate($v,
+		if ($k == 1) {
+			$name = $this->Text->truncate($v,
 				$nameTruncation,
 				array(
 					'ending'	=> '...',
 					'exact'		=> true,
 				));
-			if ($_name == $v) {
+			if ($name == $v) {
 				$nameLink = $this->Html->link(
-					$_name,
+					$name,
 					array(
 						'controller' => 'player_stats',
 						'action' => 'view',
 						'server' => Configure::read('server_id'),
 						$xlrLeague['aaData'][$i][15])
 				);
-			}
-			else {
+			} else {
 				$nameLink = $this->Html->link(
-					$_name,
+					$name,
 					array(
 						'controller' => 'player_stats',
 						'action' => 'view',
@@ -90,7 +90,7 @@ for($i=0; $i<count($xlrLeague['aaData']) ;$i++) {
 			}
 
 			if ($leagueValue[0] != 'League.skill' && $xlrLeague['aaData'][$i][12] >= Configure::read('options.min_connections') && $xlrLeague['aaData'][$i][4] >= Configure::read('options.min_kills')) {
-				$leagueBadge = $this->Html->link('<i class="'.$leagueIcon.'" style="color:'.$leagueColor.'; margin-left: 10px"></i>',
+				$leagueBadge = $this->Html->link('<i class="' . $leagueIcon . '" style="color:' . $leagueColor . '; margin-left: 10px"></i>',
 					array(
 						'controller' => 'leagues',
 						'action' => 'view',
@@ -103,12 +103,12 @@ for($i=0; $i<count($xlrLeague['aaData']) ;$i++) {
 						'escape' => false
 					));
 			} else {
-				$leagueBadge = '<i class="'.$leagueIcon.'" style="color:'.$leagueColor.'; margin-left: 10px" rel="tooltip" data-original-title="' . $leagueName . '"></i>';
+				$leagueBadge = '<i class="' . $leagueIcon . '" style="color:' . $leagueColor . '; margin-left: 10px" rel="tooltip" data-original-title="' . $leagueName . '"></i>';
 			}
-			$v = $flag . $rank . $level . $leagueBadge .'<span style="padding-left: 10px;">' . $nameLink . '</span>';
+			$v = $flag . $rank . $level . $leagueBadge . '<span style="padding-left: 10px;">' . $nameLink . '</span>';
 		}
 		// Skill
-		if($k == 2) {
+		if ($k == 2) {
 			$v = '<b>' . $this->Number->format($v, array(
 					'places' => 0,
 					'before' => null,
@@ -116,7 +116,7 @@ for($i=0; $i<count($xlrLeague['aaData']) ;$i++) {
 				)) . '</b>';
 		}
 		// Ratio
-		if($k == 3) {
+		if ($k == 3) {
 			$v = $this->Html->tag('span', $this->XlrFunctions->ratioSparklineBulletChart($v,
 					array(
 						'scripts' => false

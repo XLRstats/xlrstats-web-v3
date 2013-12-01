@@ -80,7 +80,7 @@
 						<span class="logo">
 							<?php
 							echo $this->Html->link($this->Html->image('logo.png', array(
-									'alt' => 'XLRstats',)),
+									'alt' => 'XLRstats', )),
 								'/', array(
 									'escape' => false
 								));

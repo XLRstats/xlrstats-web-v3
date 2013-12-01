@@ -16,4 +16,4 @@
  * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
  */
 ?>
-<?php echo $this->fetch('content'); ?>
+<?php echo $this->fetch('content');
