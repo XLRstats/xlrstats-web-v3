@@ -37,8 +37,8 @@ $booleanValues = array(
 		if($option['Option']['group'] == $group):
 			?>
 			<tr>
-				<td width="50%"><?php echo $option['Option']['description']; ?></td>
-				<td width="50%">
+				<td style="width: 50%;"><?php echo $option['Option']['description']; ?></td>
+				<td style="width: 50%;">
 					<?php
 					$type = 'text';
 					if(in_array($option['Option']['name'], $booleanValues)):
@@ -57,10 +57,10 @@ $booleanValues = array(
 
 					echo $this->Html->link($link, '#', array(
 							'id' => $option['Option']['name'],
-							'data-type' => $type,                   //type of input (text, textarea, select, etc)
-							'data-url' => 'server_options/edit',    //url to server-side script to process submitted value
-							'data-pk' => $option['Option']['name'], //*** we use option name here instead of primary key
-							'data-name' => 'value',                 //name of field to be updated (column in db)
+							'data-type' => $type,					//type of input (text, textarea, select, etc)
+							'data-url' => 'server_options/edit',	//url to server-side script to process submitted value
+							'data-pk' => $option['Option']['name'],	//*** we use option name here instead of primary key
+							'data-name' => 'value',					//name of field to be updated (column in db)
 						)
 					);
 					?>

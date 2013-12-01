@@ -13,7 +13,7 @@
  * @version       0.1
  */
 ?>
-<div clas="sidebar-nav">
+<div class="sidebar-nav">
 
 	<!-- Admin Info -->
 	<div class="admin-info clearfix">
@@ -100,7 +100,9 @@
 		-->
 
 	</ul>
-	<?php endif; ?>
+	<?php
+	endif;
+	?>
 	<!-- /End Accordion menu -->
 
 </div>

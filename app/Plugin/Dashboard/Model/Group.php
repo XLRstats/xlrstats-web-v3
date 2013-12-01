@@ -34,6 +34,8 @@ class Group extends DashboardAppModel {
  */
 	public $actsAs = array('Acl' => array('type' => 'requester'));
 
+	//-------------------------------------------------------------------
+
 /**
  * This is used by the AclBehavior to determine parent->child relationships
  *

@@ -27,7 +27,7 @@
 
 			<?php
 			echo $this->Html->link($this->Html->image('Dashboard.admin-logo.png', array(
-					'alt' => 'XLRstats',)),
+					'alt' => 'XLRstats', )),
 				'/dashboard',
 				array(
 					'class' => 'logo pull-left',
@@ -39,31 +39,31 @@
 
 				<ul class="global-links nav hidden-phone">
 
-					<li <?php if($this->name == 'Servers') echo 'class="active"'; ?>>
+					<li class="<?php echo $this->name == 'Servers' ? 'active' : ''; ?>">
 						<?php echo $this->Html->link(__('Servers'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'servers', 'action' => 'admin_index')); ?>
 					</li>
 
-					<li <?php if($this->name == 'Users') echo 'class="active"'; ?>>
+					<li class="<?php echo $this->name == 'Users' ? 'active' : ''; ?>">
 						<?php echo $this->Html->link(__('Users'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'users', 'action' => 'admin_index')); ?>
 					</li>
 
 					<?php if ($user['Group']['level'] == 100): ?>
 
-					<li <?php if($this->name == 'ServerGroups') echo 'class="active"'; ?>>
+					<li class="<?php echo $this->name == 'ServerGroups' ? 'active' : ''; ?>">
 						<?php echo $this->Html->link(__('Server Groups'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'server_groups', 'action' => 'admin_index'));	?>
 					</li>
 
-					<li <?php if($this->name == 'Options') echo 'class="active"'; ?>>
+					<li class="<?php echo $this->name == 'Options' ? 'active' : ''; ?>">
 						<?php echo $this->Html->link(__('Options'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'options', 'action' => 'admin_index')); ?>
 					</li>
 
-					<li <?php if($this->name == 'Maintenance') echo 'class="active"'; ?>>
+					<li class="<?php echo $this->name == 'Maintenance' ? 'active' : ''; ?>">
 						<?php echo $this->Html->link(__('Maintenance'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'maintenance', 'action' => 'admin_index')); ?>
 					</li>
 
 					<?php endif ?>
 
-					<li <?php if($this->name == 'Visit Site') echo 'class="active"'; ?>>
+					<li class="<?php echo $this->name == 'Visit Site' ? 'active' : ''; ?>">
 						<?php echo $this->Html->link(__('<i class="icon-home"></i> Visit Site'), array('plugin' => null, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'home'), array('escape' => false)); ?>
 					</li>
 
@@ -81,25 +81,25 @@
 						</a>
 
 						<ul class="dropdown-menu">
-							<li <?php if($this->name == 'Servers') echo 'class="active"'; ?>>
+							<li class="<?php echo $this->name == 'Servers' ? 'active' : ''; ?>">
 								<?php echo $this->Html->link(__('Servers'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'servers', 'action' => 'admin_index')); ?>
 							</li>
 
 							<?php if ($user['Group']['level'] == 100): ?>
 
-							<li <?php if($this->name == 'ServerGroups') echo 'class="active"'; ?>>
+							<li class="<?php echo $this->name == 'ServerGroups' ? 'active' : ''; ?>">
 								<?php echo $this->Html->link(__('Server Groups'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'server_groups', 'action' => 'admin_index')); ?>
 							</li>
 
-							<li <?php if($this->name == 'Users') echo 'class="active"'; ?>>
+							<li class="<?php echo $this->name == 'Users' ? 'active' : ''; ?>">
 								<?php echo $this->Html->link(__('Users'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'users', 'action' => 'admin_index')); ?>
 							</li>
 
-							<li <?php if($this->name == 'Options') echo 'class="active"'; ?>>
+							<li class="<?php echo $this->name == 'Options' ? 'active' : ''; ?>">
 								<?php echo $this->Html->link(__('Options'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'options', 'action' => 'admin_index')); ?>
 							</li>
 
-							<li <?php if($this->name == 'Maintenance') echo 'class="active"'; ?>>
+							<li class="<?php echo $this->name == 'Maintenance' ? 'active' : ''; ?>">
 								<?php echo $this->Html->link(__('Maintenance'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'maintenance', 'action' => 'admin_index')); ?>
 							</li>
 
