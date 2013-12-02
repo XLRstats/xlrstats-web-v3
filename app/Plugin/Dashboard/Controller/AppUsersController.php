@@ -400,7 +400,45 @@ class AppUsersController extends UsersController {
 			$this->Session->setFlash(__('You are already logged in!'));
 			$this->redirect('/');
 		}
-		parent::login();
+
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				$this->getEventManager()->dispatch(new CakeEvent('Users.afterLogin', $this, array(
+					'isFirstLogin' => !$this->Auth->user('last_login')
+				)));
+
+				$this->User->id = $this->Auth->user('id');
+				$this->User->saveField('last_login', date('Y-m-d H:i:s'));
+
+				if ($this->here == $this->Auth->loginRedirect) {
+					$this->Auth->loginRedirect = '/';
+				}
+				$this->Session->setFlash(sprintf(__d('users', '%s you have successfully logged in'), $this->Auth->user('username')));
+				if (!empty($this->request->data)) {
+					$data = $this->request->data[$this->modelClass];
+					if (empty($this->request->data[$this->modelClass]['remember_me'])) {
+						$this->RememberMe->destroyCookie();
+					} else {
+						$this->_setCookie();
+					}
+				}
+
+				if (empty($data['return_to'])) {
+					$data['return_to'] = null;
+				}
+
+				$this->redirect($this->Auth->redirect($data['return_to']));
+			} else {
+				$this->Session->setFlash(__d('users', 'Invalid e-mail / password combination.  Please try again'));
+			}
+		}
+		if (isset($this->request->params['named']['return_to'])) {
+			$this->set('return_to', urldecode($this->request->params['named']['return_to']));
+		} else {
+			$this->set('return_to', false);
+		}
+		$allowRegistration = Configure::read('Users.allowRegistration');
+		$this->set('allowRegistration', (is_null($allowRegistration) ? true : $allowRegistration));
 	}
 
 	//-------------------------------------------------------------------
