@@ -37,6 +37,10 @@ $config = array(
 		'MP_Siege' => array('Siege of Shanghai', 'description', 'mp_siege.jpg'),
 		'MP_TheDish' => array('Rogue Transmission', 'description', 'mp_thedish.jpg'),
 		'MP_Tremors' => array('Dawnbreaker', 'description', 'mp_tremors.jpg'),
+		'XP1_001' => array('Silk Road', 'description', 'xp1_001.jpg'),
+		'XP1_002' => array('Altai Range', 'description', 'xp1_002.jpg'),
+		'XP1_003' => array('Guilin Peaks', 'description', 'xp1_003.jpg'),
+		'XP1_004' => array('Dragon Pass', 'description', 'xp1_004.jpg'),
 	),
 	/**
 	 * Weapon: name, description, image
