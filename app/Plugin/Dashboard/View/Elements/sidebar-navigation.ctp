@@ -21,7 +21,7 @@
 		<div class="admin-avatar pull-left img-polaroid">
 			<?php
 			$options = array('size' => 50, 'rating' => 'g');
-			echo $this->Html->link($this->Gravatar->image($user['User']['email'], $options,
+			echo $this->Html->link($this->Gravatar->image($user['AppUser']['email'], $options,
 					array(
 						'alt' => 'Gravatar',
 					)),
@@ -33,7 +33,7 @@
 
 		<div class="admin-meta pull-left">
 			<ul>
-				<li class="admin-name"><?php echo $user['User']['username']; ?></li>
+				<li class="admin-name"><?php echo $user['AppUser']['username']; ?></li>
 				<li class="admin-group"><?php echo $user['Group']['name']; ?></li>
 				<li class="admin-option"><i class="icon-off"></i>&nbsp;<a href="<?php echo $this->request->base . '/logout' ?>"><?php echo __('Logout'); ?></a>
 			</ul>

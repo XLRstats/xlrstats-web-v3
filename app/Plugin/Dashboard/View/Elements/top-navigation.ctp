@@ -43,7 +43,7 @@
 						<?php echo $this->Html->link(__('Servers'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'servers', 'action' => 'admin_index')); ?>
 					</li>
 
-					<li class="<?php echo $this->name == 'Users' ? 'active' : ''; ?>">
+					<li class="<?php echo $this->name == 'AppUsers' ? 'active' : ''; ?>">
 						<?php echo $this->Html->link(__('Users'), array('plugin' => 'dashboard', 'admin' => true, 'controller' => 'users', 'action' => 'admin_index')); ?>
 					</li>
 

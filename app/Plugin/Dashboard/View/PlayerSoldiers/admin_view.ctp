@@ -24,7 +24,7 @@
 		</dd>
 		<dt><?php echo __('User Id'); ?></dt>
 		<dd>
-			<?php echo h($playerSoldier['User']['username']); ?>
+			<?php echo h($playerSoldier['AppUser']['username']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Server Id'); ?></dt>

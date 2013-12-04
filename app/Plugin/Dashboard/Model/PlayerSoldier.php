@@ -64,8 +64,8 @@ class PlayerSoldier extends DashboardAppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'User' => array(
-			'className' => 'Dashboard.User',
+		'AppUser' => array(
+			'className' => 'Dashboard.AppUser',
 			'foreignKey' => 'user_id',
 		),
 		'Server' => array(

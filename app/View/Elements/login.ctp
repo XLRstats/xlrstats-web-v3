@@ -23,7 +23,7 @@
 			<?php
 			// Display Gravatar
 			$options = array('size' => 20, 'rating' => 'g');
-			echo $this->Html->link($this->Gravatar->image($user['User']['email'], $options,
+			echo $this->Html->link($this->Gravatar->image($user['AppUser']['email'], $options,
 					array(
 						'alt' => 'Gravatar',
 					)),
@@ -31,7 +31,7 @@
 				array('escape' => false	)
 			);
 			?>
-			<?php echo __('Howdy %s (%s)', $user['User']['username'], $user['Group']['name']); ?>
+			<?php echo __('Howdy %s (%s)', $user['AppUser']['username'], $user['Group']['name']); ?>
 			<span class="caret"></span>
 		</button>
 
@@ -49,7 +49,7 @@
 				<a href="#">My Soldiers</a>
 				<ul class="dropdown-menu">
 				<?php
-					$mySoldiers = $this->requestAction('user_soldiers/listing/' . $user['User']['id']);
+					$mySoldiers = $this->requestAction('user_soldiers/listing/' . $user['AppUser']['id']);
 					if (empty($mySoldiers)) {
 						echo '<li class="nav-header">' . __('You have no Identified Soldiers') . '</li>';
 					} else {

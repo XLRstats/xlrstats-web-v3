@@ -28,7 +28,7 @@
 	foreach ($playerSoldiers as $playerSoldier): ?>
 	<tr>
 		<td><?php echo h($playerSoldier['PlayerSoldier']['id']); ?>&nbsp;</td>
-		<td><?php echo h($playerSoldier['User']['username']); ?>&nbsp;</td>
+		<td><?php echo h($playerSoldier['AppUser']['username']); ?>&nbsp;</td>
 		<td><?php echo h($playerSoldier['Server']['servername']); ?>&nbsp;</td>
 		<td><?php echo h($playerSoldier['PlayerStat']['Player']['name']); ?>&nbsp;</td>
 		<td class="actions">

@@ -40,7 +40,7 @@
 
 				//echo '<p>' . $this->Form->input('remember_me', array('type' => 'checkbox', 'label' =>  __d('users', 'Remember Me'))) . '</p>';
 
-				echo $this->Form->hidden('User.return_to', array(
+				echo $this->Form->hidden('AppUser.return_to', array(
 					'value' => $return_to));
 
 				echo $this->Form->submit('Sign in', array(

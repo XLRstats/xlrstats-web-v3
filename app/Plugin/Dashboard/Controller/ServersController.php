@@ -50,7 +50,7 @@ class ServersController extends DashboardAppController {
  */
 	public function checkServerAccess($id = null) {
 		// Super Admin always has access
-		if ($this->user['User']['group_id'] == 1) {
+		if ($this->user['AppUser']['group_id'] == 1) {
 			return true;
 		}
 
@@ -103,7 +103,7 @@ class ServersController extends DashboardAppController {
 			}
 		}
 
-		if ($this->user['User']['group_id'] == 1) {
+		if ($this->user['AppUser']['group_id'] == 1) {
 			// Super Admins see all servers
 			$conditions = null;
 		} elseif (count($userServerGroupIds) == 1) {

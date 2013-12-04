@@ -21,37 +21,37 @@ App::uses('ClearCache', 'ClearCache.Lib');
  */
 class InstallController extends Controller {
 
-/**
- * Name
- *
- * @var string
- */
+	/**
+	 * Name
+	 *
+	 * @var string
+	 */
 	public $name = 'Install';
 
-/**
- * Model
- *
- * @var array
- */
+	/**
+	 * Model
+	 *
+	 * @var array
+	 */
 	public $uses = array();
 
-/**
- * Components
- *
- * @var array
- */
+	/**
+	 * Components
+	 *
+	 * @var array
+	 */
 	public $components = array('Session');
 
-/**
- * Helpers
- *
- * @var array
- */
+	/**
+	 * Helpers
+	 *
+	 * @var array
+	 */
 	public $helpers = array('Html', 'Form', 'Number', 'TwitterBootstrap.TwitterBootstrap');
 
-/**
- * @var array
- */
+	/**
+	 * @var array
+	 */
 	private $__defaultDbConfig = array(
 		'name' => 'default',
 		'datasource' => 'Database/Mysql',
@@ -66,16 +66,16 @@ class InstallController extends Controller {
 		'port' => '3306'
 	);
 
-/**
- * @var int
- */
+	/**
+	 * @var int
+	 */
 	public $totalInstallSteps = 6;
 
 	//-------------------------------------------------------------------
 
-/**
- * Before filter
- */
+	/**
+	 * Before filter
+	 */
 	public function beforeFilter() {
 		$this->layout = 'install';
 		Configure::write('installTotalSteps', $this->totalInstallSteps);
@@ -94,11 +94,11 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Step 0, Select language.
- *
- * @return void
- */
+	/**
+	 * Step 0, Select language.
+	 *
+	 * @return void
+	 */
 	public function index() {
 		$this->__clearCache();
 		//$this->redirect(array('action' => 'license'));
@@ -106,11 +106,11 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Step 0, Select language. ( change this to index() )
- *
- * @return void
- */
+	/**
+	 * Step 0, Select language. ( change this to index() )
+	 *
+	 * @return void
+	 */
 	public function language() {
 		App::uses('I18n', 'I18n');
 
@@ -144,11 +144,11 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Step 1, License agreement
- *
- * @return void
- */
+	/**
+	 * Step 1, License agreement
+	 *
+	 * @return void
+	 */
 	public function license() {
 		$_step = 1;
 		Configure::write('installStep', $_step);
@@ -162,11 +162,11 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Step 2, Server test
- *
- * @return void
- */
+	/**
+	 * Step 2, Server test
+	 *
+	 * @return void
+	 */
 	public function server_test() {
 		$_step = 2;
 		Configure::write('installStep', $_step);
@@ -244,12 +244,12 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Step 3, Database
- *
- * @param bool $skip
- * @return void
- */
+	/**
+	 * Step 3, Database
+	 *
+	 * @param bool $skip
+	 * @return void
+	 */
 	public function database($skip = false) {
 		$_step = 3;
 		Configure::write('installStep', $_step);
@@ -377,11 +377,11 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Step 4, User account
- *
- * @return void
- */
+	/**
+	 * Step 4, User account
+	 *
+	 * @return void
+	 */
 	public function user_account() {
 		$_step = 4;
 		Configure::write('installStep', $_step);
@@ -399,23 +399,23 @@ class InstallController extends Controller {
 			$this->redirect(array('action' => 'index'));
 		}
 
-		if (isset($this->data['User'])) {
-			$this->loadModel('Users.User');
+		if (isset($this->data['AppUser'])) {
+			$this->loadModel('Dashboard.AppUser');
 			$data = $this->data;
-			$data['User']['slug'] = strtolower($data['User']['username']);
-			$data['User']['email_verified'] = 1;
-			$data['User']['tos'] = 1;
-			$data['User']['active'] = 1;
-			$data['User']['group_id'] = 1;
-			$data['User']['role'] = 'registered';
+			$data['AppUser']['slug'] = strtolower($data['AppUser']['username']);
+			$data['AppUser']['email_verified'] = 1;
+			$data['AppUser']['tos'] = 1;
+			$data['AppUser']['active'] = 1;
+			$data['AppUser']['group_id'] = 1;
+			$data['AppUser']['role'] = 'registered';
 
-			if ($this->User->add($data)) {
+			if ($this->AppUser->add($data)) {
 				$this->__stepSuccess('user_account');
 				$this->redirect(array('action' => 'first_server'));
 			} else {
 				$errors = '';
 
-				foreach ($this->User->validationErrors as $field => $error) {
+				foreach ($this->AppUser->validationErrors as $field => $error) {
 					$errors .= "<b>{$field}:</b> {$error[0]}<br/>";
 				}
 
@@ -428,11 +428,11 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Step 5, First server
- *
- * @return void
- */
+	/**
+	 * Step 5, First server
+	 *
+	 * @return void
+	 */
 	public function first_server() {
 		$_step = 5;
 		Configure::write('installStep', $_step);
@@ -464,11 +464,11 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Step 6, Finish
- *
- * @return void
- */
+	/**
+	 * Step 6, Finish
+	 *
+	 * @return void
+	 */
 	public function finish() {
 		$_step = 6;
 		Configure::write('installStep', $_step);
@@ -487,8 +487,8 @@ class InstallController extends Controller {
 			$this->Session->delete('XlrInstall');
 			//CakeSession::write('Config.language', 'eng');
 			$this->__clearCache();
-			$this->Session->setFlash(__("Installation successful! You're about to login to the administration dashboard. PLease enter your XLRstats key in the 'Options' section first."), null, null, 'success');
-			$this->redirect(array('plugin' => 'dashboard', 'action' => 'index'));
+			$this->Session->setFlash(__("Installation successful! You're about to login to the administration dashboard. Please enter your XLRstats key in the 'Options' section first."), null, null, 'success');
+			$this->redirect(array('plugin' => 'dashboard', 'controller' => 'home', 'action' => 'index'));
 		} else {
 			$this->Session->setFlash(__("Could not write 'install' file. Check file/folder permissions and refresh this page."), null, null, 'error');
 
@@ -497,10 +497,10 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * @param $data
- * @return bool
- */
+	/**
+	 * @param $data
+	 * @return bool
+	 */
 	private function __writeDatabaseFile($data) {
 		App::import('Utility', 'File');
 
@@ -540,19 +540,19 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Removes database file
- */
+	/**
+	 * Removes database file
+	 */
 	private function __removeDatabaseFile() {
 		@unlink(APP . DS . 'Config' . DS . 'database.php');
 	}
 
 	//-------------------------------------------------------------------
 
-/**
- * @param $data
- * @return bool
- */
+	/**
+	 * @param $data
+	 * @return bool
+	 */
 	private function __writeEmailFile($data) {
 		App::import('Utility', 'File');
 
@@ -580,20 +580,20 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Removes email file
- */
+	/**
+	 * Removes email file
+	 */
 	private function __removeEmailFile() {
 		@unlink(APP . DS . 'Config' . DS . 'email.php');
 	}
 
 	//-------------------------------------------------------------------
 
-/**
- * @param $step
- * @param bool $check
- * @return bool
- */
+	/**
+	 * @param $step
+	 * @param bool $check
+	 * @return bool
+	 */
 	private function __stepSuccess($step, $check = false) {
 		//pr($this->Session->read("XlrInstall"));
 		if (!$check) {
@@ -615,9 +615,9 @@ class InstallController extends Controller {
 
 	//-------------------------------------------------------------------
 
-/**
- * Clears cache
- */
+	/**
+	 * Clears cache
+	 */
 	private function __clearCache() {
 		$ClearCache = new ClearCache();
 		error_reporting(0);

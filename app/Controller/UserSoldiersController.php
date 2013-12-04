@@ -83,9 +83,9 @@ class UserSoldiersController extends AppController {
  * @return void
  */
 	public function add() {
-		//debug($this->user['User']['id']);
+		//debug($this->user['AppUser']['id']);
 		if ($this->request->is('post')) {
-			if ($this->request->data['UserSoldier']['user_id'] == $this->user['User']['id']) {
+			if ($this->request->data['UserSoldier']['user_id'] == $this->user['AppUser']['id']) {
 				$this->UserSoldier->create();
 				if ($this->UserSoldier->save($this->request->data)) {
 					$this->Session->setFlash(__('"My Soldier" has been saved'));

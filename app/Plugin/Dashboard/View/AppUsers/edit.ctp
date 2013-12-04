@@ -41,7 +41,7 @@ echo $this->TwitterBootstrap->page_header('Player Profile Page');
 	<div class="span5 pull-right">
 
 			<?php //Todo: Need to add playername to my soldiers list in profile page
-			$mySoldiers = $this->requestAction('user_soldiers/listing/' . $user['User']['id']);
+			$mySoldiers = $this->requestAction('user_soldiers/listing/' . $user['AppUser']['id']);
 			if (empty($mySoldiers)) {
 				echo '<h3>' . __('You have no Identified Soldiers (yet)') . '</h3>';
 				echo '<p>';
@@ -129,7 +129,7 @@ echo $this->TwitterBootstrap->page_header('Player Profile Page');
 		);
 
 		$options = array('size' => 120, 'rating' => 'g');
-		echo '<p>' . $this->Html->link($this->Gravatar->image($user['User']['email'], $options,
+		echo '<p>' . $this->Html->link($this->Gravatar->image($user['AppUser']['email'], $options,
 			array(
 				'alt' => 'Gravatar',
 				'rel' => 'tooltip',

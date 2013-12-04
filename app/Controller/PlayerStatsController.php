@@ -140,18 +140,18 @@ class PlayerStatsController extends AppController {
  */
 	public function checkBookmark($playerID) {
 		// Return false if not logged in
-		if (empty($this->user['User']['id'])) {
+		if (empty($this->user['AppUser']['id'])) {
 			return false;
 		}
 
 		$this->UserSoldier->unbindModel(array(
-			'belongsTo' => array('User', 'Server', 'Playerstat')));
+			'belongsTo' => array('AppUser', 'Server', 'Playerstat')));
 
 		$result = $this->UserSoldier->find('count', array(
 			'conditions' => array(
 				'UserSoldier.playerstats_id' => $playerID,
 				'UserSoldier.server_id' => Configure::read('server_id'),
-				'UserSoldier.user_id' => $this->user['User']['id']
+				'UserSoldier.user_id' => $this->user['AppUser']['id']
 			)
 		));
 		return $result;

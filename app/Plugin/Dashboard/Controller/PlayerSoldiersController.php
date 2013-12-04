@@ -71,9 +71,9 @@ class PlayerSoldiersController extends DashboardAppController {
 	public function admin_add() {
 		$this->PlayerSoldier->recursive = 2;
 
-		$this->set('users', $this->PlayerSoldier->User->find('list', array(
-			'fields' => 'User.username', 'User.id',
-			'order' => 'User.username ASC'
+		$this->set('users', $this->PlayerSoldier->AppUser->find('list', array(
+			'fields' => 'AppUser.username', 'AppUser.id',
+			'order' => 'AppUser.username ASC'
 		)));
 		$this->set('servers', $this->PlayerSoldier->Server->find('list', array(
 			'fields' => 'Server.servername', 'Server.id',
@@ -109,9 +109,9 @@ class PlayerSoldiersController extends DashboardAppController {
 		$this->PlayerSoldier->id = $id;
 		$this->PlayerSoldier->recursive = 2;
 
-		$this->set('users', $this->PlayerSoldier->User->find('list', array(
-			'fields' => 'User.username', 'User.id',
-			'order' => 'User.username ASC'
+		$this->set('users', $this->PlayerSoldier->AppUser->find('list', array(
+			'fields' => 'AppUser.username', 'AppUser.id',
+			'order' => 'AppUser.username ASC'
 		)));
 		$this->set('servers', $this->PlayerSoldier->Server->find('list', array(
 			'fields' => 'Server.servername', 'Server.id',

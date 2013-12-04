@@ -89,7 +89,7 @@ $myPage = false;
 							'style' => 'display: inline;'
 						));
 
-						echo $this->Form->hidden('user_id', array('default' => $user['User']['id']));
+						echo $this->Form->hidden('user_id', array('default' => $user['AppUser']['id']));
 						echo $this->Form->hidden('server_id', array('default' => Configure::read('server_id')));
 						echo $this->Form->hidden('playerstats_id', array('default' => $playerStats['PlayerStat']['id']));
 						$options = array(

@@ -53,8 +53,8 @@ class UserSoldier extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'User' => array(
-			'className' => 'Dashboard.User',
+		'AppUser' => array(
+			'className' => 'Dashboard.AppUser',
 			'foreignKey' => 'user_id',
 		),
 		'Server' => array(
@@ -78,7 +78,7 @@ class UserSoldier extends AppModel {
 	public function listUserSoldiers($id = null) {
 		$this->unbindModel(array(
 			'belongsTo' => array(
-				'User',
+				'Dashboard.AppUser',
 				'PlayerStat'
 			)));
 

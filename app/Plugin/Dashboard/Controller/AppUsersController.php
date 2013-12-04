@@ -25,6 +25,13 @@ Configure::write('debug', 2);
 class AppUsersController extends UsersController {
 
 /**
+ * Name
+ *
+ * @var string
+ */
+	public $name = 'AppUsers';
+
+/**
  * Components
  *
  * @var array
@@ -60,6 +67,7 @@ class AppUsersController extends UsersController {
 		}
 
 		$this->User = ClassRegistry::init('Dashboard.AppUser'); //Use extended model AppUser
+		$this->set('model', 'AppUser');
 	}
 
 	//-------------------------------------------------------------------
@@ -80,10 +88,10 @@ class AppUsersController extends UsersController {
 				'fields' => array(
 					'username' => 'email',
 					'password' => 'password'),
-				'userModel' => 'Users.User',
+				'userModel' => 'Dashboard.AppUser',
 				'scope' => array(
-					'User.active' => 1,
-					'User.email_verified' => 1)));
+					'AppUser.active' => 1,
+					'AppUser.email_verified' => 1)));
 
 		$this->Auth->loginRedirect = array('admin' => false, 'plugin' => null, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'));
 		$this->Auth->logoutRedirect = array('admin' => false, 'plugin' => null, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'));
@@ -192,14 +200,14 @@ class AppUsersController extends UsersController {
 	public function admin_indexJson() {
 		$options = array(
 			'fields' => array(
-				'User.id',
-				'User.username',
+				'AppUser.id',
+				'AppUser.username',
 				'Group.name',
-				'User.email',
-				'User.email_verified',
-				'User.active',
-				'User.created',
-				'User.last_login',
+				'AppUser.email',
+				'AppUser.email_verified',
+				'AppUser.active',
+				'AppUser.created',
+				'AppUser.last_login',
 			)
 		);
 
@@ -210,11 +218,11 @@ class AppUsersController extends UsersController {
 					'type' => 'INNER',
 					'conditions' => array(
 						'ServerGroupUsers.server_group_id' => $this->Session->read('server_group_id'),
-						'ServerGroupUsers.user_id = User.id'
+						'ServerGroupUsers.user_id = AppUser.id'
 					)
 				)
 			);
-			$options['group'] = array('group' => 'User.id');
+			$options['group'] = array('group' => 'AppUser.id');
 		}
 
 		$this->paginate = $options;
@@ -245,8 +253,8 @@ class AppUsersController extends UsersController {
  */
 	public function admin_add() {
 		if (!empty($this->request->data)) {
-			$this->request->data['User']['tos'] = true;
-			$this->request->data['User']['email_verified'] = true;
+			$this->request->data['AppUser']['tos'] = true;
+			$this->request->data['AppUser']['email_verified'] = true;
 
 			// automatic server group id assignment for lower level admins
 			if ($this->user['Group']['level'] < 100) {
@@ -378,7 +386,7 @@ class AppUsersController extends UsersController {
 		}
 
 		if ($this->User->delete($userId)) {
-			$this->Session->setFlash(__('User "%s" is deleted successfully!', $targetUser['User']['username']));
+			$this->Session->setFlash(__('User "%s" is deleted successfully!', $targetUser['AppUser']['username']));
 		} else {
 			$this->Session->setFlash(__('Invalid User'));
 		}

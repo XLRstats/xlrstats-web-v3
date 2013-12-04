@@ -27,13 +27,6 @@ class AppUser extends User {
 	public $useTable = 'users';
 
 /**
- * Alias
- *
- * @var string
- */
-	public $alias = 'User';
-
-/**
  * Database associations
  *
  * @var array
@@ -102,7 +95,7 @@ class AppUser extends User {
 	public function getUserData($id = null) {
 		$userData = $this->find('first', array(
 			'conditions' => array(
-				'User.id' => $id,
+				'AppUser.id' => $id,
 			)
 		));
 		return $userData;

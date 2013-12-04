@@ -356,8 +356,8 @@ class AppController extends Controller {
 			}
 		}
 		//pr($userServerGroupIds);
-		if (isset($this->user['User']['group_id'])) {
-			$groupID = $this->user['User']['group_id'];
+		if (isset($this->user['AppUser']['group_id'])) {
+			$groupID = $this->user['AppUser']['group_id'];
 		} else {
 			$groupID = null;
 		}
