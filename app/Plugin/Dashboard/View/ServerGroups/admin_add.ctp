@@ -16,13 +16,21 @@
 $this->set('title_for_layout', __('Add Server Group • XLRstats'));
 ?>
 
-<div class="serverGroups form">
+<div class="serverGroups form" style="width: 200px;">
 	<?php echo $this->Form->create('ServerGroup'); ?>
 	<fieldset>
 		<legend><?php echo __('Add Server Group'); ?></legend>
 		<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('description');
+		echo $this->Form->input('name', array(
+			'error' => array(
+				'attributes' => array('class' => 'alert alert-error')
+			)
+		));
+		echo $this->Form->input('description', array(
+			'error' => array(
+				'attributes' => array('class' => 'alert alert-error')
+			)
+		));
 		?>
 	</fieldset>
 	<?php

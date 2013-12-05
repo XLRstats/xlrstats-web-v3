@@ -42,13 +42,25 @@ $this->set('title_for_layout', __('Change Your Password • XLRstats'));
 			);
 			echo $this->Form->input('old_password', array(
 				'label' => __('Old Password'),
-				'type' => 'password'));
+				'type' => 'password',
+				'error' => array(
+						'attributes' => array('class' => 'alert alert-error')
+					)
+				));
 			echo $this->Form->input('new_password', array(
 				'label' => __('New Password'),
-				'type' => 'password'));
+				'type' => 'password',
+				'error' => array(
+					'attributes' => array('class' => 'alert alert-error')
+				)
+			));
 			echo $this->Form->input('confirm_password', array(
 				'label' => __('Confirm'),
-				'type' => 'password'));
+				'type' => 'password',
+				'error' => array(
+					'attributes' => array('class' => 'alert alert-error')
+				)
+			));
 			echo $this->Form->submit('Change Your Password', array(
 					'class' => 'btn btn-large btn-primary'));
 			echo $this->Form->end();

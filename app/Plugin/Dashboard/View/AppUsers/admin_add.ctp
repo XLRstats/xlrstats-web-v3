@@ -15,20 +15,24 @@
 
 $this->set('title_for_layout', __('Add New User • XLRstats'));
 ?>
-<div class="users form">
+<div class="users form" style="width: 200px">
 	<?php echo $this->Form->create($model); ?>
 	<fieldset>
 		<legend><?php echo __('Add a New User'); ?></legend>
 		<?php
 		echo $this->Form->input('username', array(
-				'label' => __('Username')
+				'label' => __('Username'),
+				'error' => array(
+					'attributes' => array('class' => 'alert alert-error')
+				)
 			)
 		);
 		echo $this->Form->input('email', array(
 				'label' => __('E-mail (used as login)'),
 				'error' => array(
 					'isValid' => __('Must be a valid email address'),
-					'isUnique' => __('An account with that email already exists')
+					'isUnique' => __('An account with that email already exists'),
+					'attributes' => array('class' => 'alert alert-error')
 				)
 			)
 		);
@@ -37,13 +41,17 @@ $this->set('title_for_layout', __('Add New User • XLRstats'));
 				'type' => 'password',
 				'error' => array(
 					'too_short' => __('Must be a valid email address'),
-					'required' => __('You must enter a password')
+					'required' => __('You must enter a password'),
+					'attributes' => array('class' => 'alert alert-error')
 				)
 			)
 		);
 		echo $this->Form->input('temppassword', array(
 				'label' => __('Password (confirm)'),
-				'type' => 'password'
+				'type' => 'password',
+				'error' => array(
+					'attributes' => array('class' => 'alert alert-error')
+				)
 			)
 		);
 		echo $this->Form->input('group_id', array(
