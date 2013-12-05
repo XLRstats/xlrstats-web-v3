@@ -13,8 +13,9 @@
  * @version       0.1
  */
 
+$this->set('title_for_layout', __('Awards • XLRstats', $name));
+
 $leagues = Configure::read('league');
-//pr($leagues);
 
 foreach ($leagues as $leagueID => $values) {
 	echo '<h3>' . __('Awards for the ') . $this->Html->link($leagues[$leagueID][3], array(

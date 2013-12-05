@@ -8,13 +8,13 @@
  *
  * @link          http://www.xlrstats.com
  * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
- * @package       app.View.Pages.xlrstats.com
+ * @package       app.View.Pages
  * @since         XLRstats v3.0
  * @version       0.1
  */
 $name = Configure::read('options.tos_organisation');
 $state = Configure::read('options.tos_country');
-
+$this->set('title_for_layout', __('Terms of Service • %s • XLRstats', $name));
 ?>
 
 <h2>

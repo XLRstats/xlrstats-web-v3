@@ -8,10 +8,12 @@
  *
  * @link          http://www.xlrstats.com
  * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
- * @package       app.
+ * @package       app.View.Pages
  * @since         XLRstats v3.0
  * @version       0.1
  */
+$name = Configure::read('options.tos_organisation');
+$this->set('title_for_layout', __('Our Cookie Policy • %s • XLRstats', $name));
 ?>
 
 <h1>Cookie Policy</h1>
@@ -40,7 +42,7 @@
 
 <h4>The Cookies We Set</h4>
 
-<p>If you create an account with us then we will use cookies for the management of the signup process and general
+<p>If you create an account with us then we will use cookies for the management of the sign up process and general
     administration. These cookies will usually be deleted when you log out however in some cases they may remain
     afterwards to remember your site preferences when logged out.</p>
 

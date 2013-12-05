@@ -12,6 +12,7 @@
  * @since         XLRstats v3.0
  * @version       0.1
  */
+$this->set('title_for_layout', __('Help • XLRstats'));
 ?>
 
 Help
