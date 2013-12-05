@@ -12,18 +12,39 @@
  * @since         XLRstats v3.0
  * @version       0.1
  */
+
+$this->set('title_for_layout', __('About XLRstats v3 • XLRstats'));
 ?>
 
 <div class="container">
+
 	<h2>About XLRstats version 3 League Edition webfront</h2>
 
-	<blockquote><small>This webfront is created by Mark Weirath and Özgür Uysal as a new webfront for the
-		statistics plugin for BigBrotherBot (B3) called XLRstats. Just like previous versions this webfront is <strong>NOT</strong> a standalone statistics application or logfile
-		parser, but it relies on the existing data that the B3 plugin stores in the database. Unlike the previous versions this webfront is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">Creative Commons BY-NC-SA license</a>. So, it's still free, but under certain conditions.</small></blockquote>
+	<p>
+		This webfront is created by <a href="https://github.com/xlr8or" target="_blank">Mark Weirath</a> and
+		<a href="https://github.com/Freelander" target="_blank">Özgür Uysal</a> as a new webfront for the
+		statistics plugin for BigBrotherBot (B3) called XLRstats. Just like previous versions this webfront is
+		<strong>NOT</strong> a standalone statistics application or logfile	parser, but it relies on the existing data that
+		the B3 plugin stores in the database. Unlike the previous versions this webfront is licensed under the
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">Creative Commons BY-NC-SA
+		license</a>. So, it's still free, but under certain conditions.
+	</p>
 
 	<h2>About the Leagues</h2>
-	<p>In this version of XLRstats you can compete in all kinds of leagues. We've done this to bring competitive play to players of different skill. The main leagues are obviously based on the skill. But there are also a few custom leagues (like the Newby League and Veterans League) which are based on the number of connections or on the userlevel (Admins League).</p>
-	<p>To compete in the Leagues you must meet the mimimal criteria first. On this server you need at least <? echo Configure::read('options.min_connections')?> connections and <?php echo Configure::read('options.min_kills')?> kills before you appear in the lists. (N.B.: This doesn't apply to the Leagues that are based on the number of connections.)</p>
+
+	<p>
+		In this version of XLRstats you can compete in all kinds of leagues. We've done this to bring competitive play to
+		players of different skill. The main leagues are obviously based on the skill. But there are also a few custom
+		leagues (like the Newby League and Veterans League) which are based on the number of connections or on the user
+		level (Admins League).
+	</p>
+
+	<p>
+		To compete in the Leagues you must meet the minimal criteria first. On this server you need at least
+		<? echo Configure::read('options.min_connections')?> connections and <?php echo Configure::read('options.min_kills')?>
+		kills before you appear in the lists. (N.B.: This doesn't apply to the Leagues that are based on the number of
+		connections.)
+	</p>
 
 	<h3>Available Leagues:</h3>
 
@@ -49,7 +70,7 @@
 			</div>
 		</div>
 
-		<h3>Available Userlevels:</h3>
+		<h3>Available User Levels:</h3>
 
 		<div class="accordion-group">
 			<div class="accordion-heading">

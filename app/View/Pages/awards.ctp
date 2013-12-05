@@ -13,7 +13,7 @@
  * @version       0.1
  */
 
-$this->set('title_for_layout', __('Awards • XLRstats', $name));
+$this->set('title_for_layout', __('Awards • XLRstats'));
 
 $leagues = Configure::read('league');
 
