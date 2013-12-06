@@ -16,9 +16,9 @@
 ?>
 <h3><?php echo __('Search Results for "%s"', $searchData); ?></h3>
 <?php
-if($searchData === '') {
+if ($searchData === '') {
 	echo __('Please enter a value in the search box');
-} elseif(!empty($result)) {
+} elseif (!empty($result)) {
 	foreach ($result as $key) {
 		echo $this->Html->link($key['Player']['name'], array(
 				'controller' => 'player_stats',
@@ -32,4 +32,3 @@ if($searchData === '') {
 } else {
 	echo __('No results found for "%s"', $searchData);
 }
-?>

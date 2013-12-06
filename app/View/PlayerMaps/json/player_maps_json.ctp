@@ -13,15 +13,16 @@
  * @version       0.1
  */
 
-for($i=0; $i<count($playerMaps['aaData']) ;$i++) {
-	foreach($playerMaps['aaData'][$i] as $k => &$v) {
+$count = count($playerMaps['aaData']);
+for ($i = 0; $i < $count; $i++) {
+	foreach ($playerMaps['aaData'][$i] as $k => &$v) {
 		//Position numbers
-		if($k == 0) {
+		if ($k == 0) {
 			$v = $this->request->query['iDisplayStart']++;
 			$v += 1;
 		}
 		//Map Name
-		if($k == 1) {
+		if ($k == 1) {
 			$mapImage = $this->XlrFunctions->getMapImage($v);
 			$mapName = $this->Html->link('<b><small>' . $this->XlrFunctions->getMapName($v) . '</small></b>',
 				array(
@@ -37,7 +38,7 @@ for($i=0; $i<count($playerMaps['aaData']) ;$i++) {
 					'data-target' => '#map-modal'
 				)
 			);
-			if($mapImage) {
+			if ($mapImage) {
 				$v = '<div style="text-align:center;">' . $mapImage . '<br />' . $mapName . '</div>';
 			} else {
 				$v = '<div style="text-align:center;">' . $mapName . '</div>';

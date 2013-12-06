@@ -78,9 +78,7 @@ $myPage = false;
 					$myPage = true;
 
 					if (!$isBookMarked) {
-						/**
-						 * Form to add a UserSoldier (My Soldiers)
-						 */
+						// Form to add a UserSoldier (My Soldiers)
 						echo $this->Form->create("UserSoldier", array(
 							'plugin' => null,
 							'controller' => 'user_soldiers',
@@ -101,8 +99,7 @@ $myPage = false;
 					} else {
 						echo '<span class="label label-success" rel="popover" data-trigger="hover" data-placement="left" data-content="You have successfully identified yourself!"><i class="icon-bookmark-empty"></i> My Soldier</span>';
 					}
-				}
-				else {
+				} else {
 					echo '<i class="icon-info-sign" rel="popover" data-trigger="hover" data-placement="left" data-original-title="' . __('Is this you?') . '"
 					data-content="' . __('Register and collect your \'Player Identification Token\' in your profile page.') . '"></i>';
 				}
@@ -146,10 +143,10 @@ $myPage = false;
 					'data-original-title' => __(Configure::read('rank.' . $playerStats['PlayerStat']['rank'] . '.0')),
 				));?>
 					<small><?php echo __('%s Kills needed', $playerStats['PlayerStat']['rank_progress']['kills_needed']); ?></small>
-					<?php echo $this->Html->image('ranks/' . Configure::read('rank.' . ($playerStats['PlayerStat']['rank']+1) . '.2'), array(
+					<?php echo $this->Html->image('ranks/' . Configure::read('rank.' . ($playerStats['PlayerStat']['rank'] + 1) . '.2'), array(
 					'class' => 'img-rank-small pull-right',
 					'rel' => 'tooltip',
-					'data-original-title' => __(Configure::read('rank.' . ($playerStats['PlayerStat']['rank']+1) . '.0')),
+					'data-original-title' => __(Configure::read('rank.' . ($playerStats['PlayerStat']['rank'] + 1) . '.0')),
 				));?>
 				</div>
 				<?php endif; ?>
@@ -162,7 +159,7 @@ $myPage = false;
 				if ($playerStats['PlayerStat']['league']):
 					$leagueName = __(Configure::read('league.' . $playerStats['PlayerStat']['league'] . '.3'));
 					$leagueColor = __(Configure::read('league.' . $playerStats['PlayerStat']['league'] . '.5'));
-					echo $this->Html->link('<span class="label label-info" style="background-color:'. $leagueColor .'">' . $leagueName . '</span>',
+					echo $this->Html->link('<span class="label label-info" style="background-color:' . $leagueColor . '">' . $leagueName . '</span>',
 						array(
 							'controller' => 'leagues',
 							'action' => 'view',
@@ -173,7 +170,9 @@ $myPage = false;
 							'escape' => false
 						));?>
 				<!-- TODO: Change label color based on league -->
-				<?php endif; ?>
+				<?php
+				endif;
+				?>
 			</div>
 
 			<div class="box-midi pull-left gauge">
@@ -461,7 +460,9 @@ $myPage = false;
 			);
 			?>
         </li>
-		<?php if ($myPage || (!empty($user) && $user['Group']['level'] >= 40 )) { ?>
+		<?php
+		if ($myPage || (!empty($user) && $user['Group']['level'] >= 40 )) {
+			?>
 
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -473,20 +474,20 @@ $myPage = false;
 
                 <li>
                     <?php
-                    echo $this->Html->link(__('My Penalties'),
-                        array(
-                            'controller' => 'penalties',
-                            'action' => 'view/' . $playerStats['PlayerStat']['id'],
+					echo $this->Html->link(__('My Penalties'),
+						array(
+							'controller' => 'penalties',
+							'action' => 'view/' . $playerStats['PlayerStat']['id'],
 							'server' => Configure::read('server_id'),
-                            'full_base' => true,
-                        ),
-                        array(
-                            'data-target' => '#penalty-tab',
-                            'data-toggle' => 'tab'
-                        )
-                    );
-                    ?>
-                </li>
+							'full_base' => true,
+						),
+						array(
+							'data-target' => '#penalty-tab',
+							'data-toggle' => 'tab'
+						)
+					);
+					?>
+				</li>
 				<li>
 					<?php
 					echo $this->Html->link(__('My Aliases'),
@@ -521,7 +522,9 @@ $myPage = false;
 				</li>
             </ul>
         </li>
-        <?php }; ?>
+        <?php
+		};
+		?>
 
 	</ul>
 	<div class="tab-content">
@@ -551,7 +554,7 @@ $myPage = false;
 			Loading...
 		</div>
         <div class="tab-pane" id="client_info">
-            <h3><?php echo('My B3 Info') ?></h3>
+            <h3><?php echo __('My B3 Info') ?></h3>
             <table class="table table-hover">
                 <thead>
 				<?php echo $this->Html->tableHeaders(array(
