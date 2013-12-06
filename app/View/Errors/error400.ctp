@@ -20,7 +20,7 @@ $this->set('title_for_layout', __('XLRstats • %s', $name));
 	<div><i class="icon-warning-sign"></i></div>
 	<h1><?php echo $name; ?></h1>
 
-	<p class="exception-error-text">
+	<p>
 		<?php printf(
 			__d('cake', 'The requested address %s was not found on this server.'),
 			"<strong>'{$url}'</strong>"
