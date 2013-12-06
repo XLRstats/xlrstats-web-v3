@@ -1210,14 +1210,18 @@ div.inner-details{display:none}
 .hit-zones.right_arm_upper{left:162px;top:190px}
 .hit-zones.right_arm_lower{left:112px;top:250px}
 .hit-zones.right_hand{left:87px;top:295px}
-.hit-zones.groin{left:214px;top:306px}
-.hit-zones.butt{left:254px;top:306px}
+.hit-zones.groin{left:214px;top:254px}
+.hit-zones.butt{left:254px;top:254px}
 .hit-zones.left_leg_upper{left:272px;top:370px}
 .hit-zones.left_leg_lower{left:277px;top:480px}
 .hit-zones.left_foot{left:289px;top:555px}
 .hit-zones.right_leg_upper{left:192px;top:370px}
 .hit-zones.right_leg_lower{left:187px;top:480px}
 .hit-zones.right_foot{left:179px;top:555px}
+.exception-error{text-align:center}.exception-error h1{font-size:100px;color:#c7c9cd;font-weight:bold;text-transform:uppercase;letter-spacing:-5px;margin-bottom:30px;line-height:150px}
+.exception-error h2{font-size:30px;color:#c7c9cd;font-weight:bold;line-height:60px;font-family:inherit}
+.exception-error p{font-size:18px;color:#666}
+.exception-error i{font-size:180px;color:#c7c9cd}
 .cc-cookies{position:fixed;width:90%;left:0;top:0;padding:.5em 5%;background:#565656;background:rgba(86,86,86,0.95);color:#fff;font-size:13px;font-weight:700;text-shadow:0 -1px 0 rgba(0,0,0,0.35);z-index:99999;text-align:center;color:#fff}
 .cc-cookies a,.cc-cookies a:hover{color:#fff;text-decoration:underline}
 .cc-cookies a:hover{text-decoration:none}
