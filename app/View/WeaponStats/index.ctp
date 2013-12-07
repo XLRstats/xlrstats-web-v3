@@ -52,9 +52,10 @@ $pieChart['teamkills']['title'] = __('Top %s Team Kill Weapons', $pieChart['team
 $pieChart['suicides']['title'] = __('Top %s Suicide Weapons', $pieChart['suicides']['count']);
 
 // Last pie chart. We'll use this to draw a border bottom or not
-foreach($pieChart as $key => $value) {
-	if($value['count'] > 0)
+foreach ($pieChart as $key => $value) {
+	if ($value['count'] > 0) {
 		$charts[] = $key;
+	}
 }
 $lastChart = end($charts);
 
@@ -124,7 +125,7 @@ $lastChart = end($charts);
 				// Build the chart
 				chart = new Highcharts.Chart({
 					chart: {
-						renderTo: '<?php echo $key.'-weapons'; ?>',
+						renderTo: '<?php echo $key . '-weapons'; ?>',
 						plotBackgroundColor: null,
 						plotBorderWidth: null,
 						plotShadow: false
@@ -175,7 +176,8 @@ $lastChart = end($charts);
 			});
 
 		});
-		<?php endif;
+		<?php
+		endif;
 	endforeach;
 	?>
 
@@ -225,7 +227,7 @@ $lastChart = end($charts);
 				$borderBottom = null;
 			endif;
 			?>
-			<div id="<?php echo $key.'-weapons'; ?>" style="min-width: 326px; height: 250px; margin: 0 auto; <?php echo $borderBottom; ?>"></div>
+			<div id="<?php echo $key . '-weapons'; ?>" style="min-width: 326px; height: 250px; margin: 0 auto; <?php echo $borderBottom; ?>"></div>
 		<?php
 		endif;
 	endforeach; ?>

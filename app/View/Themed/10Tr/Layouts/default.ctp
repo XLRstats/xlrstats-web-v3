@@ -3,7 +3,7 @@
  * XLRstats : Real Time Player Stats (http://www.xlrstats.com)
  * Copyright 2005-2013, defaultdark Weirath, Özgür Uysal
  *
-  * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+ * @license       Creative Commons BY-NC-SA 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/)
  * Redistributions of files must retain the above copyright notice.
  *
  * @link          http://www.xlrstats.com
@@ -64,7 +64,8 @@
 	</head>
 
 	<body>
-		<?php if (Configure::read('options.must_accept_cookies') == true) {
+		<?php
+		if (Configure::read('options.must_accept_cookies') == true) {
 		$cookiePolicyLink = $this->Html->link('read our cookie policy here', array('plugin' => null, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'cookiepolicy'));
 		echo $this->Html->scriptBlock("
 			$(document).ready(function () {
@@ -77,7 +78,9 @@
 					cookiePolicyLink: '$cookiePolicyLink'
 					});
 				});
-		"); } ?>
+		");
+		}
+		?>
 
 		<?php echo $this->element('google-analytics'); ?>
 
@@ -154,7 +157,7 @@
 						echo $this->Html->image('cake.power.gif', array('alt' => 'CakePHP'));
 						echo '&nbsp';
 						echo $this->Html->link($this->Html->image('logohighchartssm.png', array(
-							'alt' => 'Highcharts',)),
+							'alt' => 'Highcharts', )),
 							'http://www.highcharts.com', array(
 								'target' => '_blank',
 								'escape' => false

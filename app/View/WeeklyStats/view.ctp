@@ -23,7 +23,7 @@ if(empty($weeklyStats)):
 endif;
 
 foreach ($weeklyStats as $stat) {
-	$ratio[] =  floatval($this->Number->precision($stat['WeeklyStat']['ratio'], 2));
+	$ratio[] = floatval($this->Number->precision($stat['WeeklyStat']['ratio'], 2));
 	$skill[] = floatval($this->Number->precision($stat['WeeklyStat']['skill'], 0));
 	$week[] = __('Week %s (%s) ', $stat['WeeklyStat']['week'], $stat['WeeklyStat']['year']);
 }

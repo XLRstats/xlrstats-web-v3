@@ -12,5 +12,3 @@
  * @since         XLRstats v3.0
  * @version       0.1
  */
-
-?>

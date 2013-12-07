@@ -34,7 +34,7 @@ $serverInfo = $this->requestAction('server_info');
 			$('#map_canvas').gmap('addMarker', { 'type': 'server', 'position': '<?php echo $serverLocation ?>', 'icon': '<?php echo $serverImageUrl ?>', 'bounds': false }).click(function() {
 				$('#map_canvas').gmap('openInfoWindow', {'content': 'Server Location'}, this)});
 
-			<?php foreach ($playerPositions as $marker) {  ?>
+			<?php foreach ($playerPositions as $marker) { ?>
 				$('#map_canvas').gmap('addMarker', { 'type': 'player', 'position': '<?php echo $marker['latitude'] ?>,<?php echo $marker['longitude'] ?>', 'icon': '<?php echo $playerImageUrl ?>', 'bounds': false}).click(function() {
 					$('#map_canvas').gmap('openInfoWindow', {'content': '<?php echo $marker['client'] ?>'}, this);});
 			<?php } ?>
@@ -75,14 +75,17 @@ $serverInfo = $this->requestAction('server_info');
 </div>
 
 
-<?php if (empty($serverPlayers)) { ?>
-<div class="row">
-	<div class="span12">
-		<h2><?php echo __('No players online!') ?></h2>
+<?php
+if (empty($serverPlayers)) { ?>
+	<div class="row">
+		<div class="span12">
+			<h2><?php echo __('No players online!') ?></h2>
+		</div>
 	</div>
-</div>
 
-	<?php } else { ?>
+	<?php
+} else {
+	?>
 	<div class="row">
 	<?php
 	foreach ($serverPlayers as $teamnr => $team) { ?>
@@ -135,7 +138,7 @@ $serverInfo = $this->requestAction('server_info');
 					'data-original-title' => $v['ServerPlayer']['flag'][1],
 					'style' => 'cursor:pointer',
 				));
-			} else{
+			} else {
 				$flag = $this->Html->image('flags/unknown.gif');
 			}
 
@@ -180,7 +183,10 @@ $serverInfo = $this->requestAction('server_info');
 			<tr><td colspan="5" style="text-align: right" class="muted"><small><?php echo $this->Number->toPercentage($registeredCount / $position * 100, 0) . ' ' . __('of this team is competing in XLRstats.') ?></small></td></tr>
 			</table></div>
 
-	<?php } ?>
-</div>
-<?php } ?>
+	<?php
+	}
+	?>
+	</div>
+<?php
+}
 

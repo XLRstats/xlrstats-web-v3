@@ -65,7 +65,8 @@
 	</head>
 
 	<body>
-		<?php if (Configure::read('options.must_accept_cookies') == true) {
+		<?php
+		if (Configure::read('options.must_accept_cookies') == true) {
 		$cookiePolicyLink = $this->Html->link('read our cookie policy here', array('plugin' => null, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'cookiepolicy'));
 		echo $this->Html->scriptBlock("
 			$(document).ready(function () {
@@ -78,7 +79,9 @@
 					cookiePolicyLink: '$cookiePolicyLink'
 					});
 				});
-		"); } ?>
+		");
+		}
+		?>
 
 		<?php echo $this->element('google-analytics'); ?>
 
@@ -155,7 +158,7 @@
 						echo $this->Html->image('cake.power.gif', array('alt' => 'CakePHP'));
 						echo '&nbsp';
 						echo $this->Html->link($this->Html->image('logohighchartssm.png', array(
-							'alt' => 'Highcharts',)),
+							'alt' => 'Highcharts', )),
 							'http://www.highcharts.com', array(
 								'target' => '_blank',
 								'escape' => false

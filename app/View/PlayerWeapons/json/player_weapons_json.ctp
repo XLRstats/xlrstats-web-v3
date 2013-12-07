@@ -13,15 +13,16 @@
  * @version       0.1
  */
 
-for($i=0; $i<count($playerWeapons['aaData']) ;$i++) {
-	foreach($playerWeapons['aaData'][$i] as $k => &$v) {
+$count = count($playerWeapons['aaData']);
+for ($i = 0; $i < $count; $i++) {
+	foreach ($playerWeapons['aaData'][$i] as $k => &$v) {
 		//Position numbers
-		if($k == 0) {
+		if ($k == 0) {
 			$v = $this->request->query['iDisplayStart']++;
 			$v += 1;
 		}
 		//Weapon Name
-		if($k == 1) {
+		if ($k == 1) {
 			$weaponImage = $this->XlrFunctions->getWeaponImage($v);
 			$weaponName = $this->Html->link('<b><small>' . $this->XlrFunctions->getWeaponName($v) . '</small></b>',
 				array(
@@ -37,7 +38,7 @@ for($i=0; $i<count($playerWeapons['aaData']) ;$i++) {
 					'data-target' => '#weapon-modal'
 				)
 			);
-			if($weaponImage) {
+			if ($weaponImage) {
 				$v = '<div style="text-align:center;">' . $weaponImage . '<br />' . $weaponName . '</div>';
 			} else {
 				$v = '<div style="text-align:center;">' . $weaponName . '</div>';
