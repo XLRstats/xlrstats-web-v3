@@ -97,7 +97,18 @@ $myPage = false;
 						);
 						echo $this->Form->end($options);
 					} else {
-						echo '<span class="label label-success" rel="popover" data-trigger="hover" data-placement="left" data-content="You have successfully identified yourself!"><i class="icon-bookmark-empty"></i> My Soldier</span>';
+						//echo '<span class="a2a_dd label label-info" style="cursor:pointer;"><i class="icon-plus"></i> ' . __('Share this') . '</span>
+						//<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>';
+						echo '<!-- AddToAny BEGIN -->
+							<span class="a2a_kit a2a_default_style">
+							<a class="a2a_button_facebook"></a>
+							<a class="a2a_button_twitter"></a>
+							<a class="a2a_button_google_plus"></a>
+							<a class="a2a_button_email"></a>
+							<a class="a2a_dd" href="http://www.addtoany.com/share_save"></a>
+							</span>
+							<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+							<!-- AddToAny END -->';
 					}
 				} else {
 					echo '<i class="icon-info-sign" rel="popover" data-trigger="hover" data-placement="left" data-original-title="' . __('Is this you?') . '"
@@ -676,4 +687,11 @@ $myPage = false;
 		});
 		$('#playerstats a:first').tab("show"); // Load and display content for first tab
 	});
+</script>
+
+<script
+	type="text/javascript">stLight.options({publisher: "ur-9437151c-3a80-da3e-7b31-23e9bc08b9ab", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+<script>
+	var options = { "publisher": "ur-9437151c-3a80-da3e-7b31-23e9bc08b9ab", "position": "left", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "googleplus", "linkedin", "twitter", "email"]}};
+	var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
 </script>
