@@ -66,13 +66,8 @@ class AppModel extends Model {
 				'prefix' => '',
 				//'encoding' => 'utf8',
 			);
-			try {
-				ConnectionManager::create('b3', $config);
-				$this->useDbConfig = 'b3';
-			} catch(Exception $e) {
-				die ('Cannot Connect to B3 Database');
-			}
-
+			ConnectionManager::create('b3', $config);
+			$this->useDbConfig = 'b3';
 		} else {
 			$this->setDataSource('default');
 		}
