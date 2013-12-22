@@ -552,7 +552,7 @@ class XlrfunctionsHelper extends Helper {
 	public function listPlayers($data) {
 		$result = '<ul>';
 		foreach ($data as $name) {
-			$result .= '<li>' . $name . '</li>';
+			$result .= '<li>' . $this->fixName($name) . '</li>';
 		}
 		$result .= '</ul>';
 		$result .= '<small>';
@@ -563,6 +563,7 @@ class XlrfunctionsHelper extends Helper {
 
 /**
  * Function that replaces names with a fixed name or the empty name default and sanitizes it
+ * NOTE: There is a similar function in app/Controller/Component/XlrFunctionsComponent => improve that one as well!
  *
  * @param $playerName
  * @param string $fixedName
@@ -584,6 +585,7 @@ class XlrfunctionsHelper extends Helper {
 /**
  * Sanitation function for displaying database content in html
  * http://www.php.net/manual/en/function.htmlentities.php
+ * NOTE: There is a similar function in app/Controller/Component/XlrFunctionsComponent => improve that one as well!
  *
  * @param $str
  * @return string

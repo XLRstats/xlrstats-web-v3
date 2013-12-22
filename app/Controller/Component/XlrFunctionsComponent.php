@@ -305,6 +305,7 @@ class XlrFunctionsComponent extends Component {
 
 /**
  * Function that replaces names with a fixed name or the empty name default and sanitizes it
+ * NOTE: There is a similar function in app/View/Helper/XlrFunctionsHelper => improve that one as well!
  *
  * @param $playerName
  * @param string $fixedName
@@ -328,6 +329,7 @@ class XlrFunctionsComponent extends Component {
 /**
  * Sanitation function for displaying database content in html
  * http://www.php.net/manual/en/function.htmlentities.php
+ * NOTE: There is a similar function in app/View/Helper/XlrFunctionsHelper => improve that one as well!
  *
  * @param $str
  * @return string
