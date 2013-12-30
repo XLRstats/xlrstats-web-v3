@@ -35,7 +35,7 @@ $myPage = false;
 			<div class="avatar pull-left">
 				<?php
 				$options = array('size' => 75, 'rating' => 'g');
-				echo $this->Gravatar->image($playerStats['Player']['login'], $options,
+				echo $this->Gravatar->image($playerStats['Player']['email'], $options,
 					array(
 						'alt' => 'Gravatar',
 						'class' => 'img-polaroid',

@@ -22,7 +22,7 @@ class PlayerStatsController extends AppController {
  *
  * @var array
  */
-	public $uses = array('PlayerStat', 'Player', 'Penalty', 'UserSoldier');
+	public $uses = array('PlayerStat', 'Player', 'Penalty', 'UserSoldier', 'User');
 
 /**
  * Helpers
@@ -79,6 +79,9 @@ class PlayerStatsController extends AppController {
 				$this->redirect(array('plugin' => null, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'home'));
 			}
 		}
+
+		// find the user's email (for gravatar use) for this player and add it to the array
+		$data['Player']['email'] = $email = $this->findUserEmail($id);
 
 		// Add required values to array
 		$data['PlayerStat']['rank'] = $this->XlrFunctions->getRank($data['PlayerStat']['kills']);
@@ -272,6 +275,19 @@ class PlayerStatsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('Oops, can\'t perform a search without any data. Please try again.'), null, null, 'error');
 			$this->redirect(array('plugin' => null, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'server' => Configure::read('server_id'), 'home'));
+		}
+	}
+
+/**
+ * @param $playerId
+ * @return string
+ */
+	public function findUserEmail($playerId = 0) {
+		$player = $this->UserSoldier->findByPlayerstatsIdAndServerId($playerId, $this->request->server);
+		if (!empty($player)) {
+			return $player['AppUser']['email'];
+		} else {
+			return '';
 		}
 	}
 
