@@ -22,7 +22,7 @@ class PlayerStatsController extends AppController {
  *
  * @var array
  */
-	public $uses = array('PlayerStat', 'Player', 'Penalty', 'UserSoldier', 'User');
+	public $uses = array('PlayerStat', 'Player', 'Penalty', 'UserSoldier', 'User', 'UserDetail');
 
 /**
  * Helpers
@@ -81,7 +81,8 @@ class PlayerStatsController extends AppController {
 		}
 
 		// find the user's email (for gravatar use) for this player and add it to the array
-		$data['Player']['email'] = $email = $this->findUserEmail($id);
+		$data['UserDetails'] = $this->findUserDetails($id);
+		//$data['Player']['email'] = $this->findUserEmail($id);
 
 		// Add required values to array
 		$data['PlayerStat']['rank'] = $this->XlrFunctions->getRank($data['PlayerStat']['kills']);
@@ -282,12 +283,22 @@ class PlayerStatsController extends AppController {
  * @param $playerId
  * @return string
  */
-	public function findUserEmail($playerId = 0) {
-		$player = $this->UserSoldier->findByPlayerstatsIdAndServerId($playerId, $this->request->server);
+	public function findUserDetails($playerId = 0) {
+		$player = $this->UserSoldier->findByPlayerstatsIdAndServerId($playerId, Configure::read('server_id'));
+
 		if (!empty($player)) {
-			return $player['AppUser']['email'];
+			$details = $this->UserDetail->findAllByUserId($player['AppUser']['id'], array('field', 'value'));
+			$userDetails = array();
+			foreach ($details as $a) {
+				foreach ($a as $k => $v) {
+					$userDetails[$v['field']] = $v['value'];
+				}
+			}
+			//pr($player);
+			$userDetails['email'] = $player['AppUser']['email'];
+			return $userDetails;
 		} else {
-			return '';
+			return array('email' => '');
 		}
 	}
 

@@ -35,7 +35,7 @@ $myPage = false;
 			<div class="avatar pull-left">
 				<?php
 				$options = array('size' => 75, 'rating' => 'g');
-				echo $this->Gravatar->image($playerStats['Player']['email'], $options,
+				echo $this->Gravatar->image($playerStats['UserDetails']['email'], $options,
 					array(
 						'alt' => 'Gravatar',
 						'class' => 'img-polaroid',
@@ -44,12 +44,20 @@ $myPage = false;
 				?>
 			</div>
 			<div class="player-name">
-				<?php echo $playerName; ?>
+				<?php
+				if (isset($playerStats['UserDetails']['User.clan_tag'])) {
+					echo '<small>[' . $playerStats['UserDetails']['User.clan_tag'] . ']</small> ';
+				}
+				echo $playerName;
+				?>
 				<span class="player-flag"><?php echo $this->Html->image('flags/' . $playerStats['Player']['flag'][0] . '.gif', array(
 					'style' => 'margin-top:-15px;',
 					'rel' => 'tooltip',
 					'data-original-title' => $playerStats['Player']['flag'][1], )); ?>
 				</span>
+				<span class="pull-right"> <?php echo $this->element('profile-social-buttons', array(
+						'userDetails' => $playerStats['UserDetails']
+					)); ?></span>
 			</div>
 			<div class="player-level">
 				<?php
@@ -58,7 +66,6 @@ $myPage = false;
 					echo '<span class="label label-important" style="margin-left: 10px">' . __('Missing In Action') . '</span>';
 				}
 				?>
-
 			</div>
 			<small>
 				<?php
