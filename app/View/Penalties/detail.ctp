@@ -37,7 +37,14 @@ if ($penalty['Penalty']['time_expire'] == -1) {
     </tbody>
 </table>
 
-<?php if (Configure::read('options.ban_disputable') && Configure::read('options.ban_dispute_link') == null && ($penalty['Penalty']['time_expire'] == -1 || $penalty['Penalty']['time_expire'] > $currentTime )
+<?php if (Configure::read('options.ban_disputable') && Configure::read('options.ban_dispute_link') && ($penalty['Penalty']['time_expire'] == -1 || $penalty['Penalty']['time_expire'] > $currentTime )
+	&& ($penalty['Penalty']['type'] == 'Ban' || $penalty['Penalty']['type'] == 'TempBan')) { ?>
+	<div class="row">
+		<div class="span12">
+			<?php echo '<a href="' . Configure::read('options.ban_dispute_link') . '" class="btn btn-primary" target="_blank">' . __('Dispute penalty') . '</a>'; ?>
+			</span></div>
+	</div>
+<?php } elseif (Configure::read('options.ban_disputable') && Configure::read('options.disqus_shortname') && ($penalty['Penalty']['time_expire'] == -1 || $penalty['Penalty']['time_expire'] > $currentTime )
 	&& ($penalty['Penalty']['type'] == 'Ban' || $penalty['Penalty']['type'] == 'TempBan')) { ?>
 	<div class="row">
 		<div class="span12">

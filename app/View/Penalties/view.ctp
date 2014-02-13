@@ -132,12 +132,14 @@
 
 				$disputeLink = '';
 
-				if (Configure::read('options.ban_disputable') && $v['Penalty']['time_expire'] > $currentTime && ($v['Penalty']['type'] == 'Ban' || $v['Penalty']['type'] == 'TempBan')) {
-					if (Configure::read('options.ban_dispute_link') != null) {
+				if (Configure::read('options.ban_disputable') && ($v['Penalty']['time_expire'] == -1 || $v['Penalty']['time_expire'] > $currentTime) && ($v['Penalty']['type'] == 'Ban' || $v['Penalty']['type'] == 'TempBan')) {
+
+					if (Configure::read('options.ban_dispute_link')) {
 						$disputeLink = $this->Html->link(__('Dispute'), Configure::read('options.ban_dispute_link'), array(
 								'title' => __('Click here to dispute your ban'),
 								'target' => '_blank',
 								'escape' => false,
+								'class' => 'btn btn-primary'
 							),
 							__('Remember to mention your Player Name and the time the ban was issued'));
 					} else {
@@ -148,6 +150,7 @@
 								$v['Penalty']['id']), array(
 								'title' => __('Click here to dispute your ban'),
 								'escape' => false,
+								'class' => 'btn btn-primary'
 							)
 						);
 					}
@@ -159,13 +162,14 @@
 						array(__('Duration'), $v['Penalty']['duration'] . ' seconds'),
 						array(__('Data'), $v['Penalty']['data'] ? $v['Penalty']['data'] : __('No data set')),
 						array(__('Time Edited'), $this->Time->format('F jS, Y h:i A', $v['Penalty']['time_edit'], null)),
-						array($disputeLink, '')
+						//array($disputeLink, '')
 					)
 				);
 				?>
 			</table>
 		</div>
 		<div class="modal-footer">
+			<span class="pull-left"><?php echo $disputeLink;?></span>
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		</div>
 	</div>
