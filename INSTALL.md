@@ -24,7 +24,7 @@ __Follow the next steps carefully to prepare the online installation procedure!_
     6. Finishing up
 
 
-# Manual Installation
+## Manual Installation
 
 This method is for advanced users or if you can't use the installer for some reason. It requires advanced knowledge and manual editing of settings.
 
@@ -56,6 +56,26 @@ Configure::write('Security.salt', 'ChangeMe!!!-ACims4H1u/sUCk2WP9gGdcwo40QdKXRtF
 Configure::write('Security.cipherSeed', '123456789456123123');
 ```
 
+## Setting up the plugin for v3
+
+Go to your B3 installation location and open your `b3/extplugins/conf/plugin_xlrstats.ini` with a text editor and change this section so it reflects your situation:
+
+```
+# The next settings enable the plugin to retrieve certain config settings from your webfront install
+# This will make topstats return the same results as the web front.
+# You'll need at least web frontend version 2.2 for this to work.
+webfrontversion: 3
+
+# webfronturl: The address of your XLRstats website. Example, http://www.yoursite.com/xlrstats
+webfronturl:
+
+# servernumber: This is the server number in your web frontend configuration.
+# If you use XLRstats v2 and only one server, then set this value to 0 !
+#
+# For XLRstats v3 refer to the value of the server URL.
+# Example, for http://xlrstats.com/1 is the value 1
+servernumber: 0
+```
 
 -----
 
