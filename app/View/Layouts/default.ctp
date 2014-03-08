@@ -155,6 +155,7 @@
 						<div class="span3">
 							<h4>Origination</h4>
 							<ul class="icons-ul">
+								<li><i class="icon-li icon-ok"></i><?php echo $this->Html->link('Donate to the project', 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=donations%40bigbrotherbot.net', array('target' => '_blank')); ?></li>
 								<li><i class="icon-li icon-ok"></i><?php echo $this->Html->link('XLRstats', 'http://www.xlrstats.com', array('target' => '_blank')); ?></li>
 								<li><i class="icon-li icon-ok"></i><?php echo $this->Html->link('BigBrotherBot', 'http://www.bigbrotherbot.net', array('target' => '_blank')); ?></li>
 								<li><i class="icon-li icon-ok"></i><?php echo $this->Html->link('Echelon', 'http://www.bigbrotherbot.net/echelon/home', array('target' => '_blank')); ?></li>
