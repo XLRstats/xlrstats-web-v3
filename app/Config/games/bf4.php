@@ -260,6 +260,56 @@ $config = array(
 		'RoadKill' => array('Road Kill', 'description', 'vdv.png'),
 		'DamageArea' => array('Damage Area', 'description', 'image.png'),
 		' ' => array('Not Identified', 'description', 'image.png'),
+
+		// Vehicle Main Battle Tanks
+		'Gameplay/Vehicles/M1A2/M1Abrams' => array('M1 ABRAMS', 'description', 'vehicle_unlock/squarelarge/m1a2_fancy.png'),
+		'T90' => array('T-90A', 'description', 'vehicle_unlock/squarelarge/t90_fancy.png'),
+		'Gameplay/Vehicles/CH_MBT_Type99/CH_MBT_Type99' => array('TYPE 99 MBT', 'description', 'vehicle_unlock/squarelarge/type99mbt_fancy.png'),
+
+		// Vehicle Infantry Fighting Vehicle
+		'Gameplay/Vehicles/LAV25/LAV25' => array('LAV-25', 'description', 'vehicle_unlock/squarelarge/lav-25_fancy.png'),
+		'Gameplay/Vehicles/BTR-90/BTR90' => array('BTR-90', 'description', 'vehicle_unlock/squarelarge/btr90_fancy.png'),
+		'Gameplay/Vehicles/CH_IFV_ZBD09/CH_IFV_ZBD09' => array('ZBD-09', 'description', 'vehicle_unlock/squarelarge/zbd09_fancy.png'),
+
+		// Vehicle Anti Air
+		'Gameplay/Vehicles/LAV25/LAV_AD' => array('LAV-AD', 'description', 'vehicle_unlock/squarelarge/lav-ad_fancy.png'),
+		'Gameplay/Vehicles/CH_AA_PGZ-95/CH_AA_PGZ-95' => array('TYPE 95 AA', 'description', 'vehicle_unlock/squarelarge/type95aa_fancy.png'),
+		'Gameplay/Vehicles/9K22_Tunguska_M/9K22_Tunguska_M' => array('9K22 TUNGUSKA-M', 'description', 'vehicle_unlock/squarelarge/tunguska_fancy.png'),
+
+		// Vehicle Air Helicopter Scout
+		'Gameplay/Vehicles/Z11W/spec/Z-11w_CH' => array('Z-11W', 'description', 'vehicle_unlock/squarelarge/z11_fancy.png'),
+		'Gameplay/Vehicles/Z11W/Z-11w' => array('Z-11W', 'description', 'vehicle_unlock/squarelarge/z11_fancy.png'),
+		'Gameplay/Vehicles/AH6/AH6_Littlebird' => array('AH-6J LITTLE BIRD', 'description', 'vehicle_unlock/squarelarge/ah6_fancy.png'),
+
+		// Vehicle Air Helicopter Attack
+		'Gameplay/Vehicles/Mi28/Mi28' => array('MI-28 HAVOC', 'description', 'vehicle_unlock/squarelarge/mi28_fancy.png'),
+		'Gameplay/Vehicles/AH1Z/AH1Z' => array('AH-1Z VIPER', 'description', 'vehicle_unlock/squarelarge/ah1z_fancy.png'),
+		'Z-10W' => array('Z-10W', 'description', 'vehicle_unlock/squarelarge/z10w_fancy.png'),
+
+		// Vehicle Air
+		'XP1/Gameplay/Vehicles/H6K/H6K' => array('BOMBER', 'description', 'vehicle_unlock/squarelarge/h6k_fancy.png'),
+		'Gameplay/Vehicles/AC130/AC130_Gunship' => array('AC-130 GUNSHIP', 'description', 'vehicle_unlock/squarelarge/ac130_fancy.png'),
+
+		// Vehicle Air Jet Attack
+		'Gameplay/Vehicles/A-10_THUNDERBOLT/A10_THUNDERBOLT' => array('A10 WARTHOG', 'description', 'vehicle_unlock/squarelarge/a10_fancy.png'),
+		'Gameplay/Vehicles/SU-25TM/SU-25TM' => array('SU-25TM FROGFOOT', 'description', 'vehicle_unlock/squarelarge/su25_fancy.png'),
+		'Gameplay/Vehicles/CH_JET_Qiang-5-fantan/CH_JET_Q5_FANTAN' => array('Q-5 FANTAN', 'description', 'vehicle_unlock/squarelarge/q5_fancy.png'),
+
+		// Vehicle Fast Attack Craft
+		'Gameplay/Vehicles/CH_FAC_DV15/CH_FAC_DV15' => array('DV-15', 'description', 'vehicle_unlock/squarelarge/dv15_fancy.png'),
+		'Gameplay/Vehicles/CH_FAC_DV15/spec/CH_FAC_DV15_RU' => array('DV-15', 'description', 'vehicle_unlock/squarelarge/dv15_fancy.png'),
+		'Gameplay/Vehicles/US_FAC-CB90/US_FAC-CB90' => array('RCB', 'description', 'vehicle_unlock/squarelarge/rcb90_fancy.png'),
+
+		// Vehicle Mobile Artillery
+		'Gameplay/Vehicles/HIMARS/HIMARS' => array('M142', 'description', 'vehicle_unlock/squarelarge/himars_fancy.png'),
+
+		// Vehicle Air Jet Stealth
+		'Gameplay/Vehicles/F35/F35B' => array('F35', 'description', 'vehicle_unlock/squarelarge/f35_fancy.png'),
+		'Gameplay/Vehicles/RU_FJET_T-50_Pak_FA/RU_FJET_T-50_Pak_FA' => array('SU-50', 'description', 'vehicle_unlock/squarelarge/su50-t50pak_fancy.png'),
+		'Gameplay/Vehicles/Ch_FJET_J-20/CH_FJET_J-20' => array('J-20', 'description', 'vehicle_unlock/squarelarge/j20_fancy.png'),
+
+		// Vehicle Boat
+		'RHIB' => array('RHIB BOAT', 'description', 'vehicle_unlock/squarelarge/rhib_fancy.png'),
 	),
 	/**
 	 * Team names
