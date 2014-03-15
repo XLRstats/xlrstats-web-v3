@@ -29,7 +29,7 @@
 
 		echo $this->Html->css('xlrstats.generic');
 		echo $this->Html->css('http://fonts.googleapis.com/css?family=Lato:400,700');
-		echo $this->Html->css('http://fonts.googleapis.com/css?family=Cuprum:400,400italic,700,700italic');
+		echo $this->Html->css('http://fonts.googleapis.com/css?family=Cuprum:400,700,700italic,400italic&subset=latin,cyrillic');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
