@@ -24,7 +24,7 @@ $config = array(
 	 */
 	'maps' => array(
 		// Map Image Path
-		'image_path' => 'http://battlelog-cdn.battlefield.com/cdnprefix/288d9afd0553cbdb/public/base/bf4/map_images/146x79/',
+		'image_path' => 'http://battlelog-cdn.battlefield.com/cdnprefix/288d9afd0553cbdb/public/base/bf4/map_images/335x160/',
 
 		//Stock
 		'MP_Abandoned' => array('Zavod 311', 'description', 'mp_abandoned.jpg'),
