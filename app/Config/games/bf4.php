@@ -51,7 +51,7 @@ $config = array(
 	 */
 	'weapons' => array(
 		//Weapon Image Path
-		//'image_path' => 'http://battlelog-cdn.battlefield.com/cdnprefix/98ed2fe-3/public/profile/bf3/stats/items_147x88/',
+		'image_path' => 'http://eaassets-a.akamaihd.net/bl-cdn/cdnprefix/35fcafc68cc4a84dd0cce41632300509e/public/profile/warsaw/gamedata/',
 
 		// Assault Rifles
 		'U_GalilACE23' => array('ACE 23', 'description', 'image.png'),
