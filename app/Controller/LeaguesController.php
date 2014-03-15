@@ -132,9 +132,9 @@ class LeaguesController extends AppController {
  * @return mixed
  */
 	public function leaguesJson($leagueID = null, $currentTime = null) {
-        if ($currentTime == null) {
-            $currentTime = gmdate('U');
-        }
+		if ($currentTime == null) {
+			$currentTime = gmdate('U');
+		}
 		$leagueValue = $this->__getLeagueValues($leagueID);
 		$this->set('leagueValue', $leagueValue);
 
@@ -262,9 +262,9 @@ class LeaguesController extends AppController {
  * @return array
  */
 	public function getAwards($leagueID = 0, $currentTime = null) {
-        if ($currentTime == null) {
-            $currentTime = gmdate('U');
-        }
+		if ($currentTime == null) {
+			$currentTime = gmdate('U');
+		}
 		$leagueValue = $this->__getLeagueValues($leagueID);
 		$this->set('leagueID', $leagueID);
 
@@ -289,7 +289,7 @@ class LeaguesController extends AppController {
 			// Hide players that have not played in # days (disable with 0 or empty setting)
 			$maxDays = Configure::read('options.max_days');
 			if ($maxDays != '' && $maxDays != 0) {
-                $conditions['Player.time_edit >='] = $currentTime - ($maxDays * 60 * 60 * 24);
+				$conditions['Player.time_edit >='] = $currentTime - ($maxDays * 60 * 60 * 24);
 			}
 
 			// Hide banned players
@@ -420,9 +420,9 @@ class LeaguesController extends AppController {
  * @return array|null
  */
 	public function getMia($leagueID = 0, $random = false, $limit = 15, $currentTime = null) {
-        if ($currentTime == null) {
-            $currentTime = gmdate('U');
-        }
+		if ($currentTime == null) {
+			$currentTime = gmdate('U');
+		}
 		$leagueValue = $this->__getLeagueValues($leagueID);
 		$this->set('leagueValue', $leagueValue);
 
@@ -443,7 +443,7 @@ class LeaguesController extends AppController {
 		// Select players that have not played in # days (disable with 0 or empty setting)
 		$maxDays = Configure::read('options.max_days');
 		if ($maxDays != '' && $maxDays != 0) {
-            $conditions['Player.time_edit >='] = $currentTime - ($maxDays * 60 * 60 * 24);
+			$conditions['Player.time_edit >='] = $currentTime - ($maxDays * 60 * 60 * 24);
 		} else {
 			// All players are shown, so no players are MIA, break it off here and return null
 			return null;
@@ -521,9 +521,9 @@ class LeaguesController extends AppController {
  * @return array
  */
 	public function getLastSeen($leagueID = 0, $limit = 15, $currentTime = null) {
-        if ($currentTime == null) {
-            $currentTime = gmdate('U');
-        }
+		if ($currentTime == null) {
+			$currentTime = gmdate('U');
+		}
 		$leagueValue = $this->__getLeagueValues($leagueID);
 		$this->set('leagueValue', $leagueValue);
 

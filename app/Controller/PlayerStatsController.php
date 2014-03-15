@@ -171,9 +171,9 @@ class PlayerStatsController extends AppController {
  * @return mixed
  */
 	public function getPlayerLeagueRanking($league, $playerID, $currentTime = null) {
-        if ($currentTime == null) {
-            $currentTime = gmdate('U');
-        }
+		if ($currentTime == null) {
+			$currentTime = gmdate('U');
+		}
 		$leagueValue = Configure::read('league.' . $league);
 		$minimumConnections = Configure::read('options.min_connections');
 		$minimumKills = Configure::read('options.min_kills');
@@ -189,7 +189,7 @@ class PlayerStatsController extends AppController {
 		// Hide players that have not played in # days (disable with 0 or empty setting)
 		$maxDays = Configure::read('options.max_days');
 		if ($maxDays != '' && $maxDays != 0) {
-            $conditions['Player.time_edit >='] = $currentTime - ($maxDays * 60 * 60 * 24);
+			$conditions['Player.time_edit >='] = $currentTime - ($maxDays * 60 * 60 * 24);
 		}
 
 		// Hide banned players
