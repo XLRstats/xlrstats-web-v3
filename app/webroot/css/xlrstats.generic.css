@@ -1236,3 +1236,9 @@ div.inner-details{display:none}
 .cc-cookies.cc-discreet a.cc-cookie-reset{background:none;text-shadow:none;padding:0;text-decoration:underline}
 .cc-cookies.cc-discreet a:hover.cc-cookie-reset{text-decoration:none}
 @media screen and (max-width:768px){.cc-cookies a.cc-cookie-accept,.cc-cookies a.cc-cookie-decline,.cc-cookies a.cc-cookie-reset{display:block;margin:1em 0}}@media screen and (max-width:480px){.cc-cookies{position:relative;float:left}}
+@font-face{font-family: 'Roboto';font-style: normal;font-weight: 400;src: local('Roboto Regular'), local('Roboto-Regular'), url(http://themes.googleusercontent.com/static/fonts/roboto/v10/Y5yuUJGDLtmYv2_3fMB4fA.woff) format('woff');}
+@font-face{font-family: 'Roboto';font-style: normal;font-weight: 700;src: local('Roboto Bold'), local('Roboto-Bold'), url(http://themes.googleusercontent.com/static/fonts/roboto/v10/isZ-wbCXNKAbnjo6_TwHTj8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');}
+@font-face{font-family: 'Cuprum';font-style: normal;font-weight: 400;src: local('Cuprum'), local('Cuprum-Regular'), url(http://themes.googleusercontent.com/static/fonts/cuprum/v5/wHBEZCjwNI3HN2fD1RQJgw.woff) format('woff');}
+@font-face{font-family: 'Cuprum';font-style: normal;font-weight: 700;src: local('Cuprum Bold'), local('Cuprum-Bold'), url(http://themes.googleusercontent.com/static/fonts/cuprum/v5/n3IzcUkIerri6e9sz7Dgbj8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');}
+@font-face{font-family: 'Cuprum';font-style: italic;font-weight: 400;src: local('Cuprum Italic'), local('Cuprum-Italic'), url(http://themes.googleusercontent.com/static/fonts/cuprum/v5/qeKnzn2Grxyt-04Hf-FrNvesZW2xOQ-xsNqO47m55DA.woff) format('woff');}
+@font-face{font-family: 'Cuprum';font-style: italic;font-weight: 700;src: local('Cuprum Bold Italic'), local('Cuprum-BoldItalic'), url(http://themes.googleusercontent.com/static/fonts/cuprum/v5/qoCTdBYim27O_DVk90C7-WOb2gHztoQeulij-1lvl-8.woff) format('woff');}

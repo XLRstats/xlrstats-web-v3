@@ -19,9 +19,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 		<?php
-		echo $this->Html->charset();
-		?>
+		echo $this->Html->charset();?>
+		<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<![endif]-->
 		<title><?php echo $title_for_layout; ?></title>
 		<?php
 		echo $this->Html->meta('icon');
@@ -32,8 +33,6 @@
 		/* For theme development */
 			//echo $this->Html->css('less/xlrstats.generic.less?', 'stylesheet/less');
 		echo $this->Html->css('cookiecuttr');
-		echo $this->Html->css('http://fonts.googleapis.com/css?family=Lato:400,700');
-		echo $this->Html->css('http://fonts.googleapis.com/css?family=Cuprum:400,700,700italic,400italic&subset=latin,cyrillic');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->Html->script('modernizr-2.6.1-respond-1.1.0.min'); //Modernizr
