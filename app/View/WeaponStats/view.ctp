@@ -72,5 +72,14 @@
 			?>
 		</table>
 	</div>
-
+	<!-- Weapon Descriptions Start -->
+	<div class="span8">
+		<h4><?php echo __('Description: ');?></h4>
+		<table class="table table-condensed table-bordered table-hover">
+			<tr>
+				<td><?PHP echo $this->XlrFunctions->getWeaponDescription($weaponData['WeaponStat']['name'], array('class' => 'textarea' ));?></td>
+			</tr>
+		</table>
+	</div>
+	<!-- Weapon Descriptions End -->
 </div>
