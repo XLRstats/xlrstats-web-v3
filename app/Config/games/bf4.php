@@ -50,10 +50,10 @@ $config = array(
 		'XP0_Oman' => array('Gulf of Oman 2014', 'description', 'xp0_oman.jpg'),
 		
 		/* Maps for Naval Strike */		
-		'xp2_001' => array('Lost Islands', 'description', 'xp2_001.jpg'),
-		'xp2_002' => array('Nansha Strike', 'description', 'xp2_002.jpg'),
-		'xp2_003' => array('Wave Breaker', 'description', 'xp2_003.jpg'),
-		'xp2_004' => array('Operation Mortar', 'description', 'xp2_004.jpg'),
+		'XP2_001' => array('Lost Islands', 'description', 'xp2_001.jpg'),
+		'XP2_002' => array('Nansha Strike', 'description', 'xp2_002.jpg'),
+		'XP2_003' => array('Wave Breaker', 'description', 'xp2_003.jpg'),
+		'XP2_004' => array('Operation Mortar', 'description', 'xp2_004.jpg'),
 	),
 	/**
 	 * Weapon: name, description, image
