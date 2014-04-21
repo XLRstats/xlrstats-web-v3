@@ -250,6 +250,7 @@ class AppController extends Controller {
  * Loads game config file
  */
 	public function loadGameConfig() {
+		Configure::load('games' . DS . 'default');
 		$serverID = Configure::read('server_id');
 		$gameName = Configure::read('servers.' . $serverID . '.gamename');
 
@@ -257,11 +258,9 @@ class AppController extends Controller {
 			Configure::load('games' . DS . $gameName);
 		} catch (Exception $e) {
 			//debug('ERROR: ' .  $e->getMessage());
-			/* This must be a server that does not exist, so clear the session and go 'home' */
-			$this->Session->delete('server_id');
-			$this->Cookie->delete('server_id');
-			$this->Session->setFlash(__('That was not a valid request...'), null, null, 'error');
-			$this->redirect('/');
+			/* This must be a server without a valid game config file - New Game? */
+			$this->Session->setFlash(__('This game is NOT supported!'), null, null, 'info');
+			Configure::write('servers.' . $serverID . '.gamename', 'default');
 		}
 	}
 
