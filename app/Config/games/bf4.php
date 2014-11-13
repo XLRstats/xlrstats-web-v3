@@ -24,7 +24,7 @@ $config = array(
 	 */
 	'maps' => array(
 		// Map Image Path
-		'image_path' => 'http://battlelog-cdn.battlefield.com/cdnprefix/288d9afd0553cbdb/public/base/bf4/map_images/335x160/',
+		'image_path' => '//battlelog-cdn.battlefield.com/cdnprefix/288d9afd0553cbdb/public/base/bf4/map_images/335x160/',
 
 		//Stock
 		'MP_Abandoned' => array('Zavod 311', 'description', 'mp_abandoned.jpg'),
@@ -59,7 +59,7 @@ $config = array(
 	 */
 	'weapons' => array(
 		//Weapon Image Path
-		'image_path' => 'http://eaassets-a.akamaihd.net/bl-cdn/cdnprefix/35fcafc68cc4a84dd0cce41632300509e/public/profile/warsaw/gamedata/',
+		'image_path' => '//eaassets-a.akamaihd.net/bl-cdn/cdnprefix/35fcafc68cc4a84dd0cce41632300509e/public/profile/warsaw/gamedata/',
 
 		// Assault Rifles
 		'U_GalilACE23' => array('ACE 23', 'description', 'weapon_unlock/squarelarge/galil_ace23_fancy.png'),
