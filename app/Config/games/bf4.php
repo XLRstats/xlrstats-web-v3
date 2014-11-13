@@ -45,6 +45,14 @@ $config = array(
 		'XP1_002' => array('Altai Range', 'description', 'xp1_002.jpg'),
 		'XP1_003' => array('Guilin Peaks', 'description', 'xp1_003.jpg'),
 		'XP1_004' => array('Dragon Pass', 'description', 'xp1_004.jpg'),
+		'XP2_001' => array('Lost Islands', 'description', 'xp2_001.jpg'),
+		'XP2_002' => array('Nansha Strike', 'description', 'xp2_002.jpg'),
+		'XP2_003' => array('Wave Breaker', 'description', 'xp2_003.jpg'),
+		'XP2_004' => array('Operation Mortar', 'description', 'xp2_004.jpg'),
+		'XP3_UrbanGdn' => array('Lumphini Garden', 'description', 'xp3_urbangdn.jpg'),
+		'XP3_MarketPl' => array('Pearl Market', 'description', 'xp3_marketpl.jpg'),
+		'XP3_Prpganda' => array('Propaganda', 'description', 'xp3_prpganda.jpg'),
+		'XP3_WtrFront' => array('Sunken Dragon', 'description', 'xp3_wtrfront.jpg'),
 	),
 	/**
 	 * Weapon: name, description, image
