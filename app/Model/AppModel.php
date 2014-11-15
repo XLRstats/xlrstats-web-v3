@@ -64,7 +64,7 @@ class AppModel extends Model {
 				'password' => $password,
 				'database' => $database,
 				'prefix' => '',
-				//'encoding' => 'utf8',
+				'encoding' => 'utf8',
 			);
 			ConnectionManager::create('b3', $config);
 			$this->useDbConfig = 'b3';
