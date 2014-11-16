@@ -31,7 +31,7 @@
 	echo $this->fetch('Dashboard.meta');
 	// Load Scripts from core
 	echo $this->Html->script('modernizr-2.6.2-respond-1.1.0.min'); //Modernizr
-	echo $this->Html->script('jquery-1.8.2.min'); //jQuery
+	echo $this->Html->script('jquery-1.11.1.min'); //jQuery
 	echo $this->Html->script('bootstrap.min'); //Twitter Bootstrap
 	// Load CSS Files
 	echo $this->Html->css('Dashboard.dashboard');
