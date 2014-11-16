@@ -32,7 +32,7 @@
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 
-		echo $this->Html->script('modernizr-2.6.2-respond-1.1.0.min'); //Modernizr
+		echo $this->Html->script('modernizr-2.8.3-respond-1.4.2.min'); //Modernizr
 		echo $this->Html->script('jquery-1.8.2.min'); //jQuery library
 		echo $this->Html->script('jquery.dataTables.min'); //dataTables jQuery plugin
 		echo $this->Html->script('http://maps.google.com/maps/api/js?sensor=true'); //Google Maps jQuery plugin

@@ -35,7 +35,7 @@
 		echo $this->Html->css('Dashboard.dashboard');
 		echo $this->fetch('Dashboard.css');
 		// Load Scripts from core
-		echo $this->Html->script('modernizr-2.6.2-respond-1.1.0.min'); //Modernizr
+		echo $this->Html->script('modernizr-2.8.3-respond-1.4.2.min'); //Modernizr
 		echo $this->Html->script('jquery-1.8.2.min'); //jQuery
 		echo $this->Html->script('jquery.dataTables.min'); //dataTables
 		echo $this->Html->script('paging'); //dataTables Twitter Bootstrap Pagination
