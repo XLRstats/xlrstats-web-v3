@@ -35,7 +35,7 @@
 		echo $this->Html->css('cookiecuttr');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->Html->script('modernizr-2.6.1-respond-1.1.0.min'); //Modernizr
+		echo $this->Html->script('modernizr-2.8.3-respond-1.4.2.min'); //Modernizr
 		echo $this->Html->script('jquery-1.11.1.min'); //jQuery library
 		echo $this->Html->script('jquery-ui-1.8.24.min'); //jQuery UI library
 		echo $this->Html->script('jquery.dataTables.min'); //dataTables jQuery plugin
@@ -50,7 +50,7 @@
 			echo $this->Html->script('jquery.cookiecuttr.js');
 		};
 		/* For theme development */
-			//echo $this->Html->script('less-1.3.0.min'); //Just for development (WILL BE REMOVED)
+			//echo $this->Html->script('less-2.0.0.min'); //Just for development (WILL BE REMOVED)
 		echo $this->fetch('script');
 
 		?>
