@@ -47,7 +47,7 @@
 		//Load Temporary Less Files
 		//To work with less files, uncomment two lines below and comment out the dashboard.css line above (echo $this->Html->css('Dashboard.dashboard');)
 		//echo $this->Html->css('Dashboard.less/dashboard.less?', 'stylesheet/less');
-		//echo $this->Html->script('less-1.5.0.min');
+		//echo $this->Html->script('less-2.0.0.min');
 		?>
 
 	</head>
