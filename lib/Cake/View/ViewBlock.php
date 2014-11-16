@@ -1,7 +1,5 @@
 <?php
 /**
- *
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -28,14 +26,14 @@ class ViewBlock {
 /**
  * Append content
  *
- * @constant APPEND
+ * @var string
  */
 	const APPEND = 'append';
 
 /**
  * Prepend content
  *
- * @constant PREPEND
+ * @var string
  */
 	const PREPEND = 'prepend';
 
@@ -56,7 +54,7 @@ class ViewBlock {
 /**
  * Should the currently captured content be discarded on ViewBlock::end()
  *
- * @var boolean
+ * @var bool
  * @see ViewBlock::end()
  * @see ViewBlock::startIfEmpty()
  */
@@ -166,7 +164,7 @@ class ViewBlock {
  * @param string $name Name of the block
  * @param string $value The content for the block.
  * @return void
- * @deprecated As of 2.3 use ViewBlock::concat() instead.
+ * @deprecated 3.0.0 As of 2.3 use ViewBlock::concat() instead.
  */
 	public function append($name, $value = null) {
 		$this->concat($name, $value);

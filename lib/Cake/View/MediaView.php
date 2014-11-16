@@ -53,7 +53,7 @@ App::uses('CakeRequest', 'Network');
  * }}}
  *
  * @package       Cake.View
- * @deprecated Deprecated since version 2.3, use CakeResponse::file() instead
+ * @deprecated 3.0.0 Deprecated since version 2.3, use CakeResponse::file() instead
  */
 class MediaView extends View {
 
@@ -62,7 +62,7 @@ class MediaView extends View {
  *
  * @param string $view Not used
  * @param string $layout Not used
- * @return boolean
+ * @return void
  */
 	public function render($view = null, $layout = null) {
 		$name = $download = $id = $modified = $path = $cache = $mimeType = $compress = null;
@@ -94,7 +94,6 @@ class MediaView extends View {
 			$this->response->compress();
 		}
 		$this->response->send();
-		return true;
 	}
 
 }
