@@ -101,7 +101,7 @@ $imgUrl = FULL_BASE_URL . $this->base . '/img/';
 		}
 
 		/* Slide Up/Down Animation */
-		$('#penalties td.control').live( 'click', function () {
+		$(document).on( 'click', "#penalties td.control", function () {
 			var nTr = this.parentNode;
 			var i = $.inArray( nTr, anOpen );
 
