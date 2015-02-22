@@ -21,3 +21,9 @@ During beta we will provide the update instructions with our releases on [our re
 
 ----
 More information on [www.xlrstats.com](http://www.xlrstats.com/)
+
+----
+<p style="text-align:center">XLRstats is developed with <a href="https://www.jetbrains.com/phpstorm/" target = "_blank"><img src="http://www.xlrstats.com/xlrstats_home/img/phpstorm.svg"></a>
+</p>
+
+
