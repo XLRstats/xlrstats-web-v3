@@ -4,6 +4,10 @@ Here is our beta code for the **XLRstats v3 - League Edition**
 
 ***The package is currently in beta and should not be considered production stable!***
 
+```
+This project is NO LONGER actively maintained! It is provided 'as is' in its current state!
+```
+
 ## requirements
 
 * B3 version 1.10.0 or newer with xlrstats plugin enabled (will still work with older B3 versions although some features will be missing)
