@@ -2,11 +2,13 @@
 
 Here is our beta code for the **XLRstats v3 - League Edition**
 
-***The package is currently in beta and should not be considered production stable!***
+***The package contains security risks and should NOT be used in a public/production environment!***
 
 ```
 This project is NO LONGER actively maintained! It is provided 'as is' in its current state!
 ```
+
+[Here is a fork that has a number of fixes/updates](https://github.com/LandGame/xlrstats-web-v3)
 
 ## requirements
 
