@@ -50,7 +50,7 @@
 			echo $this->Html->script('jquery.cookiecuttr.js');
 		};
 		/* For theme development */
-			//echo $this->Html->script('less-2.0.0.min'); //Just for development (WILL BE REMOVED)
+			//echo $this->Html->script('less.min'); //Just for development (WILL BE REMOVED)
 		echo $this->fetch('script');
 
 		?>
