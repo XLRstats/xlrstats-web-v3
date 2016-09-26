@@ -19,7 +19,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
-		<?phpecho $this->Html->charset();?>
+		<?php echo $this->Html->charset();?>
 		<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<![endif]-->
