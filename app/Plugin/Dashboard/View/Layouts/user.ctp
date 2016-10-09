@@ -30,7 +30,6 @@
 	echo $this->Html->meta('Dashboard.icon');
 	echo $this->fetch('Dashboard.meta');
 	// Load Scripts from core
-	echo $this->Html->script('modernizr-3.3.1-respond-1.4.2.min'); //Modernizr
 	echo $this->Html->script('jquery-1.11.1.min'); //jQuery
 	echo $this->Html->script('bootstrap.min'); //Twitter Bootstrap
 	// Load CSS Files

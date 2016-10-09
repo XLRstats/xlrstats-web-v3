@@ -35,7 +35,6 @@
 		echo $this->Html->css('cookiecuttr');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->Html->script('modernizr-3.3.1-respond-1.4.2.min'); //Modernizr
 		echo $this->Html->script('jquery-1.11.1.min'); //jQuery library
 		echo $this->Html->script('jquery-ui-1.8.24.min'); //jQuery UI library
 		echo $this->Html->script('jquery.dataTables.min'); //dataTables jQuery plugin
