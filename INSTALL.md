@@ -1,3 +1,8 @@
+```
+This project is NO LONGER actively maintained! It is provided 'as is' in its current state!
+```
+
+
 # Installing XLRstats v3.
 
 *This web application depends on some minimal system requirements. Some of them will prevent you from using the app and even the installer. Make sure you have at least __PHP version 5.3.0__ installed and __Apache2__ with __mod_rewrite enabled__ before starting the installation.*
