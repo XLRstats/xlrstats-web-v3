@@ -11,6 +11,8 @@ No pull requests will be accepted.
 
 [Here is a fork that has a number of fixes/updates](https://github.com/LandGame/xlrstats-web-v3)
 
+[Or this branch for disabled license checking + merge of the LandGame fork](https://github.com/XLRstats/xlrstats-web-v3/tree/latest_merge_no_licence_check)
+
 ## requirements
 
 * B3 version 1.10.0 or newer with xlrstats plugin enabled (will still work with older B3 versions although some features will be missing)
