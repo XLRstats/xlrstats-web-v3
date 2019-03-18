@@ -254,8 +254,11 @@ class XlrFunctionsComponent extends Component {
  * @return bool|mixed
  */
 	public function isLicenseValid() {
+		// Disable license checking, always return true
+		return true;
+
 		// The license server will only be polled once p/5minutes when invalid, and once p/week when valid
-		if (Configure::check('license.valid')) {
+/*		if (Configure::check('license.valid')) {
 			return Configure::read('license.valid');
 		} else {
 			$json = Cache::read('licenseKeyInfo', '1week');
@@ -278,7 +281,7 @@ class XlrFunctionsComponent extends Component {
 				Configure::write('license.valid', true);
 				return true;
 			}
-		}
+		}*/
 	}
 
 	//-------------------------------------------------------------------
