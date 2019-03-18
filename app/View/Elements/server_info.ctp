@@ -92,7 +92,7 @@ $playerNames = $this->requestAction('server_players');
 									'class' => 'btn'
 								))
 							?>
-                        </span>
+						</span>
 						<?php if ($xfireGame || $xfireGame || $gscGame || $hlswGame) { ?>
 						<span class="btn-group">
 							<a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#"
@@ -142,8 +142,7 @@ $playerNames = $this->requestAction('server_players');
 								?>
 							</span>
 						<?php } ?>
-						</span>
-                        <?php echo $this->element('donate_button') ?>
+						<?php echo $this->element('donate_button') ?>
 					</div>
 					<?php } ?>
 
@@ -197,7 +196,7 @@ $playerNames = $this->requestAction('server_players');
 							<?php echo $this->element('donate_button') ?>
 						</span>
 					</h1>
-                </div>
+				</div>
 			</div>
 
 		</div>

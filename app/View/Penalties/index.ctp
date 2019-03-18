@@ -93,7 +93,7 @@ $imgUrl = FULL_BASE_URL . $this->base . '/img/';
 			sOut += '<div class="detail pull-left" style="width: 80px"><h5>Duration</h5><span class="score">'+oData[6]+'</span></div>';
 			sOut += '<div class="detail pull-left" style="width: 100px"><h5>Keyword</h5><span class="score">'+oData[7]+'</span></div>';
 			sOut += '<div class="detail pull-left" style="width: 100px"><h5>Admin</h5><span class="score">'+oData[8]+'</span></div>';
-			sOut += '<div class="detail-last pull-left" style="width: 265px"><h5>Data</h5><span class="score">'+oData[9]+'</span></div>';
+			sOut += '<div class="detail-last pull-left" style="width: 255px"><h5>Data</h5><span class="score">'+oData[9]+'</span></div>';
 
 			sOut += '</div>';
 
@@ -101,7 +101,7 @@ $imgUrl = FULL_BASE_URL . $this->base . '/img/';
 		}
 
 		/* Slide Up/Down Animation */
-		$('#penalties td.control').live( 'click', function () {
+		$(document).on( 'click', "#penalties td.control", function () {
 			var nTr = this.parentNode;
 			var i = $.inArray( nTr, anOpen );
 

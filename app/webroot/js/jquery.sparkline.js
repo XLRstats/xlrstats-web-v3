@@ -2,7 +2,7 @@
  *
  * jquery.sparkline.js
  *
- * v2.1
+ * v2.1.2
  * (c) Splunk, Inc
  * Contact: Gareth Watts (gareth@splunk.com)
  * http://omnipotent.net/jquery.sparkline/
@@ -202,14 +202,14 @@
 
 /*jslint regexp: true, browser: true, jquery: true, white: true, nomen: false, plusplus: false, maxerr: 500, indent: 4 */
 
-(function(factory) {
-    if(typeof define === 'function' && define.amd) {
-        define(['jquery'], factory);
+(function(document, Math, undefined) { // performance/minified-size optimization
+    (function(factory) {
+        if(typeof define === 'function' && define.amd) {
+            define(['jquery'], factory);
+        } else if (jQuery && !jQuery.fn.sparkline) {
+            factory(jQuery);
+        }
     }
-    else {
-        factory(jQuery);
-    }
-}
     (function($) {
         'use strict';
 
@@ -353,27 +353,27 @@
 
         // You can have tooltips use a css class other than jqstooltip by specifying tooltipClassname
         defaultStyles = '.jqstooltip { ' +
-            'position: absolute;' +
-            'left: 0px;' +
-            'top: 0px;' +
-            'visibility: hidden;' +
-            'background: rgb(0, 0, 0) transparent;' +
-            'background-color: rgba(0,0,0,0.6);' +
-            'filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);' +
-            '-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";' +
-            'color: white;' +
-            'font: 10px arial, san serif;' +
-            'text-align: left;' +
-            'white-space: nowrap;' +
-            'padding: 5px;' +
-            'border: 1px solid white;' +
-            'z-index: 10000;' +
-            '}' +
-            '.jqsfield { ' +
-            'color: white;' +
-            'font: 10px arial, san serif;' +
-            'text-align: left;' +
-            '}';
+        'position: absolute;' +
+        'left: 0px;' +
+        'top: 0px;' +
+        'visibility: hidden;' +
+        'background: rgb(0, 0, 0) transparent;' +
+        'background-color: rgba(0,0,0,0.6);' +
+        'filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);' +
+        '-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";' +
+        'color: white;' +
+        'font: 10px arial, san serif;' +
+        'text-align: left;' +
+        'white-space: nowrap;' +
+        'padding: 5px;' +
+        'border: 1px solid white;' +
+        'z-index: 10000;' +
+        '}' +
+        '.jqsfield { ' +
+        'color: white;' +
+        'font: 10px arial, san serif;' +
+        'text-align: left;' +
+        '}';
 
         /**
          * Utilities
@@ -597,19 +597,41 @@
             if (useExisting && (target = this.data('_jqs_vcanvas'))) {
                 return target;
             }
+
+            if ($.fn.sparkline.canvas === false) {
+                // We've already determined that neither Canvas nor VML are available
+                return false;
+
+            } else if ($.fn.sparkline.canvas === undefined) {
+                // No function defined yet -- need to see if we support Canvas or VML
+                var el = document.createElement('canvas');
+                if (!!(el.getContext && el.getContext('2d'))) {
+                    // Canvas is available
+                    $.fn.sparkline.canvas = function(width, height, target, interact) {
+                        return new VCanvas_canvas(width, height, target, interact);
+                    };
+                } else if (document.namespaces && !document.namespaces.v) {
+                    // VML is available
+                    document.namespaces.add('v', 'urn:schemas-microsoft-com:vml', '#default#VML');
+                    $.fn.sparkline.canvas = function(width, height, target, interact) {
+                        return new VCanvas_vml(width, height, target);
+                    };
+                } else {
+                    // Neither Canvas nor VML are available
+                    $.fn.sparkline.canvas = false;
+                    return false;
+                }
+            }
+
             if (width === undefined) {
                 width = $(this).innerWidth();
             }
             if (height === undefined) {
                 height = $(this).innerHeight();
             }
-            if ($.browser.hasCanvas) {
-                target = new VCanvas_canvas(width, height, this, interact);
-            } else if ($.browser.msie) {
-                target = new VCanvas_vml(width, height, this);
-            } else {
-                return false;
-            }
+
+            target = $.fn.sparkline.canvas(width, height, this, interact);
+
             mhandler = $(this).data('_jqs_mhandler');
             if (mhandler) {
                 mhandler.registerCanvas(target);
@@ -802,9 +824,9 @@
 
         Tooltip = createClass({
             sizeStyle: 'position: static !important;' +
-                'display: block !important;' +
-                'visibility: hidden !important;' +
-                'float: left !important;',
+            'display: block !important;' +
+            'visibility: hidden !important;' +
+            'float: left !important;',
 
             init: function (options) {
                 var tooltipClassname = options.get('tooltipClassname', 'jqstooltip'),
@@ -977,8 +999,7 @@
                         mhandler.registerSparkline(sp);
                     }
                 };
-                // jQuery 1.3.0 completely changed the meaning of :hidden :-/
-                if (($(this).html() && !options.get('disableHiddenCheck') && $(this).is(':hidden')) || ($.fn.jquery < '1.3.0' && $(this).parents().is(':hidden')) || !$(this).parents('body').length) {
+                if (($(this).html() && !options.get('disableHiddenCheck') && $(this).is(':hidden')) || !$(this).parents('body').length) {
                     if (!options.get('composite') && $.data(this, '_jqs_pending')) {
                         // remove any existing references to the element
                         for (i = pending.length; i; i--) {
@@ -1543,7 +1564,7 @@
                     }
                     if (hlSpotsEnabled || options.get('spotColor') ||
                         (options.get('minSpotColor') || options.get('maxSpotColor') &&
-                            (yvalues[yvallast] === this.miny || yvalues[yvallast] === this.maxy))) {
+                        (yvalues[yvallast] === this.miny || yvalues[yvallast] === this.maxy))) {
                         canvasWidth -= Math.ceil(spotRadius);
                     }
                 }
@@ -1647,7 +1668,7 @@
                     }
 
                 }
-                if (spotRadius && options.get('spotColor')) {
+                if (spotRadius && options.get('spotColor') && yvalues[yvallast] !== null) {
                     target.drawCircle(canvasLeft + Math.round((xvalues[xvalues.length - 1] - this.minx) * (canvasWidth / rangex)),
                         canvasTop + Math.round(canvasHeight - (canvasHeight * ((yvalues[yvallast] - this.miny) / rangey))),
                         spotRadius, undefined,
@@ -2528,14 +2549,6 @@
         // Setup a very simple "virtual canvas" to make drawing the few shapes we need easier
         // This is accessible as $(foo).simpledraw()
 
-        if ($.browser.msie && document.namespaces && !document.namespaces.v) {
-            document.namespaces.add('v', 'urn:schemas-microsoft-com:vml', '#default#VML');
-        }
-
-        if ($.browser.hasCanvas === undefined) {
-            $.browser.hasCanvas = document.createElement('canvas').getContext !== undefined;
-        }
-
         VShape = createClass({
             init: function (target, id, type, args) {
                 this.target = target;
@@ -2888,7 +2901,7 @@
                 this.canvas.width = this.pixelWidth;
                 this.canvas.height = this.pixelHeight;
                 groupel = '<v:group coordorigin="0 0" coordsize="' + this.pixelWidth + ' ' + this.pixelHeight + '"' +
-                    ' style="position:absolute;top:0;left:0;width:' + this.pixelWidth + 'px;height=' + this.pixelHeight + 'px;"></v:group>';
+                ' style="position:absolute;top:0;left:0;width:' + this.pixelWidth + 'px;height=' + this.pixelHeight + 'px;"></v:group>';
                 this.canvas.insertAdjacentHTML('beforeEnd', groupel);
                 this.group = $(this.canvas).children()[0];
                 this.rendered = false;
@@ -2907,12 +2920,12 @@
                 fill = fillColor === undefined ? ' filled="false"' : ' fillColor="' + fillColor + '" filled="true" ';
                 closed = vpath[0] === vpath[vpath.length - 1] ? 'x ' : '';
                 vel = '<v:shape coordorigin="0 0" coordsize="' + this.pixelWidth + ' ' + this.pixelHeight + '" ' +
-                    ' id="jqsshape' + shapeid + '" ' +
-                    stroke +
-                    fill +
-                    ' style="position:absolute;left:0px;top:0px;height:' + this.pixelHeight + 'px;width:' + this.pixelWidth + 'px;padding:0px;margin:0px;" ' +
-                    ' path="m ' + initial + ' l ' + vpath.join(', ') + ' ' + closed + 'e">' +
-                    ' </v:shape>';
+                ' id="jqsshape' + shapeid + '" ' +
+                stroke +
+                fill +
+                ' style="position:absolute;left:0px;top:0px;height:' + this.pixelHeight + 'px;width:' + this.pixelWidth + 'px;padding:0px;margin:0px;" ' +
+                ' path="m ' + initial + ' l ' + vpath.join(', ') + ' ' + closed + 'e">' +
+                ' </v:shape>';
                 return vel;
             },
 
@@ -2923,10 +2936,10 @@
                 stroke = lineColor === undefined ? ' stroked="false" ' : ' strokeWeight="' + lineWidth + 'px" strokeColor="' + lineColor + '" ';
                 fill = fillColor === undefined ? ' filled="false"' : ' fillColor="' + fillColor + '" filled="true" ';
                 vel = '<v:oval ' +
-                    ' id="jqsshape' + shapeid + '" ' +
-                    stroke +
-                    fill +
-                    ' style="position:absolute;top:' + y + 'px; left:' + x + 'px; width:' + (radius * 2) + 'px; height:' + (radius * 2) + 'px"></v:oval>';
+                ' id="jqsshape' + shapeid + '" ' +
+                stroke +
+                fill +
+                ' style="position:absolute;top:' + y + 'px; left:' + x + 'px; width:' + (radius * 2) + 'px; height:' + (radius * 2) + 'px"></v:oval>';
                 return vel;
 
             },
@@ -2934,7 +2947,7 @@
             _drawPieSlice: function (shapeid, x, y, radius, startAngle, endAngle, lineColor, fillColor) {
                 var vpath, startx, starty, endx, endy, stroke, fill, vel;
                 if (startAngle === endAngle) {
-                    return;  // VML seems to have problem when start angle equals end angle.
+                    return '';  // VML seems to have problem when start angle equals end angle.
                 }
                 if ((endAngle - startAngle) === (2 * Math.PI)) {
                     startAngle = 0.0;  // VML seems to have a problem when drawing a full circle that doesn't start 0
@@ -2946,21 +2959,30 @@
                 endx = x + Math.round(Math.cos(endAngle) * radius);
                 endy = y + Math.round(Math.sin(endAngle) * radius);
 
-                // Prevent very small slices from being mistaken as a whole pie
+                if (startx === endx && starty === endy) {
+                    if ((endAngle - startAngle) < Math.PI) {
+                        // Prevent very small slices from being mistaken as a whole pie
+                        return '';
+                    }
+                    // essentially going to be the entire circle, so ignore startAngle
+                    startx = endx = x + radius;
+                    starty = endy = y;
+                }
+
                 if (startx === endx && starty === endy && (endAngle - startAngle) < Math.PI) {
-                    return;
+                    return '';
                 }
 
                 vpath = [x - radius, y - radius, x + radius, y + radius, startx, starty, endx, endy];
                 stroke = lineColor === undefined ? ' stroked="false" ' : ' strokeWeight="1px" strokeColor="' + lineColor + '" ';
                 fill = fillColor === undefined ? ' filled="false"' : ' fillColor="' + fillColor + '" filled="true" ';
                 vel = '<v:shape coordorigin="0 0" coordsize="' + this.pixelWidth + ' ' + this.pixelHeight + '" ' +
-                    ' id="jqsshape' + shapeid + '" ' +
-                    stroke +
-                    fill +
-                    ' style="position:absolute;left:0px;top:0px;height:' + this.pixelHeight + 'px;width:' + this.pixelWidth + 'px;padding:0px;margin:0px;" ' +
-                    ' path="m ' + x + ',' + y + ' wa ' + vpath.join(', ') + ' x e">' +
-                    ' </v:shape>';
+                ' id="jqsshape' + shapeid + '" ' +
+                stroke +
+                fill +
+                ' style="position:absolute;left:0px;top:0px;height:' + this.pixelHeight + 'px;width:' + this.pixelWidth + 'px;padding:0px;margin:0px;" ' +
+                ' path="m ' + x + ',' + y + ' wa ' + vpath.join(', ') + ' x e">' +
+                ' </v:shape>';
                 return vel;
             },
 
@@ -3029,4 +3051,4 @@
             }
         });
 
-    }));
+    }))}(document, Math));

@@ -18,10 +18,10 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
-		<?php
-		echo $this->Html->charset();
-		?>
+		<?php echo $this->Html->charset();?>
+		<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<![endif]-->
 		<title><?php echo $title_for_layout; ?></title>
 		<?php
 		echo $this->Html->meta('icon');
@@ -32,12 +32,9 @@
 		/* For theme development */
 			//echo $this->Html->css('less/xlrstats.generic.less?', 'stylesheet/less');
 		echo $this->Html->css('cookiecuttr');
-		echo $this->Html->css('http://fonts.googleapis.com/css?family=Lato:400,700');
-		echo $this->Html->css('http://fonts.googleapis.com/css?family=Cuprum:400,400italic,700,700italic');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->Html->script('modernizr-2.6.1-respond-1.1.0.min'); //Modernizr
-		echo $this->Html->script('jquery-1.8.2.min'); //jQuery library
+		echo $this->Html->script('jquery-1.11.1.min'); //jQuery library
 		echo $this->Html->script('jquery-ui-1.8.24.min'); //jQuery UI library
 		echo $this->Html->script('jquery.dataTables.min'); //dataTables jQuery plugin
 		echo $this->Html->script('http://maps.google.com/maps/api/js?sensor=true'); //Google Maps jQuery plugin
@@ -51,7 +48,7 @@
 			echo $this->Html->script('jquery.cookiecuttr.js');
 		};
 		/* For theme development */
-			//echo $this->Html->script('less-1.3.0.min'); //Just for development (WILL BE REMOVED)
+			//echo $this->Html->script('less.min'); //Just for development (WILL BE REMOVED)
 		echo $this->fetch('script');
 
 		?>

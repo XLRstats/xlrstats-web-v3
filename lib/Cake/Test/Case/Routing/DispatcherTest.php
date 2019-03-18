@@ -17,6 +17,7 @@
  */
 
 App::uses('Dispatcher', 'Routing');
+App::uses('DispatcherFilter', 'Routing');
 
 if (!class_exists('AppController', false)) {
 	require_once CAKE . 'Test' . DS . 'test_app' . DS . 'Controller' . DS . 'AppController.php';
@@ -56,12 +57,11 @@ class TestDispatcher extends Dispatcher {
  *
  * @param Controller $controller
  * @param CakeRequest $request
- * @param CakeResponse $response
- * @return void
+ * @return CakeResponse
  */
-	protected function _invoke(Controller $controller, CakeRequest $request, CakeResponse $response) {
+	protected function _invoke(Controller $controller, CakeRequest $request) {
 		$this->controller = $controller;
-		return parent::_invoke($controller, $request, $response);
+		return parent::_invoke($controller, $request);
 	}
 
 /**
@@ -339,7 +339,7 @@ class SomePostsController extends AppController {
 /**
  * autoRender property
  *
- * @var boolean
+ * @var bool
  */
 	public $autoRender = false;
 
@@ -462,6 +462,8 @@ class TestCachedPagesController extends Controller {
 
 /**
  * Test cached views with themes.
+ *
+ * @return void
  */
 	public function themed() {
 		$this->cacheAction = 10;
@@ -492,6 +494,39 @@ class TimesheetsController extends Controller {
  */
 	public function index() {
 		return true;
+	}
+
+}
+
+/**
+ * TestFilterDispatcher class
+ *
+ * @package       Cake.Test.Case.Routing
+ */
+class TestFilterDispatcher extends DispatcherFilter {
+
+	public $priority = 10;
+
+/**
+ * TestFilterDispatcher::beforeDispatch()
+ *
+ * @param mixed $event
+ * @return CakeResponse|bool
+ */
+	public function beforeDispatch(CakeEvent $event) {
+		$event->stopPropagation();
+		$response = $event->data['request'];
+		$response->addParams(array('settings' => $this->settings));
+		return null;
+	}
+
+/**
+ * TestFilterDispatcher::afterDispatch()
+ *
+ * @param mixed $event
+ * @return mixed boolean to stop the event dispatching or null to continue
+ */
+	public function afterDispatch(CakeEvent $event) {
 	}
 
 }
@@ -1226,6 +1261,23 @@ class DispatcherTest extends CakeTestCase {
 	}
 
 /**
+ * Tests that it is possible to attach filter with config classes to the dispatch cycle
+ *
+ * @return void
+ */
+	public function testDispatcherFilterSettings() {
+		Configure::write('Dispatcher.filters', array(
+			'TestFilterDispatcher' => array('service' => 'google.com')
+		));
+		$Dispatcher = new Dispatcher();
+		$url = new CakeRequest('some_pages/index');
+		$response = $this->getMock('CakeResponse');
+		$Dispatcher->dispatch($url, $response, array('return' => 1));
+		$settings = $url->param('settings');
+		$this->assertEquals($settings, array('service' => 'google.com'));
+	}
+
+/**
  * Tests that attaching an inexistent class as filter will throw an exception
  *
  * @expectedException MissingDispatcherFilterException
@@ -1275,6 +1327,16 @@ class DispatcherTest extends CakeTestCase {
 		$response = $this->getMock('CakeResponse', array('send'));
 		$dispatcher->dispatch($request, $response);
 		$this->assertEquals('Dispatcher.afterDispatch', $request->params['eventName']);
+
+		$dispatcher = new TestDispatcher();
+		Configure::write('Dispatcher.filters', array(
+			'filterTest' => array('callable' => array($dispatcher, 'filterTest'), 'on' => 'before')
+		));
+
+		$request = new CakeRequest('/');
+		$response = $this->getMock('CakeResponse', array('send'));
+		$dispatcher->dispatch($request, $response);
+		$this->assertEquals('Dispatcher.beforeDispatch', $request->params['eventName']);
 
 		// Test that it is possible to skip the route connection process
 		$dispatcher = new TestDispatcher();
