@@ -6,6 +6,7 @@ Here is our beta code for the **XLRstats v3 - League Edition**
 
 ```
 This project is NO LONGER actively maintained! It is provided 'as is' in its current state!
+No pull requests will be accepted.
 ```
 
 [Here is a fork that has a number of fixes/updates](https://github.com/LandGame/xlrstats-web-v3)
