@@ -15,7 +15,243 @@
 
 $config = array(
 	'gameName' => 'BattleField Bad Company 2',
+
+	/**
+	 * Team names
+	 */
+	'teams' => array(
+		'2' => 'Red',		// Red team
+		'3' => 'Blue',	// Blue team
+		'-1' => 'Spectators'
+	),
+	/**
+	 * Map: name, description, image
+	 */
+	'maps' => array(
+		//Map Image Path
+		'image_path' => 'http://www.xlrstats.com/xlrstats-images/v3.app.img/maps/bfbc2/middle/',
+
+		//Conquest Levels
+		'Levels/MP_001' => array('Panama Canal (Conquest)', 'description', 'MP_001.jpg'),
+		'Levels/MP_003' => array('Laguna Alta (Conquest)', 'description', 'MP_003.jpg'),
+		'Levels/MP_005' => array('Atacama Desert (Conquest)', 'description', 'MP_005.jpg'),
+		'Levels/MP_006CQ' => array('Arica Harbor (Conquest)', 'description', 'MP_006CQ.jpg'),
+		'Levels/MP_007' => array('White Pass (Conquest)', 'description', 'MP_007.jpg'),
+		'Levels/MP_008CQ' => array('Nelson Bay (Conquest)', 'description', 'MP_008CQ.jpg'),
+		'Levels/MP_009CQ' => array('Laguna Preza (Conquest)', 'description', 'MP_009CQ.jpg'),
+		'Levels/MP_012CQ' => array('Port Valdez (Conquest)', 'description', 'MP_012CQ.jpg'),
+		'Levels/BC1_Oasis_CQ' => array('Oasis (Conquest)', 'description', 'BC1_Oasis.jpg'),
+		'Levels/BC1_Harvest_Day_CQ' => array('Harvest Day (Conquest)', 'description', 'BC1_Harvest_Day.jpg'),
+		'Levels/MP_SP_005CQ' => array('Heavy Metal (Conquest)', 'description', 'MP_SP_005CQ.jpg'),
+		//Rush Levels
+		'Levels/MP_002' => array('Valparaiso (Rush)', 'description', 'MP_002.jpg'),
+		'Levels/MP_004' => array('Isla Inocentes (Rush)', 'description', 'MP_004.jpg'),
+		'Levels/MP_005GR' => array('Atacama Desert (Rush)', 'description', 'MP_005GR.jpg'),
+		'Levels/MP_006' => array('Arica Harbor (Rush)', 'description', 'MP_006.jpg'),
+		'Levels/MP_007GR' => array('White Pass (Rush)', 'description', 'MP_007GR.jpg'),
+		'Levels/MP_008' => array('Nelson Bay (Rush)', 'description', 'MP_008.jpg'),
+		'levels/mp_009gr' => array('Laguna Preza (Rush)', 'description', 'MP_009GR.jpg'),
+		'Levels/MP_012GR' => array('Port Valdez (Rush)', 'description', 'MP_012GR.jpg'),
+		'Levels/BC1_Oasis_GR' => array('Oasis (Rush)', 'description', 'BC1_Oasis.jpg'),
+		'Levels/BC1_Harvest_Day_GR' => array('Harvest Day (Rush)', 'description', 'BC1_Harvest_Day.jpg'),
+		'Levels/MP_SP_002GR' => array('Cold War (Rush)', 'description', 'MP_SP_002.jpg'),
+		//Squadrush Levels
+		'Levels/MP_001SR' => array('Panama Canal (Squadrush)', 'description', 'MP_001SR.jpg'),
+		'Levels/MP_002SR' => array('Valparaiso (Squadrush)', 'description', 'MP_002SR.jpg'),
+		'Levels/MP_003SR' => array('Laguna Alta (Squadrush)', 'description', 'MP_003SR.jpg'),
+		'Levels/MP_005SR' => array('Atacama Desert (Squadrush)', 'description', 'MP_005SR.jpg'),
+		'Levels/MP_009SR' => array('Laguna Presa (Squadrush)', 'description', 'MP_009SR.jpg'),
+		'Levels/MP_012SR' => array('Port Valdez (Squadrush)', 'description', 'MP_012SR.jpg'),
+		'Levels/BC1_Oasis_SR' => array('Oasis (Squadrush)', 'description', 'BC1_Oasis.jpg'),
+		'Levels/BC1_Harvest_Day_SR' => array('Harvest Day (Squadrush)', 'description', 'BC1_Harvest_Day.jpg'),
+		'Levels/MP_SP_002SR' => array('Cold War (Squadrush)', 'description', 'MP_SP_002.jpg'),
+		//Squad Deathmatch
+		'Levels/MP_001SDM' => array('Panama Canal (Squad DM)', 'description', 'MP_001SDM.jpg'),
+		'Levels/MP_004SDM' => array('Isla Inocentes (Squad DM)', 'description', 'MP_004SDM.jpg'),
+		'Levels/MP_006SDM' => array('Arica Harbor (Squad DM)', 'description', 'MP_006SDM.jpg'),
+		'Levels/MP_007SDM' => array('White Pass (Squad DM)', 'description', 'MP_007SDM.jpg'),
+		'Levels/MP_008SDM' => array('Nelson Bay (Squad DM)', 'description', 'MP_008SDM.jpg'),
+		'Levels/MP_009SDM' => array('Laguna Preza (Squad DM)', 'description', 'MP_009SDM.jpg'),
+		'Levels/BC1_Oasis_SDM' => array('Oasis (Squad DM)', 'description', 'BC1_Oasis.jpg'),
+		'Levels/BC1_Harvest_Day_SDM' => array('Harvest Day (Squad DM)', 'description', 'BC1_Harvest_Day.jpg'),
+		'Levels/MP_SP_002SDM' => array('Cold War (Squad DM)', 'description', 'MP_SP_002.jpg'),
+		'Levels/MP_SP_005SDM' => array('Heavy Metal (Squad DM)', 'description', 'MP_SP_005SDM.jpg'),
+
+		'None' => array('-Unknown-', 'description', '')
+	),
+
+	'weapons' => array(
+		//Weapon Image Path
+		'image_path' => 'http://www.xlrstats.com/xlrstats-images/v3.app.img/weapons/bfbc2/small/',
+
+		//*********************
+		// Weapons names
+		//*********************
+
+		//Assault
+		'AEK971' => array('AEK-971 Vintovka', 'description', 'aek.png'),
+		'XM8' => array('XM8 Prototype', 'description', 'xm8.png'),
+		'F2000' => array('F2000 Assault', 'description', 'f2000.png'),
+		'AUG' => array('Stg.77 AUG', 'description', 'aug.png'),
+		'AN94' => array('AN-94 Abakan', 'description', 'an94.png'),
+		'M416' => array('M416', 'description', 'm416.png'),
+		'M16' => array('M16A2', 'description', 'm16.png'),
+		'M16K' => array('M162A - SPECTACT', 'description', 'm16k.png'),
+
+		//Engineer
+		'9A91' => array('9A-91 Avtomat', 'description', '9a91.png'),
+		'SCAR' => array('SCAR-L Carbine', 'description', 'scar.png'),
+		'XM8C' => array('XM8 Compact', 'description', 'xm8c.png'),
+		'AKS74u' => array('AKS-74U Krinkov', 'description', 'aks74u.png'),
+		'UZI' => array('UZI', 'description', 'uzi.png'),
+		'PP2000' => array('PP-2000 Avtomat', 'description', 'pp2000.png'),
+		'UMP' => array('UMP-45', 'description', 'ump.png'),
+		'UMPK' => array('UMP - SPECTACT', 'description', 'umpk.png'),
+
+		//Medic
+		'PKM' => array('PKM LMG', 'description', 'pkm.png'),
+		'M249' => array('M249 Saw', 'description', 'm249.png'),
+		'QJU88' => array('Type 88 LMG', 'description', 'qju88.png'),
+		'M60' => array('M60 LMG', 'description', 'm60.png'),
+		'XM8 LMG' => array('XM8 LMG', 'description', 'xm8lmg.png'),
+		'MG36' => array('MG36', 'description', 'mg36.png'),
+		'MG3' => array('MG3', 'description', 'mg3.png'),
+		'MG3K' => array('MG3 - SPECTACT', 'description', 'mg3k.png'),
+
+		//Recon
+		'M24' => array('M24 Sniper', 'description', 'm24.png'),
+		'QBU88' => array('Type 88 Sniper', 'description', 'qbu88.png'),
+		'SV98' => array('SV98 Snaiperskaya', 'description', 'sv98.png'),
+		'SVU' => array('SVU Snaiperskaya Short', 'description', 'svu.png'),
+		'GOL' => array('GOL Sniper Magnum', 'description', 'gol.png'),
+		'VSS' => array('VSS Snaiperskaya Special', 'description', 'vss.png'),
+		'M95' => array('M95 Sniper', 'description', 'm95.png'),
+		'M95K' => array('M95 - SPECTACT', 'description', 'm95k.png'),
+
+		//Other Kits
+		'870MCS' => array('870 Combat', 'description', '870mcs.png'),
+		'S20K' => array('Saiga 20k Semi', 'description', 's20k.png'),
+		'M1A1 Thompson' => array('WWII M1A1 Thompson', 'description', 'm1a1.png'),
+		'SPAS12' => array('SPAS-12 Combat', 'description', 'spas12.png'),
+		'Mk14EBR' => array('M14 Mod 0 Enhanced', 'description', 'mk14ebr.png'),
+		'NS2000' => array('NEOSTEAD 2000 Combat', 'description', 'ns2000.png'),
+		'usas12' => array('USAS-12 Auto', 'description', 'usas12.png'),
+		'G3' => array('G3', 'description', 'g3.png'),
+		'Garand' => array('M1 Garand', 'description', 'garand.png'),
+
+		//Sidearms
+		'M9' => array('M9 Pistol', 'description', 'm9.png'),
+		'MP443' => array('MP-443 Grach', 'description', 'mp443.png'),
+		'M1911' => array('WWII M1911 .45', 'description', 'm1911.png'),
+		'MP412' => array('MP-412 Rex', 'description', 'm9412.png'),
+		'M9-3' => array('M93R Burst', 'description', 'm93r.png'),
+
+		//*********************
+		// Vehicle names
+		//*********************
+
+		//Light
+		'HUMV#Gun' => array('HMMWV 4WD', 'description', ''),
+		'VODN#KORD' => array('VODNIK 4WD', 'description', ''),
+		'COBR#Kord' => array('COBRA 4WD', 'description', ''),
+
+		//Heavy
+		'M1A2#Maingun' => array('M1A2 Abrams (Main Gun)', 'description', ''),
+		'M1A2#CoaxMG' => array('M1A2 Abrams (Coax MG)', 'description', ''),
+		'M1A2#RemoteGun' => array('M1A2 Abrams (Remote Gun)', 'description', ''),
+
+		'T90R#MainGun' => array('T-90 MBT (Main Gun)', 'description', ''),
+		'T90R#CoaxMG' => array('T-90 MBT (Coax MG)', 'description', ''),
+		'T90R#RemoteGun' => array('T-90 MBT (Remote Gun)', 'description', ''),
+
+		'M3A3#IFVAutoCannon' => array('M3A3 Bradley (Auto Cannon)', 'description', ''),
+		'M3A3#TOW' => array('M3A3 Bradley (Tow)', 'description', ''),
+		'M3A3#RemoteMG' => array('M3A3 Bradley (Remote MG)', 'description', ''),
+		'M3A3#PFW RearLeft' => array('M3A3 Bradley (Rear Left Gun)', 'description', ''),
+		'M3A3#PFW RearRight' => array('M3A3 Bradley (Rear Right Gun)', 'description', ''),
+
+		'BMD3#IFVAutoCannon' => array('BMD-3 Bakhcha (Auto Cannon)', 'description', ''),
+		'BMD3#TOW' => array('BMD-3 Bakhcha (Tow)', 'description', ''),
+		'BMD3#RemoteMG' => array('BMD-3 Bakhcha (Remote MG)', 'description', ''),
+		'BMDA#Cannon' => array('BMD-3 Bakhcha (Cannon)', 'description', ''),
+		'BMD3#PFW RearRight' => array('BMD-3 Bakhcha (Rear Right Gun)', 'description', ''),
+		'BMD3#PFW RearLeft' => array('BMD-3 Bakhcha(Rear Left Gun)', 'description', ''),
+
+		'BMDA#GMG' => array('BMD-3 Bakhcha AA', 'description', '.png'),
+
+		//Water
+		'PBLB#GMG' => array('Patrol Boat', 'description', ''),
+
+		//Air
+		'AH60#Minigun Left' => array('UH-60 Transport (Mini Gun Left)', 'description', ''),
+		'AH60#Minigun Right' => array('UH-60 Transport (Mini Gun Right)', 'description', ''),
+
+		'AH64#Heli AutoCannon' => array('AH-64 Apache (Auto Cannon)', 'description', ''),
+		'AH64#RocketPod Right' => array('AH-64 Apache (Rocket Pod Right)', 'description', ''),
+		'AH64#RocketPod Left' => array('AH-64 Apache (Rocket Pod Left)', 'description', ''),
+		'AH64#TOW' => array('AH-64 Apache (Tow)', 'description', ''),
+
+		'MI28#GunnerCannnon' => array('MI-28 Havoc (Gunner Cannon)', 'description', ''),
+		'MI28#DumbFireRocket Port' => array('MI-28 Havoc (Rocket)', 'description', ''),
+		'MI28#DumbFireRocket Starboard' => array('MI-28 Havoc (Starboard)', 'description', ''),
+		'MI28#TOW' => array('MI-28 Havoc (Tow)', 'description', ''),
+
+		'MI24#GunnerCannon' => array('MI-24 Hind', 'description', ''),
+
+		'UAV1#MG' => array('UAV (MG)', 'description', ''),
+		'UAV1#Bomb' => array('UAV (Bomb)', 'description', ''),
+
+		//Stationary
+		'X312#Gun' => array('Heavy MG X312', 'description', ''),
+		'KORD#Gun' => array('Heavy MG KORD', 'description', ''),
+		'KORN#Missile Launcher' => array('Stationary AT KORN', 'description', ''),
+		'TOW2#Launcher' => array('Stationary AT TOW2', 'description', ''),
+		'ZU23#Cannons' => array('Anti-Air Gun', 'description', ''),
+		'VADS#AutoCannon' => array('VADS Auto Cannon', 'description', ''),
+		'CAVJ#XM-307' => array('XM307 ACSW', 'description', ''),
+
+		//*********************
+		// Other Weapon Names
+		//*********************
+		'KNV-1' => array('Knife', 'description', ''),
+		'RoadKill' => array('Road Kill', 'description', ''),
+		'D2.0' => array('Demolition', 'description', ''),
+		'[]' => array('Not Identified', 'description', ''),
+		'1' => array('Not Identified', 'description', ''),
+		' ' => array('Not Identified', 'description', ''),
+
+		//*********************
+		// Perk Names
+		//*********************
+		'40mmgl' => array('40mm Grenade Launcher', 'description', ''),
+		'40mmsg' => array('40mm Shot Gun', 'description', ''),
+		'40mmsmk' => array('40mm Smoke Launcher', 'description', ''),
+		'RPG7' => array('RPG7', 'description', ''),
+		'PWR-700' => array('Repair Tool', 'description', ''),
+		'ATM-00' => array('Anti-Tank Mine', 'description', ''),
+		'M2CG' => array('M2 Carl Gustav AT', 'description', ''),
+		'M136' => array('M136 AT4', 'description', ''),
+		'DEFIB' => array('Automated External Defibrillator', 'description', ''),
+		'DTN-4' => array('C4 Explosive', 'description', ''),
+		'MRTR-5' => array('Mortar Strike', 'description', ''),
+		'HG-2' => array('Hand Grenade', 'description', ''),
+		'TRCR-357' => array('Tracer Dart Gun', 'description', ''),
+	),
+
+	/**
+	 * Bodypart names
+	 */
+	'body_parts' => array(
+		/**
+		 * fixed_name => array ('console_name' => 'Easy Name')
+		 * DO NOT CHANGE 'fixed_name's
+		 */
+		'head' => array('head' => 'Head'),
+		'torso_lower' => array('torso' => 'Torso'),
+		'none' => array('none' => 'Total disruption'),
+	),
 );
+
 /*
 //*********************
 // These are the standard BFBC2 settings
